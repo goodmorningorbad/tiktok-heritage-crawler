@@ -1,0 +1,33 @@
+# Secrets / local config
+.env
+*.env
+
+# Runtime browser profiles and cookies - DO NOT COMMIT
+profiles/
+profiles_vps/
+profiles_vps_test/
+cookies/
+cookies.json
+
+# Collected datasets / logs / raw outputs
+# Keep the repository focused on reusable scripts; publish sample/anonymized data separately if needed.
+data/
+*.ndjson
+*.jsonl
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Playwright/browser artifacts
+playwright-report/
+test-results/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
