@@ -79,3 +79,25 @@ python ndjson_to_csv.py data/hashtags.ndjson data/hashtags.csv
 ```bash
 bash deploy.sh
 ```
+
+## 可选技术路线：Scrapling
+
+调研了 [D4Vinci/Scrapling](https://github.com/D4Vinci/Scrapling)：它是成熟的 Python scraping framework，支持静态请求、动态浏览器、stealth fetch、spider、proxy rotation 和 MCP server。
+
+当前 TikTok 采集主链路仍使用 `TikTokApi + Playwright cookies`，因为我们需要的是 TikTok 搜索接口返回的视频元数据，而不是普通静态网页。Scrapling 暂时不替换主爬虫。
+
+后续可能用于：
+
+- TikTok search / tag 页面 DOM fallback
+- TikTokApi hashtag endpoint 失效时，用浏览器页面抓视频卡片链接
+- 非 TikTok 的公开网页数据补采
+- 通过 Scrapling MCP 做临时探索式网页抽取
+
+如果要实验：
+
+```bash
+source /root/workspace/tiktok-api-venv/bin/activate
+pip install "scrapling[all]>=0.4.8"
+scrapling install --force
+```
+
