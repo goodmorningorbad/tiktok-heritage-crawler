@@ -1,0 +1,1260 @@
+{
+  "version": "v1",
+  "description": "UNESCO Chinese ICH TikTok keyword config. negative_terms are labeling-only; never collection exclusions.",
+  "source": "data/unesco_tiktok_20260530_233505.csv",
+  "expected_project_count": 45,
+  "negative_terms_policy": "label_only_never_exclude",
+  "projects": [
+    {
+      "id": 1,
+      "name_cn": "春节",
+      "name_en": "Spring Festival, social practices of the Chinese people in celebration of traditional new year",
+      "year": "2024",
+      "category": "节庆民俗",
+      "search_terms": [
+        "春节",
+        "新年",
+        "过年",
+        "chinesenewyear",
+        "lunarnewyear",
+        "cny",
+        "springfestival",
+        "gongxifacai",
+        "新年快乐"
+      ],
+      "core_terms": [
+        "春节",
+        "新年",
+        "过年",
+        "chinesenewyear",
+        "lunarnewyear",
+        "cny",
+        "springfestival",
+        "gongxifacai",
+        "新年快乐"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "春节",
+        "新年",
+        "过年",
+        "chinesenewyear",
+        "lunarnewyear",
+        "cny"
+      ]
+    },
+    {
+      "id": 2,
+      "name_cn": "中国传统制茶技艺及其相关习俗",
+      "name_en": "Traditional tea processing techniques and associated social practices in China",
+      "year": "2022",
+      "category": "手工艺/民俗",
+      "search_terms": [
+        "Chinese tea",
+        "gongfu tea",
+        "gongfutea",
+        "tea ceremony",
+        "茶艺",
+        "功夫茶",
+        "炒茶",
+        "制茶",
+        "揉捻"
+      ],
+      "core_terms": [
+        "traditional tea processing",
+        "Chinese tea ceremony",
+        "gongfu tea",
+        "gongfutea",
+        "功夫茶",
+        "茶礼",
+        "炒茶",
+        "制茶工艺",
+        "茶艺"
+      ],
+      "negative_terms": [
+        "milk tea",
+        "bubble tea",
+        "boba",
+        "matcha latte",
+        "tea shop",
+        "tea pet",
+        "奶茶"
+      ],
+      "hashtag_terms": [
+        "gongfutea",
+        "茶艺",
+        "功夫茶",
+        "炒茶",
+        "制茶",
+        "揉捻"
+      ]
+    },
+    {
+      "id": 3,
+      "name_cn": "太极拳",
+      "name_en": "Taijiquan",
+      "year": "2020",
+      "category": "传统体育/养生",
+      "search_terms": [
+        "太极",
+        "太极拳",
+        "taichi",
+        "taijiquan"
+      ],
+      "core_terms": [
+        "太极",
+        "太极拳",
+        "taichi",
+        "taijiquan"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "太极",
+        "太极拳",
+        "taichi",
+        "taijiquan"
+      ]
+    },
+    {
+      "id": 4,
+      "name_cn": "送王船",
+      "name_en": "Ong Chun/Wangchuan/Wangkang ceremony, rituals and related practices for maintaining the sustainable connection between man and the ocean",
+      "year": "2020",
+      "category": "民俗仪式",
+      "search_terms": [
+        "送王船",
+        "王船",
+        "ongchun",
+        "wangchuan",
+        "wangkang",
+        "boatburning"
+      ],
+      "core_terms": [
+        "送王船",
+        "王船",
+        "ongchun",
+        "wangchuan",
+        "wangkang",
+        "boatburning"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "送王船",
+        "王船",
+        "ongchun",
+        "wangchuan",
+        "wangkang",
+        "boatburning"
+      ]
+    },
+    {
+      "id": 5,
+      "name_cn": "藏医药浴法",
+      "name_en": "Lum medicinal bathing of Sowa Rigpa, knowledge and practices concerning life, health and illness prevention and treatment among the Xizang people in China",
+      "year": "2018",
+      "category": "传统医药",
+      "search_terms": [
+        "藏医",
+        "药浴",
+        "sowarigpa",
+        "tibetanmedicine",
+        "tibetanhealing"
+      ],
+      "core_terms": [
+        "藏医",
+        "药浴",
+        "sowarigpa",
+        "tibetanmedicine",
+        "tibetanhealing"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "藏医",
+        "药浴",
+        "sowarigpa",
+        "tibetanmedicine",
+        "tibetanhealing"
+      ]
+    },
+    {
+      "id": 6,
+      "name_cn": "二十四节气",
+      "name_en": "The Twenty-Four Solar Terms, knowledge in China of time and practices developed through observation of the sun's annual motion",
+      "year": "2016",
+      "category": "传统知识/民俗",
+      "search_terms": [
+        "二十四节气",
+        "节气",
+        "solarterms",
+        "24solarterms",
+        "chinesecalendar"
+      ],
+      "core_terms": [
+        "二十四节气",
+        "节气",
+        "solarterms",
+        "24solarterms",
+        "chinesecalendar"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "二十四节气",
+        "节气",
+        "solarterms",
+        "24solarterms",
+        "chinesecalendar"
+      ]
+    },
+    {
+      "id": 7,
+      "name_cn": "中国珠算",
+      "name_en": "Chinese Zhusuan, knowledge and practices of mathematical calculation through the abacus",
+      "year": "2013",
+      "category": "传统知识",
+      "search_terms": [
+        "珠算",
+        "算盘",
+        "abacus",
+        "zhusuan"
+      ],
+      "core_terms": [
+        "珠算",
+        "算盘",
+        "abacus",
+        "zhusuan"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "珠算",
+        "算盘",
+        "abacus",
+        "zhusuan"
+      ]
+    },
+    {
+      "id": 8,
+      "name_cn": "福建木偶戏",
+      "name_en": "Strategy for training coming generations of Fujian puppetry practitioners",
+      "year": "2012",
+      "category": "保护实践(木偶戏)",
+      "search_terms": [
+        "budaixi",
+        "布袋戏",
+        "掌中戏",
+        "Fujian puppetry",
+        "Chinese puppet",
+        "glove puppetry"
+      ],
+      "core_terms": [
+        "budaixi",
+        "布袋戏",
+        "掌中戏",
+        "Fujian puppetry",
+        "Chinese puppet",
+        "glove puppetry",
+        "福建木偶"
+      ],
+      "negative_terms": [
+        "shadow puppetry",
+        "Chinese shadow puppetry",
+        "皮影",
+        "shadow play",
+        "hand shadow"
+      ],
+      "hashtag_terms": [
+        "budaixi",
+        "布袋戏",
+        "掌中戏"
+      ]
+    },
+    {
+      "id": 9,
+      "name_cn": "赫哲族伊玛堪",
+      "name_en": "Hezhe Yimakan storytelling",
+      "year": "2011",
+      "category": "口头传统/史诗",
+      "search_terms": [
+        "赫哲",
+        "伊玛堪",
+        "hezhe",
+        "yimakan"
+      ],
+      "core_terms": [
+        "赫哲",
+        "伊玛堪",
+        "hezhe",
+        "yimakan"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "赫哲",
+        "伊玛堪",
+        "hezhe",
+        "yimakan"
+      ]
+    },
+    {
+      "id": 10,
+      "name_cn": "中国皮影戏",
+      "name_en": "Chinese shadow puppetry",
+      "year": "2011",
+      "category": "表演艺术",
+      "search_terms": [
+        "Chinese shadow puppetry",
+        "shadow puppetry",
+        "皮影戏",
+        "皮影",
+        "piying"
+      ],
+      "core_terms": [
+        "Chinese shadow puppetry",
+        "shadow puppetry",
+        "皮影戏",
+        "皮影",
+        "piying"
+      ],
+      "negative_terms": [
+        "hand shadow",
+        "shadow hand"
+      ],
+      "hashtag_terms": [
+        "皮影戏",
+        "皮影",
+        "piying"
+      ]
+    },
+    {
+      "id": 11,
+      "name_cn": "麦西热甫",
+      "name_en": "Meshrep",
+      "year": "2010",
+      "category": "表演艺术/民俗",
+      "search_terms": [
+        "麦西热甫",
+        "meshrep",
+        "mäshräp",
+        "uyghur"
+      ],
+      "core_terms": [
+        "麦西热甫",
+        "meshrep",
+        "mäshräp",
+        "uyghur"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "麦西热甫",
+        "meshrep",
+        "mäshräp",
+        "uyghur"
+      ]
+    },
+    {
+      "id": 12,
+      "name_cn": "中国水密隔舱福船制造技艺",
+      "name_en": "Watertight-bulkhead technology of Chinese junks",
+      "year": "2010",
+      "category": "传统手工艺",
+      "search_terms": [
+        "水密隔舱",
+        "福船",
+        "watertight",
+        "junk",
+        "fuchuan"
+      ],
+      "core_terms": [
+        "水密隔舱",
+        "福船",
+        "watertight",
+        "junk",
+        "fuchuan"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "水密隔舱",
+        "福船",
+        "watertight",
+        "junk",
+        "fuchuan"
+      ]
+    },
+    {
+      "id": 13,
+      "name_cn": "中国木活字印刷术",
+      "name_en": "Wooden movable-type printing of China",
+      "year": "2010",
+      "category": "传统手工艺",
+      "search_terms": [
+        "木活字",
+        "活字",
+        "movabletype",
+        "woodentype",
+        "printing"
+      ],
+      "core_terms": [
+        "木活字",
+        "活字",
+        "movabletype",
+        "woodentype",
+        "printing"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "木活字",
+        "活字",
+        "movabletype",
+        "woodentype",
+        "printing"
+      ]
+    },
+    {
+      "id": 14,
+      "name_cn": "京剧",
+      "name_en": "Peking opera",
+      "year": "2010",
+      "category": "表演艺术(戏曲)",
+      "search_terms": [
+        "京剧",
+        "pekingopera",
+        "beijingopera",
+        "chineseopera"
+      ],
+      "core_terms": [
+        "京剧",
+        "pekingopera",
+        "beijingopera",
+        "chineseopera"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "京剧",
+        "pekingopera",
+        "beijingopera",
+        "chineseopera"
+      ]
+    },
+    {
+      "id": 15,
+      "name_cn": "中医针灸",
+      "name_en": "Acupuncture and moxibustion of traditional Chinese medicine",
+      "year": "2010",
+      "category": "传统医药",
+      "search_terms": [
+        "针灸",
+        "acupuncture",
+        "tcm",
+        "chinesemedicine"
+      ],
+      "core_terms": [
+        "针灸",
+        "acupuncture",
+        "tcm",
+        "chinesemedicine"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "针灸",
+        "acupuncture",
+        "tcm",
+        "chinesemedicine"
+      ]
+    },
+    {
+      "id": 16,
+      "name_cn": "黎族传统纺染织绣技艺",
+      "name_en": "Traditional Li textile techniques: spinning, dyeing, weaving and embroidering",
+      "year": "2009",
+      "category": "传统手工艺",
+      "search_terms": [
+        "Li textile",
+        "Li brocade",
+        "黎锦",
+        "黎族织锦",
+        "纺染织绣",
+        "黎族"
+      ],
+      "core_terms": [
+        "Li textile",
+        "Li brocade",
+        "黎锦",
+        "黎族织锦",
+        "纺染织绣",
+        "spinning dyeing weaving embroidering"
+      ],
+      "negative_terms": [
+        "Li food",
+        "黎族美食",
+        "restaurant",
+        "ethnic costume challenge",
+        "旅游打卡"
+      ],
+      "hashtag_terms": [
+        "黎锦",
+        "黎族织锦",
+        "纺染织绣",
+        "黎族"
+      ]
+    },
+    {
+      "id": 17,
+      "name_cn": "中国木拱桥传统营造技艺",
+      "name_en": "Traditional design and practices for building Chinese wooden arch bridges",
+      "year": "2009",
+      "category": "传统手工艺/建筑",
+      "search_terms": [
+        "木拱桥",
+        "廊桥",
+        "woodenarchbridge",
+        "coveredbridge"
+      ],
+      "core_terms": [
+        "木拱桥",
+        "廊桥",
+        "woodenarchbridge",
+        "coveredbridge"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "木拱桥",
+        "廊桥",
+        "woodenarchbridge",
+        "coveredbridge"
+      ]
+    },
+    {
+      "id": 18,
+      "name_cn": "羌年",
+      "name_en": "Qiang New Year festival",
+      "year": "2009",
+      "category": "节庆民俗",
+      "search_terms": [
+        "羌年",
+        "羌族",
+        "qiangnewyear",
+        "qiang"
+      ],
+      "core_terms": [
+        "羌年",
+        "羌族",
+        "qiangnewyear",
+        "qiang"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "羌年",
+        "羌族",
+        "qiangnewyear",
+        "qiang"
+      ]
+    },
+    {
+      "id": 19,
+      "name_cn": "侗族大歌",
+      "name_en": "Grand song of the Dong ethnic group",
+      "year": "2009",
+      "category": "表演艺术(音乐)",
+      "search_terms": [
+        "侗族",
+        "侗族大歌",
+        "kamgrandchoir",
+        "dongchorus"
+      ],
+      "core_terms": [
+        "侗族",
+        "侗族大歌",
+        "kamgrandchoir",
+        "dongchorus"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "侗族",
+        "侗族大歌",
+        "kamgrandchoir",
+        "dongchorus"
+      ]
+    },
+    {
+      "id": 20,
+      "name_cn": "西安鼓乐",
+      "name_en": "Xi'an wind and percussion ensemble",
+      "year": "2009",
+      "category": "表演艺术(音乐)",
+      "search_terms": [
+        "西安鼓乐",
+        "鼓乐",
+        "xianwind",
+        "drummusic"
+      ],
+      "core_terms": [
+        "西安鼓乐",
+        "鼓乐",
+        "xianwind",
+        "drummusic"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "西安鼓乐",
+        "鼓乐",
+        "xianwind",
+        "drummusic"
+      ]
+    },
+    {
+      "id": 21,
+      "name_cn": "中国蚕桑丝织技艺",
+      "name_en": "Sericulture and silk craftsmanship of China",
+      "year": "2009",
+      "category": "传统手工艺",
+      "search_terms": [
+        "silk",
+        "丝绸",
+        "sericulture",
+        "silk craftsmanship",
+        "silk weaving",
+        "蚕桑",
+        "缫丝"
+      ],
+      "core_terms": [
+        "sericulture",
+        "silk craftsmanship",
+        "silk weaving",
+        "silkworm",
+        "silk reeling",
+        "桑蚕",
+        "缫丝",
+        "织造",
+        "蚕桑"
+      ],
+      "negative_terms": [
+        "silk dress",
+        "silk scarf",
+        "silk pillowcase",
+        "bedsheet",
+        "duvet",
+        "卖货",
+        "factory",
+        "industrial",
+        "satin"
+      ],
+      "hashtag_terms": [
+        "silk",
+        "丝绸",
+        "sericulture",
+        "蚕桑",
+        "缫丝"
+      ]
+    },
+    {
+      "id": 22,
+      "name_cn": "南音",
+      "name_en": "Nanyin",
+      "year": "2009",
+      "category": "表演艺术(音乐)",
+      "search_terms": [
+        "Nanyin",
+        "Nanguan music",
+        "南音",
+        "泉州南音",
+        "Fujian Nanyin"
+      ],
+      "core_terms": [
+        "Nanyin",
+        "Nanguan music",
+        "南音",
+        "泉州南音",
+        "Fujian Nanyin"
+      ],
+      "negative_terms": [
+        "Nanguan food street",
+        "南关",
+        "兰州南关",
+        "street food",
+        "南关夜市"
+      ],
+      "hashtag_terms": [
+        "Nanyin",
+        "南音",
+        "泉州南音"
+      ]
+    },
+    {
+      "id": 23,
+      "name_cn": "南京云锦织造技艺",
+      "name_en": "Craftsmanship of Nanjing Yunjin brocade",
+      "year": "2009",
+      "category": "传统手工艺",
+      "search_terms": [
+        "云锦",
+        "南京云锦",
+        "yunjin",
+        "nanjingbrocade"
+      ],
+      "core_terms": [
+        "云锦",
+        "南京云锦",
+        "yunjin",
+        "nanjingbrocade"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "云锦",
+        "南京云锦",
+        "yunjin",
+        "nanjingbrocade"
+      ]
+    },
+    {
+      "id": 24,
+      "name_cn": "宣纸传统制作技艺",
+      "name_en": "Traditional handicrafts of making Xuan paper",
+      "year": "2009",
+      "category": "传统手工艺",
+      "search_terms": [
+        "宣纸",
+        "xuanpaper",
+        "ricepaper",
+        "papermaking"
+      ],
+      "core_terms": [
+        "宣纸",
+        "xuanpaper",
+        "ricepaper",
+        "papermaking"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "宣纸",
+        "xuanpaper",
+        "ricepaper",
+        "papermaking"
+      ]
+    },
+    {
+      "id": 25,
+      "name_cn": "粤剧",
+      "name_en": "Yueju opera",
+      "year": "2009",
+      "category": "表演艺术(戏曲)",
+      "search_terms": [
+        "Cantonese opera",
+        "cantoneseopera",
+        "粤剧"
+      ],
+      "core_terms": [
+        "Cantonese opera",
+        "cantoneseopera",
+        "粤剧",
+        "广东粤剧",
+        "Hong Kong Cantonese opera"
+      ],
+      "negative_terms": [
+        "越剧",
+        "Yueju",
+        "Shaoxing opera",
+        "浙江",
+        "越剧红楼梦",
+        "yueopera"
+      ],
+      "hashtag_terms": [
+        "cantoneseopera",
+        "粤剧"
+      ]
+    },
+    {
+      "id": 26,
+      "name_cn": "格萨(斯)尔史诗传统",
+      "name_en": "Gesar epic tradition",
+      "year": "2009",
+      "category": "口头传统/史诗",
+      "search_terms": [
+        "格萨尔",
+        "格萨",
+        "gesar",
+        "epic"
+      ],
+      "core_terms": [
+        "格萨尔",
+        "格萨",
+        "gesar",
+        "epic"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "格萨尔",
+        "格萨",
+        "gesar",
+        "epic"
+      ]
+    },
+    {
+      "id": 27,
+      "name_cn": "龙泉青瓷传统烧制技艺",
+      "name_en": "Traditional firing technology of Longquan celadon",
+      "year": "2009",
+      "category": "传统手工艺",
+      "search_terms": [
+        "龙泉",
+        "青瓷",
+        "longquanceladon",
+        "celadon"
+      ],
+      "core_terms": [
+        "龙泉",
+        "青瓷",
+        "longquanceladon",
+        "celadon"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "龙泉",
+        "青瓷",
+        "longquanceladon",
+        "celadon"
+      ]
+    },
+    {
+      "id": 28,
+      "name_cn": "热贡艺术",
+      "name_en": "Regong arts",
+      "year": "2009",
+      "category": "传统手工艺/宗教艺术",
+      "search_terms": [
+        "热贡",
+        "唐卡",
+        "regong",
+        "thangka"
+      ],
+      "core_terms": [
+        "热贡",
+        "唐卡",
+        "regong",
+        "thangka"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "热贡",
+        "唐卡",
+        "regong",
+        "thangka"
+      ]
+    },
+    {
+      "id": 29,
+      "name_cn": "藏戏",
+      "name_en": "Xizang opera",
+      "year": "2009",
+      "category": "表演艺术(戏曲)",
+      "search_terms": [
+        "藏戏",
+        "tibetanopera",
+        "lhamo",
+        "achelhamo"
+      ],
+      "core_terms": [
+        "藏戏",
+        "tibetanopera",
+        "lhamo",
+        "achelhamo"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "藏戏",
+        "tibetanopera",
+        "lhamo",
+        "achelhamo"
+      ]
+    },
+    {
+      "id": 30,
+      "name_cn": "玛纳斯",
+      "name_en": "Manas",
+      "year": "2009",
+      "category": "口头传统/史诗",
+      "search_terms": [
+        "玛纳斯",
+        "manas",
+        "kyrgyz"
+      ],
+      "core_terms": [
+        "玛纳斯",
+        "manas",
+        "kyrgyz"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "玛纳斯",
+        "manas",
+        "kyrgyz"
+      ]
+    },
+    {
+      "id": 31,
+      "name_cn": "蒙古族呼麦",
+      "name_en": "Mongolian art of singing, Khoomei",
+      "year": "2009",
+      "category": "表演艺术(音乐)",
+      "search_terms": [
+        "khoomei",
+        "höömii",
+        "throat singing",
+        "呼麦"
+      ],
+      "core_terms": [
+        "Inner Mongolia",
+        "内蒙古",
+        "Chinese Mongolian",
+        "Mongolian ethnic group in China",
+        "中国 呼麦",
+        "内蒙古 呼麦",
+        "khoomei",
+        "呼麦"
+      ],
+      "negative_terms": [
+        "Mongolia",
+        "Ulaanbaatar",
+        "Mongolian singer",
+        "Tuvan",
+        "Tuva",
+        "Alash",
+        "Huun-Huur-Tu"
+      ],
+      "hashtag_terms": [
+        "khoomei",
+        "höömii",
+        "呼麦"
+      ]
+    },
+    {
+      "id": 32,
+      "name_cn": "花儿",
+      "name_en": "Hua'er",
+      "year": "2009",
+      "category": "表演艺术(民歌)",
+      "search_terms": [
+        "花儿",
+        "huaer",
+        "northwestchinasong"
+      ],
+      "core_terms": [
+        "花儿",
+        "huaer",
+        "northwestchinasong"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "花儿",
+        "huaer",
+        "northwestchinasong"
+      ]
+    },
+    {
+      "id": 33,
+      "name_cn": "中国朝鲜族农乐舞",
+      "name_en": "Farmers' dance of China's Korean ethnic group",
+      "year": "2009",
+      "category": "表演艺术(舞蹈)",
+      "search_terms": [
+        "农乐舞",
+        "朝鲜族",
+        "nongak",
+        "farmersdance"
+      ],
+      "core_terms": [
+        "农乐舞",
+        "朝鲜族",
+        "nongak",
+        "farmersdance"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "农乐舞",
+        "朝鲜族",
+        "nongak",
+        "farmersdance"
+      ]
+    },
+    {
+      "id": 34,
+      "name_cn": "中国书法",
+      "name_en": "Chinese calligraphy",
+      "year": "2009",
+      "category": "传统手工艺/视觉艺术",
+      "search_terms": [
+        "书法",
+        "calligraphy",
+        "shufa",
+        "chineseink"
+      ],
+      "core_terms": [
+        "书法",
+        "calligraphy",
+        "shufa",
+        "chineseink"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "书法",
+        "calligraphy",
+        "shufa",
+        "chineseink"
+      ]
+    },
+    {
+      "id": 35,
+      "name_cn": "中国篆刻",
+      "name_en": "Art of Chinese seal engraving",
+      "year": "2009",
+      "category": "传统手工艺",
+      "search_terms": [
+        "篆刻",
+        "印章",
+        "sealcarving",
+        "chineseseal"
+      ],
+      "core_terms": [
+        "篆刻",
+        "印章",
+        "sealcarving",
+        "chineseseal"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "篆刻",
+        "印章",
+        "sealcarving",
+        "chineseseal"
+      ]
+    },
+    {
+      "id": 36,
+      "name_cn": "中国剪纸",
+      "name_en": "Chinese paper-cut",
+      "year": "2009",
+      "category": "传统手工艺",
+      "search_terms": [
+        "剪纸",
+        "papercut",
+        "papercutting",
+        "chinesepapercut"
+      ],
+      "core_terms": [
+        "剪纸",
+        "papercut",
+        "papercutting",
+        "chinesepapercut"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "剪纸",
+        "papercut",
+        "papercutting",
+        "chinesepapercut"
+      ]
+    },
+    {
+      "id": 37,
+      "name_cn": "中国传统木结构建筑营造技艺",
+      "name_en": "Chinese traditional architectural craftsmanship for timber-framed structures",
+      "year": "2009",
+      "category": "传统手工艺/建筑",
+      "search_terms": [
+        "斗拱",
+        "古建",
+        "木结构",
+        "timberframe",
+        "chinesearchitecture"
+      ],
+      "core_terms": [
+        "斗拱",
+        "古建",
+        "木结构",
+        "timberframe",
+        "chinesearchitecture"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "斗拱",
+        "古建",
+        "木结构",
+        "timberframe",
+        "chinesearchitecture"
+      ]
+    },
+    {
+      "id": 38,
+      "name_cn": "端午节",
+      "name_en": "Dragon Boat festival",
+      "year": "2009",
+      "category": "节庆民俗",
+      "search_terms": [
+        "端午",
+        "端午节",
+        "dragonboat",
+        "duanwu",
+        "zongzi"
+      ],
+      "core_terms": [
+        "端午",
+        "端午节",
+        "dragonboat",
+        "duanwu",
+        "zongzi"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "端午",
+        "端午节",
+        "dragonboat",
+        "duanwu",
+        "zongzi"
+      ]
+    },
+    {
+      "id": 39,
+      "name_cn": "妈祖信俗",
+      "name_en": "Mazu belief and customs",
+      "year": "2009",
+      "category": "民俗信仰",
+      "search_terms": [
+        "妈祖",
+        "mazu",
+        "seagoddess"
+      ],
+      "core_terms": [
+        "妈祖",
+        "mazu",
+        "seagoddess"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "妈祖",
+        "mazu",
+        "seagoddess"
+      ]
+    },
+    {
+      "id": 40,
+      "name_cn": "中国雕版印刷技艺",
+      "name_en": "China engraved block printing technique",
+      "year": "2009",
+      "category": "传统手工艺",
+      "search_terms": [
+        "雕版",
+        "雕版印刷",
+        "blockprinting",
+        "woodblock"
+      ],
+      "core_terms": [
+        "雕版",
+        "雕版印刷",
+        "blockprinting",
+        "woodblock"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "雕版",
+        "雕版印刷",
+        "blockprinting",
+        "woodblock"
+      ]
+    },
+    {
+      "id": 41,
+      "name_cn": "昆曲",
+      "name_en": "Kun Qu opera",
+      "year": "2008",
+      "category": "表演艺术(戏曲)",
+      "search_terms": [
+        "昆曲",
+        "kunqu",
+        "kunopera",
+        "kunquopera"
+      ],
+      "core_terms": [
+        "昆曲",
+        "kunqu",
+        "kunopera",
+        "kunquopera"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "昆曲",
+        "kunqu",
+        "kunopera",
+        "kunquopera"
+      ]
+    },
+    {
+      "id": 42,
+      "name_cn": "古琴艺术",
+      "name_en": "Guqin and its music",
+      "year": "2008",
+      "category": "表演艺术(音乐)",
+      "search_terms": [
+        "古琴",
+        "guqin",
+        "chinesezither"
+      ],
+      "core_terms": [
+        "古琴",
+        "guqin",
+        "chinesezither"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "古琴",
+        "guqin",
+        "chinesezither"
+      ]
+    },
+    {
+      "id": 43,
+      "name_cn": "新疆维吾尔木卡姆艺术",
+      "name_en": "Uyghur Muqam of Xinjiang",
+      "year": "2008",
+      "category": "表演艺术(音乐)",
+      "search_terms": [
+        "木卡姆",
+        "muqam",
+        "uyghurmuqam"
+      ],
+      "core_terms": [
+        "木卡姆",
+        "muqam",
+        "uyghurmuqam"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "木卡姆",
+        "muqam",
+        "uyghurmuqam"
+      ]
+    },
+    {
+      "id": 44,
+      "name_cn": "蒙古族长调民歌",
+      "name_en": "Urtiin Duu, traditional folk long song",
+      "year": "2008",
+      "category": "表演艺术(音乐)",
+      "search_terms": [
+        "长调",
+        "longsong",
+        "urtiinduu",
+        "mongoliansong"
+      ],
+      "core_terms": [
+        "长调",
+        "longsong",
+        "urtiinduu",
+        "mongoliansong"
+      ],
+      "negative_terms": [],
+      "hashtag_terms": [
+        "长调",
+        "longsong",
+        "urtiinduu",
+        "mongoliansong"
+      ]
+    }
+  ]
+}

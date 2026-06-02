@@ -15,6 +15,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import os
 import re
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -78,6 +79,51 @@ PROJECT_EXTRA_TERMS: dict[str, set[str]] = {
     "蒙古族长调民歌": {"长调", "longsong", "urtiinduu", "mongoliansong"},
 }
 
+DEFAULT_KEYWORD_CONFIG = Path(os.getenv("KEYWORD_CONFIG", "config/unesco_ich_keywords.v1.json"))
+_KEYWORD_CONFIG_CACHE: dict | None = None
+
+
+def load_keyword_config(path: str | Path | None = None) -> dict:
+    """Load keyword config. Falls back to legacy PROJECT_EXTRA_TERMS for compatibility."""
+    global _KEYWORD_CONFIG_CACHE
+    cfg_path = Path(path or DEFAULT_KEYWORD_CONFIG)
+    if not cfg_path.is_absolute():
+        cfg_path = Path(__file__).resolve().parent / cfg_path
+    if _KEYWORD_CONFIG_CACHE is not None and _KEYWORD_CONFIG_CACHE.get("_path") == str(cfg_path):
+        return _KEYWORD_CONFIG_CACHE
+    if cfg_path.exists():
+        data = json.loads(cfg_path.read_text(encoding="utf-8"))
+        projects = data.get("projects", [])
+        by_name = {p.get("name_cn", ""): p for p in projects if p.get("name_cn")}
+        data["by_name"] = by_name
+        data["_path"] = str(cfg_path)
+        _KEYWORD_CONFIG_CACHE = data
+        return data
+    data = {
+        "version": "legacy-fallback",
+        "negative_terms_policy": "label_only_never_exclude",
+        "by_name": {
+            name: {"core_terms": sorted(terms), "search_terms": sorted(terms), "negative_terms": [], "hashtag_terms": []}
+            for name, terms in PROJECT_EXTRA_TERMS.items()
+        },
+        "_path": str(cfg_path),
+    }
+    _KEYWORD_CONFIG_CACHE = data
+    return data
+
+
+def terms_for_project(project: str) -> dict[str, set[str]]:
+    cfg = load_keyword_config()
+    item = cfg.get("by_name", {}).get(project, {})
+    core = set(item.get("core_terms") or item.get("search_terms") or PROJECT_EXTRA_TERMS.get(project, set()))
+    search = set(item.get("search_terms") or [])
+    hashtags = set(item.get("hashtag_terms") or [])
+    negative = set(item.get("negative_terms") or [])
+    return {
+        "positive": core | search | hashtags,
+        "negative": negative,
+    }
+
 
 def norm_text(s: str | None) -> str:
     if not s:
@@ -110,14 +156,19 @@ def label_row(row: dict) -> dict:
     text_raw = " ".join([desc, hashtags, hashtags_text, row.get("author_nickname") or "", row.get("music_title") or ""])
     text = norm_text(text_raw)
 
-    terms = set(PROJECT_EXTRA_TERMS.get(project, set()))
+    term_groups = terms_for_project(project)
+    terms = set(term_groups["positive"])
+    negative_terms = set(term_groups["negative"])
     # add source itself, but mark whether it is weak/generic
     if source:
         terms.add(source)
     terms_norm = {norm_text(t) for t in terms if norm_text(t)}
+    negative_terms_norm = {norm_text(t) for t in negative_terms if norm_text(t)}
 
     hit_set = {t for t in terms_norm if t and t in text}
+    negative_hit_set = {t for t in negative_terms_norm if t and t in text}
     hits = sorted(hit_set)
+    negative_hits = sorted(negative_hit_set)
     source_hit = bool(source and norm_text(source) in text)
     china_context = any(norm_text(t) in text for t in CHINA_CONTEXT_TERMS)
     has_cjk = bool(re.search(r"[\u4e00-\u9fff]", desc))
@@ -146,6 +197,9 @@ def label_row(row: dict) -> dict:
     if weak_source and not (hit_set - {norm_text(source)}):
         score -= 2
         reasons.append("generic_source_only")
+    if negative_hits:
+        score -= min(4, len(negative_hits) * 2)
+        reasons.append(f"negative_term_hits:{len(negative_hits)}")
 
     if score >= 4:
         label = "likely_relevant"
@@ -160,6 +214,7 @@ def label_row(row: dict) -> dict:
         "quality_label": label,
         "quality_reasons": ";".join(reasons),
         "matched_terms": ",".join(hits[:20]),
+        "negative_matched_terms": ",".join(negative_hits[:20]),
         "source_hit_in_text": str(source_hit).lower(),
         "china_context_hit": str(china_context).lower(),
         "has_cjk_desc": str(has_cjk).lower(),
@@ -186,7 +241,7 @@ def main() -> None:
         base_fields = reader.fieldnames or []
 
     extra_fields = [
-        "quality_score", "quality_label", "quality_reasons", "matched_terms",
+        "quality_score", "quality_label", "quality_reasons", "matched_terms", "negative_matched_terms",
         "source_hit_in_text", "china_context_hit", "has_cjk_desc", "weak_generic_source",
     ]
     fields = base_fields + [f for f in extra_fields if f not in base_fields]
