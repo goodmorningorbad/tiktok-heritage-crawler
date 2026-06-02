@@ -167,10 +167,13 @@ def run_channel(project: dict, channel: str, terms_csv: str, out: Path, env: dic
             timeout=TIMEOUT_PER_PROJECT,
         )
         elapsed = round(time.time() - started, 1)
+        status = "ok" if result.returncode == 0 else "failed"
+        if result.returncode == 0 and "HASHTAG_FAILED" in result.stderr:
+            status = "partial"
         item = {
             "channel": channel,
             "terms": terms_csv.split(",") if terms_csv else [],
-            "status": "ok" if result.returncode == 0 else "failed",
+            "status": status,
             "returncode": result.returncode,
             "elapsed_sec": elapsed,
             "stdout_tail": result.stdout[-1000:],
@@ -278,11 +281,14 @@ def main(argv: list[str] | None = None) -> None:
 
     csv_rows = ndjson_to_csv(COMBINED_NDJSON, COMBINED_CSV)
     ok_channels = 0
+    partial_channels = 0
     failed_channels = 0
     for p in report["projects"]:
         for c in p.get("channels", []):
             if c.get("status") == "ok":
                 ok_channels += 1
+            elif c.get("status") == "partial":
+                partial_channels += 1
             elif c.get("status") != "skipped":
                 failed_channels += 1
     report.update({
@@ -292,6 +298,7 @@ def main(argv: list[str] | None = None) -> None:
         "total_unique_rows": total_new,
         "csv_rows": csv_rows,
         "ok_channels": ok_channels,
+        "partial_channels": partial_channels,
         "failed_channels": failed_channels,
     })
     REPORT_FILE.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")

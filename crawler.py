@@ -4,10 +4,11 @@ import argparse
 import asyncio
 import json
 import os
+import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any, AsyncIterator, Iterable
 
 from TikTokApi import TikTokApi
 
@@ -147,7 +148,7 @@ async def create_api(ms_token: str | None, proxy: str | None = None, cookies_pat
     return api
 
 
-async def collect_search(api: TikTokApi, keyword: str, count: int) -> Iterable[dict[str, Any]]:
+async def collect_search(api: TikTokApi, keyword: str, count: int) -> AsyncIterator[dict[str, Any]]:
     search_url = "https://www.tiktok.com/api/search/item/full/"
     cursor = 0
     found = 0
@@ -176,7 +177,7 @@ async def collect_search(api: TikTokApi, keyword: str, count: int) -> Iterable[d
         await asyncio.sleep(1.2)
 
 
-async def collect_hashtag(api: TikTokApi, hashtag: str, count: int) -> Iterable[dict[str, Any]]:
+async def collect_hashtag(api: TikTokApi, hashtag: str, count: int) -> AsyncIterator[dict[str, Any]]:
     found = 0
     tag = api.hashtag(name=hashtag)
     async for video in tag.videos(count=count):
@@ -186,6 +187,18 @@ async def collect_hashtag(api: TikTokApi, hashtag: str, count: int) -> Iterable[
             break
         if found % 30 == 0:
             await asyncio.sleep(1.2)
+
+
+async def collect_hashtag_safe(api: TikTokApi, hashtag: str, count: int) -> tuple[list[dict[str, Any]], str | None]:
+    rows: list[dict[str, Any]] = []
+    try:
+        async for row in collect_hashtag(api, hashtag, count):
+            rows.append(row)
+    except Exception as exc:
+        # Some tags do not resolve to a TikTok challengeID. Record this as a
+        # per-term failure instead of aborting the whole hashtag channel.
+        return rows, f"{type(exc).__name__}: {exc}"
+    return rows, None
 
 
 async def run(args: argparse.Namespace) -> None:
@@ -211,14 +224,21 @@ async def run(args: argparse.Namespace) -> None:
                         written += 1
             elif args.command == "hashtag":
                 sources = split_csv(args.hashtags)
+                term_errors: list[str] = []
                 for hashtag in sources:
-                    async for row in collect_hashtag(api, hashtag, args.count):
+                    rows, error = await collect_hashtag_safe(api, hashtag, args.count)
+                    if error:
+                        term_errors.append(f"{hashtag}: {error}")
+                        print(f"HASHTAG_FAILED {hashtag}: {error}", file=sys.stderr)
+                    for row in rows:
                         key = row.get("id") or json.dumps(row, ensure_ascii=False, sort_keys=True)[:200]
                         if key in seen:
                             continue
                         seen.add(key)
                         f.write(json.dumps(row, ensure_ascii=False) + "\n")
                         written += 1
+                if term_errors:
+                    print(f"hashtag_term_failures={len(term_errors)}", file=sys.stderr)
     finally:
         await api.close_sessions()
 
