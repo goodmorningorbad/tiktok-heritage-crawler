@@ -87,6 +87,28 @@ def count_lines(path: Path) -> int:
         return sum(1 for line in f if line.strip())
 
 
+def collector_context(env: dict) -> dict:
+    return {
+        "collector_account": env.get("TIKTOK_ACCOUNT_ID", ""),
+        "collector_account_role": env.get("TIKTOK_ACCOUNT_ROLE", "neutral"),
+        "proxy_region": env.get("TIKTOK_PROXY_REGION", "unknown"),
+        "proxy_pool": env.get("TIKTOK_PROXY_POOL", ""),
+        "proxy_id": env.get("TIKTOK_PROXY_ID", ""),
+    }
+
+
+def parse_search_meta(stderr: str) -> list[dict]:
+    metas: list[dict] = []
+    for line in (stderr or "").splitlines():
+        if not line.startswith("SEARCH_META "):
+            continue
+        try:
+            metas.append(json.loads(line.split(" ", 1)[1]))
+        except json.JSONDecodeError:
+            metas.append({"parse_error": line})
+    return metas
+
+
 def append_enriched_rows(src: Path, project: dict, seen_ids: set[str], combined_f, matched_sources: dict[str, set[str]]) -> tuple[int, int]:
     total = 0
     new = 0
@@ -170,12 +192,17 @@ def run_channel(project: dict, channel: str, terms_csv: str, out: Path, env: dic
         status = "ok" if result.returncode == 0 else "failed"
         if result.returncode == 0 and "HASHTAG_FAILED" in result.stderr:
             status = "partial"
+        search_meta = parse_search_meta(result.stderr) if channel == "search" else []
         item = {
             "channel": channel,
             "terms": terms_csv.split(",") if terms_csv else [],
             "status": status,
             "returncode": result.returncode,
             "elapsed_sec": elapsed,
+            "collector": collector_context(env),
+            "search_terms_meta": search_meta,
+            "search_hit_cap_terms": [m.get("keyword") for m in search_meta if m.get("hit_cap")],
+            "search_has_more_at_stop": any(bool(m.get("has_more_at_stop")) for m in search_meta),
             "stdout_tail": result.stdout[-1000:],
             "stderr_tail": result.stderr[-2000:],
             "out": str(out),
@@ -189,6 +216,7 @@ def run_channel(project: dict, channel: str, terms_csv: str, out: Path, env: dic
             "status": "timeout",
             "elapsed_sec": elapsed,
             "out": str(out),
+            "collector": collector_context(env),
             "error": str(e),
         }, None
     except Exception as e:
@@ -197,6 +225,7 @@ def run_channel(project: dict, channel: str, terms_csv: str, out: Path, env: dic
             "terms": terms_csv.split(",") if terms_csv else [],
             "status": "exception",
             "out": str(out),
+            "collector": collector_context(env),
             "error": repr(e),
         }, None
 
@@ -234,6 +263,9 @@ def main(argv: list[str] | None = None) -> None:
         "started_at": datetime.now().isoformat(),
         "videos_per_term": VIDEOS_PER_KEYWORD,
         "channels": channels,
+        "collection_phase": os.getenv("COLLECTION_PHASE", "unspecified"),
+        "region_policy": os.getenv("TIKTOK_REGION_POLICY", "single-region-baseline"),
+        "collector": collector_context(env),
         "keyword_config": str(resolve_path(Path(args.keyword_config))),
         "projects": [],
     }
@@ -252,7 +284,7 @@ def main(argv: list[str] | None = None) -> None:
                 terms_csv = terms_to_csv(project.get(term_key) or project.get("keywords") or "")
                 channel_item = {"channel": channel, "terms": terms_csv.split(",") if terms_csv else []}
                 if not terms_csv.strip():
-                    channel_item.update({"status": "skipped", "reason": f"no {term_key}", "rows_total": 0, "rows_new": 0, "total_results": 0})
+                    channel_item.update({"status": "skipped", "reason": f"no {term_key}", "rows_total": 0, "rows_new": 0, "sample_rows_total": 0, "total_results": 0, "total_results_note": "deprecated: sampled rows only, not platform total"})
                     item["channels"].append(channel_item)
                     print(f"  跳过 {channel}: 无 {term_key}", flush=True)
                     continue
@@ -268,7 +300,9 @@ def main(argv: list[str] | None = None) -> None:
                 channel_item.update({
                     "rows_total": rows_total,
                     "rows_new": rows_new,
+                    "sample_rows_total": rows_total,
                     "total_results": rows_total,
+                    "total_results_note": "deprecated: sampled rows only, not platform total",
                 })
                 item["channels"].append(channel_item)
                 mark = "✓" if channel_item.get("status") == "ok" else "✗"

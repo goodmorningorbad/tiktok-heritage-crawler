@@ -8,13 +8,23 @@ import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, AsyncIterator, Iterable
+from typing import Any, AsyncIterator
 
 from TikTokApi import TikTokApi
 
 
 def split_csv(value: str) -> list[str]:
     return [x.strip().lstrip("#") for x in value.split(",") if x.strip()]
+
+
+def collector_meta() -> dict[str, str]:
+    return {
+        "collector_account": os.getenv("TIKTOK_ACCOUNT_ID", ""),
+        "collector_account_role": os.getenv("TIKTOK_ACCOUNT_ROLE", "neutral"),
+        "proxy_region": os.getenv("TIKTOK_PROXY_REGION", "unknown"),
+        "proxy_pool": os.getenv("TIKTOK_PROXY_POOL", ""),
+        "proxy_id": os.getenv("TIKTOK_PROXY_ID", ""),
+    }
 
 
 def load_cookies(path: str | None) -> list[dict[str, Any]] | None:
@@ -90,7 +100,7 @@ def normalize_video(raw_video: dict[str, Any], source_type: str, source: str) ->
             if tag and tag not in hashtags_text:
                 hashtags_text.append(tag)
 
-    return {
+    row = {
         "collected_at": datetime.now(timezone.utc).isoformat(),
         "source_type": source_type,
         "source": source,
@@ -116,6 +126,8 @@ def normalize_video(raw_video: dict[str, Any], source_type: str, source: str) ->
         "hashtags_text": hashtags_text,
         "raw": raw_video,
     }
+    row.update(collector_meta())
+    return row
 
 
 async def create_api(ms_token: str | None, proxy: str | None = None, cookies_path: str | None = None) -> TikTokApi:
@@ -148,10 +160,14 @@ async def create_api(ms_token: str | None, proxy: str | None = None, cookies_pat
     return api
 
 
-async def collect_search(api: TikTokApi, keyword: str, count: int) -> AsyncIterator[dict[str, Any]]:
+async def collect_search_pagewise(api: TikTokApi, keyword: str, count: int) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     search_url = "https://www.tiktok.com/api/search/item/full/"
     cursor = 0
     found = 0
+    rows: list[dict[str, Any]] = []
+    last_has_more = False
+    stop_reason = "count_reached"
+    last_cursor: Any = cursor
     while found < count:
         params = {
             "keyword": keyword,
@@ -161,20 +177,47 @@ async def collect_search(api: TikTokApi, keyword: str, count: int) -> AsyncItera
         }
         response = await api.make_request(url=search_url, params=params)
         if not response:
+            stop_reason = "empty_response"
+            last_has_more = False
             break
         items = response.get("item_list") or response.get("itemList") or []
+        last_has_more = bool(response.get("has_more") or response.get("hasMore"))
+        last_cursor = response.get("cursor", cursor)
         if not items:
+            stop_reason = "empty_items"
             break
         for item in items:
             raw = item.get("item") if isinstance(item, dict) and "item" in item else item
-            yield normalize_video(raw, "search", keyword)
+            if not isinstance(raw, dict):
+                continue
+            rows.append(normalize_video(raw, "search", keyword))
             found += 1
             if found >= count:
+                stop_reason = "count_reached"
                 break
-        if not (response.get("has_more") or response.get("hasMore")):
+        if found >= count:
+            break
+        if not last_has_more:
+            stop_reason = "exhausted"
             break
         cursor = response.get("cursor", cursor + len(items))
         await asyncio.sleep(1.2)
+    meta = {
+        "keyword": keyword,
+        "requested_count": count,
+        "collected_count": found,
+        "hit_cap": found >= count,
+        "has_more_at_stop": bool(last_has_more) if found >= count else False,
+        "stop_reason": stop_reason,
+        "cursor_at_stop": last_cursor,
+    }
+    return rows, meta
+
+
+async def collect_search(api: TikTokApi, keyword: str, count: int) -> AsyncIterator[dict[str, Any]]:
+    rows, _meta = await collect_search_pagewise(api, keyword, count)
+    for row in rows:
+        yield row
 
 
 async def collect_hashtag(api: TikTokApi, hashtag: str, count: int) -> AsyncIterator[dict[str, Any]]:
@@ -215,7 +258,9 @@ async def run(args: argparse.Namespace) -> None:
             if args.command == "search":
                 sources = split_csv(args.keywords)
                 for keyword in sources:
-                    async for row in collect_search(api, keyword, args.count):
+                    rows, meta = await collect_search_pagewise(api, keyword, args.count)
+                    print("SEARCH_META " + json.dumps(meta, ensure_ascii=False), file=sys.stderr)
+                    for row in rows:
                         key = row.get("id") or json.dumps(row, ensure_ascii=False, sort_keys=True)[:200]
                         if key in seen:
                             continue
