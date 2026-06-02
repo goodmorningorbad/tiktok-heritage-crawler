@@ -23,27 +23,39 @@ CJK_RE = re.compile(r"[\u3400-\u9fff]")
 ASCII_RE = re.compile(r"[A-Za-z]")
 
 COMMON_ENGLISH: dict[str, list[str]] = {
-    "赫哲族伊玛堪": ["yimakan", "hezhe", "hezhefolk", "chinesefolksong", "oraltradition"],
-    "麦西热甫": ["meshrep", "mashrap", "uyghurmeshrep", "uyghurdance", "uyghurculture"],
-    "中国水密隔舱福船制造技艺": ["fuchuan", "junkboat", "chinesejunk", "watertightbulkhead", "shipbuilding"],
-    "黎族传统纺染织绣技艺": ["librocade", "litextile", "litextiles", "hainanculture", "traditionalweaving"],
-    "羌年": ["qiangnewyear", "qiangculture", "qiangpeople", "chinesenewyear", "ethnicfestival"],
-    "西安鼓乐": ["xiangule", "xianwindandpercussion", "chinesemusic", "traditionalmusic", "drummusic"],
+    "赫哲族伊玛堪": ["yimakan", "hezhefolk", "yimakanstorytelling"],
+    "麦西热甫": ["meshrep", "mashrap", "uyghurmeshrep"],
+    "中国水密隔舱福船制造技艺": ["fuchuan", "junkboat", "chinesejunk", "watertightbulkhead"],
+    "黎族传统纺染织绣技艺": ["librocade", "litextile", "litextiles"],
+    "羌年": ["qiangnewyear", "qiangculture"],
+    "西安鼓乐": ["xiangule", "xianwindandpercussion"],
     "中国蚕桑丝织技艺": ["sericulture", "silkreeling", "silkweaving", "silkcraft", "chinesesilk"],
-    "格萨(斯)尔史诗传统": ["gesar", "kinggesar", "epicofgesar", "tibetanepic", "oralepic"],
-    "蒙古族呼麦": ["khoomei", "hoomei", "throatsinging", "inner Mongolia", "mongolianmusic"],
-    "花儿": ["huaer", "huaerfolk", "northwestchina", "chinesefolksong", "folksinging"],
-    "中国朝鲜族农乐舞": ["nongak", "farmersdance", "koreanchinesedance", "chaoxianzu", "ethnicdance"],
+    "格萨(斯)尔史诗传统": ["gesar", "kinggesar", "epicofgesar", "tibetanepic"],
+    "蒙古族呼麦": ["khoomei", "hoomei", "throatsinging", "mongolianthroatsinging"],
+    "花儿": ["huaer", "huaerfolk", "huaersong"],
+    "中国朝鲜族农乐舞": ["nongak", "farmersdance", "koreanchinesedance", "chaoxianzu"],
 }
 
-GENERIC_ENGLISH = [
-    "chineseculture", "intangibleheritage", "unescoheritage", "traditionalart",
-    "traditionalcraft", "chinesefestival", "chinesefolkmusic", "folkculture",
-]
+GENERIC_ENGLISH: list[str] = []
 
-NOISE_TAGS = {
+GENERIC_TAGS = {
     "fyp", "foryou", "foryoupage", "viral", "tiktok", "trending", "fy", "fypシ",
-    "CapCut", "capcut", "duet", "stitch", "vlog", "usa", "DIY", "tips",
+    "capcut", "duet", "stitch", "vlog", "usa", "diy", "tips", "asmr", "learnontiktok",
+    "china", "chinese", "culture", "chineseculture", "intangibleheritage", "unescoheritage",
+    "intangibleculturalheritage", "culturalheritage", "非遗", "非物质文化遗产", "中国", "历史",
+    "spring", "festival", "celebration", "year", "social", "traditional", "heritage",
+    "music", "dance", "art", "craft", "folk", "ethnic", "people", "history",
+    "processing", "techniques", "associated", "practices", "knowledge", "health", "life",
+    "wood", "paper", "printing", "silk", "epic", "song", "singing", "opera",
+    "tea", "fire", "puppet", "puppetry", "handmade", "textile", "fabric", "bridge", "engineering",
+    "xian", "drums", "drumcover", "drummer", "weaving", "fujian", "fuji", "nanjing", "ricepaper",
+    "papermaking", "recycledpaper", "musical", "buddhism", "tibet", "tibetan", "mongolia", "mongolian",
+    "farmer", "architecture", "woodworking", "malaysia", "printmaking", "zither", "throat", "shin",
+    "kpop", "soccer", "anime", "science", "popular", "lookism", "cdrama", "linkinpark", "huawei", "pagani",
+    "holistichealth", "ancientwisdom", "healing", "mentalmath", "martialarts", "kungfu", "wushu",
+    "chinatravel", "tibetanmedicine", "chinesemedicine", "traditionalchinesemedicine",
+    "uyghur", "xinjiang", "watertight", "junk", "qiang", "侗族", "朝鲜族", "kyrgyz",
+    "coveredbridge", "celadon", "thangka", "唐卡", "dragonboat", "zongzi",
 }
 
 
@@ -135,7 +147,7 @@ async def resolve_terms(terms: list[str], cookies_path: str | None, proxy: str |
             if not tag:
                 continue
             try:
-                info = await api.hashtag(name=tag).info()
+                info = await asyncio.wait_for(api.hashtag(name=tag).info(), timeout=15)
                 challenge = ((info or {}).get("challengeInfo") or {}).get("challenge") or {}
                 cid = challenge.get("id")
                 title = challenge.get("title") or tag
@@ -152,18 +164,12 @@ async def resolve_terms(terms: list[str], cookies_path: str | None, proxy: str |
 
 
 def build_common_candidates(project: dict[str, Any]) -> list[str]:
-    terms: list[str] = []
-    terms.extend(COMMON_ENGLISH.get(project["name_cn"], []))
-    en = str(project.get("name_en") or "")
-    words = re.findall(r"[A-Za-z]{4,}", en.lower())
-    stop = {"china", "chinese", "traditional", "practices", "knowledge", "among", "people", "culture", "heritage"}
-    terms.extend([w for w in words if w not in stop][:6])
-    terms.extend(GENERIC_ENGLISH[:3])
+    terms = list(COMMON_ENGLISH.get(project["name_cn"], []))
     dedup = []
     seen = set()
     for t in terms:
         key = norm_tag(t)
-        if key and key not in seen:
+        if key and key not in seen and key not in {norm_tag(x) for x in GENERIC_TAGS}:
             seen.add(key); dedup.append(t)
     return dedup
 
@@ -194,7 +200,7 @@ def write_outputs(args, projects, counters, failures, search_volume, resolved):
                     "heritage_name_cn": project["name_cn"],
                     "candidate_tag": tag,
                     "language": lang_of(tag),
-                    "is_noise_tag": norm_tag(tag) in {norm_tag(x) for x in NOISE_TAGS},
+                    "is_generic_tag": norm_tag(tag) in {norm_tag(x) for x in GENERIC_TAGS},
                     "source": source,
                     "sample_count": counters.get(pid, Counter()).get(tag, 0),
                     "current_hashtag_term": key in current,
@@ -212,7 +218,7 @@ def write_outputs(args, projects, counters, failures, search_volume, resolved):
         w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader(); w.writerows(rows)
 
-    lines = ["# 二测 hashtag 词表修复建议", "", "## 说明", "", "- `sample`：从二测视频真实 hashtag 反推。", "- `common_english`：不取自样本的常识英文候选，用于降低自我强化偏差。", "- `disabled_hashtag_terms`：本轮 challengeID resolve 失败，备查，不建议继续作为主 hashtag term。", "- `language`：发布者标签语言维度，可用于画像。", ""]
+    lines = ["# 二测 hashtag 词表修复建议", "", "## 说明", "", "- `sample`：从二测视频真实 hashtag 反推。", "- `common_english`：不取自样本的常识英文候选，用于降低自我强化偏差。", "- 泛词一律不进入 `hashtag_terms` 建议；判定标准是该 tag 单独拿出来是否指向具体非遗。", "- `is_generic_tag=true`：泛词/平台词，仅保留在 CSV 供审计，不进入 Markdown 候选摘要。", "- `disabled_hashtag_terms`：本轮 challengeID resolve 失败，备查，不建议继续作为主 hashtag term。", "- `language`：发布者标签语言维度，可用于画像。", ""]
     lines.append("## challengeID 失败与低存在感线索")
     lines.append("")
     for pid, fail in failures.items():
@@ -229,12 +235,12 @@ def write_outputs(args, projects, counters, failures, search_volume, resolved):
         by_pid[int(row["heritage_id"])].append(row)
     for pid, project in projects.items():
         candidates = by_pid.get(pid, [])
-        resolved_rows = [r for r in candidates if r["resolved"] is True and not r.get("is_noise_tag")]
-        sample_top = [r for r in resolved_rows if r["source"] == "sample"][:8]
+        resolved_rows = [r for r in candidates if r["resolved"] is True and not r.get("is_generic_tag")]
+        sample_top = [r for r in resolved_rows if r["source"] == "sample" and r["current_hashtag_term"]][:8]
         common_top = [r for r in resolved_rows if r["source"] == "common_english"][:8]
         lines.append(f"### {pid}. {project['name_cn']}")
         lines.append(f"- 当前 hashtag_terms: {', '.join(project.get('hashtag_terms', []))}")
-        lines.append(f"- 样本可解析候选: {', '.join(r['candidate_tag'] + '(' + r['language'] + ')' for r in sample_top) or '无'}")
+        lines.append(f"- 当前词表中可保留候选: {', '.join(r['candidate_tag'] + '(' + r['language'] + ')' for r in sample_top) or '无'}")
         lines.append(f"- 常识英文可解析候选: {', '.join(r['candidate_tag'] for r in common_top) or '无'}")
         lines.append("")
     out_md.write_text("\n".join(lines), encoding="utf-8")
@@ -268,7 +274,7 @@ def main():
     seen = set()
     for t in terms:
         key = norm_tag(t)
-        if key and key not in seen:
+        if key and key not in seen and key not in {norm_tag(x) for x in GENERIC_TAGS}:
             seen.add(key); dedup.append(t)
     resolved = {}
     if args.resolve:
