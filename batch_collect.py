@@ -196,7 +196,14 @@ def run_channel(project: dict, channel: str, terms_csv: str, out: Path, env: dic
         status = "ok" if result.returncode == 0 else "failed"
         if result.returncode == 0 and "HASHTAG_FAILED" in result.stderr:
             status = "partial"
-        search_meta = parse_search_meta(result.stderr) if channel == "search" else []
+        # SEARCH_META 可能落在 stdout 或 stderr（TikTokApi/playwright 会重定向流），两个都解析
+        search_meta = parse_search_meta((result.stdout or "") + "\n" + (result.stderr or "")) if channel == "search" else []
+        # search 通道：基于 result_class 精确判定，failed(限流) 与 zero_real(真实0) 严格分开。
+        # 有任一 term 限流失败 → partial（部分 term 是技术噪声，需重采，不能当真实结论）。
+        if channel == "search" and result.returncode == 0 and search_meta:
+            failed_terms = [m.get("keyword") for m in search_meta if m.get("result_class") == "failed"]
+            if failed_terms:
+                status = "partial"
         item = {
             "channel": channel,
             "terms": terms_csv.split(",") if terms_csv else [],
@@ -207,6 +214,11 @@ def run_channel(project: dict, channel: str, terms_csv: str, out: Path, env: dic
             "search_terms_meta": search_meta,
             "search_hit_cap_terms": [m.get("keyword") for m in search_meta if m.get("hit_cap")],
             "search_has_more_at_stop": any(bool(m.get("has_more_at_stop")) for m in search_meta),
+            # 底线：failed(限流噪声) / zero_real(真实0结果) / has_data 三类在 report 层也分开列出，
+            # 下游"近乎隐形"判定只能用 zero_real，failed 必须重采，绝不混。
+            "search_failed_terms": [m.get("keyword") for m in search_meta if m.get("result_class") == "failed"],
+            "search_zero_real_terms": [m.get("keyword") for m in search_meta if m.get("result_class") == "zero_real"],
+            "search_has_data_terms": [m.get("keyword") for m in search_meta if m.get("result_class") == "has_data"],
             "stdout_tail": result.stdout[-1000:],
             "stderr_tail": result.stderr[-2000:],
             "out": str(out),
@@ -316,6 +328,14 @@ def main(argv: list[str] | None = None) -> None:
 
             report["projects"].append(item)
             REPORT_FILE.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+
+            # 项目间冷却（方案A）：每个项目跑完让出口休息，降低连续轰炸触发限流的概率。
+            # 最后一个项目不等。可用 TIKTOK_PROJECT_COOLDOWN 调整（默认 120s）。
+            if idx < len(projects):
+                cooldown = float(os.getenv("TIKTOK_PROJECT_COOLDOWN", "120"))
+                if cooldown > 0:
+                    print(f"  [冷却] 项目间休息 {cooldown:.0f}s 降限流...", flush=True)
+                    time.sleep(cooldown)
 
     csv_rows = ndjson_to_csv(COMBINED_NDJSON, COMBINED_CSV)
     ok_channels = 0

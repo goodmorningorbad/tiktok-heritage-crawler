@@ -165,19 +165,30 @@ async def create_api(ms_token: str | None, proxy: str | None = None, cookies_pat
 
 async def collect_search_pagewise(api: TikTokApi, keyword: str, count: int) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     search_url = "https://www.tiktok.com/api/search/item/full/"
+    # TikTok search 翻页必须带 search_id（取自第一页 log_pb.impr_id）+ from_page + web_search_code，
+    # 否则第二页直接返回空 + search_nil_info。裸 cursor 翻页只能拿到第一页 30 条。
+    web_search_code = (
+        '{"tiktok":{"client_params_x":{"search_engine":'
+        '{"ies_mt_user_live_video_card_use_libra":1,'
+        '"mt_search_general_user_live_card":1}},"search_server":{}}}'
+    )
     cursor = 0
     found = 0
     rows: list[dict[str, Any]] = []
     last_has_more = False
     stop_reason = "count_reached"
     last_cursor: Any = cursor
+    search_id = ""
     while found < count:
         params = {
             "keyword": keyword,
             "count": min(30, count - found),
             "cursor": cursor,
-            "source": "search_video",
+            "from_page": "search",
+            "web_search_code": web_search_code,
         }
+        if search_id:
+            params["search_id"] = search_id
         response = await api.make_request(url=search_url, params=params)
         if not response:
             stop_reason = "empty_response"
@@ -186,6 +197,9 @@ async def collect_search_pagewise(api: TikTokApi, keyword: str, count: int) -> t
         items = response.get("item_list") or response.get("itemList") or []
         last_has_more = bool(response.get("has_more") or response.get("hasMore"))
         last_cursor = response.get("cursor", cursor)
+        # 第一页拿到 search_id，后续每页都带同一个续页
+        if not search_id:
+            search_id = (response.get("log_pb") or {}).get("impr_id") or ""
         if not items:
             stop_reason = "empty_items"
             break
@@ -205,14 +219,40 @@ async def collect_search_pagewise(api: TikTokApi, keyword: str, count: int) -> t
             break
         cursor = response.get("cursor", cursor + len(items))
         await asyncio.sleep(1.2)
+    # 语言标记：判断该 term 是中文还是拉丁文（支撑"美区中文词触达浅"这一数据发现）
+    has_cjk = any("\u4e00" <= ch <= "\u9fff" for ch in keyword)
+    term_script = "cjk" if has_cjk else "latin"
+
+    # depth_verdict：翻页深度语义。注意 empty_response 是限流信号，不算真实触底！
+    if found >= count and last_has_more:
+        depth_verdict = "truncated_by_cap"      # 被 N 截断，平台仍有更多（真实值>=N，超级头部）
+    elif stop_reason in ("exhausted", "empty_items"):
+        depth_verdict = "exhausted"             # has_more=0 自然触底，拿到该 region 全部可达视频
+    elif stop_reason == "empty_response":
+        depth_verdict = "rate_limited"          # 空响应=bot检测/限流，不是真实触底
+    else:
+        depth_verdict = "count_reached_exact"
+
+    # result_class：底线字段——failed/zero_real/has_data 严格分离，绝不混。
+    #   下游"近乎隐形"判定只能用 zero_real，永不用 failed。
+    if depth_verdict == "rate_limited":
+        result_class = "failed"                 # 技术噪声：限流，必须可重采，不计入低传播
+    elif found == 0:
+        result_class = "zero_real"              # 研究结论：该 region 该词真实零结果
+    else:
+        result_class = "has_data"
+
     meta = {
         "keyword": keyword,
+        "term_script": term_script,
         "requested_count": count,
         "collected_count": found,
         "hit_cap": found >= count,
         "has_more_at_stop": bool(last_has_more) if found >= count else False,
         "stop_reason": stop_reason,
         "cursor_at_stop": last_cursor,
+        "depth_verdict": depth_verdict,
+        "result_class": result_class,
     }
     return rows, meta
 
@@ -321,8 +361,29 @@ async def run(args: argparse.Namespace) -> None:
         with out_path.open("a", encoding="utf-8") as f:
             if args.command == "search":
                 sources = split_csv(args.keywords)
+                term_errors = []
                 for keyword in sources:
-                    rows, meta = await collect_search_pagewise(api, keyword, args.count)
+                    # 单 term 失败（限流/EmptyResponse/超时）不能害死同批后续 term。
+                    # 失败也写一条 meta（零结果/失败也是结论，符合不删数据口径）。
+                    try:
+                        rows, meta = await collect_search_pagewise(api, keyword, args.count)
+                    except Exception as exc:
+                        term_errors.append(f"{keyword}: {type(exc).__name__}: {exc}")
+                        print(f"SEARCH_FAILED {keyword}: {type(exc).__name__}: {exc}", file=sys.stderr)
+                        meta = {
+                            "keyword": keyword,
+                            "term_script": "cjk" if any("\u4e00" <= ch <= "\u9fff" for ch in keyword) else "latin",
+                            "requested_count": args.count,
+                            "collected_count": 0, "hit_cap": False,
+                            "has_more_at_stop": False, "stop_reason": "exception",
+                            "cursor_at_stop": None, "depth_verdict": "rate_limited",
+                            "result_class": "failed",
+                            "error": f"{type(exc).__name__}: {exc}",
+                        }
+                        print("SEARCH_META " + json.dumps(meta, ensure_ascii=False), file=sys.stderr)
+                        # 限流后退避，给下一个 term 喘息，降低连锁触发
+                        await asyncio.sleep(8)
+                        continue
                     print("SEARCH_META " + json.dumps(meta, ensure_ascii=False), file=sys.stderr)
                     for row in rows:
                         key = row.get("id") or json.dumps(row, ensure_ascii=False, sort_keys=True)[:200]
@@ -331,6 +392,11 @@ async def run(args: argparse.Namespace) -> None:
                         seen.add(key)
                         f.write(json.dumps(row, ensure_ascii=False) + "\n")
                         written += 1
+                    # term 间节流：给出口冷却，避免连续请求触发 bot 检测/限流（方案A）
+                    if keyword != sources[-1]:
+                        await asyncio.sleep(float(os.getenv("TIKTOK_TERM_DELAY", "30")))
+                if term_errors:
+                    print(f"search_term_failures={len(term_errors)}", file=sys.stderr)
             elif args.command == "hashtag":
                 sources = split_csv(args.hashtags)
                 term_errors: list[str] = []
