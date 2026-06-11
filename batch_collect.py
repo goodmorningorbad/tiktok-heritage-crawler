@@ -92,8 +92,11 @@ def collector_context(env: dict) -> dict:
         "collector_account": env.get("TIKTOK_ACCOUNT_ID", ""),
         "collector_account_role": env.get("TIKTOK_ACCOUNT_ROLE", "neutral"),
         "proxy_region": env.get("TIKTOK_PROXY_REGION", "unknown"),
+        "proxy_subregion": env.get("TIKTOK_PROXY_SUBREGION", ""),
         "proxy_pool": env.get("TIKTOK_PROXY_POOL", ""),
         "proxy_id": env.get("TIKTOK_PROXY_ID", ""),
+        "proxy_exit_ip": env.get("TIKTOK_PROXY_EXIT_IP", ""),
+        "proxy_isp": env.get("TIKTOK_PROXY_ISP", ""),
     }
 
 

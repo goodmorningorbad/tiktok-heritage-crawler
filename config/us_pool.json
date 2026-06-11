@@ -1,0 +1,50 @@
+{
+  "region": "US",
+  "pool_note": "US-only residential baseline; single-exit per slot; isolated from turn-proxy :1090/:1091. acc4 reserved as backup/quality-check, not in pool.",
+  "accounts": [
+    {
+      "id": "acc1",
+      "role": "neutral",
+      "cookies": "/root/workspace/tiktok-heritage-crawler/cookies/acc1.json"
+    },
+    {
+      "id": "acc2",
+      "role": "neutral",
+      "cookies": "/root/workspace/tiktok-heritage-crawler/cookies/acc2.json"
+    },
+    {
+      "id": "acc3",
+      "role": "neutral",
+      "cookies": "/root/workspace/tiktok-heritage-crawler/cookies/acc3.json"
+    }
+  ],
+  "proxies": [
+    {
+      "proxy_id": "us-res-01",
+      "socks": "socks5://127.0.0.1:1092",
+      "exit_ip": "142.196.231.14",
+      "isp": "Charter Communications",
+      "region": "US",
+      "subregion": "US-FL",
+      "pool": "residential-us"
+    },
+    {
+      "proxy_id": "us-res-02",
+      "socks": "socks5://127.0.0.1:1093",
+      "exit_ip": "192.184.255.206",
+      "isp": "Sonic Telecom LLC",
+      "region": "US",
+      "subregion": "US-CA",
+      "pool": "residential-us"
+    },
+    {
+      "proxy_id": "us-res-03",
+      "socks": "socks5://127.0.0.1:1094",
+      "exit_ip": "76.113.58.60",
+      "isp": "Comcast Cable Communications, LLC",
+      "region": "US",
+      "subregion": "US-NM",
+      "pool": "residential-us"
+    }
+  ]
+}

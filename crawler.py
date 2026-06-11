@@ -22,8 +22,11 @@ def collector_meta() -> dict[str, str]:
         "collector_account": os.getenv("TIKTOK_ACCOUNT_ID", ""),
         "collector_account_role": os.getenv("TIKTOK_ACCOUNT_ROLE", "neutral"),
         "proxy_region": os.getenv("TIKTOK_PROXY_REGION", "unknown"),
+        "proxy_subregion": os.getenv("TIKTOK_PROXY_SUBREGION", ""),
         "proxy_pool": os.getenv("TIKTOK_PROXY_POOL", ""),
         "proxy_id": os.getenv("TIKTOK_PROXY_ID", ""),
+        "proxy_exit_ip": os.getenv("TIKTOK_PROXY_EXIT_IP", ""),
+        "proxy_isp": os.getenv("TIKTOK_PROXY_ISP", ""),
     }
 
 
