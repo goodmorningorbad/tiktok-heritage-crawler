@@ -169,8 +169,6 @@
       ],
       "negative_terms": [],
       "hashtag_terms": [
-        "藏医",
-        "药浴",
         "sowarigpa",
         "tibetanmedicine",
         "tibetanhealing"
@@ -345,8 +343,7 @@
       "hashtag_terms": [
         "麦西热甫",
         "meshrep",
-        "mäshräp",
-        "uyghur"
+        "mäshräp"
       ]
     },
     {
@@ -373,9 +370,9 @@
       "hashtag_terms": [
         "水密隔舱",
         "福船",
-        "watertight",
-        "junk",
-        "fuchuan"
+        "fuchuan",
+        "junkboat",
+        "chinesejunk"
       ]
     },
     {
@@ -403,8 +400,7 @@
         "木活字",
         "活字",
         "movabletype",
-        "woodentype",
-        "printing"
+        "woodentype"
       ]
     },
     {
@@ -429,8 +425,7 @@
       "hashtag_terms": [
         "京剧",
         "pekingopera",
-        "beijingopera",
-        "chineseopera"
+        "beijingopera"
       ]
     },
     {
@@ -454,9 +449,7 @@
       "negative_terms": [],
       "hashtag_terms": [
         "针灸",
-        "acupuncture",
-        "tcm",
-        "chinesemedicine"
+        "acupuncture"
       ]
     },
     {
@@ -491,8 +484,9 @@
       "hashtag_terms": [
         "黎锦",
         "黎族织锦",
-        "纺染织绣",
-        "黎族"
+        "librocade",
+        "litextile",
+        "litextiles"
       ]
     },
     {
@@ -542,9 +536,8 @@
       "negative_terms": [],
       "hashtag_terms": [
         "羌年",
-        "羌族",
         "qiangnewyear",
-        "qiang"
+        "qiangculture"
       ]
     },
     {
@@ -567,7 +560,6 @@
       ],
       "negative_terms": [],
       "hashtag_terms": [
-        "侗族",
         "侗族大歌",
         "kamgrandchoir",
         "dongchorus"
@@ -595,8 +587,7 @@
       "hashtag_terms": [
         "西安鼓乐",
         "鼓乐",
-        "xianwind",
-        "drummusic"
+        "xianwind"
       ]
     },
     {
@@ -637,11 +628,13 @@
         "satin"
       ],
       "hashtag_terms": [
-        "silk",
-        "丝绸",
         "sericulture",
         "蚕桑",
-        "缫丝"
+        "缫丝",
+        "silkreeling",
+        "silkweaving",
+        "silkcraft",
+        "chinesesilk"
       ]
     },
     {
@@ -781,9 +774,10 @@
       "negative_terms": [],
       "hashtag_terms": [
         "格萨尔",
-        "格萨",
         "gesar",
-        "epic"
+        "kinggesar",
+        "epicofgesar",
+        "tibetanepic"
       ]
     },
     {
@@ -806,10 +800,7 @@
       ],
       "negative_terms": [],
       "hashtag_terms": [
-        "龙泉",
-        "青瓷",
-        "longquanceladon",
-        "celadon"
+        "longquanceladon"
       ]
     },
     {
@@ -833,9 +824,7 @@
       "negative_terms": [],
       "hashtag_terms": [
         "热贡",
-        "唐卡",
-        "regong",
-        "thangka"
+        "regong"
       ]
     },
     {
@@ -883,8 +872,7 @@
       "negative_terms": [],
       "hashtag_terms": [
         "玛纳斯",
-        "manas",
-        "kyrgyz"
+        "manas"
       ]
     },
     {
@@ -921,7 +909,9 @@
       "hashtag_terms": [
         "khoomei",
         "höömii",
-        "呼麦"
+        "呼麦",
+        "hoomei",
+        "mongolianthroatsinging"
       ]
     },
     {
@@ -942,7 +932,6 @@
       ],
       "negative_terms": [],
       "hashtag_terms": [
-        "花儿",
         "huaer",
         "northwestchinasong"
       ]
@@ -968,9 +957,9 @@
       "negative_terms": [],
       "hashtag_terms": [
         "农乐舞",
-        "朝鲜族",
         "nongak",
-        "farmersdance"
+        "farmersdance",
+        "koreanchinesedance"
       ]
     },
     {
@@ -995,8 +984,7 @@
       "hashtag_terms": [
         "书法",
         "calligraphy",
-        "shufa",
-        "chineseink"
+        "shufa"
       ]
     },
     {
@@ -1020,7 +1008,6 @@
       "negative_terms": [],
       "hashtag_terms": [
         "篆刻",
-        "印章",
         "sealcarving",
         "chineseseal"
       ]
@@ -1046,7 +1033,6 @@
       "negative_terms": [],
       "hashtag_terms": [
         "剪纸",
-        "papercut",
         "papercutting",
         "chinesepapercut"
       ]
@@ -1074,10 +1060,7 @@
       "negative_terms": [],
       "hashtag_terms": [
         "斗拱",
-        "古建",
-        "木结构",
-        "timberframe",
-        "chinesearchitecture"
+        "timberframe"
       ]
     },
     {
@@ -1128,8 +1111,7 @@
       "negative_terms": [],
       "hashtag_terms": [
         "妈祖",
-        "mazu",
-        "seagoddess"
+        "mazu"
       ]
     },
     {
@@ -1152,10 +1134,8 @@
       ],
       "negative_terms": [],
       "hashtag_terms": [
-        "雕版",
         "雕版印刷",
-        "blockprinting",
-        "woodblock"
+        "blockprinting"
       ]
     },
     {
@@ -1203,8 +1183,7 @@
       "negative_terms": [],
       "hashtag_terms": [
         "古琴",
-        "guqin",
-        "chinesezither"
+        "guqin"
       ]
     },
     {
@@ -1251,9 +1230,7 @@
       "negative_terms": [],
       "hashtag_terms": [
         "长调",
-        "longsong",
-        "urtiinduu",
-        "mongoliansong"
+        "urtiinduu"
       ]
     }
   ]
