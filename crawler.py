@@ -247,6 +247,67 @@ async def collect_hashtag_safe(api: TikTokApi, hashtag: str, count: int) -> tupl
     return rows, None
 
 
+# 标签规模噪声声明：videoCount/viewCount 是 challenge 聚合规模，含大量撞词噪声，
+# 不等于该非遗的真实传播量；仅作"标签规模"参考。
+HASHTAG_STATS_NOISE_NOTE = (
+    "tag_scale_with_noise: videoCount/viewCount reflect the challenge's aggregate "
+    "scale and include cross-topic/ambiguous content; NOT the heritage item's reach"
+)
+
+
+def normalize_challenge_info(info: dict, hashtag: str) -> dict[str, Any]:
+    """从 tag.info() 提取 challenge 规模字段。优先 statsV2（真实精确值），
+    stats 为四舍五入粗值/已失效（videoCount 常为 0），两者都留以便核对。"""
+    ci = (info or {}).get("challengeInfo", {}) or {}
+    challenge = ci.get("challenge", {}) or {}
+    stats = ci.get("stats", {}) or {}
+    stats_v2 = ci.get("statsV2", {}) or {}
+
+    def _int(v):
+        try:
+            return int(v)
+        except (TypeError, ValueError):
+            return None
+
+    # statsV2 是字符串型精确值，优先；缺失时回落 stats
+    video_count = _int(stats_v2.get("videoCount"))
+    view_count = _int(stats_v2.get("viewCount"))
+    return {
+        "collected_at": datetime.now(timezone.utc).isoformat(),
+        "source_type": "hashtag_stats",
+        "query_term": hashtag,
+        "challenge_id": challenge.get("id"),
+        "challenge_title": challenge.get("title"),
+        "challenge_desc": challenge.get("desc") or "",
+        "is_commerce": challenge.get("isCommerce"),
+        # 真实精确规模（statsV2）
+        "video_count": video_count,
+        "view_count": view_count,
+        # 原始粗值/失效字段，保留供核对（不删原始数据）
+        "stats_raw_video_count": stats.get("videoCount"),
+        "stats_raw_view_count": stats.get("viewCount"),
+        "stats_v2_video_count": stats_v2.get("videoCount"),
+        "stats_v2_view_count": stats_v2.get("viewCount"),
+        "status_code": info.get("statusCode", info.get("status_code")),
+        "noise_disclaimer": HASHTAG_STATS_NOISE_NOTE,
+        **collector_meta(),
+    }
+
+
+async def collect_hashtag_stats_safe(api: TikTokApi, hashtag: str) -> tuple[dict[str, Any] | None, str | None]:
+    """只拉 challenge 规模元数据，不取视频。失败记错不中断。"""
+    try:
+        tag = api.hashtag(name=hashtag)
+        info = await tag.info()
+        row = normalize_challenge_info(info, hashtag)
+        # challenge_id 为空通常意味着该 tag 不解析为有效 challenge
+        if not row.get("challenge_id"):
+            return row, "no_challenge_id"
+        return row, None
+    except Exception as exc:
+        return None, f"{type(exc).__name__}: {exc}"
+
+
 async def run(args: argparse.Namespace) -> None:
     ms_token = os.getenv("ms_token") or os.getenv("MS_TOKEN")
     proxy = args.proxy or os.getenv("HTTPS_PROXY") or os.getenv("HTTP_PROXY")
@@ -287,6 +348,33 @@ async def run(args: argparse.Namespace) -> None:
                         written += 1
                 if term_errors:
                     print(f"hashtag_term_failures={len(term_errors)}", file=sys.stderr)
+            elif args.command == "hashtag-stats":
+                sources = split_csv(args.hashtags)
+                term_errors = []
+                for hashtag in sources:
+                    row, error = await collect_hashtag_stats_safe(api, hashtag)
+                    if error and not row:
+                        term_errors.append(f"{hashtag}: {error}")
+                        print(f"HASHTAG_STATS_FAILED {hashtag}: {error}", file=sys.stderr)
+                        continue
+                    if row is None:
+                        continue
+                    if error:  # 有 row 但有提示(如 no_challenge_id)
+                        print(f"HASHTAG_STATS_WARN {hashtag}: {error}", file=sys.stderr)
+                    # stats 按 challenge_id 去重(同一 challenge 多别名只记一次)
+                    key = row.get("challenge_id") or f"noid:{hashtag}"
+                    if key in seen:
+                        continue
+                    seen.add(key)
+                    f.write(json.dumps(row, ensure_ascii=False) + "\n")
+                    written += 1
+                    print("HASHTAG_STATS_META " + json.dumps(
+                        {"term": hashtag, "challenge_id": row.get("challenge_id"),
+                         "video_count": row.get("video_count"),
+                         "view_count": row.get("view_count")}, ensure_ascii=False),
+                        file=sys.stderr)
+                if term_errors:
+                    print(f"hashtag_stats_failures={len(term_errors)}", file=sys.stderr)
     finally:
         await api.close_sessions()
 
@@ -308,6 +396,11 @@ def main() -> None:
     p_tag.add_argument("--hashtags", required=True, help="逗号分隔 hashtag，不需要 #")
     p_tag.add_argument("--count", type=int, default=50, help="每个 hashtag 采集数量")
     p_tag.add_argument("--out", default="data/hashtags.ndjson")
+
+    p_stats = sub.add_parser("hashtag-stats", help="只采 challenge 规模元数据(videoCount/viewCount，标含噪声)")
+    p_stats.add_argument("--hashtags", required=True, help="逗号分隔 hashtag，不需要 #")
+    p_stats.add_argument("--count", type=int, default=0, help="忽略(stats 不取视频)")
+    p_stats.add_argument("--out", default="data/hashtag_stats.ndjson")
 
     args = parser.parse_args()
     started = time.time()

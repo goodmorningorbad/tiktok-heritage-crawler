@@ -74,9 +74,10 @@ def parse_channels(value: str) -> list[str]:
     if value == "both":
         return ["search", "hashtag"]
     channels = [x.strip() for x in value.split(",") if x.strip()]
-    bad = [x for x in channels if x not in {"search", "hashtag"}]
+    valid = {"search", "hashtag", "hashtag-stats"}
+    bad = [x for x in channels if x not in valid]
     if bad:
-        raise SystemExit(f"未知 channel: {bad}; use search, hashtag, or both")
+        raise SystemExit(f"未知 channel: {bad}; use search, hashtag, hashtag-stats, or both")
     return channels or ["search"]
 
 
