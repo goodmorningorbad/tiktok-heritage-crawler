@@ -1,6 +1,6 @@
 {
   "region": "US",
-  "pool_note": "US-only residential baseline; single-exit per slot; isolated from turn-proxy :1090/:1091. acc4 reserved as backup/quality-check, not in pool.",
+  "pool_note": "US-only residential baseline. 调度器(pool_scheduler.py)模式: 账号轮换+冷却队列, 限流绑account不绑IP, 故账号数(4)>出口数(3)时轮转复用IP. acc4(凉号)复用us-res-01(FL)出口, 溯源如实标注. 与turn-proxy :1090/:1091隔离.",
   "accounts": [
     {
       "id": "acc1",
@@ -16,6 +16,11 @@
       "id": "acc3",
       "role": "neutral",
       "cookies": "/root/workspace/tiktok-heritage-crawler/cookies/acc3.json"
+    },
+    {
+      "id": "acc4",
+      "role": "neutral",
+      "cookies": "/root/workspace/tiktok-heritage-crawler/cookies/acc4.json"
     }
   ],
   "proxies": [
