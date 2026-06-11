@@ -72,9 +72,14 @@ python3 pool_runner.py --dry-run --channels both --videos-per-term 2000
 # 端到端 smoke（每号 1 项，少量）
 python3 pool_runner.py --channels hashtag --videos-per-term 5 --limit-projects 3 --phase smoke --headful
 
+# 标签规模全量（challenge videoCount/viewCount，快，几分钟出 44 项骨架）
+python3 pool_runner.py --channels hashtag-stats --phase tag-scale --headful
+
 # 正式摸底（search 单 region 基准，临时上限 2000）
 python3 pool_runner.py --channels search --videos-per-term 2000 --phase pilot --headful
 ```
+
+- 通道：`search` / `hashtag`（视频流）/ `hashtag-stats`（challenge 规模，标含噪声）/ `both`(=search+hashtag)
 
 - `--assign round-robin`（默认，均衡）/ `chunk`（连续切块）
 - `--headful`：xvfb-run + TIKTOK_HEADLESS=false（hashtag 通道更稳）
