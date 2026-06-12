@@ -122,7 +122,7 @@
   </header>
 
   <div class="standfirst">
-    本材料定位为 <strong>研究进展与方法论汇报</strong>，而非成果展示。重点在于：建立可靠的研究设计、坐实数据采集中的关键技术约束、并以严格的口径与质控保证后续分析的数据洁净度。文中所有<strong>「假设」均明确标注</strong>，未经数据验证不作为结论引用。
+    本材料定位为 <strong>研究进展与方法论汇报</strong>，而非成果展示。重点在于：建立可靠的研究设计、坐实数据采集中的关键技术约束、并以严格的口径与质控保证后续分析的数据洁净度。文中所有<strong>「假设」均明确标注</strong>，未经数据验证不作为结论引用。核心原则：<strong>「内容存量」≠「传播触达」</strong>——内容多不等于传出去，详见 §1。
   </div>
 
   <!-- ============ 1 ============ -->
@@ -150,11 +150,35 @@
     RL 项目隐形与 USL 项目隐形<strong>性质完全不同</strong>——前者是失败，后者是常态。若混为一谈，核心论点会被一击即破。GSP（福建木偶戏传承计划）保护的是「传承机制」而非遗产本身，故单列处理。
   </div>
 
-  <h3>分层框架：规模 × 触达 双轴（数据基础不对等，区别处理）</h3>
+  <h3>分层框架：存量 × 触达（二维，最终分层是此框架的结果，不是单看内容多少）</h3>
+  <div class="note">
+    <span class="tag">核心概念纠偏 · 贯穿后续全部分析</span>
+    手上有<strong>两类性质不同</strong>的指标，不可混用——<strong>「内容多」≠「传出去了」</strong>。一个非遗可能有几千条视频，但大半 0 播放没人看，那是「内容多」但「传播失败」。
+  </div>
   <ul>
-    <li><strong>轴 A — 触达轴（主轴，数据扎实）：</strong>以同一项目下中文词 vs 英文词的采集量差异衡量「触达广度」。英文 ≫ 中文 → 疑似出海；中文 ≫ 英文 → 疑似内圈；双浅 → 低传播。<br><span class="substep">关键优势：衡量的是<strong>相对可见度</strong>而非绝对总量，因此不受后文所述的接口翻页上限影响。</span></li>
-    <li><strong>轴 B — 规模轴（辅轴，数据脆弱）：</strong>以 hashtag 的 <code>videoCount</code> 衡量绝对规模，配 <code>clean / noisy / unavailable</code> 三态标记，缺失不硬填。</li>
+    <li><strong>存量维度（数量）：</strong>视频条数、是否触顶、hashtag <code>videoCount</code> → 衡量<em>产出了多少内容</em>（有多少人发过）。<strong>只读作内容存量，不读作传播热度。</strong></li>
+    <li><strong>触达维度（数量）：</strong>playCount / digg / comment / share → 衡量<em>内容有没有被看到</em>。<strong>独立必备维度，触达低=没传出去，哪怕存量大、哪怕触顶。</strong></li>
   </ul>
+  <p class="lead">真正的「传播成功」= 二者交叉。<strong>存量 × 触达 二维框架：</strong></p>
+  <table>
+    <thead><tr><th></th><th>触达高（有人看）</th><th>触达低（没人看）</th></tr></thead>
+    <tbody>
+      <tr><td><strong>存量大</strong>（内容多/触顶）</td><td>真·规模化出海</td><td><strong>大量产出但无人问津<br>（自产自销 / 虚假繁荣）</strong></td></tr>
+      <tr><td><strong>存量小</strong>（内容少）</td><td>小而精破圈（单爆款）</td><td>近乎隐形</td></tr>
+    </tbody>
+  </table>
+  <p class="substep">⚠️「存量大 × 触达低」是重点发现位：可能是某些非遗靠中文内容自产自销、海外其实没人看——「我们以为传出去了，其实只是自己人发、自己人看」。</p>
+
+  <h4>语言构成分三层（判出海 / 内圈的核心）</h4>
+  <table>
+    <thead><tr><th>层</th><th>看什么</th><th>含义</th><th>判出海角色</th></tr></thead>
+    <tbody>
+      <tr><td>存量语言</td><td>中/英 term 采集量谁多</td><td>创作者用什么语言发</td><td><strong>只作背景</strong></td></tr>
+      <tr><td>触达语言</td><td>高播放视频是中/英内容</td><td>被看到的内容是什么语言</td><td>辅证</td></tr>
+      <tr><td>受众语言</td><td>评论区谁在说话</td><td>看的人是谁</td><td><strong>主判据</strong></td></tr>
+    </tbody>
+  </table>
+  <p class="substep">判断优先级：<strong>受众语言 &gt; 触达语言 &gt; 存量语言</strong>。反例：某非遗英文内容存量大（旧框架判出海），但英文视频全 0 播放、有播放的是中文视频、评论区全中文 → 实际是内圈。<strong>只看存量语言会误判成出海。</strong></p>
 
   <h3>画像维度（5 个）</h3>
   <p class="lead">内容形态 · 创作者构成 · 语言 · 传播形态（四个可观测维度全量做）+ 受众（降级为评论区语言构成，抽样质性佐证，排在分层之后执行）。</p>
@@ -213,7 +237,7 @@
   </div>
 
   <h3>处理：判据从「数值」升级为「行为模式」</h3>
-  <p>接口硬顶意味着 <strong>search 采集量不能直接当作传播规模</strong>——高传播项目的真实量都被压平在 ~180–200。最初的判定用 cursor 数值阈值，但逐页验证暴露了它的脆弱：同一数值既可能是触顶、也可能是真实采空。因此判据升级为<strong>「<code>has_more</code> 突变模式 + 上限区排除」</strong>：</p>
+  <p>接口硬顶意味着 <strong>search 采集量不能直接当作规模、更不能当传播热度</strong>——内容存量大的项目，其真实存量都被压平在 ~180–200（且存量大 ≠ 被看到，见 §1）。最初的判定用 cursor 数值阈值，但逐页验证暴露了它的脆弱：同一数值既可能是触顶、也可能是真实采空。因此判据升级为<strong>「<code>has_more</code> 突变模式 + 上限区排除」</strong>：</p>
   <div class="judgebox">
 <span class="cm"># 触顶判据（cursor 数值已降级为参考字段，不参与判定）</span>
 触顶 <span class="op">=</span> 末页未满（&lt;30 条）
@@ -263,9 +287,9 @@
   <table>
     <thead><tr><th>通道</th><th>能给</th><th>不能给</th></tr></thead>
     <tbody>
-      <tr><td>search 接口</td><td>触达广度（中英可见度对比）、低/高传播两档、视频级数据</td><td>真实总量（&gt;180 被压平）、规模横向比较</td></tr>
+      <tr><td>search 接口</td><td>内容<strong>存量</strong>（中英存量构成、低/高存量两档）、视频级 stats（含触达指标 playCount 等）</td><td>真实存量总量（&gt;180 被压平）、存量横向比较</td></tr>
       <tr><td>hashtag <code>videoCount</code></td><td>精确总量（唯一可比规模源）</td><td>非每词都有对应 hashtag；通用词撞词高估（noisy）</td></tr>
-      <tr><td>视频级 stats</td><td>单视频热度</td><td>项目级传播规模（视频热 ≠ 项目传播广）</td></tr>
+      <tr><td>视频级 stats（playCount 等）</td><td>单视频<strong>触达</strong>（被看到多少）</td><td>项目级传播规模（单视频热 ≠ 项目整体传出去）</td></tr>
       <tr><td>评论区</td><td>评论区语言构成（受众有偏代理）</td><td>受众精确族裔 / 比例</td></tr>
     </tbody>
   </table>
@@ -314,7 +338,7 @@
     <span class="seg-bound" style="flex:4" title="boundary 4"></span>
     <span class="seg-zero" style="flex:1" title="zero_real 1"></span>
   </div>
-  <p class="substep">边界态 4 词：藏医、药浴、福船、seagoddess。 <strong>127/197（64%）的词触顶被压平</strong>——再次坐实「search 采集量绝不能当规模」。派生为独立标记文件，原始数据未改动。</p>
+  <p class="substep">边界态 4 词：藏医、药浴、福船、seagoddess。 <strong>127/197（64%）的检索词内容存量触及采集上限</strong>（触顶仅说明<em>内容产出多</em>，<strong>不下任何传播结论</strong>——是否被看到取决于触达维度，见 §1）。再次坐实「search 采集量只是存量、绝不能当规模或传播热度」。派生为独立标记文件，原始数据未改动。</p>
 
   <h3>下一步流程</h3>
   <div class="flow">
@@ -332,15 +356,18 @@
     </div>
     <div class="flow-connect">▼</div>
     <div class="phase">
-      <div class="phase-head"><span class="ph-n">2</span> 双轴分层　<span class="ph-stat next">下一步</span></div>
+      <div class="phase-head"><span class="ph-n">2</span> 存量 × 触达分层　<span class="ph-stat next">下一步</span></div>
       <div class="phase-body">
         <div class="steprow">
-          <span class="step"><b>轴 A 触达</b>：算每项目中/英 term 采集量差异 → 触达档（英主 / 中主 / 双浅）</span>
+          <span class="step"><b>存量</b>：触顶档（已有）+ hashtag videoCount（标 clean/noisy/unavailable）</span>
         </div>
         <div class="steprow" style="margin-top:8px">
-          <span class="step"><b>轴 B 规模</b>：采 hashtag videoCount + 标 clean / noisy / unavailable</span>
+          <span class="step"><b>触达</b>（新增必备维）：采每条视频 playCount / digg / comment / share → 项目级触达量级</span>
         </div>
-        <p class="substep">→ 合成分层表：<code>项目 | 名录类别 | 触达档 | 规模值+状态 | 综合判断</code>　结论先按名录类别分组解读（RL 隐形=失败 / USL 隐形=常态 / GSP 单列）</p>
+        <div class="steprow" style="margin-top:8px">
+          <span class="step"><b>语言三层</b>：存量语言（已有）→ 触达语言 → 受众语言（评论区，分层后采）</span>
+        </div>
+        <p class="substep">→ 合成<strong>存量×触达二维</strong>分层表：<code>项目 | 名录类别 | 存量 | 触达 | 象限 | 语言三层 | 综合判断</code>　四象限：真·出海 / 自产自销 / 小而精破圈 / 近乎隐形。结论先按名录类别分组（RL 隐形=失败 / USL 隐形=常态 / GSP 单列）</p>
       </div>
     </div>
     <div class="flow-connect">▼</div>
