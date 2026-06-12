@@ -10,6 +10,7 @@
       "name_cn": "春节",
       "name_en": "Spring Festival, social practices of the Chinese people in celebration of traditional new year",
       "year": "2024",
+      "list_type": "RL",
       "category": "节庆民俗",
       "search_terms": [
         "春节",
@@ -48,6 +49,7 @@
       "name_cn": "中国传统制茶技艺及其相关习俗",
       "name_en": "Traditional tea processing techniques and associated social practices in China",
       "year": "2022",
+      "list_type": "RL",
       "category": "手工艺/民俗",
       "search_terms": [
         "Chinese tea",
@@ -94,6 +96,7 @@
       "name_cn": "太极拳",
       "name_en": "Taijiquan",
       "year": "2020",
+      "list_type": "RL",
       "category": "传统体育/养生",
       "search_terms": [
         "太极",
@@ -120,6 +123,7 @@
       "name_cn": "送王船",
       "name_en": "Ong Chun/Wangchuan/Wangkang ceremony, rituals and related practices for maintaining the sustainable connection between man and the ocean",
       "year": "2020",
+      "list_type": "RL",
       "category": "民俗仪式",
       "search_terms": [
         "送王船",
@@ -152,6 +156,7 @@
       "name_cn": "藏医药浴法",
       "name_en": "Lum medicinal bathing of Sowa Rigpa, knowledge and practices concerning life, health and illness prevention and treatment among the Xizang people in China",
       "year": "2018",
+      "list_type": "RL",
       "category": "传统医药",
       "search_terms": [
         "藏医",
@@ -179,6 +184,7 @@
       "name_cn": "二十四节气",
       "name_en": "The Twenty-Four Solar Terms, knowledge in China of time and practices developed through observation of the sun's annual motion",
       "year": "2016",
+      "list_type": "RL",
       "category": "传统知识/民俗",
       "search_terms": [
         "二十四节气",
@@ -208,6 +214,7 @@
       "name_cn": "中国珠算",
       "name_en": "Chinese Zhusuan, knowledge and practices of mathematical calculation through the abacus",
       "year": "2013",
+      "list_type": "RL",
       "category": "传统知识",
       "search_terms": [
         "珠算",
@@ -234,6 +241,7 @@
       "name_cn": "福建木偶戏",
       "name_en": "Strategy for training coming generations of Fujian puppetry practitioners",
       "year": "2012",
+      "list_type": "GSP",
       "category": "保护实践(木偶戏)",
       "search_terms": [
         "budaixi",
@@ -270,6 +278,7 @@
       "name_cn": "赫哲族伊玛堪",
       "name_en": "Hezhe Yimakan storytelling",
       "year": "2011",
+      "list_type": "USL",
       "category": "口头传统/史诗",
       "search_terms": [
         "赫哲",
@@ -296,6 +305,7 @@
       "name_cn": "中国皮影戏",
       "name_en": "Chinese shadow puppetry",
       "year": "2011",
+      "list_type": "RL",
       "category": "表演艺术",
       "search_terms": [
         "Chinese shadow puppetry",
@@ -326,6 +336,7 @@
       "name_cn": "麦西热甫",
       "name_en": "Meshrep",
       "year": "2010",
+      "list_type": "USL",
       "category": "表演艺术/民俗",
       "search_terms": [
         "麦西热甫",
@@ -351,6 +362,7 @@
       "name_cn": "中国水密隔舱福船制造技艺",
       "name_en": "Watertight-bulkhead technology of Chinese junks",
       "year": "2010",
+      "list_type": "USL",
       "category": "传统手工艺",
       "search_terms": [
         "水密隔舱",
@@ -380,6 +392,7 @@
       "name_cn": "中国木活字印刷术",
       "name_en": "Wooden movable-type printing of China",
       "year": "2010",
+      "list_type": "USL",
       "category": "传统手工艺",
       "search_terms": [
         "木活字",
@@ -408,6 +421,7 @@
       "name_cn": "京剧",
       "name_en": "Peking opera",
       "year": "2010",
+      "list_type": "RL",
       "category": "表演艺术(戏曲)",
       "search_terms": [
         "京剧",
@@ -433,6 +447,7 @@
       "name_cn": "中医针灸",
       "name_en": "Acupuncture and moxibustion of traditional Chinese medicine",
       "year": "2010",
+      "list_type": "RL",
       "category": "传统医药",
       "search_terms": [
         "针灸",
@@ -457,6 +472,7 @@
       "name_cn": "黎族传统纺染织绣技艺",
       "name_en": "Traditional Li textile techniques: spinning, dyeing, weaving and embroidering",
       "year": "2009",
+      "list_type": "USL",
       "category": "传统手工艺",
       "search_terms": [
         "Li textile",
@@ -494,6 +510,7 @@
       "name_cn": "中国木拱桥传统营造技艺",
       "name_en": "Traditional design and practices for building Chinese wooden arch bridges",
       "year": "2009",
+      "list_type": "USL",
       "category": "传统手工艺/建筑",
       "search_terms": [
         "木拱桥",
@@ -520,6 +537,7 @@
       "name_cn": "羌年",
       "name_en": "Qiang New Year festival",
       "year": "2009",
+      "list_type": "USL",
       "category": "节庆民俗",
       "search_terms": [
         "羌年",
@@ -545,6 +563,7 @@
       "name_cn": "侗族大歌",
       "name_en": "Grand song of the Dong ethnic group",
       "year": "2009",
+      "list_type": "RL",
       "category": "表演艺术(音乐)",
       "search_terms": [
         "侗族",
@@ -570,6 +589,7 @@
       "name_cn": "西安鼓乐",
       "name_en": "Xi'an wind and percussion ensemble",
       "year": "2009",
+      "list_type": "RL",
       "category": "表演艺术(音乐)",
       "search_terms": [
         "西安鼓乐",
@@ -595,6 +615,7 @@
       "name_cn": "中国蚕桑丝织技艺",
       "name_en": "Sericulture and silk craftsmanship of China",
       "year": "2009",
+      "list_type": "RL",
       "category": "传统手工艺",
       "search_terms": [
         "silk",
@@ -642,6 +663,7 @@
       "name_cn": "南音",
       "name_en": "Nanyin",
       "year": "2009",
+      "list_type": "RL",
       "category": "表演艺术(音乐)",
       "search_terms": [
         "Nanyin",
@@ -675,6 +697,7 @@
       "name_cn": "南京云锦织造技艺",
       "name_en": "Craftsmanship of Nanjing Yunjin brocade",
       "year": "2009",
+      "list_type": "RL",
       "category": "传统手工艺",
       "search_terms": [
         "云锦",
@@ -701,6 +724,7 @@
       "name_cn": "宣纸传统制作技艺",
       "name_en": "Traditional handicrafts of making Xuan paper",
       "year": "2009",
+      "list_type": "RL",
       "category": "传统手工艺",
       "search_terms": [
         "宣纸",
@@ -727,6 +751,7 @@
       "name_cn": "粤剧",
       "name_en": "Yueju opera",
       "year": "2009",
+      "list_type": "RL",
       "category": "表演艺术(戏曲)",
       "search_terms": [
         "Cantonese opera",
@@ -758,6 +783,7 @@
       "name_cn": "格萨(斯)尔史诗传统",
       "name_en": "Gesar epic tradition",
       "year": "2009",
+      "list_type": "RL",
       "category": "口头传统/史诗",
       "search_terms": [
         "格萨尔",
@@ -785,6 +811,7 @@
       "name_cn": "龙泉青瓷传统烧制技艺",
       "name_en": "Traditional firing technology of Longquan celadon",
       "year": "2009",
+      "list_type": "RL",
       "category": "传统手工艺",
       "search_terms": [
         "龙泉",
@@ -808,6 +835,7 @@
       "name_cn": "热贡艺术",
       "name_en": "Regong arts",
       "year": "2009",
+      "list_type": "RL",
       "category": "传统手工艺/宗教艺术",
       "search_terms": [
         "热贡",
@@ -832,6 +860,7 @@
       "name_cn": "藏戏",
       "name_en": "Xizang opera",
       "year": "2009",
+      "list_type": "RL",
       "category": "表演艺术(戏曲)",
       "search_terms": [
         "藏戏",
@@ -858,6 +887,7 @@
       "name_cn": "玛纳斯",
       "name_en": "Manas",
       "year": "2009",
+      "list_type": "RL",
       "category": "口头传统/史诗",
       "search_terms": [
         "玛纳斯",
@@ -880,6 +910,7 @@
       "name_cn": "蒙古族呼麦",
       "name_en": "Mongolian art of singing, Khoomei",
       "year": "2009",
+      "list_type": "RL",
       "category": "表演艺术(音乐)",
       "search_terms": [
         "khoomei",
@@ -919,6 +950,7 @@
       "name_cn": "花儿",
       "name_en": "Hua'er",
       "year": "2009",
+      "list_type": "RL",
       "category": "表演艺术(民歌)",
       "search_terms": [
         "花儿",
@@ -941,6 +973,7 @@
       "name_cn": "中国朝鲜族农乐舞",
       "name_en": "Farmers' dance of China's Korean ethnic group",
       "year": "2009",
+      "list_type": "RL",
       "category": "表演艺术(舞蹈)",
       "search_terms": [
         "农乐舞",
@@ -967,6 +1000,7 @@
       "name_cn": "中国书法",
       "name_en": "Chinese calligraphy",
       "year": "2009",
+      "list_type": "RL",
       "category": "传统手工艺/视觉艺术",
       "search_terms": [
         "书法",
@@ -992,6 +1026,7 @@
       "name_cn": "中国篆刻",
       "name_en": "Art of Chinese seal engraving",
       "year": "2009",
+      "list_type": "RL",
       "category": "传统手工艺",
       "search_terms": [
         "篆刻",
@@ -1017,6 +1052,7 @@
       "name_cn": "中国剪纸",
       "name_en": "Chinese paper-cut",
       "year": "2009",
+      "list_type": "RL",
       "category": "传统手工艺",
       "search_terms": [
         "剪纸",
@@ -1042,6 +1078,7 @@
       "name_cn": "中国传统木结构建筑营造技艺",
       "name_en": "Chinese traditional architectural craftsmanship for timber-framed structures",
       "year": "2009",
+      "list_type": "RL",
       "category": "传统手工艺/建筑",
       "search_terms": [
         "斗拱",
@@ -1068,6 +1105,7 @@
       "name_cn": "端午节",
       "name_en": "Dragon Boat festival",
       "year": "2009",
+      "list_type": "RL",
       "category": "节庆民俗",
       "search_terms": [
         "端午",
@@ -1097,6 +1135,7 @@
       "name_cn": "妈祖信俗",
       "name_en": "Mazu belief and customs",
       "year": "2009",
+      "list_type": "RL",
       "category": "民俗信仰",
       "search_terms": [
         "妈祖",
@@ -1119,6 +1158,7 @@
       "name_cn": "中国雕版印刷技艺",
       "name_en": "China engraved block printing technique",
       "year": "2009",
+      "list_type": "RL",
       "category": "传统手工艺",
       "search_terms": [
         "雕版",
@@ -1143,6 +1183,7 @@
       "name_cn": "昆曲",
       "name_en": "Kun Qu opera",
       "year": "2008",
+      "list_type": "RL",
       "category": "表演艺术(戏曲)",
       "search_terms": [
         "昆曲",
@@ -1169,6 +1210,7 @@
       "name_cn": "古琴艺术",
       "name_en": "Guqin and its music",
       "year": "2008",
+      "list_type": "RL",
       "category": "表演艺术(音乐)",
       "search_terms": [
         "古琴",
@@ -1191,6 +1233,7 @@
       "name_cn": "新疆维吾尔木卡姆艺术",
       "name_en": "Uyghur Muqam of Xinjiang",
       "year": "2008",
+      "list_type": "RL",
       "category": "表演艺术(音乐)",
       "search_terms": [
         "木卡姆",
@@ -1214,6 +1257,7 @@
       "name_cn": "蒙古族长调民歌",
       "name_en": "Urtiin Duu, traditional folk long song",
       "year": "2008",
+      "list_type": "RL",
       "category": "表演艺术(音乐)",
       "search_terms": [
         "长调",
@@ -1233,5 +1277,7 @@
         "urtiinduu"
       ]
     }
-  ]
+  ],
+  "list_type_note": "名录类别以2024年12月名录为准（RL=人类非遗代表作名录, USL=急需保护名录, GSP=优秀保护实践名册）。赫哲族伊玛堪按2024-12口径=USL。GSP（福建木偶戏后继人才培养计划）性质不同：保护的是传承机制而非遗产本身，分析时单独识别。2025年名录变动（如部分项目转列、咏春拳等新增）未纳入本轮。",
+  "expected_project_count_note": "本轮锁定44项，以2024年12月名录为准，2025变动未纳入（边界说明）。原 expected_project_count 字段仅为历史预期值，不作为本轮口径。"
 }

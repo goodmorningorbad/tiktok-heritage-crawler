@@ -179,6 +179,10 @@ async def collect_search_pagewise(api: TikTokApi, keyword: str, count: int) -> t
     stop_reason = "count_reached"
     last_cursor: Any = cursor
     search_id = ""
+    pages_fetched = 0            # 实际翻了多少页
+    last_page_size = 0          # 最后一页拿到几条（满 30 vs 半页突降，是触顶的关键特征）
+    prev_page_size = 0          # 倒数第二页几条（判触顶用：倒二页满+more=1 / 末页半页+more=0）
+    prev_page_has_more = False  # 倒数第二页的 has_more
     while found < count:
         params = {
             "keyword": keyword,
@@ -189,6 +193,10 @@ async def collect_search_pagewise(api: TikTokApi, keyword: str, count: int) -> t
         }
         if search_id:
             params["search_id"] = search_id
+        # 快照上一页结果为 prev（在读取本页响应前），用于触顶判定：
+        #   触顶 = 倒二页满30+has_more=1，末页半页突降+has_more=0
+        prev_page_size = last_page_size
+        prev_page_has_more = bool(last_has_more)
         response = await api.make_request(url=search_url, params=params)
         if not response:
             stop_reason = "empty_response"
@@ -197,12 +205,15 @@ async def collect_search_pagewise(api: TikTokApi, keyword: str, count: int) -> t
         items = response.get("item_list") or response.get("itemList") or []
         last_has_more = bool(response.get("has_more") or response.get("hasMore"))
         last_cursor = response.get("cursor", cursor)
+        pages_fetched += 1
         # 第一页拿到 search_id，后续每页都带同一个续页
         if not search_id:
             search_id = (response.get("log_pb") or {}).get("impr_id") or ""
         if not items:
             stop_reason = "empty_items"
+            last_page_size = 0
             break
+        last_page_size = len(items)
         for item in items:
             raw = item.get("item") if isinstance(item, dict) and "item" in item else item
             if not isinstance(raw, dict):
@@ -223,13 +234,36 @@ async def collect_search_pagewise(api: TikTokApi, keyword: str, count: int) -> t
     has_cjk = any("\u4e00" <= ch <= "\u9fff" for ch in keyword)
     term_script = "cjk" if has_cjk else "latin"
 
+    # 触接口翻页上限的判据（39 词逐页实测立住，2026-06-12，verify_ceiling_39.py）：
+    #   search /api/search/item/full/ 翻页硬顶，到顶时返「半页(<30) + has_more=0」伪装采空。
+    #   ★ 判据用「has_more 突变模式」，不用 cursor 数值 ★
+    #     （实测：同为触顶，末页 cursor 有 180 也有 210；藏医 cursor=150 却是真采空 →
+    #      cursor 不可靠，降级为参考字段 cursor_at_stop，不参与判定）
+    #   触顶 = 倒数第二页满(>=28/30)+has_more=1，且末页半页突降(<30)+has_more=0。
+    #   真采空 = 末页 has_more=0 但「倒二页就已未满」或「末页本身就是自然递减到底」
+    #            （如藏医：第5页25条未满即 has_more=0）。
+    try:
+        cursor_num = int(last_cursor)
+    except (TypeError, ValueError):
+        cursor_num = 0
+    _ended_no_more = stop_reason in ("exhausted", "empty_items")
+    _prev_full_and_more = prev_page_size >= 28 and prev_page_has_more
+    _last_half = last_page_size < 30          # 末页未满（含 empty_items 的 0）
+    # 触顶只可能发生在接口上限区（第 6 页及以后）。第 6 页之前 has_more=0 必是真采空
+    #   —— 如藏医：第 5 页(cursor150)25 条即 has_more=0，形式像突降但页数不够，是真采空。
+    #   pages_fetched 是主排除项；cursor>=180 作旁证（二者通常同步，取或更稳健）。
+    _in_ceiling_zone = pages_fetched >= 6 or cursor_num >= 180
+    hit_ceiling = _ended_no_more and _prev_full_and_more and _last_half and _in_ceiling_zone
+
     # depth_verdict：翻页深度语义。注意 empty_response 是限流信号，不算真实触底！
     if found >= count and last_has_more:
         depth_verdict = "truncated_by_cap"      # 被 N 截断，平台仍有更多（真实值>=N，超级头部）
-    elif stop_reason in ("exhausted", "empty_items"):
-        depth_verdict = "exhausted"             # has_more=0 自然触底，拿到该 region 全部可达视频
     elif stop_reason == "empty_response":
         depth_verdict = "rate_limited"          # 空响应=bot检测/限流，不是真实触底
+    elif hit_ceiling:
+        depth_verdict = "ceiling_capped"        # 触 search 接口翻页上限被压平，真实量>=collected，不可当规模横向比较
+    elif stop_reason in ("exhausted", "empty_items"):
+        depth_verdict = "exhausted"             # has_more=0 且未到接口上限区 → 真实自然采空
     else:
         depth_verdict = "count_reached_exact"
 
@@ -251,6 +285,11 @@ async def collect_search_pagewise(api: TikTokApi, keyword: str, count: int) -> t
         "has_more_at_stop": bool(last_has_more) if found >= count else False,
         "stop_reason": stop_reason,
         "cursor_at_stop": last_cursor,
+        "pages_fetched": pages_fetched,
+        "last_page_size": last_page_size,
+        "prev_page_size": prev_page_size,
+        "prev_page_has_more": prev_page_has_more,
+        "hit_ceiling": hit_ceiling,
         "depth_verdict": depth_verdict,
         "result_class": result_class,
     }
