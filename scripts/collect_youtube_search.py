@@ -38,18 +38,29 @@ def now_iso() -> str:
     return dt.datetime.now(dt.timezone.utc).isoformat()
 
 
-def load_api_key(args: argparse.Namespace) -> str:
+def load_api_keys(args: argparse.Namespace) -> List[str]:
+    keys: List[str] = []
     if args.api_key:
-        return args.api_key.strip()
+        keys.extend(k.strip() for k in args.api_key.split(",") if k.strip())
     if args.api_key_file:
-        key = Path(args.api_key_file).read_text(encoding="utf-8").strip()
-        if key:
-            return key
+        for line in Path(args.api_key_file).read_text(encoding="utf-8").splitlines():
+            key = line.strip()
+            if key and not key.startswith("#"):
+                keys.append(key)
     for name in ("YOUTUBE_API_KEY", "GOOGLE_API_KEY"):
-        key = os.environ.get(name, "").strip()
-        if key:
-            return key
-    raise SystemExit("Missing API key: set YOUTUBE_API_KEY or pass --api-key-file/--api-key")
+        val = os.environ.get(name, "").strip()
+        if val:
+            keys.extend(k.strip() for k in val.split(",") if k.strip())
+    # preserve order, de-dupe
+    deduped: List[str] = []
+    seen: set[str] = set()
+    for key in keys:
+        if key not in seen:
+            deduped.append(key)
+            seen.add(key)
+    if not deduped:
+        raise SystemExit("Missing API key: set YOUTUBE_API_KEY or pass --api-key-file/--api-key")
+    return deduped
 
 
 def request_json(endpoint: str, params: Dict[str, Any], timeout: int = 30) -> Dict[str, Any]:
@@ -301,7 +312,7 @@ def main() -> int:
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
-    api_key = "" if args.dry_run else load_api_key(args)
+    api_keys = [] if args.dry_run else load_api_keys(args)
     config = json.loads(Path(args.config).read_text(encoding="utf-8"))
     only_terms = {t.lower() for t in args.only_term} if args.only_term else None
     only_projects = set(args.only_project) if args.only_project else None
@@ -326,17 +337,35 @@ def main() -> int:
     print(f"Collecting YouTube: terms={len(term_pairs)} max_pages={args.max_pages} region={args.region_code} order={args.order}", flush=True)
     for idx, (project, term) in enumerate(term_pairs, 1):
         print(f"[{idx}/{len(term_pairs)}] project={project.get('id')} {project.get('name_cn')} term={term!r}", flush=True)
-        videos, meta, calls = collect_search_for_term(
-            api_key,
-            project,
-            term,
-            max_pages=args.max_pages,
-            region_code=args.region_code,
-            order=args.order,
-            delay=args.delay,
-            timeout=args.timeout,
-        )
-        total_search_calls += calls
+        start_key_index = (idx - 1) % len(api_keys)
+        attempts: List[int] = []
+        videos: List[Dict[str, Any]] = []
+        meta: Dict[str, Any] = {}
+        calls = 0
+        total_calls_for_term = 0
+        for attempt_offset in range(len(api_keys)):
+            api_key_index = (start_key_index + attempt_offset) % len(api_keys)
+            attempts.append(api_key_index + 1)
+            videos, meta, calls = collect_search_for_term(
+                api_keys[api_key_index],
+                project,
+                term,
+                max_pages=args.max_pages,
+                region_code=args.region_code,
+                order=args.order,
+                delay=args.delay,
+                timeout=args.timeout,
+            )
+            total_calls_for_term += calls
+            meta["api_key_index"] = api_key_index + 1
+            meta["api_key_attempts"] = attempts[:]
+            if meta.get("stop_reason") != "failed":
+                break
+            if attempt_offset + 1 < len(api_keys):
+                print(f"  !! failed on key#{api_key_index + 1}; retrying with next key", flush=True)
+        meta["search_calls_including_failed_attempts"] = total_calls_for_term
+        meta["search_quota_cost_including_failed_attempts"] = total_calls_for_term * SEARCH_COST
+        total_search_calls += total_calls_for_term
         all_videos.extend(videos)
         term_meta.append(meta)
         print(f"  -> {meta['stop_reason']} videos={meta['collected_count']} totalResults≈{meta['totalResults_estimate']} calls={calls}", flush=True)
@@ -348,7 +377,8 @@ def main() -> int:
     detail_quota = 0
     if not args.skip_video_details and all_videos:
         print(f"Enriching videos via videos.list unique_ids={len({v['video_id'] for v in all_videos})}", flush=True)
-        detail_calls, detail_quota = enrich_videos(api_key, all_videos, timeout=args.timeout)
+        # Use the first key for low-cost videos.list enrichment. Search quota is the expensive part.
+        detail_calls, detail_quota = enrich_videos(api_keys[0], all_videos, timeout=args.timeout)
 
     # de-dupe within project and globally for helper summaries, but keep per-search rows in main output.
     summary = {
@@ -360,12 +390,14 @@ def main() -> int:
         "max_pages": args.max_pages,
         "region_code": args.region_code,
         "order": args.order,
+        "api_keys_loaded": len(api_keys),
         "search_calls": total_search_calls,
         "search_quota_cost": total_search_calls * SEARCH_COST,
         "videos_list_calls": detail_calls,
         "videos_list_quota_cost": detail_quota,
         "total_quota_cost_estimate": total_search_calls * SEARCH_COST + detail_quota,
         "video_rows": len(all_videos),
+        "video_rows_with_viewCount": sum(1 for v in all_videos if v.get("viewCount") is not None),
         "unique_video_ids_global": len({v["video_id"] for v in all_videos}),
         "term_stop_reason_counts": {},
     }
@@ -380,6 +412,7 @@ def main() -> int:
     ]
     meta_fields = [
         "project_id", "heritage_item", "project_name_en", "category", "search_keyword", "source_platform", "region_code", "search_order",
+        "api_key_index", "api_key_attempts", "search_calls_including_failed_attempts", "search_quota_cost_including_failed_attempts",
         "max_pages_requested", "pages_fetched", "search_calls", "search_quota_cost", "collected_count", "unique_video_count",
         "totalResults_estimate", "nextPageToken_present_at_stop", "stop_reason", "error_message", "started_or_recorded_at",
     ]
