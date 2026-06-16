@@ -3,396 +3,124 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UNESCO 非遗 TikTok 美区研究 — 阶段进展汇报</title>
+<title>UNESCO 中国非遗 TikTok / YouTube 美区传播研究 — 阶段进展汇报</title>
 <style>
   :root{
-    --ink:#1a1f24; --ink-soft:#414b54; --muted:#6b7680; --faint:#9aa4ad;
-    --line:#dde3e8; --line-soft:#eef2f5; --paper:#ffffff; --tint:#f6f8fa;
-    --accent:#0e5e6f; --accent-soft:#e3eef0; --accent-line:#bcd6da;
-    --warn:#9a5b1e; --warn-soft:#f7efe3;
-    --good:#2f6b46; --good-soft:#e6f0ea;
-    --bad:#9a3a3a; --bad-soft:#f5e7e7;
+    --ink:#172027; --ink-soft:#3d4a54; --muted:#6d7a84; --faint:#9aa6ad;
+    --paper:#fff; --bg:#e9edf0; --tint:#f6f8f8; --line:#dce4e8; --line2:#edf2f4;
+    --accent:#0d6572; --accent2:#154d5a; --accent-soft:#e3eff1;
+    --good:#2e6b4c; --good-soft:#e8f1ec; --warn:#9a5b1e; --warn-soft:#f8efe4;
+    --bad:#a14242; --bad-soft:#f6e8e8; --blue:#385e8a; --blue-soft:#e9eef6;
   }
-  *{box-sizing:border-box;}
-  html{font-size:15px;}
-  body{
-    margin:0; background:#e9edf0; color:var(--ink);
-    font-family:-apple-system,"Segoe UI","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;
-    line-height:1.72; -webkit-font-smoothing:antialiased;
-  }
-  .page{
-    max-width:820px; margin:32px auto; background:var(--paper);
-    padding:64px 72px; box-shadow:0 1px 3px rgba(0,0,0,.08),0 8px 30px rgba(0,0,0,.06);
-  }
-  /* ---- masthead ---- */
-  .masthead{border-bottom:2px solid var(--ink); padding-bottom:22px; margin-bottom:14px;}
-  .kicker{font-size:.74rem; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); font-weight:700; margin-bottom:14px;}
-  h1{font-size:1.72rem; line-height:1.3; margin:0 0 6px; font-weight:750; letter-spacing:-.01em;}
-  .subtitle{font-size:1.02rem; color:var(--ink-soft); font-weight:500; margin:0;}
-  .meta-row{display:flex; flex-wrap:wrap; gap:18px; margin-top:18px; font-size:.82rem; color:var(--muted);}
-  .meta-row b{color:var(--ink-soft); font-weight:600;}
-  .standfirst{
-    background:var(--tint); border-left:3px solid var(--accent); padding:16px 20px;
-    margin:24px 0 4px; font-size:.92rem; color:var(--ink-soft); border-radius:0 4px 4px 0;
-  }
-  /* ---- sections ---- */
-  h2{
-    font-size:1.18rem; font-weight:720; margin:46px 0 4px; padding-top:22px;
-    border-top:1px solid var(--line); letter-spacing:-.01em;
-    display:flex; align-items:baseline; gap:12px;
-  }
-  h2 .num{color:var(--accent); font-size:.92rem; font-weight:700; font-variant-numeric:tabular-nums;}
-  h3{font-size:1rem; font-weight:680; margin:28px 0 8px; color:var(--ink);}
-  h4{font-size:.9rem; font-weight:680; margin:20px 0 6px; color:var(--ink-soft);}
-  p{margin:10px 0;}
-  .lead{color:var(--ink-soft);}
-  ul,ol{margin:10px 0; padding-left:22px;}
-  li{margin:5px 0;}
-  strong{font-weight:680; color:var(--ink);}
-  em{font-style:normal; background:var(--accent-soft); padding:0 4px; border-radius:3px; color:var(--accent); font-weight:600;}
-  code{font-family:"SF Mono",Menlo,Consolas,monospace; font-size:.82em; background:var(--line-soft); padding:1px 5px; border-radius:3px; color:var(--ink);}
-  /* ---- tables ---- */
-  table{width:100%; border-collapse:collapse; margin:16px 0; font-size:.86rem;}
-  th,td{text-align:left; padding:9px 12px; border-bottom:1px solid var(--line);}
-  thead th{background:var(--tint); font-weight:680; color:var(--ink-soft); border-bottom:1.5px solid var(--line);}
-  td.num,th.num{text-align:right; font-variant-numeric:tabular-nums;}
-  tbody tr:hover{background:var(--tint);}
-  /* ---- callout ---- */
-  .note{
-    border-radius:5px; padding:14px 18px; margin:18px 0; font-size:.87rem;
-    border:1px solid var(--accent-line); background:var(--accent-soft);
-  }
-  .note .tag{font-weight:700; color:var(--accent); font-size:.76rem; letter-spacing:.06em; text-transform:uppercase; display:block; margin-bottom:5px;}
-  .note.principle{border-color:#cfd9c6; background:#f0f4ec;}
-  .note.principle .tag{color:#4a6b35;}
-  /* ---- stat cards ---- */
-  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:20px 0;}
-  .stat{border:1px solid var(--line); border-radius:6px; padding:14px 16px; text-align:center;}
-  .stat .v{font-size:1.6rem; font-weight:740; color:var(--accent); font-variant-numeric:tabular-nums; line-height:1.1;}
-  .stat .l{font-size:.72rem; color:var(--muted); margin-top:4px;}
-  .stat.zero .v{color:var(--good);}
-  /* ---- distribution bar ---- */
-  .distbar{display:flex; height:34px; border-radius:6px; overflow:hidden; margin:14px 0 6px; border:1px solid var(--line);}
-  .distbar span{display:flex; align-items:center; justify-content:center; color:#fff; font-size:.78rem; font-weight:650;}
-  .seg-ceil{background:var(--warn);} .seg-exh{background:var(--good);}
-  .seg-bound{background:var(--accent);} .seg-zero{background:var(--bad);}
-  .distleg{display:flex; flex-wrap:wrap; gap:16px; font-size:.78rem; color:var(--muted); margin-bottom:8px;}
-  .distleg i{display:inline-block; width:11px; height:11px; border-radius:2px; margin-right:5px; vertical-align:-1px;}
-  /* ---- code-page demo ---- */
-  .judgebox{background:#1e2832; color:#d6e0e8; border-radius:6px; padding:16px 20px; font-family:"SF Mono",Menlo,monospace; font-size:.8rem; line-height:1.75; margin:14px 0; overflow-x:auto;}
-  .judgebox .kw{color:#7fb3c4;} .judgebox .cm{color:#7a8a96;} .judgebox .op{color:#c99a6a;}
-  /* ---- flow diagram ---- */
-  .flow{margin:22px 0;}
-  .phase{border:1px solid var(--line); border-radius:8px; margin:0 0 8px; overflow:hidden;}
-  .phase-head{background:var(--tint); padding:10px 18px; font-weight:700; font-size:.92rem; display:flex; align-items:center; gap:10px; border-bottom:1px solid var(--line);}
-  .phase-head .ph-n{background:var(--accent); color:#fff; width:22px; height:22px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:.78rem;}
-  .phase-head .ph-stat{margin-left:auto; font-size:.72rem; font-weight:600; padding:2px 10px; border-radius:20px;}
-  .ph-stat.done{background:var(--good-soft); color:var(--good);}
-  .ph-stat.next{background:var(--accent-soft); color:var(--accent);}
-  .phase-body{padding:14px 18px;}
-  .steprow{display:flex; align-items:center; gap:10px; flex-wrap:wrap; font-size:.84rem;}
-  .step{background:#fff; border:1px solid var(--line); border-radius:5px; padding:7px 12px; color:var(--ink-soft);}
-  .step.ok{border-color:#bcd6c4; background:var(--good-soft);}
-  .arrow{color:var(--faint); font-weight:700;}
-  .substep{font-size:.82rem; color:var(--muted); margin:8px 0 0; padding-left:4px;}
-  .flow-connect{text-align:center; color:var(--accent-line); font-size:1.2rem; line-height:1; margin:2px 0;}
-  /* ---- footer ---- */
-  .foot{margin-top:48px; padding-top:18px; border-top:1px solid var(--line); font-size:.78rem; color:var(--faint); font-style:italic;}
-  .pill{display:inline-block; font-size:.72rem; font-weight:650; padding:1px 9px; border-radius:20px; vertical-align:1px;}
-  .pill.h{background:var(--warn-soft); color:var(--warn);}
-  @media print{
-    body{background:#fff;}
-    .page{box-shadow:none; margin:0; max-width:none; padding:36px 40px;}
-    h2{break-after:avoid;} table,.flow,.note,.judgebox,.stats,.phase{break-inside:avoid;}
-  }
+  *{box-sizing:border-box}
+  html{font-size:15px}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.68;-webkit-font-smoothing:antialiased}
+  .page{max-width:880px;margin:28px auto;background:var(--paper);padding:58px 68px;box-shadow:0 2px 4px rgba(0,0,0,.06),0 16px 42px rgba(25,35,45,.09)}
+  .mast{border-bottom:2px solid var(--ink);padding-bottom:22px;margin-bottom:18px}
+  .kicker{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:780;margin-bottom:12px}
+  h1{font-size:1.9rem;line-height:1.22;margin:0 0 8px;font-weight:780;letter-spacing:-.015em}
+  .sub{font-size:1.04rem;color:var(--ink-soft);margin:0;font-weight:520}
+  .meta{display:flex;flex-wrap:wrap;gap:14px 22px;margin-top:17px;font-size:.82rem;color:var(--muted)}
+  .meta b{color:var(--ink-soft)}
+  .standfirst{background:var(--tint);border-left:4px solid var(--accent);padding:15px 18px;border-radius:0 6px 6px 0;color:var(--ink-soft);font-size:.92rem;margin:22px 0 8px}
+  h2{font-size:1.18rem;margin:40px 0 10px;padding-top:20px;border-top:1px solid var(--line);display:flex;gap:10px;align-items:baseline;font-weight:760;break-after:avoid}
+  h2 .num{font-size:.88rem;color:var(--accent);font-variant-numeric:tabular-nums}
+  h3{font-size:1rem;margin:24px 0 8px;color:var(--ink);font-weight:700;break-after:avoid}
+  p{margin:9px 0}.lead{color:var(--ink-soft)}
+  ul,ol{margin:8px 0 10px;padding-left:22px}li{margin:4px 0}strong{font-weight:720;color:var(--ink)}
+  code{font-family:"SF Mono",Menlo,Consolas,monospace;background:var(--line2);padding:1px 5px;border-radius:3px;font-size:.84em}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.84rem;break-inside:avoid}
+  th,td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+  thead th{background:var(--tint);font-weight:720;color:var(--ink-soft);border-bottom:1.5px solid var(--line)}
+  .numc{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:16px 0;break-inside:avoid}
+  .card{border:1px solid var(--line);border-radius:7px;padding:13px 12px;text-align:center;background:#fff}
+  .card .v{font-size:1.48rem;line-height:1.08;font-weight:780;color:var(--accent);font-variant-numeric:tabular-nums}.card .l{font-size:.72rem;color:var(--muted);margin-top:4px}
+  .note{border:1px solid var(--accent-soft);background:var(--accent-soft);border-radius:6px;padding:13px 16px;margin:14px 0;font-size:.87rem;break-inside:avoid}
+  .note .tag{display:block;font-weight:760;color:var(--accent2);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+  .note.warn{background:var(--warn-soft);border-color:#ecd5b8}.note.warn .tag{color:var(--warn)}
+  .bar{display:flex;height:34px;border:1px solid var(--line);border-radius:7px;overflow:hidden;margin:12px 0 6px;break-inside:avoid}.bar span{display:flex;align-items:center;justify-content:center;color:#fff;font-size:.77rem;font-weight:720;min-width:32px}.b1{background:var(--accent)}.b2{background:var(--warn)}.b3{background:var(--blue)}.b4{background:var(--good)}.b5{background:var(--bad)}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:.76rem}.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+  .flow{margin:18px 0;break-inside:avoid}.phase{border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:0 0 8px}.phase-h{background:var(--tint);padding:9px 14px;font-weight:740;display:flex;gap:10px;align-items:center}.badge{background:var(--accent);color:#fff;border-radius:999px;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem}.status{margin-left:auto;font-size:.72rem;border-radius:999px;padding:2px 9px}.done{background:var(--good-soft);color:var(--good)}.wait{background:var(--warn-soft);color:var(--warn)}.next{background:var(--blue-soft);color:var(--blue)}.phase-b{padding:12px 15px}.steps{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.step{border:1px solid var(--line);border-radius:5px;padding:6px 9px;background:#fff;color:var(--ink-soft);font-size:.82rem}.ok{background:var(--good-soft);border-color:#c2d9ca}.partial{background:var(--warn-soft);border-color:#ead1ad}.arrow{color:var(--faint);font-weight:800}.foot{margin-top:42px;border-top:1px solid var(--line);padding-top:14px;font-size:.78rem;color:var(--faint);font-style:italic}
+  @media print{body{background:#fff}.page{box-shadow:none;margin:0;max-width:none;padding:34px 40px}.cards{grid-template-columns:repeat(4,1fr)}h2,table,.note,.cards,.flow,.phase{break-inside:avoid}}
 </style>
 </head>
-<body>
-<div class="page">
+<body><main class="page">
+<header class="mast">
+  <div class="kicker">研究进展 · 方法论汇报 · 更新版</div>
+  <h1>UNESCO 中国非物质文化遗产<br>在 TikTok / YouTube 美区的传播研究</h1>
+  <p class="sub">阶段进展与方法论汇报</p>
+  <div class="meta"><span><b>更新时间</b> 2026-06-16 晚</span><span><b>状态</b> TikTok 草表完成；YouTube Y3 partial</span><span><b>定位</b> 研究进展 + 方法论，非最终成果</span></div>
+</header>
+<div class="standfirst">因汇报推迟到明天，本版补入今日完成的 TikTok 相关性清洗、存量×触达草表、YouTube 3 页扩采、Y2 深采候选与 Y3 P0 部分深采结果。核心原则：<strong>内容存量 ≠ 传播触达；平台间存量不可数值硬比；噪声只标不删；技术失败不等于低可见。</strong></div>
 
-  <header class="masthead">
-    <div class="kicker">研究进展 · 方法论汇报</div>
-    <h1>UNESCO 中国非物质文化遗产<br>在 TikTok 美区的传播研究</h1>
-    <p class="subtitle">阶段进展与方法论汇报</p>
-    <div class="meta-row">
-      <span><b>阶段</b>　数据基底构建（接近完成）</span>
-      <span><b>数据基准</b>　baseline 全量采集 + 三轮逐页验证</span>
-      <span><b>日期</b>　2026-06-12</span>
-    </div>
-  </header>
+<h2><span class="num">01</span> 研究问题与口径</h2>
+<p class="lead">研究单元是 <strong>44 个 UNESCO 中国非遗项目</strong>，而不是单条视频或单个搜索词。目标是建立项目级传播画像，并判断其在美区平台上的可见性与触达状态。</p>
+<table><thead><tr><th>象限</th><th>解释</th><th>研究含义</th></tr></thead><tbody>
+<tr><td>存量高 × 触达高</td><td>内容多，且有人看</td><td>真·规模化出海候选</td></tr>
+<tr><td>存量高 × 触达低</td><td>内容多，但没人看</td><td><strong>自产自销 / 虚假繁荣重点观察位</strong></td></tr>
+<tr><td>存量低 × 触达高</td><td>内容少，但有爆点</td><td>小而精破圈</td></tr>
+<tr><td>存量低 × 触达低</td><td>内容少，也没人看</td><td>近乎隐形</td></tr>
+</tbody></table>
+<div class="note"><span class="tag">口径红线</span>存量回答“有多少内容被生产”，触达回答“内容有没有被看到”。TikTok hashtag videoCount 与 YouTube 采集状态不是同一单位，不能数值硬比；可比的是 relevance-aware 触达口径。</div>
 
-  <div class="standfirst">
-    本材料定位为 <strong>研究进展与方法论汇报</strong>，而非成果展示。重点在于：建立可靠的研究设计、坐实数据采集中的关键技术约束、并以严格的口径与质控保证后续分析的数据洁净度。文中所有<strong>「假设」均明确标注</strong>，未经数据验证不作为结论引用。核心原则：<strong>「内容存量」≠「传播触达」</strong>——内容多不等于传出去，详见 §1。
-  </div>
+<h2><span class="num">02</span> TikTok：从原始采集到二维草表</h2>
+<div class="cards"><div class="card"><div class="v">32,579</div><div class="l">baseline 原始视频</div></div><div class="card"><div class="v">197</div><div class="l">搜索词</div></div><div class="card"><div class="v">0</div><div class="l">技术失败</div></div><div class="card"><div class="v">44</div><div class="l">项目级矩阵</div></div></div>
+<h3>相关性口径 v1 已工程化</h3>
+<div class="bar"><span class="b4" style="flex:10111">likely 10,111</span><span class="b3" style="flex:4053">review 4,053</span><span class="b5" style="flex:18415">low 18,415</span></div>
+<div class="legend"><span><i class="b4"></i>likely_relevant</span><span><i class="b3"></i>needs_review</span><span><i class="b5"></i>low_relevance（保留为噪声风险）</span></div>
+<p>这一步把 raw reach 中的撞词、泛词视频从结论主口径中隔离出来：raw / likely / inclusive / low 四套触达并存，low 不删除。</p>
+<h3>hashtag 存量轴与 stock × reach 草表</h3>
+<table><thead><tr><th>存量层级 / 象限</th><th class="numc">数量</th><th>说明</th></tr></thead><tbody>
+<tr><td>hashtag head / mid / long_tail / near_invisible</td><td class="numc">5 / 5 / 8 / 26</td><td>来自 statsV2.videoCount，并保留 clean / noisy / unavailable 状态</td></tr>
+<tr><td>stock_high__reach_high</td><td class="numc">7</td><td>真·规模化出海候选</td></tr>
+<tr><td>stock_high__reach_low</td><td class="numc">3</td><td>自产自销 / 虚假繁荣候选</td></tr>
+<tr><td>stock_low__reach_high</td><td class="numc">10</td><td>小而精破圈候选</td></tr>
+<tr><td>stock_low__reach_low</td><td class="numc">24</td><td>近乎隐形候选</td></tr>
+</tbody></table>
+<div class="note warn"><span class="tag">当前 TikTok 阻塞点</span>已生成 321 条视频的人工核查清单，覆盖 33 个 P0/P1 项目。正式分层定稿需等待人工表回流后校正。</div>
 
-  <!-- ============ 1 ============ -->
-  <h2><span class="num">01</span> 研究设计</h2>
+<h2><span class="num">03</span> YouTube：跨平台扩展与深采</h2>
+<h3>3 页扩采 baseline</h3>
+<div class="cards"><div class="card"><div class="v">61</div><div class="l">YouTube 搜索词</div></div><div class="card"><div class="v">8,463</div><div class="l">视频行</div></div><div class="card"><div class="v">7,984</div><div class="l">全局去重 video_id</div></div><div class="card"><div class="v">0</div><div class="l">failed</div></div></div>
+<table><thead><tr><th>状态 / 标签</th><th class="numc">数量</th><th>说明</th></tr></thead><tbody>
+<tr><td>sample_limit_reached</td><td class="numc">56 词</td><td>人为 3 页下限，不是平台天花板</td></tr>
+<tr><td>exhausted</td><td class="numc">5 词</td><td>当前搜索口径下自然结束</td></tr>
+<tr><td>likely / review / low（项目内去重）</td><td class="numc">4,693 / 1,632 / 1,751</td><td>复用 TikTok 相关性口径 v1</td></tr>
+</tbody></table>
+<h3>Y2 深采候选</h3>
+<div class="bar"><span class="b1" style="flex:13">P0 now 13</span><span class="b2" style="flex:35">wait manual 35</span><span class="b3" style="flex:2">noise 2</span><span class="b4" style="flex:5">hold 5</span><span class="b5" style="flex:6">other 6</span></div>
+<div class="legend"><span><i class="b1"></i>可立即 10 页深采</span><span><i class="b2"></i>等 TikTok 人工表</span><span><i class="b3"></i>噪声探针</span><span><i class="b4"></i>自然采空暂不补</span></div>
+<h3>Y3 P0 10 页深采 partial</h3>
+<div class="cards"><div class="card"><div class="v">13</div><div class="l">P0 词尝试</div></div><div class="card"><div class="v">2,088</div><div class="l">已采视频行</div></div><div class="card"><div class="v">2,050</div><div class="l">去重 video_id</div></div><div class="card"><div class="v">7,941</div><div class="l">quota 估算</div></div></div>
+<table><thead><tr><th>stop_reason</th><th class="numc">词数</th><th>解释</th></tr></thead><tbody>
+<tr><td><code>ceiling_capped_500</code></td><td class="numc">4</td><td>跑满 10 页仍有下一页，是 500-depth 下限</td></tr>
+<tr><td><code>exhausted</code></td><td class="numc">1</td><td><code>Chinese tea ceremony</code> 第 5 页自然采空</td></tr>
+<tr><td><code>failed</code></td><td class="numc">8</td><td>YouTube quota / rateLimitExceeded 技术失败，待明日补跑</td></tr>
+</tbody></table>
+<div class="note"><span class="tag">partial 结果观察</span>春节、太极拳、Taijiquan、中国木活字印刷术均跑满 10 页仍有下一页，说明 3 页 baseline 确实低估高可见词。中国木活字印刷术 raw play≈32.3 亿但 likely≈6694 万，噪声风险高，仍需人工核查。</div>
 
-  <h3>研究问题</h3>
-  <p class="lead">判断每一个 UNESCO 认定的中国非遗项目，在 TikTok 美区是处于<strong>「真出海」</strong>（破圈到非华人 / 英文世界）还是<strong>「内圈循环」</strong>（华人 / 中文小圈层内传播），并为每个项目建立<strong>传播画像</strong>。</p>
-
-  <h3>研究对象与口径</h3>
-  <ul>
-    <li><strong>对象 = 非遗项目（44 个）。</strong>视频与搜索词只是采集<em>素材与探针</em>，不是研究单元——结论落在项目层级。</li>
-    <li><strong>名录口径锁定 2024 年 12 月名录</strong>，2025 年的转列 / 新增（如咏春拳）不纳入本轮，作为明确的边界声明。</li>
-  </ul>
-
-  <table>
-    <thead><tr><th>名录类别</th><th>全称</th><th class="num">数量</th><th>「隐形」的含义</th></tr></thead>
-    <tbody>
-      <tr><td><code>RL</code></td><td>人类非遗代表作名录</td><td class="num">36</td><td><strong>功能化失败</strong>（理应被代表却没传播开）</td></tr>
-      <tr><td><code>USL</code></td><td>急需保护名录</td><td class="num">7</td><td>常态（本就濒危，预期内）</td></tr>
-      <tr><td><code>GSP</code></td><td>优秀保护实践名册</td><td class="num">1</td><td>单列识别，不参与规模比较</td></tr>
-    </tbody>
-  </table>
-  <div class="note">
-    <span class="tag">为何按名录类别分层</span>
-    RL 项目隐形与 USL 项目隐形<strong>性质完全不同</strong>——前者是失败，后者是常态。若混为一谈，核心论点会被一击即破。GSP（福建木偶戏传承计划）保护的是「传承机制」而非遗产本身，故单列处理。
-  </div>
-
-  <h3>分层框架：存量 × 触达（二维，最终分层是此框架的结果，不是单看内容多少）</h3>
-  <div class="note">
-    <span class="tag">核心概念纠偏 · 贯穿后续全部分析</span>
-    手上有<strong>两类性质不同</strong>的指标，不可混用——<strong>「内容多」≠「传出去了」</strong>。一个非遗可能有几千条视频，但大半 0 播放没人看，那是「内容多」但「传播失败」。
-  </div>
-  <ul>
-    <li><strong>存量维度（数量）：</strong>视频条数、是否触顶、hashtag <code>videoCount</code> → 衡量<em>产出了多少内容</em>（有多少人发过）。<strong>只读作内容存量，不读作传播热度。</strong></li>
-    <li><strong>触达维度（数量）：</strong>playCount / digg / comment / share → 衡量<em>内容有没有被看到</em>。<strong>独立必备维度，触达低=没传出去，哪怕存量大、哪怕触顶。</strong></li>
-  </ul>
-  <p class="lead">真正的「传播成功」= 二者交叉。<strong>存量 × 触达 二维框架：</strong></p>
-  <table>
-    <thead><tr><th></th><th>触达高（有人看）</th><th>触达低（没人看）</th></tr></thead>
-    <tbody>
-      <tr><td><strong>存量大</strong>（内容多/触顶）</td><td>真·规模化出海</td><td><strong>大量产出但无人问津<br>（自产自销 / 虚假繁荣）</strong></td></tr>
-      <tr><td><strong>存量小</strong>（内容少）</td><td>小而精破圈（单爆款）</td><td>近乎隐形</td></tr>
-    </tbody>
-  </table>
-  <p class="substep">⚠️「存量大 × 触达低」是重点发现位：可能是某些非遗靠中文内容自产自销、海外其实没人看——「我们以为传出去了，其实只是自己人发、自己人看」。</p>
-
-  <h4>语言构成分三层（判出海 / 内圈的核心）</h4>
-  <table>
-    <thead><tr><th>层</th><th>看什么</th><th>含义</th><th>判出海角色</th></tr></thead>
-    <tbody>
-      <tr><td>存量语言</td><td>中/英 term 采集量谁多</td><td>创作者用什么语言发</td><td><strong>只作背景</strong></td></tr>
-      <tr><td>触达语言</td><td>高播放视频是中/英内容</td><td>被看到的内容是什么语言</td><td>辅证</td></tr>
-      <tr><td>受众语言</td><td>评论区谁在说话</td><td>看的人是谁</td><td><strong>主判据</strong></td></tr>
-    </tbody>
-  </table>
-  <p class="substep">判断优先级：<strong>受众语言 &gt; 触达语言 &gt; 存量语言</strong>。反例：某非遗英文内容存量大（旧框架判出海），但英文视频全 0 播放、有播放的是中文视频、评论区全中文 → 实际是内圈。<strong>只看存量语言会误判成出海。</strong></p>
-
-  <h3>画像维度（5 个）</h3>
-  <p class="lead">内容形态 · 创作者构成 · 语言 · 传播形态（四个可观测维度全量做）+ 受众（降级为评论区语言构成，抽样质性佐证，排在分层之后执行）。</p>
-  <div class="note principle">
-    <span class="tag">方法论原则</span>
-    受众的精确族裔比例平台不提供、也无法可靠推断，故诚实降级为「有偏代理」，不做无法支撑的精确声明。
-  </div>
-
-  <!-- ============ 2 ============ -->
-  <h2><span class="num">02</span> 采集架构与规模</h2>
-
-  <h3>采集架构</h3>
-  <ul>
-    <li><strong>采集通道</strong>：TikTok search 接口（<code>/api/search/item/full/</code>），逐页翻页（每页 30 条）。</li>
-    <li><strong>账号 / 代理池</strong>：4 个独立账号，各绑定美国 residential SOCKS5 代理出口（FL / CA / NM 多地）。</li>
-    <li><strong>调度器（账号轮换 + 冷却队列）</strong>：最细粒度调度单元 =（项目，搜索词）；单账号连续采集 N 词后主动冷却 90 秒并轮换下一账号（预防性轮换，降低风控触发）；失败词自动重入队列、可重采；<code>(项目, term)</code> 粒度落盘，保证可追溯。</li>
-    <li><strong>运行环境</strong>：headless 浏览器（xvfb 虚拟显示），独立 Python 虚拟环境。</li>
-  </ul>
-
-  <h3>baseline 采集规模</h3>
-  <div class="stats">
-    <div class="stat"><div class="v">197</div><div class="l">搜索词（term）</div></div>
-    <div class="stat"><div class="v">29,407</div><div class="l">唯一视频（去重后）</div></div>
-    <div class="stat zero"><div class="v">0</div><div class="l">失败 / 限流</div></div>
-    <div class="stat zero"><div class="v">0</div><div class="l">重采次数</div></div>
-  </div>
-  <table>
-    <thead><tr><th>指标</th><th class="num">数值</th><th>说明</th></tr></thead>
-    <tbody>
-      <tr><td><code>has_data</code></td><td class="num">196</td><td>有数据</td></tr>
-      <tr><td><code>zero_real</code></td><td class="num">1</td><td>真实零结果（<code>chinesemedicine</code> latin 词）</td></tr>
-      <tr><td><code>failed</code></td><td class="num">0</td><td>无任何限流 / 技术失败</td></tr>
-      <tr><td>采集视频（原始 / 去重）</td><td class="num">32,579 / 29,407</td><td>—</td></tr>
-      <tr><td>单词采集量（均 / 中 / 最大）</td><td class="num">166 / 174 / 196</td><td>整齐天花板，见 §3</td></tr>
-    </tbody>
-  </table>
-  <div class="note principle">
-    <span class="tag">质量核心指标</span>
-    <strong>零失败、零重采</strong>——197 个词全部解析成功，没有任何限流或技术噪声混入数据池。这是后续判定能够干净进行的前提。
-  </div>
-
-  <!-- ============ 3 ============ -->
-  <h2><span class="num">03</span> 方法论发现（本阶段核心）</h2>
-
-  <h3>发现一：search 接口存在隐蔽的翻页硬顶</h3>
-  <p><strong>现象</strong>：197 个词的最大采集量整齐停在 196，无一突破。这种「整齐的天花板」不像自然现象，触发了对接口本身的怀疑。</p>
-  <p><strong>逐页验证实验</strong>：设计单词逐页探针，对高传播词逐页记录每页返回的 <code>items / cursor / has_more</code>：</p>
-  <ul>
-    <li><code>chinesenewyear</code>（百万级话题）：前 6 页每页满 30 条、<code>has_more=1</code>，<strong>第 7 页突降至 8 条、<code>has_more=0</code></strong>，停在 188 条；</li>
-    <li><code>calligraphy</code> 同模式停在 192 条；两词独立复现。</li>
-  </ul>
-  <div class="note">
-    <span class="tag">结论（已坐实，非推测）</span>
-    search 接口在约<strong>第 6–7 页（offset 180–210）存在翻页硬顶</strong>。到顶后返回「半页 + <code>has_more=0</code>」，<strong>伪装成自然采空</strong>。<br><br>
-    <strong>为何不是限流？</strong>限流的特征是整页空响应（<code>empty_response</code>）；而这里是「半页<strong>有数据</strong> + <code>has_more=0</code>」，是接口逻辑层面的硬顶，不是风控拦截。两者在数据上可清晰区分。
-  </div>
-
-  <h3>处理：判据从「数值」升级为「行为模式」</h3>
-  <p>接口硬顶意味着 <strong>search 采集量不能直接当作规模、更不能当传播热度</strong>——内容存量大的项目，其真实存量都被压平在 ~180–200（且存量大 ≠ 被看到，见 §1）。最初的判定用 cursor 数值阈值，但逐页验证暴露了它的脆弱：同一数值既可能是触顶、也可能是真实采空。因此判据升级为<strong>「<code>has_more</code> 突变模式 + 上限区排除」</strong>：</p>
-  <div class="judgebox">
-<span class="cm"># 触顶判据（cursor 数值已降级为参考字段，不参与判定）</span>
-触顶 <span class="op">=</span> 末页未满（&lt;30 条）
-   <span class="kw">AND</span> 倒数第二页满（≥28 条）且 has_more<span class="op">=</span>1
-   <span class="kw">AND</span> 停止原因为采空 / 空页
-   <span class="kw">AND</span> 已进入上限区（已翻 ≥6 页 <span class="kw">OR</span> cursor≥180）  <span class="cm">← 关键排除项</span>
-  </div>
-  <p class="substep"><strong>「上限区排除」是关键</strong>：第 6 页之前就 <code>has_more=0</code>，必然是真实采空，不算触顶。</p>
-
-  <h3>发现二：「边界态」——判定的稳定性问题</h3>
-  <p>在验证中发现一个更深的现象：<strong>同一个词，多次采集结果不同</strong>。以「藏医」为例（三次实测）：</p>
-  <table>
-    <thead><tr><th>实测轮次</th><th>停止页</th><th class="num">cursor</th><th>判定</th></tr></thead>
-    <tbody>
-      <tr><td>第 1 次</td><td>第 5 页采空</td><td class="num">150</td><td><span class="pill" style="background:var(--good-soft);color:var(--good)">真实采空</span></td></tr>
-      <tr><td>第 2 次</td><td>第 6 页触顶</td><td class="num">180</td><td><span class="pill h">触顶</span></td></tr>
-      <tr><td>第 3 次</td><td>第 6 页触顶</td><td class="num">180</td><td><span class="pill h">触顶</span></td></tr>
-    </tbody>
-  </table>
-  <p><strong>每次判定都正确。</strong>差异源于该词真实结果量恰好 ≈150，<strong>正卡在接口第 5–6 页的边界上</strong>，采集时的微小抖动就会改变它落在哪一档。</p>
-  <div class="note">
-    <span class="tag">方法论意义</span>
-    结果量在临界点的词，<strong>单次采集判定本质不稳定</strong>。强行将其钉死为「采空」或「触顶」，等于<strong>用假确定性掩盖真实的不确定性</strong>——后续分层会因此把一个可能高传播触顶的项目误判为「中等真实量」，造成方向性误判。<br><br>
-    <strong>处理决策</strong>：为这类词设立<strong>第三态「边界态（boundary）」</strong>，明确标记为「待用其他方法定位」，而非硬归入任一确定档。这保证了另外两档（确定触顶 / 确定采空）的洁净。
-  </div>
-
-  <!-- ============ 4 ============ -->
-  <h2><span class="num">04</span> 口径与质控</h2>
-
-  <h3>洁净度红线：五类严格分开，绝不混淆</h3>
-  <table>
-    <thead><tr><th>类别</th><th>含义</th><th>处理原则</th></tr></thead>
-    <tbody>
-      <tr><td><code>failed</code></td><td>限流 / 技术噪声（空响应）</td><td>可重采，<strong>永不计入低传播</strong></td></tr>
-      <tr><td><code>zero_real</code></td><td>真实零结果</td><td>研究结论级的「真实零」</td></tr>
-      <tr><td><code>has_data</code></td><td>有数据</td><td>正常使用</td></tr>
-      <tr><td><code>ceiling_capped</code></td><td>触接口上限被压平</td><td><strong>不可当真实规模横向比较</strong></td></tr>
-      <tr><td><code>boundary</code></td><td>临界抖动，单次判定不稳</td><td>待其他方法定位，不硬归类</td></tr>
-    </tbody>
-  </table>
-  <div class="note">
-    <span class="tag">不可妥协的红线</span>
-    把限流噪声、真实零、触顶压平混入同一池，分层就建在脏数据上，结论一推就倒。
-  </div>
-
-  <h3>各采集通道「能给 / 不能给」边界</h3>
-  <table>
-    <thead><tr><th>通道</th><th>能给</th><th>不能给</th></tr></thead>
-    <tbody>
-      <tr><td>search 接口</td><td>内容<strong>存量</strong>（中英存量构成、低/高存量两档）、视频级 stats（含触达指标 playCount 等）</td><td>真实存量总量（&gt;180 被压平）、存量横向比较</td></tr>
-      <tr><td>hashtag <code>videoCount</code></td><td>精确总量（唯一可比规模源）</td><td>非每词都有对应 hashtag；通用词撞词高估（noisy）</td></tr>
-      <tr><td>视频级 stats（playCount 等）</td><td>单视频<strong>触达</strong>（被看到多少）</td><td>项目级传播规模（单视频热 ≠ 项目整体传出去）</td></tr>
-      <tr><td>评论区</td><td>评论区语言构成（受众有偏代理）</td><td>受众精确族裔 / 比例</td></tr>
-    </tbody>
-  </table>
-
-  <h3>研究文档纪律：决策与假设分区</h3>
-  <p class="lead">研究纲领作为<strong>活文件</strong>维护，强制区分「已定决策」（每条带「为什么」+「何时重新讨论」）与「待验证假设」（明确标注，未经数据验证不得当结论引用）。任何新发现 → 更新对应区 + 追加修订记录。</p>
-
-  <h3>已知局限（提前声明，不掩盖）</h3>
-  <ol>
-    <li><strong>search 接口上限</strong>：&gt;~180–200 的项目真实量被压平，规模只能分「低 / 高」两档，高传播内部区分依赖 hashtag。</li>
-    <li><strong>hashtag videoCount 含撞词噪声</strong>，部分项目规模「不可得」。每项目规模状态已标 clean/noisy/unavailable。</li>
-    <li><strong>受众用评论区语言代理</strong>，小样本、有偏、非统计比例。</li>
-    <li><strong>仅 US 单 region</strong> residential 出口，结论限于美区，不外推全球。</li>
-    <li><strong>cursor=180 档为单轮验证</strong>，可信度相对高（未暴露骑墙证据），但不排除个别骑墙词未被抖动捕获——以局限声明覆盖此残余风险，不额外花成本全补。</li>
-    <li>名录以 2024-12 为准，2025 变动未纳入。</li>
-  </ol>
-
-  <!-- ============ 5 ============ -->
-  <h2><span class="num">05</span> 当前进度与下一步</h2>
-
-  <h3>触顶判定的三轮验证（方法论发现的落地）</h3>
-  <p class="lead">为坐实接口上限并识别边界态，对存疑词做了逐页验证实验。其中 cursor=150 一档首轮实测即出现触顶/采空近五五分（11:9），<strong>自证整档骑墙</strong>，故对该档 20 词统一做第二轮采集，凡两轮不一致者升 <code>boundary</code>：</p>
-  <table>
-    <thead><tr><th>验证批次</th><th class="num">词数</th><th>结果</th></tr></thead>
-    <tbody>
-      <tr><td>首轮存疑词验证（cursor=180 抽样）</td><td class="num">39</td><td>38 触顶 + 1 边界（藏医）</td></tr>
-      <tr><td>边界词全量验证（cursor=150 全档 + cursor=180 未验）</td><td class="num">73</td><td>55 触顶 + 18 采空</td></tr>
-      <tr><td>cursor=150 档第二轮（抖动识别）</td><td class="num">20</td><td>8 一致触顶 + 9 一致采空 + 3 抖动升边界</td></tr>
-    </tbody>
-  </table>
-  <div class="note">
-    <span class="tag">补采的价值</span>
-    cursor=150 档若不验、直接信首轮数据，<strong>有 11 个项目会被误判为「中等真实量」，实际是触顶高传播</strong>——正是要避免的方向性误判，命中率过半。第二轮又揪出 3 个原本会被单次误判的骑墙词。
-  </div>
-
-  <h3>全量 baseline 最终三态分布（197 词）</h3>
-  <div class="distleg">
-    <span><i class="seg-ceil"></i>ceiling_capped 触顶压平 · 127</span>
-    <span><i class="seg-exh"></i>exhausted 真实采空 · 65</span>
-    <span><i class="seg-bound"></i>boundary 边界态 · 4</span>
-    <span><i class="seg-zero"></i>zero_real 真实零 · 1</span>
-  </div>
-  <div class="distbar">
-    <span class="seg-ceil" style="flex:127">127</span>
-    <span class="seg-exh" style="flex:65">65</span>
-    <span class="seg-bound" style="flex:4" title="boundary 4"></span>
-    <span class="seg-zero" style="flex:1" title="zero_real 1"></span>
-  </div>
-  <p class="substep">边界态 4 词：藏医、药浴、福船、seagoddess。 <strong>127/197（64%）的检索词内容存量触及采集上限</strong>（触顶仅说明<em>内容产出多</em>，<strong>不下任何传播结论</strong>——是否被看到取决于触达维度，见 §1）。再次坐实「search 采集量只是存量、绝不能当规模或传播热度」。派生为独立标记文件，原始数据未改动。</p>
-
-  <h3>下一步流程</h3>
-  <div class="flow">
-    <div class="phase">
-      <div class="phase-head"><span class="ph-n">1</span> 数据基底　<span class="ph-stat done">接近完成</span></div>
-      <div class="phase-body">
-        <div class="steprow">
-          <span class="step ok">baseline 采集 ✓</span><span class="arrow">→</span>
-          <span class="step ok">接口上限坐实 ✓</span><span class="arrow">→</span>
-          <span class="step ok">判据升级 ✓</span><span class="arrow">→</span>
-          <span class="step ok">三轮验证 ✓</span>
-        </div>
-        <p class="substep">→ 给 baseline 派生 触顶 / 采空 / 边界 三态标记（纯标注，不重采、不动原始数据）✓</p>
-      </div>
-    </div>
-    <div class="flow-connect">▼</div>
-    <div class="phase">
-      <div class="phase-head"><span class="ph-n">2</span> 存量 × 触达分层　<span class="ph-stat next">下一步</span></div>
-      <div class="phase-body">
-        <div class="steprow">
-          <span class="step"><b>存量</b>：触顶档（已有）+ hashtag videoCount（标 clean/noisy/unavailable）</span>
-        </div>
-        <div class="steprow" style="margin-top:8px">
-          <span class="step"><b>触达</b>（新增必备维）：采每条视频 playCount / digg / comment / share → 项目级触达量级</span>
-        </div>
-        <div class="steprow" style="margin-top:8px">
-          <span class="step"><b>语言三层</b>：存量语言（已有）→ 触达语言 → 受众语言（评论区，分层后采）</span>
-        </div>
-        <p class="substep">→ 合成<strong>存量×触达二维</strong>分层表：<code>项目 | 名录类别 | 存量 | 触达 | 象限 | 语言三层 | 综合判断</code>　四象限：真·出海 / 自产自销 / 小而精破圈 / 近乎隐形。结论先按名录类别分组（RL 隐形=失败 / USL 隐形=常态 / GSP 单列）</p>
-      </div>
-    </div>
-    <div class="flow-connect">▼</div>
-    <div class="phase">
-      <div class="phase-head"><span class="ph-n">3</span> 项目画像　<span class="ph-stat next">后续</span></div>
-      <div class="phase-body">
-        <div class="steprow">
-          <span class="step">全量：内容形态 / 创作者构成 / 语言 / 传播形态</span>
-        </div>
-        <p class="substep">→ 受众佐证（分层后）：挑十几个代表项目 → 抽头部视频评论区 → 语言构成印证出海 / 内圈判断</p>
-      </div>
-    </div>
-  </div>
-
-  <h3>待决问题（已识别，等数据再定）</h3>
-  <ul>
-    <li>正式采集每词的 count 上限（既然 &gt;210 采不到，N 设太大无意义，等触达分布出来再定）。</li>
-    <li>是否扩展多 region 做对比（等美区分层结论出来再定）。</li>
-    <li>视频相关性清洗的判定锚点（含撞词噪声，清洗口径未定，目前不假设）。</li>
-  </ul>
-
-  <div class="foot">
-    本材料随研究进展持续更新。所有「假设」均明确标注，未经数据验证不作为结论引用。规模缺失标「不可得」不硬填；真实零 ≠ 失败/限流，严格分开。
-  </div>
-
+<h2><span class="num">04</span> 当前状态与明日计划</h2>
+<div class="flow">
+  <div class="phase"><div class="phase-h"><span class="badge">1</span>TikTok 数据基底与草表<span class="status done">已完成</span></div><div class="phase-b"><div class="steps"><span class="step ok">baseline</span><span class="arrow">→</span><span class="step ok">相关性标签</span><span class="arrow">→</span><span class="step ok">hashtag 存量</span><span class="arrow">→</span><span class="step ok">二维草表</span></div></div></div>
+  <div class="phase"><div class="phase-h"><span class="badge">2</span>TikTok 人工核查<span class="status wait">等待填回</span></div><div class="phase-b"><div class="steps"><span class="step partial">321 条视频人工表</span><span class="arrow">→</span><span class="step">校正式分层</span></div></div></div>
+  <div class="phase"><div class="phase-h"><span class="badge">3</span>YouTube 跨平台扩展<span class="status wait">Y3 partial</span></div><div class="phase-b"><div class="steps"><span class="step ok">61词3页</span><span class="arrow">→</span><span class="step ok">Y2候选</span><span class="arrow">→</span><span class="step partial">P0深采 5/13完成或采空</span><span class="arrow">→</span><span class="step">明日补8失败词</span></div></div></div>
 </div>
-</body>
-</html>
+<ol>
+  <li>YouTube quota reset 后，只补跑 <code>retry_failed_terms.json</code> 中 8 个 failed 词。</li>
+  <li>合并 Y3 两批结果，重算 P0 deepcrawl 完整版 relevance-aware reach。</li>
+  <li>若 TikTok 人工核查表回流，推进 Phase 5：校正正式分层矩阵。</li>
+  <li>继续保持 35 个 <code>wait_tiktok_manual</code> YouTube 词不动，避免在 TikTok 噪声未确认前浪费 quota。</li>
+</ol>
+
+<h2><span class="num">05</span> 已知局限</h2>
+<ul>
+  <li>TikTok search 有隐藏翻页上限，高存量词不能用 search collected_count 横向排名。</li>
+  <li>TikTok hashtag videoCount 有撞词噪声，必须保留 clean / noisy / unavailable 状态。</li>
+  <li>YouTube 3 页 baseline 是浅采下限，56 个 sample_limit_reached 不代表平台天花板。</li>
+  <li>YouTube Y3 P0 深采目前是 partial，8 个 failed 词等待明日补跑。</li>
+  <li>受众只能用评论区语言作有偏代理，不做精确族裔比例判断。</li>
+  <li>当前 regionCode / 采集出口以 US 为主，结论限于美区语境。</li>
+</ul>
+<div class="foot">本材料为阶段进展 + 方法论汇报。所有假设仍需后续正式分层、人工核查与跨平台对照验证。</div>
+</main></body></html>
