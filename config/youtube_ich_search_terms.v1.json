@@ -1,0 +1,638 @@
+{
+  "version": "youtube_v1",
+  "description": "YouTube search-term config for UNESCO Chinese ICH project. Terms come from YouTube可用搜索词_合并表.xlsx column ✅可用搜索词; human volume notes are ignored for collection.",
+  "source_file": "YouTube可用搜索词_合并表.xlsx",
+  "expected_project_count": 44,
+  "project_count": 44,
+  "usable_search_term_count": 61,
+  "unique_usable_search_term_count": 61,
+  "negative_terms_policy": "label_only_never_exclude",
+  "collection_defaults": {
+    "api": "YouTube Data API v3",
+    "search_part": "snippet",
+    "video_part": "snippet,statistics,contentDetails",
+    "type": "video",
+    "regionCode": "US",
+    "order": "relevance",
+    "maxResults_per_page": 50,
+    "max_pages_initial": 1,
+    "max_pages_full": 10,
+    "ceiling_video_count_per_keyword": 500,
+    "do_not_set_relevanceLanguage_by_default": true
+  },
+  "projects": [
+    {
+      "id": 1,
+      "name_cn": "春节",
+      "name_en": "Spring Festival, social practices of the Chinese people in celebration of traditional new year",
+      "category": "节庆民俗",
+      "youtube_search_terms": [
+        "Chinese New Year",
+        "Spring Festival"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "多(待核实)",
+      "filled_by": "江茜"
+    },
+    {
+      "id": 2,
+      "name_cn": "中国传统制茶技艺及其相关习俗",
+      "name_en": "Traditional tea processing techniques and associated social practices in China",
+      "category": "手工艺/民俗",
+      "youtube_search_terms": [
+        "Chinese tea ceremony"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "多(待核实)",
+      "filled_by": "江茜"
+    },
+    {
+      "id": 3,
+      "name_cn": "太极拳",
+      "name_en": "Taijiquan",
+      "category": "传统体育/养生",
+      "youtube_search_terms": [
+        "Tai Chi",
+        "Taijiquan"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "多(待核实)",
+      "filled_by": "江茜"
+    },
+    {
+      "id": 4,
+      "name_cn": "送王船",
+      "name_en": "Ong Chun/Wangchuan/Wangkang ceremony...",
+      "category": "民俗仪式",
+      "youtube_search_terms": [
+        "Wangchuan ceremony"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "多(待核实)",
+      "filled_by": "江茜"
+    },
+    {
+      "id": 5,
+      "name_cn": "藏医药浴法",
+      "name_en": "Lum medicinal bathing of Sowa Rigpa (Tibetan people)",
+      "category": "传统医药",
+      "youtube_search_terms": [
+        "Tibetan medicine bath"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "多(待核实)",
+      "filled_by": "江茜"
+    },
+    {
+      "id": 6,
+      "name_cn": "二十四节气",
+      "name_en": "The Twenty-Four Solar Terms",
+      "category": "传统知识/民俗",
+      "youtube_search_terms": [
+        "24 solar terms"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "多(待核实)",
+      "filled_by": "江茜"
+    },
+    {
+      "id": 7,
+      "name_cn": "中国珠算",
+      "name_en": "Chinese Zhusuan (abacus calculation)",
+      "category": "传统知识",
+      "youtube_search_terms": [
+        "Chinese abacus"
+      ],
+      "youtube_negative_terms": [
+        "abacus"
+      ],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "多(待核实)",
+      "filled_by": "江茜"
+    },
+    {
+      "id": 8,
+      "name_cn": "福建木偶戏后继人才培养计划",
+      "name_en": "Strategy for training Fujian puppetry practitioners",
+      "category": "保护实践(木偶戏)",
+      "youtube_search_terms": [
+        "Fujian puppetry",
+        "budaixi"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "多(待核实)",
+      "filled_by": "江茜"
+    },
+    {
+      "id": 9,
+      "name_cn": "赫哲族伊玛堪",
+      "name_en": "Hezhe Yimakan storytelling",
+      "category": "口头传统/史诗",
+      "youtube_search_terms": [
+        "Yimakan"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "多(待核实)",
+      "filled_by": "江茜"
+    },
+    {
+      "id": 10,
+      "name_cn": "中国皮影戏",
+      "name_en": "Chinese shadow puppetry",
+      "category": "表演艺术",
+      "youtube_search_terms": [
+        "Chinese shadow puppetry"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "多(待核实)",
+      "filled_by": "江茜"
+    },
+    {
+      "id": 11,
+      "name_cn": "麦西热甫",
+      "name_en": "Meshrep",
+      "category": "表演艺术/民俗",
+      "youtube_search_terms": [
+        "Meshrep"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "多(待核实)",
+      "filled_by": "江茜"
+    },
+    {
+      "id": 12,
+      "name_cn": "中国水密隔舱福船制造技艺",
+      "name_en": "Watertight-bulkhead technology of Chinese junks",
+      "category": "传统手工艺",
+      "youtube_search_terms": [
+        "Chinese junk watertight bulkhead"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "多(待核实)",
+      "filled_by": "江茜"
+    },
+    {
+      "id": 13,
+      "name_cn": "中国木活字印刷术",
+      "name_en": "Wooden movable-type printing of China",
+      "category": "传统手工艺",
+      "youtube_search_terms": [
+        "Chinese wooden movable type"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "多(待核实)",
+      "filled_by": "江茜"
+    },
+    {
+      "id": 14,
+      "name_cn": "京剧",
+      "name_en": "Peking opera",
+      "category": "表演艺术(戏曲)",
+      "youtube_search_terms": [
+        "Peking opera"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "多(待核实)",
+      "filled_by": "江茜"
+    },
+    {
+      "id": 15,
+      "name_cn": "中医针灸",
+      "name_en": "Acupuncture and moxibustion of traditional Chinese medicine",
+      "category": "传统医药",
+      "youtube_search_terms": [
+        "acupuncture moxibustion"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "多(待核实)",
+      "filled_by": "江茜"
+    },
+    {
+      "id": 16,
+      "name_cn": "黎族传统纺染织绣技艺",
+      "name_en": "Traditional Li textile techniques",
+      "category": "传统手工艺",
+      "youtube_search_terms": [
+        "Li textile",
+        "Li brocade"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "万奕贝贝"
+    },
+    {
+      "id": 17,
+      "name_cn": "中国木拱桥传统营造技艺",
+      "name_en": "Chinese wooden arch bridges (design & practices)",
+      "category": "传统手工艺/建筑",
+      "youtube_search_terms": [
+        "Chinese wooden arch bridge"
+      ],
+      "youtube_negative_terms": [
+        "wooden arch bridge"
+      ],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "万奕贝贝"
+    },
+    {
+      "id": 18,
+      "name_cn": "羌年",
+      "name_en": "Qiang New Year festival",
+      "category": "节庆民俗",
+      "youtube_search_terms": [
+        "Qiang New Year"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "万奕贝贝"
+    },
+    {
+      "id": 19,
+      "name_cn": "侗族大歌",
+      "name_en": "Grand song of the Dong ethnic group",
+      "category": "表演艺术(音乐)",
+      "youtube_search_terms": [
+        "Dong grand song",
+        "Kgal laox"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "万奕贝贝"
+    },
+    {
+      "id": 20,
+      "name_cn": "西安鼓乐",
+      "name_en": "Xi'an wind and percussion ensemble",
+      "category": "表演艺术(音乐)",
+      "youtube_search_terms": [
+        "Xi'an drum music"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "万奕贝贝"
+    },
+    {
+      "id": 21,
+      "name_cn": "中国蚕桑丝织技艺",
+      "name_en": "Sericulture and silk craftsmanship of China",
+      "category": "传统手工艺",
+      "youtube_search_terms": [
+        "Chinese silk sericulture"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "万奕贝贝"
+    },
+    {
+      "id": 22,
+      "name_cn": "南音",
+      "name_en": "Nanyin",
+      "category": "表演艺术(音乐)",
+      "youtube_search_terms": [
+        "Nanyin music"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "万奕贝贝"
+    },
+    {
+      "id": 23,
+      "name_cn": "南京云锦织造技艺",
+      "name_en": "Craftsmanship of Nanjing Yunjin brocade",
+      "category": "传统手工艺",
+      "youtube_search_terms": [
+        "Nanjing Yunjin brocade"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "万奕贝贝"
+    },
+    {
+      "id": 24,
+      "name_cn": "宣纸传统制作技艺",
+      "name_en": "Traditional handicrafts of making Xuan paper",
+      "category": "传统手工艺",
+      "youtube_search_terms": [
+        "Xuan paper making"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "万奕贝贝"
+    },
+    {
+      "id": 25,
+      "name_cn": "粤剧",
+      "name_en": "Yueju opera (Cantonese opera)",
+      "category": "表演艺术(戏曲)",
+      "youtube_search_terms": [
+        "Cantonese opera"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "万奕贝贝"
+    },
+    {
+      "id": 26,
+      "name_cn": "格萨(斯)尔史诗传统",
+      "name_en": "Gesar epic tradition",
+      "category": "口头传统/史诗",
+      "youtube_search_terms": [
+        "Chinese Gesar epic"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [
+        "拿不准Gesar epic算不算噪声"
+      ],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "万奕贝贝"
+    },
+    {
+      "id": 27,
+      "name_cn": "龙泉青瓷传统烧制技艺",
+      "name_en": "Traditional firing technology of Longquan celadon",
+      "category": "传统手工艺",
+      "youtube_search_terms": [
+        "Longquan celadon"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "万奕贝贝"
+    },
+    {
+      "id": 28,
+      "name_cn": "热贡艺术",
+      "name_en": "Regong arts",
+      "category": "传统手工艺/宗教艺术",
+      "youtube_search_terms": [
+        "Chinese Regong art",
+        "Thangka"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [
+        "Regong art",
+        "Thangka"
+      ],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "万奕贝贝"
+    },
+    {
+      "id": 29,
+      "name_cn": "藏戏",
+      "name_en": "Tibetan opera",
+      "category": "表演艺术(戏曲)",
+      "youtube_search_terms": [
+        "Tibetan opera"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "万奕贝贝"
+    },
+    {
+      "id": 30,
+      "name_cn": "玛纳斯",
+      "name_en": "Manas",
+      "category": "口头传统/史诗",
+      "youtube_search_terms": [
+        "Chinese Manas epic"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [
+        "Manas epic"
+      ],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "万奕贝贝"
+    },
+    {
+      "id": 31,
+      "name_cn": "蒙古族呼麦",
+      "name_en": "Mongolian art of singing, Khoomei",
+      "category": "表演艺术(音乐)",
+      "youtube_search_terms": [
+        "Khoomei throat singing",
+        "Khoomei",
+        "Khoomei China"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "豆子青"
+    },
+    {
+      "id": 32,
+      "name_cn": "花儿",
+      "name_en": "Hua'er",
+      "category": "表演艺术(民歌)",
+      "youtube_search_terms": [
+        "Hua'er folk song",
+        "Hua'er",
+        "Hua'er Gansu"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "豆子青"
+    },
+    {
+      "id": 33,
+      "name_cn": "中国朝鲜族农乐舞",
+      "name_en": "Farmers' dance of China's Korean ethnic group",
+      "category": "表演艺术(舞蹈)",
+      "youtube_search_terms": [
+        "Farmers' dance of China's Korean ethnic group"
+      ],
+      "youtube_negative_terms": [
+        "Korean farmers dance（搜出来韩国舞蹈）",
+        "China's Korean ethnic group（搜出来和民族有关的内容）"
+      ],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "一般",
+      "filled_by": "豆子青"
+    },
+    {
+      "id": 34,
+      "name_cn": "中国书法",
+      "name_en": "Chinese calligraphy",
+      "category": "传统手工艺/视觉艺术",
+      "youtube_search_terms": [
+        "Chinese calligraphy"
+      ],
+      "youtube_negative_terms": [
+        "calligraphy（各国书法）"
+      ],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "豆子青"
+    },
+    {
+      "id": 35,
+      "name_cn": "中国篆刻",
+      "name_en": "Art of Chinese seal engraving",
+      "category": "传统手工艺",
+      "youtube_search_terms": [
+        "Chinese seal engraving",
+        "seal engraving"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [
+        "stamp workshop（印章篆刻，貌似是中国的）"
+      ],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "豆子青"
+    },
+    {
+      "id": 36,
+      "name_cn": "中国剪纸",
+      "name_en": "Chinese paper-cut",
+      "category": "传统手工艺",
+      "youtube_search_terms": [
+        "Chinese paper cutting",
+        "Jianzhi"
+      ],
+      "youtube_negative_terms": [
+        "paper cutting（各国的都有）"
+      ],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "豆子青"
+    },
+    {
+      "id": 37,
+      "name_cn": "中国传统木结构建筑营造技艺",
+      "name_en": "Chinese traditional timber-framed architecture",
+      "category": "传统手工艺/建筑",
+      "youtube_search_terms": [
+        "Chinese timber architecture",
+        "Chinese wooden architecture"
+      ],
+      "youtube_negative_terms": [
+        "timber architecture(各国都有)"
+      ],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "豆子青"
+    },
+    {
+      "id": 38,
+      "name_cn": "端午节",
+      "name_en": "Dragon Boat festival",
+      "category": "节庆民俗",
+      "youtube_search_terms": [
+        "Duanwu",
+        "Dragon Boat Festival"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "豆子青"
+    },
+    {
+      "id": 39,
+      "name_cn": "妈祖信俗",
+      "name_en": "Mazu belief and customs",
+      "category": "民俗信仰",
+      "youtube_search_terms": [
+        "Mazu"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "豆子青"
+    },
+    {
+      "id": 40,
+      "name_cn": "中国雕版印刷技艺",
+      "name_en": "China engraved block printing technique",
+      "category": "传统手工艺",
+      "youtube_search_terms": [
+        "Chinese woodblock printing",
+        "Chinese block printing"
+      ],
+      "youtube_negative_terms": [
+        "Diaoban yinshua（搜不出来）"
+      ],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "豆子青"
+    },
+    {
+      "id": 41,
+      "name_cn": "昆曲",
+      "name_en": "Kun Qu opera",
+      "category": "表演艺术(戏曲)",
+      "youtube_search_terms": [
+        "Kunqu opera"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "豆子青"
+    },
+    {
+      "id": 42,
+      "name_cn": "古琴艺术",
+      "name_en": "Guqin and its music",
+      "category": "表演艺术(音乐)",
+      "youtube_search_terms": [
+        "Guqin",
+        "Chinese Guqin"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "豆子青"
+    },
+    {
+      "id": 43,
+      "name_cn": "新疆维吾尔木卡姆艺术",
+      "name_en": "Uyghur Muqam of Xinjiang",
+      "category": "表演艺术(音乐)",
+      "youtube_search_terms": [
+        "Uyghur Muqam"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "豆子青"
+    },
+    {
+      "id": 44,
+      "name_cn": "蒙古族长调民歌",
+      "name_en": "Urtiin Duu, traditional folk long song",
+      "category": "表演艺术(民歌)",
+      "youtube_search_terms": [
+        "Mongolian long song",
+        "Urtiin Duu"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "豆子青"
+    }
+  ]
+}

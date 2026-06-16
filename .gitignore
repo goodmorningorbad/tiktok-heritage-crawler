@@ -1,6 +1,7 @@
 # Secrets / local config
 .env
 *.env
+.youtube_api_key
 
 # Runtime browser profiles and cookies - DO NOT COMMIT
 profiles/

@@ -1,0 +1,22 @@
+{
+  "source_platform": "youtube",
+  "created_at": "2026-06-16T12:16:58.904355+00:00",
+  "config": "config/youtube_ich_search_terms.v1.json",
+  "out_dir": "data/derived/youtube_initial_20260616",
+  "terms_requested": 61,
+  "max_pages": 1,
+  "region_code": "US",
+  "order": "relevance",
+  "search_calls": 61,
+  "search_quota_cost": 6100,
+  "videos_list_calls": 56,
+  "videos_list_quota_cost": 56,
+  "total_quota_cost_estimate": 6156,
+  "video_rows": 3027,
+  "unique_video_ids_global": 2777,
+  "term_stop_reason_counts": {
+    "sample_limit_reached": 60,
+    "exhausted": 1
+  },
+  "video_rows_with_viewCount": 3027
+}

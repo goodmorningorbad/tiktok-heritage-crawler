@@ -1,0 +1,62 @@
+﻿project_id,heritage_item,project_name_en,category,search_keyword,source_platform,region_code,search_order,max_pages_requested,pages_fetched,search_calls,search_quota_cost,collected_count,unique_video_count,totalResults_estimate,nextPageToken_present_at_stop,stop_reason,error_message,started_or_recorded_at
+1,春节,"Spring Festival, social practices of the Chinese people in celebration of traditional new year",节庆民俗,Chinese New Year,youtube,US,relevance,1,1,1,100,50,50,1000000,True,sample_limit_reached,,2026-06-16T12:16:09.173480+00:00
+1,春节,"Spring Festival, social practices of the Chinese people in celebration of traditional new year",节庆民俗,Spring Festival,youtube,US,relevance,1,1,1,100,50,50,1000000,True,sample_limit_reached,,2026-06-16T12:16:09.714552+00:00
+2,中国传统制茶技艺及其相关习俗,Traditional tea processing techniques and associated social practices in China,手工艺/民俗,Chinese tea ceremony,youtube,US,relevance,1,1,1,100,50,50,894651,True,sample_limit_reached,,2026-06-16T12:16:10.347218+00:00
+3,太极拳,Taijiquan,传统体育/养生,Tai Chi,youtube,US,relevance,1,1,1,100,50,50,1000000,True,sample_limit_reached,,2026-06-16T12:16:10.858597+00:00
+3,太极拳,Taijiquan,传统体育/养生,Taijiquan,youtube,US,relevance,1,1,1,100,50,50,1000000,True,sample_limit_reached,,2026-06-16T12:16:11.384717+00:00
+4,送王船,Ong Chun/Wangchuan/Wangkang ceremony...,民俗仪式,Wangchuan ceremony,youtube,US,relevance,1,1,1,100,50,50,309,True,sample_limit_reached,,2026-06-16T12:16:11.755417+00:00
+5,藏医药浴法,Lum medicinal bathing of Sowa Rigpa (Tibetan people),传统医药,Tibetan medicine bath,youtube,US,relevance,1,1,1,100,50,50,618143,True,sample_limit_reached,,2026-06-16T12:16:12.352641+00:00
+6,二十四节气,The Twenty-Four Solar Terms,传统知识/民俗,24 solar terms,youtube,US,relevance,1,1,1,100,50,50,1000000,True,sample_limit_reached,,2026-06-16T12:16:12.807933+00:00
+7,中国珠算,Chinese Zhusuan (abacus calculation),传统知识,Chinese abacus,youtube,US,relevance,1,1,1,100,50,50,623195,True,sample_limit_reached,,2026-06-16T12:16:13.308185+00:00
+8,福建木偶戏后继人才培养计划,Strategy for training Fujian puppetry practitioners,保护实践(木偶戏),Fujian puppetry,youtube,US,relevance,1,1,1,100,50,50,4709,True,sample_limit_reached,,2026-06-16T12:16:13.825625+00:00
+8,福建木偶戏后继人才培养计划,Strategy for training Fujian puppetry practitioners,保护实践(木偶戏),budaixi,youtube,US,relevance,1,1,1,100,50,50,73080,True,sample_limit_reached,,2026-06-16T12:16:14.251474+00:00
+9,赫哲族伊玛堪,Hezhe Yimakan storytelling,口头传统/史诗,Yimakan,youtube,US,relevance,1,1,1,100,50,50,495,True,sample_limit_reached,,2026-06-16T12:16:14.715381+00:00
+10,中国皮影戏,Chinese shadow puppetry,表演艺术,Chinese shadow puppetry,youtube,US,relevance,1,1,1,100,50,50,794745,True,sample_limit_reached,,2026-06-16T12:16:15.190067+00:00
+11,麦西热甫,Meshrep,表演艺术/民俗,Meshrep,youtube,US,relevance,1,1,1,100,50,50,23712,True,sample_limit_reached,,2026-06-16T12:16:15.692330+00:00
+12,中国水密隔舱福船制造技艺,Watertight-bulkhead technology of Chinese junks,传统手工艺,Chinese junk watertight bulkhead,youtube,US,relevance,1,1,1,100,27,27,5322,False,exhausted,,2026-06-16T12:16:16.074779+00:00
+13,中国木活字印刷术,Wooden movable-type printing of China,传统手工艺,Chinese wooden movable type,youtube,US,relevance,1,1,1,100,50,50,1000000,True,sample_limit_reached,,2026-06-16T12:16:16.583989+00:00
+14,京剧,Peking opera,表演艺术(戏曲),Peking opera,youtube,US,relevance,1,1,1,100,50,50,540308,True,sample_limit_reached,,2026-06-16T12:16:17.177916+00:00
+15,中医针灸,Acupuncture and moxibustion of traditional Chinese medicine,传统医药,acupuncture moxibustion,youtube,US,relevance,1,1,1,100,50,50,170471,True,sample_limit_reached,,2026-06-16T12:16:17.658075+00:00
+16,黎族传统纺染织绣技艺,Traditional Li textile techniques,传统手工艺,Li textile,youtube,US,relevance,1,1,1,100,50,50,1000000,True,sample_limit_reached,,2026-06-16T12:16:18.328392+00:00
+16,黎族传统纺染织绣技艺,Traditional Li textile techniques,传统手工艺,Li brocade,youtube,US,relevance,1,1,1,100,50,50,564835,True,sample_limit_reached,,2026-06-16T12:16:18.825327+00:00
+17,中国木拱桥传统营造技艺,Chinese wooden arch bridges (design & practices),传统手工艺/建筑,Chinese wooden arch bridge,youtube,US,relevance,1,1,1,100,50,50,207302,True,sample_limit_reached,,2026-06-16T12:16:19.343172+00:00
+18,羌年,Qiang New Year festival,节庆民俗,Qiang New Year,youtube,US,relevance,1,1,1,100,50,50,305512,True,sample_limit_reached,,2026-06-16T12:16:19.823346+00:00
+19,侗族大歌,Grand song of the Dong ethnic group,表演艺术(音乐),Dong grand song,youtube,US,relevance,1,1,1,100,50,50,1000000,True,sample_limit_reached,,2026-06-16T12:16:20.361963+00:00
+19,侗族大歌,Grand song of the Dong ethnic group,表演艺术(音乐),Kgal laox,youtube,US,relevance,1,1,1,100,50,50,65,True,sample_limit_reached,,2026-06-16T12:16:20.745478+00:00
+20,西安鼓乐,Xi'an wind and percussion ensemble,表演艺术(音乐),Xi'an drum music,youtube,US,relevance,1,1,1,100,50,50,1000000,True,sample_limit_reached,,2026-06-16T12:16:21.316243+00:00
+21,中国蚕桑丝织技艺,Sericulture and silk craftsmanship of China,传统手工艺,Chinese silk sericulture,youtube,US,relevance,1,1,1,100,50,50,80708,True,sample_limit_reached,,2026-06-16T12:16:21.818257+00:00
+22,南音,Nanyin,表演艺术(音乐),Nanyin music,youtube,US,relevance,1,1,1,100,50,50,26564,True,sample_limit_reached,,2026-06-16T12:16:22.383463+00:00
+23,南京云锦织造技艺,Craftsmanship of Nanjing Yunjin brocade,传统手工艺,Nanjing Yunjin brocade,youtube,US,relevance,1,1,1,100,50,50,2477,True,sample_limit_reached,,2026-06-16T12:16:22.889099+00:00
+24,宣纸传统制作技艺,Traditional handicrafts of making Xuan paper,传统手工艺,Xuan paper making,youtube,US,relevance,1,1,1,100,50,50,61521,True,sample_limit_reached,,2026-06-16T12:16:23.378713+00:00
+25,粤剧,Yueju opera (Cantonese opera),表演艺术(戏曲),Cantonese opera,youtube,US,relevance,1,1,1,100,50,50,654423,True,sample_limit_reached,,2026-06-16T12:16:23.870477+00:00
+26,格萨(斯)尔史诗传统,Gesar epic tradition,口头传统/史诗,Chinese Gesar epic,youtube,US,relevance,1,1,1,100,50,50,2791,True,sample_limit_reached,,2026-06-16T12:16:24.347300+00:00
+27,龙泉青瓷传统烧制技艺,Traditional firing technology of Longquan celadon,传统手工艺,Longquan celadon,youtube,US,relevance,1,1,1,100,50,50,9362,True,sample_limit_reached,,2026-06-16T12:16:24.753572+00:00
+28,热贡艺术,Regong arts,传统手工艺/宗教艺术,Chinese Regong art,youtube,US,relevance,1,1,1,100,50,50,1000000,True,sample_limit_reached,,2026-06-16T12:16:25.249946+00:00
+28,热贡艺术,Regong arts,传统手工艺/宗教艺术,Thangka,youtube,US,relevance,1,1,1,100,50,50,269393,True,sample_limit_reached,,2026-06-16T12:16:25.896852+00:00
+29,藏戏,Tibetan opera,表演艺术(戏曲),Tibetan opera,youtube,US,relevance,1,1,1,100,50,50,605625,True,sample_limit_reached,,2026-06-16T12:16:26.374100+00:00
+30,玛纳斯,Manas,口头传统/史诗,Chinese Manas epic,youtube,US,relevance,1,1,1,100,50,50,305259,True,sample_limit_reached,,2026-06-16T12:16:26.921022+00:00
+31,蒙古族呼麦,"Mongolian art of singing, Khoomei",表演艺术(音乐),Khoomei throat singing,youtube,US,relevance,1,1,1,100,50,50,53552,True,sample_limit_reached,,2026-06-16T12:16:27.424505+00:00
+31,蒙古族呼麦,"Mongolian art of singing, Khoomei",表演艺术(音乐),Khoomei,youtube,US,relevance,1,1,1,100,50,50,62313,True,sample_limit_reached,,2026-06-16T12:16:27.891248+00:00
+31,蒙古族呼麦,"Mongolian art of singing, Khoomei",表演艺术(音乐),Khoomei China,youtube,US,relevance,1,1,1,100,50,50,46387,True,sample_limit_reached,,2026-06-16T12:16:28.360336+00:00
+32,花儿,Hua'er,表演艺术(民歌),Hua'er folk song,youtube,US,relevance,1,1,1,100,50,50,1000000,True,sample_limit_reached,,2026-06-16T12:16:28.930564+00:00
+32,花儿,Hua'er,表演艺术(民歌),Hua'er,youtube,US,relevance,1,1,1,100,50,50,1000000,True,sample_limit_reached,,2026-06-16T12:16:29.412828+00:00
+32,花儿,Hua'er,表演艺术(民歌),Hua'er Gansu,youtube,US,relevance,1,1,1,100,50,50,724,True,sample_limit_reached,,2026-06-16T12:16:30.037786+00:00
+33,中国朝鲜族农乐舞,Farmers' dance of China's Korean ethnic group,表演艺术(舞蹈),Farmers' dance of China's Korean ethnic group,youtube,US,relevance,1,1,1,100,50,50,1613,True,sample_limit_reached,,2026-06-16T12:16:30.708273+00:00
+34,中国书法,Chinese calligraphy,传统手工艺/视觉艺术,Chinese calligraphy,youtube,US,relevance,1,1,1,100,50,50,964307,True,sample_limit_reached,,2026-06-16T12:16:31.349459+00:00
+35,中国篆刻,Art of Chinese seal engraving,传统手工艺,Chinese seal engraving,youtube,US,relevance,1,1,1,100,50,50,64945,True,sample_limit_reached,,2026-06-16T12:16:31.924660+00:00
+35,中国篆刻,Art of Chinese seal engraving,传统手工艺,seal engraving,youtube,US,relevance,1,1,1,100,50,50,555273,True,sample_limit_reached,,2026-06-16T12:16:32.442452+00:00
+36,中国剪纸,Chinese paper-cut,传统手工艺,Chinese paper cutting,youtube,US,relevance,1,1,1,100,50,50,1000000,True,sample_limit_reached,,2026-06-16T12:16:32.892546+00:00
+36,中国剪纸,Chinese paper-cut,传统手工艺,Jianzhi,youtube,US,relevance,1,1,1,100,50,50,17507,True,sample_limit_reached,,2026-06-16T12:16:33.309655+00:00
+37,中国传统木结构建筑营造技艺,Chinese traditional timber-framed architecture,传统手工艺/建筑,Chinese timber architecture,youtube,US,relevance,1,1,1,100,50,50,260161,True,sample_limit_reached,,2026-06-16T12:16:33.815134+00:00
+37,中国传统木结构建筑营造技艺,Chinese traditional timber-framed architecture,传统手工艺/建筑,Chinese wooden architecture,youtube,US,relevance,1,1,1,100,50,50,837231,True,sample_limit_reached,,2026-06-16T12:16:34.287903+00:00
+38,端午节,Dragon Boat festival,节庆民俗,Duanwu,youtube,US,relevance,1,1,1,100,50,50,137973,True,sample_limit_reached,,2026-06-16T12:16:34.803820+00:00
+38,端午节,Dragon Boat festival,节庆民俗,Dragon Boat Festival,youtube,US,relevance,1,1,1,100,50,50,1000000,True,sample_limit_reached,,2026-06-16T12:16:35.456255+00:00
+39,妈祖信俗,Mazu belief and customs,民俗信仰,Mazu,youtube,US,relevance,1,1,1,100,50,50,985861,True,sample_limit_reached,,2026-06-16T12:16:36.049908+00:00
+40,中国雕版印刷技艺,China engraved block printing technique,传统手工艺,Chinese woodblock printing,youtube,US,relevance,1,1,1,100,50,50,23537,True,sample_limit_reached,,2026-06-16T12:16:36.651670+00:00
+40,中国雕版印刷技艺,China engraved block printing technique,传统手工艺,Chinese block printing,youtube,US,relevance,1,1,1,100,50,50,812910,True,sample_limit_reached,,2026-06-16T12:16:37.195721+00:00
+41,昆曲,Kun Qu opera,表演艺术(戏曲),Kunqu opera,youtube,US,relevance,1,1,1,100,50,50,53565,True,sample_limit_reached,,2026-06-16T12:16:37.588375+00:00
+42,古琴艺术,Guqin and its music,表演艺术(音乐),Guqin,youtube,US,relevance,1,1,1,100,50,50,514796,True,sample_limit_reached,,2026-06-16T12:16:38.188458+00:00
+42,古琴艺术,Guqin and its music,表演艺术(音乐),Chinese Guqin,youtube,US,relevance,1,1,1,100,50,50,283478,True,sample_limit_reached,,2026-06-16T12:16:38.585743+00:00
+43,新疆维吾尔木卡姆艺术,Uyghur Muqam of Xinjiang,表演艺术(音乐),Uyghur Muqam,youtube,US,relevance,1,1,1,100,50,50,35518,True,sample_limit_reached,,2026-06-16T12:16:39.059775+00:00
+44,蒙古族长调民歌,"Urtiin Duu, traditional folk long song",表演艺术(民歌),Mongolian long song,youtube,US,relevance,1,1,1,100,50,50,1000000,True,sample_limit_reached,,2026-06-16T12:16:39.582908+00:00
+44,蒙古族长调民歌,"Urtiin Duu, traditional folk long song",表演艺术(民歌),Urtiin Duu,youtube,US,relevance,1,1,1,100,50,50,19145,True,sample_limit_reached,,2026-06-16T12:16:40.079293+00:00
