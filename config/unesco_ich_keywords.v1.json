@@ -2,7 +2,7 @@
   "version": "v1",
   "description": "UNESCO Chinese ICH TikTok keyword config. negative_terms are labeling-only; never collection exclusions.",
   "source": "data/unesco_tiktok_20260530_233505.csv",
-  "expected_project_count": 45,
+  "expected_project_count": 44,
   "negative_terms_policy": "label_only_never_exclude",
   "projects": [
     {
