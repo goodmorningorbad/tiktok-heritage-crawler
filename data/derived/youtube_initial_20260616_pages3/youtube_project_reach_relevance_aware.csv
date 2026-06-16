@@ -1,0 +1,380 @@
+﻿project_id,project_name,project_name_en,list_type,category,label_likely_relevant_rows,label_needs_review_rows,label_low_relevance_rows,youtube_collection_state_counts,youtube_three_page_lower_bound_rows,raw_unique_videos,raw_total_play,raw_median_play,raw_mean_play,raw_p75_play,raw_p90_play,raw_p95_play,raw_p99_play,raw_max_play,raw_videos_ge_1k,raw_videos_ge_10k,raw_videos_ge_100k,raw_videos_ge_1m,raw_zero_play_videos,raw_total_digg,raw_total_comment,raw_total_share,raw_max_digg,raw_max_comment,raw_max_share,raw_top_video_id,raw_top_video_url,raw_top_video_desc,likely_unique_videos,likely_total_play,likely_median_play,likely_mean_play,likely_p75_play,likely_p90_play,likely_p95_play,likely_p99_play,likely_max_play,likely_videos_ge_1k,likely_videos_ge_10k,likely_videos_ge_100k,likely_videos_ge_1m,likely_zero_play_videos,likely_total_digg,likely_total_comment,likely_total_share,likely_max_digg,likely_max_comment,likely_max_share,likely_top_video_id,likely_top_video_url,likely_top_video_desc,inclusive_unique_videos,inclusive_total_play,inclusive_median_play,inclusive_mean_play,inclusive_p75_play,inclusive_p90_play,inclusive_p95_play,inclusive_p99_play,inclusive_max_play,inclusive_videos_ge_1k,inclusive_videos_ge_10k,inclusive_videos_ge_100k,inclusive_videos_ge_1m,inclusive_zero_play_videos,inclusive_total_digg,inclusive_total_comment,inclusive_total_share,inclusive_max_digg,inclusive_max_comment,inclusive_max_share,inclusive_top_video_id,inclusive_top_video_url,inclusive_top_video_desc,low_unique_videos,low_total_play,low_median_play,low_mean_play,low_p75_play,low_p90_play,low_p95_play,low_p99_play,low_max_play,low_videos_ge_1k,low_videos_ge_10k,low_videos_ge_100k,low_videos_ge_1m,low_zero_play_videos,low_total_digg,low_total_comment,low_total_share,low_max_digg,low_max_comment,low_max_share,low_top_video_id,low_top_video_url,low_top_video_desc,likely_video_ratio,inclusive_video_ratio,low_relevance_video_ratio,likely_play_ratio,inclusive_play_ratio,low_relevance_play_ratio,reach_noise_risk,raw_reach_tier,raw_reach_score,likely_reach_tier,likely_reach_score,inclusive_reach_tier,inclusive_reach_score,reach_tier_changed_after_relevance_filter,raw_to_likely_tier_delta
+1,春节,"Spring Festival, social practices of the Chinese people in celebration of traditional new year",RL,节庆民俗,187,67,13,"{""sample_limit_reached"": 267}",267,264,540089064,69240,2045792,513239,3324729,6473295,22801445,141775756,251,201,113,51,0,7698616,178324,0,1605654,38480,0,JbqN7L7dw3I,https://www.youtube.com/watch?v=JbqN7L7dw3I,We are not closed during the Spring Festival # eat dumplings # soy sauce # celebrate the n — ,186,355723582,95827,1912492,750150,3615856,9334263,22139571,88533729,182,153,92,42,0,6278008,146510,0,1605654,38480,0,gykWYPrArbY,https://www.youtube.com/watch?v=gykWYPrArbY,"SALES - chinese new year — off SALES' self-titled debut EP
+
+order the EP here ~ http://bit.ly/31NBfvO
+iTunes ~ http://bit.ly/1xcDara
+Spotify ~ http://bit.ly/1t052I8
+
+""chinese new year"" on iTunes ~ http://bit.ly/1pCb7fG
+""",251,537002776,75074,2139453,531624,3482717,6954957,23192552,141775756,238,195,109,50,0,7662354,177750,0,1605654,38480,0,JbqN7L7dw3I,https://www.youtube.com/watch?v=JbqN7L7dw3I,We are not closed during the Spring Festival # eat dumplings # soy sauce # celebrate the n — ,13,3086288,6486,237407,198046,779332,1215033,1567539,1655666,13,6,4,1,0,36262,574,0,11420,103,0,tB8X1tqvHtc,https://www.youtube.com/watch?v=tB8X1tqvHtc,Shanghai New Year Fireworks — ,0.7045,0.9508,0.0492,0.6586,0.9943,0.0057,low,top_20pct_reach,7.276268,top_20pct_reach,7.218688,top_20pct_reach,7.284755,False,0
+2,中国传统制茶技艺及其相关习俗,Traditional tea processing techniques and associated social practices in China,RL,手工艺/民俗,106,38,4,"{""sample_limit_reached"": 148}",148,148,47139009,12378,318507,80366,331263,555851,6271257,22590639,118,77,34,4,0,760476,15582,0,280155,5396,0,3V7ezUaKhHs,https://www.youtube.com/watch?v=3V7ezUaKhHs,Dragon Carved Tea Tray – Solid Stone Gongfu Tea Table for Traditional Chinese Tea Ceremony — Discover the elegance of the Black Stone Dragon Tea Tray — where timeless craftsmanship meets the art of tea.,106,30363057,6310,286444,44980,206380,471910,1235583,22590639,79,47,18,2,0,218182,5239,0,76937,886,0,3V7ezUaKhHs,https://www.youtube.com/watch?v=3V7ezUaKhHs,Dragon Carved Tea Tray – Solid Stone Gongfu Tea Table for Traditional Chinese Tea Ceremony — Discover the elegance of the Black Stone Dragon Tea Tray — where timeless craftsmanship meets the art of tea.,144,39516729,11207,274422,76150,327312,547051,3399084,22590639,114,74,32,3,0,598418,10093,0,280155,1614,0,3V7ezUaKhHs,https://www.youtube.com/watch?v=3V7ezUaKhHs,Dragon Carved Tea Tray – Solid Stone Gongfu Tea Table for Traditional Chinese Tea Ceremony — Discover the elegance of the Black Stone Dragon Tea Tray — where timeless craftsmanship meets the art of tea.,4,7622280,114986,1905570,1961439,5214677,6299089,7166619,7383502,4,3,2,1,0,162058,5489,0,146531,5396,0,LaLvVc1sS20,https://www.youtube.com/watch?v=LaLvVc1sS20,"The history of tea - Shunan Teng — Trace the origins of tea and find out how it became the second most consumed beverage in the world.
+
+--
+
+Tea is the second most consumed beverage in the world after water — and from sug",0.7162,0.973,0.027,0.6441,0.8383,0.1617,low,middle_40_70pct_reach,6.321611,high_20_40pct_reach,6.203333,high_20_40pct_reach,6.28982,True,1
+3,太极拳,Taijiquan,RL,传统体育/养生,228,38,3,"{""sample_limit_reached"": 269}",269,262,159524947,90380,608874,465960,1335541,2212339,8487105,18384107,250,210,125,41,0,2731332,80984,0,206357,6638,0,cEOS2zoyQw4,https://www.youtube.com/watch?v=cEOS2zoyQw4,"Tai Chi 5 Minutes a Day  Module 01 - Easy for Beginners - the Wave and Embracing the Moon — Simple Easy beginners Tai Chi. Get these YouTube videos in your inbox. 
+https://www.taiflow.com/taiflow-signup
+
+Follow my Instag",225,118073022,91259,524769,449201,1312597,2108307,6821233,9772809,215,182,108,33,0,2065787,60651,0,179848,4377,0,ulicDWNz47M,https://www.youtube.com/watch?v=ulicDWNz47M,"Tai Chi Mastery: Use Stillness to Control Movement | 陈长兴 Wisdom — 太极之道，以静制动。Tàijí zhī dào, yǐ jìng zhì dòng.
+“The way of Tai Chi is to use stillness to control movement.” - Chen Changxing (陈长兴)
+
+🎥沅芷
+
+1️⃣Follow @shaolinwo",259,158950630,90292,613709,471959,1346883,2217550,8508278,18384107,247,208,123,41,0,2721253,80567,0,206357,6638,0,cEOS2zoyQw4,https://www.youtube.com/watch?v=cEOS2zoyQw4,"Tai Chi 5 Minutes a Day  Module 01 - Easy for Beginners - the Wave and Embracing the Moon — Simple Easy beginners Tai Chi. Get these YouTube videos in your inbox. 
+https://www.taiflow.com/taiflow-signup
+
+Follow my Instag",3,574317,176717,191439,286524,352409,374370,391940,396332,3,2,2,0,0,10079,417,0,8040,214,0,8TSEnoAa39s,https://www.youtube.com/watch?v=8TSEnoAa39s,"Taiji/yinyang philosophy: Chungliang Al Huang at TEDxHendrixCollege — Chungliang Al Huang is the founder & President of the Living Tao Foundation and author of numerous best-selling books, including the classic ""Embrace ",0.8588,0.9885,0.0115,0.7402,0.9964,0.0036,low,high_20_40pct_reach,6.754614,top_20pct_reach,6.640376,top_20pct_reach,6.753728,True,1
+4,送王船,"Ong Chun/Wangchuan/Wangkang ceremony, rituals and related practices for maintaining the sustainable connection between man and the ocean",RL,民俗仪式,51,61,34,"{""sample_limit_reached"": 146}",146,146,547719,434,3752,1145,3952,10496,79064,138434,39,8,1,0,1,8247,382,0,1706,159,0,Jbpf0SznqXI,https://www.youtube.com/watch?v=Jbpf0SznqXI,How to make Chinese Tea ? — ,51,113466,139,2225,580,1003,3417,46393,66007,6,2,0,0,1,1742,88,0,1235,49,0,A2Ho4BmE1uI,https://www.youtube.com/watch?v=A2Ho4BmE1uI,"館長晚間到廈門參加廈港送王船活動　現場邀請在廈門的朋友快來看 #館長 #廈港送王船 #廈門 — 館長表示，今晚將前往廈門參與廈港送王船民俗活動，並在行程中向粉絲發出即時邀請，直說「在廈門的趕緊來看」。他形容，送王船不只是熱鬧儀式，更是融合信仰、社群與傳承的重要時刻。
+他也提到，這類民俗活動只有到現場，才能感受到人潮、鼓陣與儀式氛圍交織而成的震撼感。對於已在廈門的朋友，他呼籲把握機會親眼見證，感受同源文化的力量。
+訊息曝光後，彈幕立刻熱絡",112,271477,397,2424,924,3219,9677,40896,66007,24,6,0,0,1,5139,196,0,1572,49,0,A2Ho4BmE1uI,https://www.youtube.com/watch?v=A2Ho4BmE1uI,"館長晚間到廈門參加廈港送王船活動　現場邀請在廈門的朋友快來看 #館長 #廈港送王船 #廈門 — 館長表示，今晚將前往廈門參與廈港送王船民俗活動，並在行程中向粉絲發出即時邀請，直說「在廈門的趕緊來看」。他形容，送王船不只是熱鬧儀式，更是融合信仰、社群與傳承的重要時刻。
+他也提到，這類民俗活動只有到現場，才能感受到人潮、鼓陣與儀式氛圍交織而成的震撼感。對於已在廈門的朋友，他呼籲把握機會親眼見證，感受同源文化的力量。
+訊息曝光後，彈幕立刻熱絡",34,276242,679,8125,2337,7142,37835,122367,138434,15,2,1,0,0,3108,186,0,1706,159,0,Jbpf0SznqXI,https://www.youtube.com/watch?v=Jbpf0SznqXI,How to make Chinese Tea ? — ,0.3493,0.7671,0.2329,0.2072,0.4957,0.5043,high,bottom_10pct_reach,4.474221,lower_70_90pct_reach,3.969944,bottom_10pct_reach,4.260751,True,1
+5,藏医药浴法,"Lum medicinal bathing of Sowa Rigpa, knowledge and practices concerning life, health and illness prevention and treatment among the Xizang people in China",RL,传统医药,22,57,41,"{""sample_limit_reached"": 120}",120,120,143347023,3098,1194559,193797,1947462,8411835,16417914,43477224,85,47,35,18,0,1829200,36660,0,487806,15801,0,x6UITRjhijI,https://www.youtube.com/watch?v=x6UITRjhijI,"Tibetan Healing Sounds: Cleans the Aura and Space. Removes all negative energy — Check out my new video of Tibetan Healing Sounds https://youtu.be/0y313epD6IE
+30 Min. Powerful Tibetan Healing Meditation Video
+#MoreTibeta",22,55636,1061,2529,2129,5078,5447,19994,23857,11,1,0,0,0,1456,69,0,419,13,0,WLQ5rc8vUjs,https://www.youtube.com/watch?v=WLQ5rc8vUjs,"Tibetan Medicine warm oil massage - Contemplation By Design Summit 2017, Stanford University — Self-care skills have always been a fundamental component of contemplative practice traditions. This practical workshop will ",79,88308214,2075,1117825,10738,1076147,2241613,22499081,43477224,53,20,11,8,0,1151766,23677,0,487806,15801,0,x6UITRjhijI,https://www.youtube.com/watch?v=x6UITRjhijI,"Tibetan Healing Sounds: Cleans the Aura and Space. Removes all negative energy — Check out my new video of Tibetan Healing Sounds https://youtu.be/0y313epD6IE
+30 Min. Powerful Tibetan Healing Meditation Video
+#MoreTibeta",41,55038809,178331,1342410,869068,4329354,9314825,9624788,9687186,32,27,24,10,0,677434,12983,0,104106,2268,0,0D4V5awe-PA,https://www.youtube.com/watch?v=0D4V5awe-PA,"Tibetan Monks Chantiing Om for Deep Meditation and Spiritual Awakening — Provided to YouTube by The state51 Conspiracy
+
+Tibetan Monks Chantiing Om for Deep Meditation and Spiritual Awakening · Tibetan Singing Bells Monks",0.1833,0.6583,0.3417,0.0004,0.616,0.384,medium,high_20_40pct_reach,6.96173,bottom_10pct_reach,3.844087,top_20pct_reach,6.639367,True,-3
+6,二十四节气,"The Twenty-Four Solar Terms, knowledge in China of time and practices developed through observation of the sun's annual motion",RL,传统知识/民俗,148,2,0,"{""sample_limit_reached"": 150}",150,150,1183346,42,7889,301,1565,8329,54978,968900,19,6,1,0,8,10524,437,0,9576,343,0,WoJy3W-4hxE,https://www.youtube.com/watch?v=WoJy3W-4hxE,《大雪》音阙诗听 二十四节气系列歌曲《Great Snow 》[The 24 solar terms] — Please subscribe to 【音阙诗听】interestingcn music team Channel on YouTube if you like my videos: https://www.youtube.com/channel/UCIGE... Turn on the little bell for noti,148,1142003,38,7716,297,1344,7686,43319,968900,18,5,1,0,8,10524,437,0,9576,343,0,WoJy3W-4hxE,https://www.youtube.com/watch?v=WoJy3W-4hxE,《大雪》音阙诗听 二十四节气系列歌曲《Great Snow 》[The 24 solar terms] — Please subscribe to 【音阙诗听】interestingcn music team Channel on YouTube if you like my videos: https://www.youtube.com/channel/UCIGE... Turn on the little bell for noti,150,1183346,42,7889,301,1565,8329,54978,968900,19,6,1,0,8,10524,437,0,9576,343,0,WoJy3W-4hxE,https://www.youtube.com/watch?v=WoJy3W-4hxE,《大雪》音阙诗听 二十四节气系列歌曲《Great Snow 》[The 24 solar terms] — Please subscribe to 【音阙诗听】interestingcn music team Channel on YouTube if you like my videos: https://www.youtube.com/channel/UCIGE... Turn on the little bell for noti,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,0.9867,1.0,0.0,0.9651,1.0,0.0,low,bottom_10pct_reach,4.725174,lower_70_90pct_reach,4.707557,bottom_10pct_reach,4.725174,True,1
+7,中国珠算,"Chinese Zhusuan, knowledge and practices of mathematical calculation through the abacus",RL,传统知识,71,4,75,"{""sample_limit_reached"": 150}",150,150,395261731,13901,2635078,372639,3378433,8444051,62026448,75709837,110,80,53,25,0,9763931,92417,0,2761450,35312,0,FJs2UsQza2w,https://www.youtube.com/watch?v=FJs2UsQza2w,"🤯 Have you heard of “abacus” theory? — 🤯 Did you know the “abacus” theory? It allows you to mentally perform arithmetic calculations just by using certain special finger combinations.
+
+🔥 Learn ALL the maths you need for ",71,1842282,1481,25948,9631,31963,81182,450391,997636,37,18,2,0,0,17660,766,0,8533,370,0,FTVXUG_PngE,https://www.youtube.com/watch?v=FTVXUG_PngE,Abacus Tutorial: 1 Basic function — Description: This film shows the basic functions of the classic Chinese abacus (5+2). Train your skills with the Mental Abacus app for Android (link below) or visit www.abakusen.se for,75,2009287,1599,26790,9631,33287,94669,419120,997636,41,19,3,0,0,20783,904,0,8533,370,0,FTVXUG_PngE,https://www.youtube.com/watch?v=FTVXUG_PngE,Abacus Tutorial: 1 Basic function — Description: This film shows the basic functions of the classic Chinese abacus (5+2). Train your skills with the Mental Abacus app for Android (link below) or visit www.abakusen.se for,75,393252444,334168,5243366,1763324,8472591,35414540,73815298,75709837,69,61,50,25,0,9743148,91513,0,2761450,35312,0,FJs2UsQza2w,https://www.youtube.com/watch?v=FJs2UsQza2w,"🤯 Have you heard of “abacus” theory? — 🤯 Did you know the “abacus” theory? It allows you to mentally perform arithmetic calculations just by using certain special finger combinations.
+
+🔥 Learn ALL the maths you need for ",0.4733,0.5,0.5,0.0047,0.0051,0.9949,high,top_20pct_reach,7.182272,middle_40_70pct_reach,5.158694,lower_70_90pct_reach,5.20774,True,-2
+8,福建木偶戏,Strategy for training coming generations of Fujian puppetry practitioners,GSP,保护实践(木偶戏),157,64,65,"{""sample_limit_reached"": 286}",286,286,2759578,209,9649,1670,29495,62802,136844,199382,90,52,6,0,0,81996,1275,0,4613,161,0,Y28yEUN8xD4,https://www.youtube.com/watch?v=Y28yEUN8xD4,福建漳州阿梅木偶戲演出現場 #传统文化 #福建漳州阿梅木偶戯 Chinese traditional culture — ,157,139485,116,888,189,969,3167,15571,42027,16,3,0,0,0,2107,111,0,228,48,0,hGr7Eb7UrsQ,https://www.youtube.com/watch?v=hGr7Eb7UrsQ,"Amazing Kung-Fu Puppets From Taiwan — Footage of Taiwanese glove puppetry (Potehi or Budaixi) filmed in Yunlin, Taiwan for PuppetVision: The Movie, a feature length documentary about puppeteers and puppetry around the wo",221,2444136,151,11059,3049,34841,63045,137480,199382,69,47,6,0,0,76492,1140,0,4613,161,0,Y28yEUN8xD4,https://www.youtube.com/watch?v=Y28yEUN8xD4,福建漳州阿梅木偶戲演出現場 #传统文化 #福建漳州阿梅木偶戯 Chinese traditional culture — ,65,315442,450,4853,1165,4251,31088,73852,79062,21,5,0,0,0,5504,135,0,2336,28,0,imEzUdMEdAg,https://www.youtube.com/watch?v=imEzUdMEdAg,中華民族閩南地區的非遺文化～木偶戲 — #中華傳統文化 #福建漳州阿梅木偶戯 #木偶戲 #豐歸團隊,0.549,0.7727,0.2273,0.0505,0.8857,0.1143,low,lower_70_90pct_reach,5.078036,lower_70_90pct_reach,3.950568,lower_70_90pct_reach,5.060172,False,0
+9,赫哲族伊玛堪,Hezhe Yimakan storytelling,USL,口头传统/史诗,47,25,72,"{""sample_limit_reached"": 144}",144,144,8176617,425,56782,2606,28390,100300,1443638,2412207,55,19,8,4,0,64314,2306,0,15006,699,0,j6M6HHYxz9U,https://www.youtube.com/watch?v=j6M6HHYxz9U,往事只能回味 Wang shi zi neng hui wei 韓寶儀 ( Han bao yi ) — 韓寶儀 - 往事只能回味 wang shi zi neng hui wei KTV,47,2014472,341,42861,894,6982,29524,992281,1286486,11,3,2,1,0,7035,114,0,3492,19,0,O8OYvErAcb8,https://www.youtube.com/watch?v=O8OYvErAcb8,"BAYI LUCU MAKAN LAHAP | Mpasi 8bulan — Terima kasih sudah menonton, ga nyangka ternyata banyak yg nonton mohon maaf jika banyak yg kurang kalo mau liat setelah 2 tahun anaknya tetep makan lahap atau gak cek link di bawah",72,2342348,381,32533,2060,20154,39701,832387,1286486,26,8,3,1,0,11821,456,0,3492,270,0,O8OYvErAcb8,https://www.youtube.com/watch?v=O8OYvErAcb8,"BAYI LUCU MAKAN LAHAP | Mpasi 8bulan — Terima kasih sudah menonton, ga nyangka ternyata banyak yg nonton mohon maaf jika banyak yg kurang kalo mau liat setelah 2 tahun anaknya tetep makan lahap atau gak cek link di bawah",72,5834269,488,81032,3578,31825,115333,1767673,2412207,29,11,5,3,0,52493,1850,0,15006,699,0,j6M6HHYxz9U,https://www.youtube.com/watch?v=j6M6HHYxz9U,往事只能回味 Wang shi zi neng hui wei 韓寶儀 ( Han bao yi ) — 韓寶儀 - 往事只能回味 wang shi zi neng hui wei KTV,0.3264,0.5,0.5,0.2464,0.2865,0.7135,high,lower_70_90pct_reach,5.541765,middle_40_70pct_reach,5.040616,lower_70_90pct_reach,5.121049,True,1
+10,中国皮影戏,Chinese shadow puppetry,RL,表演艺术,69,23,49,"{""sample_limit_reached"": 141}",141,141,145384102,1323,1031093,20544,185748,547888,30986208,58942216,79,49,19,7,0,3457764,27267,0,1632038,6515,0,JZ1DH77eWH0,https://www.youtube.com/watch?v=JZ1DH77eWH0,"Hand Shadow Puppet Tutorial | Handicraft — Hand Shadow #Puppet Tutorial | #Handicraft
+
+
+hello i am Sabbir Ahmed and i am a Shadow artist. Today I did a hand shadow puppet show,
+ shadow puppetry is an ancient form of stor",69,2551668,679,36981,4088,21680,109469,709670,1608057,29,14,4,1,0,39832,360,0,31717,161,0,YzFlGlomGfs,https://www.youtube.com/watch?v=YzFlGlomGfs,"Unveiling China’s 2,000-Year-Old Shadow Puppetry | The Ancient Art Behind the World’s First Film — Unveiling China’s 2,000-Year-Old Shadow Puppetry | The Ancient Art Behind the World’s First Film.
+
+🔹 Description:
+Step in",92,3369608,889,36626,6450,25833,191704,500883,1608057,43,20,6,1,0,49003,649,0,31717,173,0,YzFlGlomGfs,https://www.youtube.com/watch?v=YzFlGlomGfs,"Unveiling China’s 2,000-Year-Old Shadow Puppetry | The Ancient Art Behind the World’s First Film — Unveiling China’s 2,000-Year-Old Shadow Puppetry | The Ancient Art Behind the World’s First Film.
+
+🔹 Description:
+Step in",49,142014494,20264,2898255,109368,4743385,20091796,46583182,58942216,36,29,13,6,0,3408761,26618,0,1632038,6515,0,JZ1DH77eWH0,https://www.youtube.com/watch?v=JZ1DH77eWH0,"Hand Shadow Puppet Tutorial | Handicraft — Hand Shadow #Puppet Tutorial | #Handicraft
+
+
+hello i am Sabbir Ahmed and i am a Shadow artist. Today I did a hand shadow puppet show,
+ shadow puppetry is an ancient form of stor",0.4894,0.6525,0.3475,0.0176,0.0232,0.9768,high,middle_40_70pct_reach,6.549612,middle_40_70pct_reach,5.317299,middle_40_70pct_reach,5.459345,False,0
+11,麦西热甫,Meshrep,USL,表演艺术/民俗,148,1,0,"{""sample_limit_reached"": 149}",149,149,6456695,2230,43334,6999,43926,79953,630740,3385751,99,28,6,1,0,77394,7272,0,47820,5236,0,1Hef5OXHr5I,https://www.youtube.com/watch?v=1Hef5OXHr5I,"Uyghur folk song - Mitiz Meshrep (English Subtitles) — Song: Mitiz Meshrep (With English subtitle)
+Singer: Adiljan Memtimin
+Music: Asqar Muxtar
+Lyrics translated to English by Uyghur Beauty Youtube Channel
+
+We share Uygh",148,6455423,2300,43618,7047,45247,80416,636066,3385751,98,28,6,1,0,77342,7268,0,47820,5236,0,1Hef5OXHr5I,https://www.youtube.com/watch?v=1Hef5OXHr5I,"Uyghur folk song - Mitiz Meshrep (English Subtitles) — Song: Mitiz Meshrep (With English subtitle)
+Singer: Adiljan Memtimin
+Music: Asqar Muxtar
+Lyrics translated to English by Uyghur Beauty Youtube Channel
+
+We share Uygh",149,6456695,2230,43334,6999,43926,79953,630740,3385751,99,28,6,1,0,77394,7272,0,47820,5236,0,1Hef5OXHr5I,https://www.youtube.com/watch?v=1Hef5OXHr5I,"Uyghur folk song - Mitiz Meshrep (English Subtitles) — Song: Mitiz Meshrep (With English subtitle)
+Singer: Adiljan Memtimin
+Music: Asqar Muxtar
+Lyrics translated to English by Uyghur Beauty Youtube Channel
+
+We share Uygh",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,0.9933,1.0,0.0,0.9998,1.0,0.0,low,lower_70_90pct_reach,5.489939,middle_40_70pct_reach,5.490786,middle_40_70pct_reach,5.489939,True,1
+12,中国水密隔舱福船制造技艺,Watertight-bulkhead technology of Chinese junks,USL,传统手工艺,116,29,4,"{""sample_limit_reached"": 149}",149,149,27695934,1011,185879,4025,14738,35485,391444,26253238,75,19,3,1,0,1493232,4798,0,1475185,3282,0,qM0HS5A6sys,https://www.youtube.com/watch?v=qM0HS5A6sys,How They Used To Make Ships Waterproof 🤔 — ,116,1126767,974,9714,2780,10572,23094,83470,614059,54,12,1,0,0,10725,1063,0,3297,382,0,XZP9fFyitn4,https://www.youtube.com/watch?v=XZP9fFyitn4,"The watertight-bulkhead technology of Chinese junks — UNESCO: List of Intangible Cultural Heritage in Need of Urgent Safeguarding - 2010
+URL: http://www.unesco.org/culture/ich/USL/00321
+Description: Takes note that Chi",145,1431376,1011,9872,3817,14504,28104,122924,614059,73,17,2,0,0,17733,1490,0,5856,382,0,XZP9fFyitn4,https://www.youtube.com/watch?v=XZP9fFyitn4,"The watertight-bulkhead technology of Chinese junks — UNESCO: List of Intangible Cultural Heritage in Need of Urgent Safeguarding - 2010
+URL: http://www.unesco.org/culture/ich/USL/00321
+Description: Takes note that Chi",4,26264558,5627,6566140,6571522,18380552,22316895,25465969,26253238,2,2,1,1,0,1475499,3308,0,1475185,3282,0,qM0HS5A6sys,https://www.youtube.com/watch?v=qM0HS5A6sys,How They Used To Make Ships Waterproof 🤔 — ,0.7785,0.9732,0.0268,0.0407,0.0517,0.9483,high,lower_70_90pct_reach,5.741408,middle_40_70pct_reach,4.833119,lower_70_90pct_reach,4.916942,True,1
+13,中国木活字印刷术,Wooden movable-type printing of China,USL,传统手工艺,88,48,7,"{""sample_limit_reached"": 143}",143,143,221246602,392,1547179,2413,56124,161280,35121496,141012259,49,26,10,5,1,8237017,28988,0,6428456,14607,0,XSrolys3uqo,https://www.youtube.com/watch?v=XSrolys3uqo,Howard letterpress prints the news for our latest YouTube milestone. — We just reached a social media milestone that we never thought was achievable. The Sacramento History Museum now has over one million subscribers on ,88,79502559,273,903438,1865,43288,444733,17860467,51231790,29,14,7,4,1,1799659,14187,0,669985,6474,0,I9QSaS0wX2Y,https://www.youtube.com/watch?v=I9QSaS0wX2Y,"Ancient Chinese Movable Type Printing | Cultural Heritage, Education & Tourism Documentary — Ancient Chinese Movable Type Printing | Cultural Heritage, Education & Tourism Documentary
+
+📝 Description:
+Discover the timeles",136,221169271,433,1626245,2410,51325,169074,37806545,141012259,47,25,10,5,1,8235829,28974,0,6428456,14607,0,XSrolys3uqo,https://www.youtube.com/watch?v=XSrolys3uqo,Howard letterpress prints the news for our latest YouTube milestone. — We just reached a social media milestone that we never thought was achievable. The Sacramento History Museum now has over one million subscribers on ,7,77331,48,11047,3936,32374,50879,65684,69385,2,1,0,0,0,1188,14,0,1144,10,0,iPmTRhOwDuo,https://www.youtube.com/watch?v=iPmTRhOwDuo,"How Chinese Artists Turn Wire and Wood Into Art — .
+.
+.
+🙏 Please contact me via Email: farhad.ayoubi009@gmail.com for any requests for removal of videos. I will get back to you within 24 hours.
+📹If you have material that",0.6154,0.951,0.049,0.3593,0.9997,0.0003,low,middle_40_70pct_reach,6.477352,top_20pct_reach,6.374185,top_20pct_reach,6.484472,True,2
+14,京剧,Peking opera,RL,表演艺术(戏曲),129,9,1,"{""sample_limit_reached"": 139}",139,139,21659698,6605,155825,67708,313584,863939,2522345,4462621,98,63,27,5,2,667569,21642,0,168179,9285,0,EmHYhDXz-Zs,https://www.youtube.com/watch?v=EmHYhDXz-Zs,京劇【鍘美案】包公 唱段 — 【鍘美案】包公 唱段,129,14971584,5791,116059,62097,216070,520133,1802736,2949809,88,55,23,3,2,436231,11095,0,109697,2447,0,wzBDB-u1pRg,https://www.youtube.com/watch?v=wzBDB-u1pRg,"群英聚会！《同光十三绝》从画中“走出来了”【2014年央视春晚】｜CCTV春晚 — 京剧《同光十三绝》 表演：国家京剧院一团
+
+提起京剧的艺术家，必然要提到“同光十三绝”。因为这十三绝是徽班进京后由演唱徽调、昆腔衍变为京剧的十三位奠基人，又都是技艺非凡的表演艺术家。
+
+【订阅CCTV春晚官方频道】 https://bit.ly/44jKJhR
+《中央广播电视总台2014年春节联欢晚会》：https://www.youtube.com/w",138,17197077,6506,124616,66000,258974,846501,1795611,2949809,97,62,26,4,2,499390,12357,0,109697,2447,0,wzBDB-u1pRg,https://www.youtube.com/watch?v=wzBDB-u1pRg,"群英聚会！《同光十三绝》从画中“走出来了”【2014年央视春晚】｜CCTV春晚 — 京剧《同光十三绝》 表演：国家京剧院一团
+
+提起京剧的艺术家，必然要提到“同光十三绝”。因为这十三绝是徽班进京后由演唱徽调、昆腔衍变为京剧的十三位奠基人，又都是技艺非凡的表演艺术家。
+
+【订阅CCTV春晚官方频道】 https://bit.ly/44jKJhR
+《中央广播电视总台2014年春节联欢晚会》：https://www.youtube.com/w",1,4462621,4462621,4462621,4462621,4462621,4462621,4462621,4462621,1,1,1,1,0,168179,9285,0,168179,9285,0,EmHYhDXz-Zs,https://www.youtube.com/watch?v=EmHYhDXz-Zs,京劇【鍘美案】包公 唱段 — 【鍘美案】包公 唱段,0.9281,0.9928,0.0072,0.6912,0.794,0.206,low,middle_40_70pct_reach,6.119881,high_20_40pct_reach,5.943964,middle_40_70pct_reach,6.044174,True,1
+15,中医针灸,Acupuncture and moxibustion of traditional Chinese medicine,RL,传统医药,111,31,3,"{""sample_limit_reached"": 145}",145,145,6464742,1225,44584,9325,58021,184009,1227249,1462662,78,35,9,3,0,90304,3006,0,34276,1340,0,NCBTxDfsVVg,https://www.youtube.com/watch?v=NCBTxDfsVVg,"Oriental Medicine Clinic🍵 ASMR acupuncture & moxibustion treatment for you to relax — Hello :)
+Welcome to my oriental medicine clinic!
+Tonight I'll gently examine you and you'll receive relaxing acupuncture and moxibusti",111,5712974,1077,51468,7434,65348,174290,1297386,1462662,58,25,7,3,0,80269,2768,0,34276,1340,0,NCBTxDfsVVg,https://www.youtube.com/watch?v=NCBTxDfsVVg,"Oriental Medicine Clinic🍵 ASMR acupuncture & moxibustion treatment for you to relax — Hello :)
+Welcome to my oriental medicine clinic!
+Tonight I'll gently examine you and you'll receive relaxing acupuncture and moxibusti",142,6430920,1225,45288,7804,62126,199327,1233438,1462662,76,33,9,3,0,89384,2990,0,34276,1340,0,NCBTxDfsVVg,https://www.youtube.com/watch?v=NCBTxDfsVVg,"Oriental Medicine Clinic🍵 ASMR acupuncture & moxibustion treatment for you to relax — Hello :)
+Welcome to my oriental medicine clinic!
+Tonight I'll gently examine you and you'll receive relaxing acupuncture and moxibusti",3,33822,15781,11274,16582,17063,17224,17352,17384,2,2,0,0,0,920,16,0,644,14,0,fAiNJwi-ruU,https://www.youtube.com/watch?v=fAiNJwi-ruU,"Moxibustion cupping for calfpain,kneepain,backpain,sciatica,hip,shoulderpain and blood circulation — ",0.7655,0.9793,0.0207,0.8837,0.9948,0.0052,low,lower_70_90pct_reach,5.559416,middle_40_70pct_reach,5.522686,middle_40_70pct_reach,5.570773,True,1
+16,黎族传统纺染织绣技艺,"Traditional Li textile techniques: spinning, dyeing, weaving and embroidering",USL,传统手工艺,71,31,171,"{""sample_limit_reached"": 273}",273,268,143683898,354,536134,9942,766231,2940310,12322973,20155623,109,67,52,22,5,4081234,32455,0,1372305,11867,0,HPo8Wg8aHnQ,https://www.youtube.com/watch?v=HPo8Wg8aHnQ,"Bright blue handmade leather bag, can customize any color. how do you like? 🥰 — * Not on website, pls email or message me.
+Email: elena@msncraft.com
+
+Check more styles here https://bit.ly/tianqingji
+WhatsApp in profile.
+",70,263363,160,3762,746,1636,8613,77388,106563,13,4,1,0,2,1824,19,0,740,13,0,PAA2a-GuK9U,https://www.youtube.com/watch?v=PAA2a-GuK9U,"Reigniting tradition: Weaving new life into Li brocade — On the tropical island of Hainan in southern China, a new generation is reimagining the 3,000-year-old Li brocade craft. Chen Mengli, a young entrepreneur dedicate",99,18982533,296,191743,3014,43988,107331,3535750,13865621,36,15,6,2,2,309312,7924,0,236401,6358,0,UpN3AcXLSSk,https://www.youtube.com/watch?v=UpN3AcXLSSk,"Shaolin Qi Gong 🙆🏻‍♂️ 20 Minute Daily Morning Routine 🙆🏻‍♀️ 八段锦 Ba Duan Jin (Complete Form) — For the full training experience, please have a look at the latest project of the Shaolin Temple Europe: ➡ https://www.shaolin",169,124701365,489,737878,181174,1714185,4386380,12813914,20155623,73,52,46,20,3,3771922,24531,0,1372305,11867,0,HPo8Wg8aHnQ,https://www.youtube.com/watch?v=HPo8Wg8aHnQ,"Bright blue handmade leather bag, can customize any color. how do you like? 🥰 — * Not on website, pls email or message me.
+Email: elena@msncraft.com
+
+Check more styles here https://bit.ly/tianqingji
+WhatsApp in profile.
+",0.2612,0.3694,0.6306,0.0018,0.1321,0.8679,high,middle_40_70pct_reach,6.752337,lower_70_90pct_reach,4.310142,middle_40_70pct_reach,5.821077,True,-1
+17,中国木拱桥传统营造技艺,Traditional design and practices for building Chinese wooden arch bridges,USL,传统手工艺/建筑,18,3,128,"{""sample_limit_reached"": 149}",149,149,641783067,5381,4307269,238363,6921048,38585014,69485200,112248667,100,69,41,21,0,10587794,76325,0,1890491,28964,0,UIQUQHGEKz0,https://www.youtube.com/watch?v=UIQUQHGEKz0,Load bearing arch bridge model — ,18,60349388,5943,3352744,15888,390658,9306698,49375430,59392613,12,9,3,1,0,634306,29314,0,622954,28964,0,PYkgEf3eWqA,https://www.youtube.com/watch?v=PYkgEf3eWqA,"阿木爷爷榫卯打造一座木拱桥，全程无钉子，高手在民间【阿木爷爷 Grandpa Amu】 — 木拱桥，中国古老的榫卯技术，这座桥的特点就是没有胶水，没有钉子。搭建结构非常牢固。阿木爷爷中午把它完成了，在摄影的帮助下，也就是阿木爷爷的儿子。有了新桥让小花园更加的漂亮。
+The wooden arch bridge, an ancient Chinese mortise and tenon technique, is characterize",21,60370073,2030,2874765,16698,357509,468007,47607692,59392613,15,10,3,1,0,634480,29315,0,622954,28964,0,PYkgEf3eWqA,https://www.youtube.com/watch?v=PYkgEf3eWqA,"阿木爷爷榫卯打造一座木拱桥，全程无钉子，高手在民间【阿木爷爷 Grandpa Amu】 — 木拱桥，中国古老的榫卯技术，这座桥的特点就是没有胶水，没有钉子。搭建结构非常牢固。阿木爷爷中午把它完成了，在摄影的帮助下，也就是阿木爷爷的儿子。有了新桥让小花园更加的漂亮。
+The wooden arch bridge, an ancient Chinese mortise and tenon technique, is characterize",128,581412994,5539,4542289,279296,8203704,39264561,73124710,112248667,85,59,38,20,0,9953314,47010,0,1890491,8289,0,UIQUQHGEKz0,https://www.youtube.com/watch?v=UIQUQHGEKz0,Load bearing arch bridge model — ,0.1208,0.1409,0.8591,0.094,0.0941,0.9059,high,top_20pct_reach,7.510194,top_20pct_reach,6.777266,high_20_40pct_reach,6.322829,False,0
+18,羌年,Qiang New Year festival,USL,节庆民俗,46,72,27,"{""sample_limit_reached"": 145}",145,145,168088029,521,1159228,3245,544994,8210812,24192040,48600716,65,26,17,13,0,1732581,22878,0,812506,8193,0,Fumf_S76wBU,https://www.youtube.com/watch?v=Fumf_S76wBU,Chinese Lion Dance Drumming — #liondancedrum #chineseculture  #CulturalPerformance #LionDanceDrumming #Chicago #FreddiesModernKungFu #liondancecostume,46,40650,191,884,1045,2527,3862,6853,8226,12,0,0,0,0,1045,101,0,158,50,0,oGKfeU8hgYY,https://www.youtube.com/watch?v=oGKfeU8hgYY,"Qiang New Year celebrations boost tourism in Sichuan。#乘高铁游中国 — Qiang New Year celebrations boost tourism in Sichuan。#乘高铁游中国
+
+As China's Qiang ethnic people celebrated their traditional New Year on Thursday, Beichuan Qian",118,50409919,369,427203,2337,33733,349572,12883394,18364756,48,16,7,6,0,203905,14068,0,53865,8193,0,Bs0GuU0cUtw,https://www.youtube.com/watch?v=Bs0GuU0cUtw,"Chinese New Year 2019 Lion Dance, Hong Kong — Lion dance ( 舞獅) is a form of traditional dance in Chinese culture and other Asian countries in which performers mimic a lion's movements in a lion costume to bring good luck",27,117678110,2669,4358449,1283052,12369255,24437438,43444891,48600716,17,10,10,7,0,1528676,8810,0,812506,5952,0,Fumf_S76wBU,https://www.youtube.com/watch?v=Fumf_S76wBU,Chinese Lion Dance Drumming — #liondancedrum #chineseculture  #CulturalPerformance #LionDanceDrumming #Chicago #FreddiesModernKungFu #liondancecostume,0.3172,0.8138,0.1862,0.0002,0.2999,0.7001,high,high_20_40pct_reach,6.961829,bottom_10pct_reach,3.651647,high_20_40pct_reach,6.179225,True,-3
+19,侗族大歌,Grand song of the Dong ethnic group,RL,表演艺术(音乐),68,13,117,"{""exhausted"": 64, ""sample_limit_reached"": 134}",134,196,1655512128,706,8446490,315131,6795280,26776584,102522941,698651077,92,64,54,38,0,23835941,492286,0,8841870,346507,0,tcYodQoapMg,https://www.youtube.com/watch?v=tcYodQoapMg,"Ariana Grande - positions (official video) — The official “positions” music video by Ariana Grande. Listen & download the song here: http://arianagrande.lnk.to/positions 
+
+►Subscribe to Ariana Grande: https://arianagrand",66,65920,207,999,736,2460,3648,11033,20405,13,1,0,0,0,736,58,0,123,17,0,cbFb8t4U9c0,https://www.youtube.com/watch?v=cbFb8t4U9c0,"Cicada Song 蝉歌 / 侗族大歌  Dong Zu Da Ge — Cicada Song sung by Dong women from Yinshui village, Longsheng mountainous region, Guangxi Province, China.
+
+'Dong Zu Da Ge' means 'the great/old song of Dong People'. It's a type",79,67450,167,854,481,2228,3376,9159,20405,13,1,0,0,0,754,60,0,123,17,0,cbFb8t4U9c0,https://www.youtube.com/watch?v=cbFb8t4U9c0,"Cicada Song 蝉歌 / 侗族大歌  Dong Zu Da Ge — Cicada Song sung by Dong women from Yinshui village, Longsheng mountainous region, Guangxi Province, China.
+
+'Dong Zu Da Ge' means 'the great/old song of Dong People'. It's a type",117,1655444678,17420,14149100,2538508,22141278,37362704,303645380,698651077,79,63,54,38,0,23835187,492226,0,8841870,346507,0,tcYodQoapMg,https://www.youtube.com/watch?v=tcYodQoapMg,"Ariana Grande - positions (official video) — The official “positions” music video by Ariana Grande. Listen & download the song here: http://arianagrande.lnk.to/positions 
+
+►Subscribe to Ariana Grande: https://arianagrand",0.3367,0.4031,0.5969,0.0,0.0,1.0,high,top_20pct_reach,7.769229,bottom_10pct_reach,3.795371,bottom_10pct_reach,3.787083,True,-4
+20,西安鼓乐,Xi'an wind and percussion ensemble,RL,表演艺术(音乐),41,11,96,"{""sample_limit_reached"": 148}",148,148,1027453001,113748,6942250,4674266,14723655,26355248,103921069,195385448,87,81,75,59,1,16603188,178393,0,3120663,32934,0,MI_2rOYPUIU,https://www.youtube.com/watch?v=MI_2rOYPUIU,Playing the drums no longer annoys others.#aeroband #pocketdrum #drums #drumshop #drumkit — ,41,120770,221,2946,525,1861,3153,57456,78464,5,2,0,0,1,1188,89,0,753,37,0,IdxdnECSAF8,https://www.youtube.com/watch?v=IdxdnECSAF8,"""Living Fossil"" of Chinese classical music -- Xi'an Drum Music — According to analyses of historical materials, Xi'an drum music is said to probably be originated from the Tang Dynasty (618-907). It has been developed by",52,23216640,230,446474,597,4909,628584,10721228,19525777,9,5,3,3,1,477091,3726,0,436837,2945,0,ZagsLrNzg3I,https://www.youtube.com/watch?v=ZagsLrNzg3I,"林英哲 ／ 海の豊饒（和太鼓アンサンブル）　　Eitetsu Hayashi // Fertility of the Sea (Taiko) — https://www.senzoku.ac.jp/music/index.php
+洗足学園音楽大学 Senzoku Gakuen College of Music
+
+
+公演名：打楽器アンサンブル第35回記念定期演奏会
+日時：2014年12月23日（火）　16：00開演
+会場：洗足学園 前田ホ",96,1004236361,2008512,10460795,7957688,21036634,48470527,126558290,195385448,78,76,72,56,0,16126097,174667,0,3120663,32934,0,MI_2rOYPUIU,https://www.youtube.com/watch?v=MI_2rOYPUIU,Playing the drums no longer annoys others.#aeroband #pocketdrum #drums #drumshop #drumkit — ,0.277,0.3514,0.6486,0.0001,0.0226,0.9774,high,top_20pct_reach,7.59768,lower_70_90pct_reach,3.982224,high_20_40pct_reach,6.125785,True,-3
+21,中国蚕桑丝织技艺,Sericulture and silk craftsmanship of China,RL,传统手工艺,85,55,7,"{""sample_limit_reached"": 147}",147,147,345887073,2958,2352973,90670,1037592,4838246,48899160,128528750,88,61,37,17,0,8382619,80474,0,3351968,22436,0,87duJEtkLs4,https://www.youtube.com/watch?v=87duJEtkLs4,"Amazing Silk Preparation Complete Process Using Silkworm #shorts — SILK PEPERATION: Khargram, Murshidabad, West Bengal (India) 
+
+Hope You Guyz Enjoyed This Video Make Sure You Subscribe Our YouTube Channel Thank You.
+
+Su",85,240638320,2160,2831039,61688,779007,3872282,72394984,128528750,52,34,19,7,0,6150727,56178,0,3351968,22436,0,87duJEtkLs4,https://www.youtube.com/watch?v=87duJEtkLs4,"Amazing Silk Preparation Complete Process Using Silkworm #shorts — SILK PEPERATION: Khargram, Murshidabad, West Bengal (India) 
+
+Hope You Guyz Enjoyed This Video Make Sure You Subscribe Our YouTube Channel Thank You.
+
+Su",140,341264967,2605,2437607,85836,1031633,5009059,50847546,128528750,83,58,35,16,0,8343676,79153,0,3351968,22436,0,87duJEtkLs4,https://www.youtube.com/watch?v=87duJEtkLs4,"Amazing Silk Preparation Complete Process Using Silkworm #shorts — SILK PEPERATION: Khargram, Murshidabad, West Bengal (India) 
+
+Hope You Guyz Enjoyed This Video Make Sure You Subscribe Our YouTube Channel Thank You.
+
+Su",7,4622106,3121,660301,110038,1875362,3135929,4144383,4396496,5,3,2,1,0,38943,1321,0,37464,1236,0,nGWYimEZOrA,https://www.youtube.com/watch?v=nGWYimEZOrA,"Korean Traditional Silk Master. Process of Making Silk From Cocoon — 👀 Product in Video : https://bit.ly/3KBvhFj
+__
+📧 Contact : allprocessofworld@gmail.com
+
+🎥 Copyright(C) 2020. All process of world. all rights reserved.",0.5782,0.9524,0.0476,0.6957,0.9866,0.0134,low,high_20_40pct_reach,7.108046,top_20pct_reach,6.991169,top_20pct_reach,7.108927,True,1
+22,南音,Nanyin,RL,表演艺术(音乐),71,61,16,"{""sample_limit_reached"": 148}",148,148,3715470,483,25105,1192,4961,10974,792047,1936552,44,8,2,2,0,46758,2881,0,33622,1874,0,kRv8KXkf03E,https://www.youtube.com/watch?v=kRv8KXkf03E,Nan Yon Nway Nicko G Feat  @Pipitipamigranyo2103  Officiel Vidéo — ,71,182999,672,2577,1332,3721,8741,44128,51986,24,3,0,0,0,2202,134,0,475,38,0,mMX2_3gHALE,https://www.youtube.com/watch?v=mMX2_3gHALE,"心水南音EnjoyNanyin - 《风打梨 FunPear》 Official MV — 【风打梨FunPear】
+
+🍐「心水南音」首支单曲《风打梨》
+🍐已于12月10号全网上线
+🍐欢迎大家前往收听！
+
+在传统南音琵琶、洞箫的基础上
+搭配静音尼龙弦吉他，Cajon鼓
+将经典曲目《风打梨》结合现代流行乐
+以全新风貌的音乐制作理念进行编曲
+
+作为「心水南音」首支单曲
+制作人R2选择在泉州建于道光十三年的古厝
+进行人声与器乐同期录制
+身临其",132,1760238,481,13335,1113,3669,10327,84729,1406247,38,7,1,1,0,12688,989,0,8557,730,0,9Ai9WJcENAU,https://www.youtube.com/watch?v=9Ai9WJcENAU,"Nanyini Bulamu By Pastor Wilson Bugembe ft Nicole — Nanyini Bulamu By Pastor Wilson Bugembe ft Nicole Welcome to Pastor Wilson Bugembe's Official Channel
+Experience upliftig gospel music, inspiring sermons and messages o",16,1955232,507,122202,1474,6024,488872,1647016,1936552,6,1,1,1,0,34070,1892,0,33622,1874,0,kRv8KXkf03E,https://www.youtube.com/watch?v=kRv8KXkf03E,Nan Yon Nway Nicko G Feat  @Pipitipamigranyo2103  Officiel Vidéo — ,0.4797,0.8919,0.1081,0.0493,0.4738,0.5262,high,bottom_10pct_reach,5.018764,lower_70_90pct_reach,4.164601,lower_70_90pct_reach,4.850571,True,1
+23,南京云锦织造技艺,Craftsmanship of Nanjing Yunjin brocade,RL,传统手工艺,62,55,32,"{""sample_limit_reached"": 149}",149,149,5764367,284,38687,1090,6725,10077,624747,3804841,39,8,5,1,0,116567,1435,0,64513,559,0,KBPIqIvdvys,https://www.youtube.com/watch?v=KBPIqIvdvys,"🪶Royal Ancient Craft｜Making Precious Yunjin With Blue Peacock Feathers 🇨🇳 — 🦚 Step into the stunning traditional Chinese craft of Nanjing Yunjin today!
+One of China’s most luxurious ancient brocades, Yunjin is world-famo",62,78944,202,1273,683,1758,5294,17646,30779,9,1,0,0,0,1018,27,0,357,11,0,xyyQzyvJkgg,https://www.youtube.com/watch?v=xyyQzyvJkgg,"The craftsmanship of Nanjing Yunjin brocade — UNESCO: Representative List of the Intangible Cultural Heritage of Humanity - 2009
+URL: http://www.unesco.org/culture/ich/RL/00200
+Description: In the Chinese tradition of ",117,5044602,248,43116,976,7158,10806,530270,3804841,29,6,4,1,0,75192,888,0,64513,559,0,KBPIqIvdvys,https://www.youtube.com/watch?v=KBPIqIvdvys,"🪶Royal Ancient Craft｜Making Precious Yunjin With Blue Peacock Feathers 🇨🇳 — 🦚 Step into the stunning traditional Chinese craft of Nanjing Yunjin today!
+One of China’s most luxurious ancient brocades, Yunjin is world-famo",32,719765,292,22493,1100,2439,8425,476787,686221,10,2,1,0,0,41375,547,0,40827,529,0,_Px_J9rnd14,https://www.youtube.com/watch?v=_Px_J9rnd14,The Fabric More Expensive than Gold #learnchinese #fabric #brocade #style #fashion #clothing #dress — ,0.4161,0.7852,0.2148,0.0137,0.8751,0.1249,low,lower_70_90pct_reach,5.161327,lower_70_90pct_reach,3.91507,lower_70_90pct_reach,5.143751,False,0
+24,宣纸传统制作技艺,Traditional handicrafts of making Xuan paper,RL,传统手工艺,70,75,2,"{""sample_limit_reached"": 147}",147,147,23810616,1144,161977,7362,35622,380860,3786252,9248251,78,34,13,5,2,282923,2443,0,212173,682,0,o5BZ67LqdeY,https://www.youtube.com/watch?v=o5BZ67LqdeY,RICE PAPER CHIPS 😏 #healthyrecipes — ,70,12328419,1285,176120,7286,32504,1256226,3738311,3882133,38,15,5,4,1,34312,1117,0,10697,639,0,4E-eZxT1JL4,https://www.youtube.com/watch?v=4E-eZxT1JL4,Rice Paper Making Process. — Disclaimer: This information is taken from the internet which may or may not be true we DO OOT want to spread any fake news. The content provided by this channel is meant for EDUCATIONAL PURP,145,23806277,1144,164181,7436,36277,404067,3790421,9248251,77,34,13,5,1,282872,2443,0,212173,682,0,o5BZ67LqdeY,https://www.youtube.com/watch?v=o5BZ67LqdeY,RICE PAPER CHIPS 😏 #healthyrecipes — ,2,4339,2169,2170,3254,3905,4122,4296,4339,1,0,0,0,1,51,0,0,51,0,0,9IIg33-L8tg,https://www.youtube.com/watch?v=9IIg33-L8tg,Chinese Arts and Crafts: An Introduction to Xuanzhi — Xuanzhi is a kind of paper used by Chinese intellectuals for calligraphy and painting. The biggest Xuanzhi factory—Anhui Hongxing Xuanzhi Factory—has sent the best wo,0.4762,0.9864,0.0136,0.5178,0.9998,0.0002,low,middle_40_70pct_reach,6.042963,high_20_40pct_reach,6.012121,middle_40_70pct_reach,6.051926,True,1
+25,粤剧,Yueju opera,RL,表演艺术(戏曲),139,5,4,"{""sample_limit_reached"": 148}",148,148,32538978,19008,219858,173969,610054,1114687,2915172,4951886,114,88,48,9,1,139994,7401,0,17391,1359,0,5rgNRdbPdtg,https://www.youtube.com/watch?v=5rgNRdbPdtg,"帝女花之香夭 Fragrant Sacrifice 任白名曲Yam Kim Fei and Bak Suit Sin — This is probably the most well-known excerpt from the most-watched Cantonese Opera in the world.  I have supplied English subtitles here, hoping that those who",139,25293544,16012,181968,152532,427081,672685,2270392,4951886,107,81,43,5,0,98448,6110,0,17391,1359,0,5rgNRdbPdtg,https://www.youtube.com/watch?v=5rgNRdbPdtg,"帝女花之香夭 Fragrant Sacrifice 任白名曲Yam Kim Fei and Bak Suit Sin — This is probably the most well-known excerpt from the most-watched Cantonese Opera in the world.  I have supplied English subtitles here, hoping that those who",144,28270857,18309,196325,166443,519619,863176,2246574,4951886,111,85,46,7,0,116596,6484,0,17391,1359,0,5rgNRdbPdtg,https://www.youtube.com/watch?v=5rgNRdbPdtg,"帝女花之香夭 Fragrant Sacrifice 任白名曲Yam Kim Fei and Bak Suit Sin — This is probably the most well-known excerpt from the most-watched Cantonese Opera in the world.  I have supplied English subtitles here, hoping that those who",4,4268121,606191,1067030,1651217,2493930,2774834,2999557,3055738,3,3,2,2,1,23398,917,0,15210,597,0,18AGStg08ig,https://www.youtube.com/watch?v=18AGStg08ig,萬惡淫為首－新馬師曾、任冰兒、許英秀、梁醒波、陳嘉鳴、高麗、陳錦棠 — ,0.9392,0.973,0.027,0.7773,0.8688,0.1312,low,middle_40_70pct_reach,6.253819,high_20_40pct_reach,6.134087,high_20_40pct_reach,6.191768,True,1
+26,格萨(斯)尔史诗传统,Gesar epic tradition,RL,口头传统/史诗,116,30,3,"{""sample_limit_reached"": 149}",149,149,812225,1031,5451,3043,7584,12091,129876,219073,75,9,2,0,1,4772,395,0,405,82,0,qmadIEqbWZs,https://www.youtube.com/watch?v=qmadIEqbWZs,"[Epic of King Gesar 101] Quick questions about the Epic of King Gesar — King Gesar is a legendary hero in 11th century Tibet. The Epic of King Gesar is the longest epic in the world, and is known as ""Orient Illiad"". It's",116,760949,1085,6560,3250,8058,15086,188901,219073,61,9,2,0,1,3613,285,0,368,33,0,qmadIEqbWZs,https://www.youtube.com/watch?v=qmadIEqbWZs,"[Epic of King Gesar 101] Quick questions about the Epic of King Gesar — King Gesar is a legendary hero in 11th century Tibet. The Epic of King Gesar is the longest epic in the world, and is known as ""Orient Illiad"". It's",146,807168,910,5529,3099,7667,12212,135242,219073,72,9,2,0,1,4665,394,0,405,82,0,qmadIEqbWZs,https://www.youtube.com/watch?v=qmadIEqbWZs,"[Epic of King Gesar 101] Quick questions about the Epic of King Gesar — King Gesar is a legendary hero in 11th century Tibet. The Epic of King Gesar is the longest epic in the world, and is known as ""Orient Illiad"". It's",3,5057,1133,1686,2012,2539,2714,2855,2890,3,0,0,0,0,107,1,0,74,1,0,L_WHUhcBvv8,https://www.youtube.com/watch?v=L_WHUhcBvv8,"People of Ewenki ethnic group attend Naadam Fair in Inner Mongolia, China — Dressed in traditional costumes, people of the Ewenki ethnic group attended the annual #Naadam Fair in Inner Mongolia, #China.",0.7785,0.9799,0.0201,0.9369,0.9938,0.0062,low,bottom_10pct_reach,4.613092,lower_70_90pct_reach,4.636816,bottom_10pct_reach,4.613656,True,1
+27,龙泉青瓷传统烧制技艺,Traditional firing technology of Longquan celadon,RL,传统手工艺,97,13,9,"{""exhausted"": 119}",0,119,3254543,619,27349,6504,25000,50492,742633,865572,50,24,5,0,1,70082,1715,0,19328,657,0,XJ537B0903c,https://www.youtube.com/watch?v=XJ537B0903c,"Ultimate Factory Unveils Longquan celadon: The Unknown Story of Ancient Green Treasures — 00:00 Highlights                                   
+00:25 Making Clay for Ceramics
+02:51 Ceramic Forming Process
+06:51 Ceramic Bis",97,3191221,543,32899,9805,28269,95195,810734,865572,40,23,5,0,0,68989,1681,0,19328,657,0,XJ537B0903c,https://www.youtube.com/watch?v=XJ537B0903c,"Ultimate Factory Unveils Longquan celadon: The Unknown Story of Ancient Green Treasures — 00:00 Highlights                                   
+00:25 Making Clay for Ceramics
+02:51 Ceramic Forming Process
+06:51 Ceramic Bis",110,3233341,562,29394,7064,27102,56022,775541,865572,46,24,5,0,0,69654,1709,0,19328,657,0,XJ537B0903c,https://www.youtube.com/watch?v=XJ537B0903c,"Ultimate Factory Unveils Longquan celadon: The Unknown Story of Ancient Green Treasures — 00:00 Highlights                                   
+00:25 Making Clay for Ceramics
+02:51 Ceramic Forming Process
+06:51 Ceramic Bis",9,21202,793,2356,2773,6962,7579,8073,8196,4,0,0,0,1,428,6,0,266,3,0,lWSSk4-yKT8,https://www.youtube.com/watch?v=lWSSk4-yKT8,"Com um olhar, vê tesouros do mar. Jovem pobre ganha Tridente do Rei dos Mares e fica rico. — #masculino #extraordinário #contraataque #dramafresco#multisub #contra #sistema 
+Du Hai ganha poder do Tridente e olhos que vee",0.8151,0.9244,0.0756,0.9805,0.9935,0.0065,low,lower_70_90pct_reach,5.190778,middle_40_70pct_reach,5.284177,lower_70_90pct_reach,5.205582,True,1
+28,热贡艺术,Regong arts,RL,传统手工艺/宗教艺术,4,158,115,"{""exhausted"": 139, ""sample_limit_reached"": 138}",138,277,797324594,1445,2878428,15237,1839156,7471348,50196377,273836318,158,83,45,34,1,17902098,189302,0,3434411,67189,0,zNIc0WipriU,https://www.youtube.com/watch?v=zNIc0WipriU,"CD-R se Amazing Painting, #noorjahanartist #art #drawing #painting — ",4,10170,483,2542,2659,6389,7632,8626,8875,1,0,0,0,0,317,15,0,250,14,0,kCBCpgvv8L4,https://www.youtube.com/watch?v=kCBCpgvv8L4,A man who collects the world’s most precious thangka paintings — Thangka is a Tibetan word which roughly translates as “recorded message”. A thangka is a scroll painting on a religious theme presented on colored satin. I,162,4536271,1232,28002,5338,19021,28079,595156,2270954,91,28,2,2,0,91320,2827,0,61266,1497,0,Qcx-0bv8Eks,https://www.youtube.com/watch?v=Qcx-0bv8Eks,"獄霸羞辱新來的19歲女囚犯，眾人等著看笑話，殊不知女孩竟是功夫高手！一腳廢了他的子孫根展現真實實力，從此逆襲人生！#女帝归来 — 该剧本頻道已獲授權， 切勿盜用，盜用後果自負
+
+  歡迎訂閱@燚棠短剧NO1SHORTFILM觀賞更多精彩影集 
+#ChineseFilm#Chinesemovie#中國電視劇#出色中國電影#好看中國電影#甜寵愛情電影#大陸情感劇#愛情#伦理#甜寵愛情劇 #霸道總裁#Shortdramas #DramaSho",115,792788323,7227,6893812,1352746,9944523,36246658,90027634,273836318,67,55,43,32,1,17810778,186475,0,3434411,67189,0,zNIc0WipriU,https://www.youtube.com/watch?v=zNIc0WipriU,"CD-R se Amazing Painting, #noorjahanartist #art #drawing #painting — ",0.0144,0.5848,0.4152,0.0,0.0057,0.9943,high,top_20pct_reach,7.375036,bottom_10pct_reach,3.551164,lower_70_90pct_reach,5.205737,True,-4
+29,藏戏,Xizang opera,RL,表演艺术(戏曲),119,5,20,"{""sample_limit_reached"": 144}",144,144,104153749,2334,723290,13382,183996,2301268,14856323,44757513,102,41,16,9,0,2150932,42954,0,659867,21394,0,386e2AK-CRI,https://www.youtube.com/watch?v=386e2AK-CRI,"Faith #tibet #tibetan #faith #love — Tibetan kowtow is an important practice in Tibetan Buddhism and a highly symbolic religious behavior in Tibetan culture.
+The unity of body, speech and mind: The action of kowtow (putt",119,2440978,1686,20512,5046,19679,42754,265255,1257052,79,21,3,1,0,32407,1096,0,17659,483,0,q_5MSSu2cMQ,https://www.youtube.com/watch?v=q_5MSSu2cMQ,"Yongji, the most infulential Tibetan dancer — Chinese traditional dance, beautiful Tibetan song, beautiful Tibetan woman, Taiwan traditional dance, Tibetan women dancing, Chinese Tibetan dance, Tibetan solo dance, Tibeta",124,16800077,1780,135484,5992,22375,44038,1031764,14306685,83,25,4,2,0,131199,6574,0,98033,5431,0,jJfCI3FL9WI,https://www.youtube.com/watch?v=jJfCI3FL9WI,"alan 阿蘭 - ‘青藏高原(藏/漢語版)’ ｜ Tibetan Plateau (Tibetan＆Chinese version) @2020環球綜藝秀 — alan阿蘭於2020年環球綜藝秀演唱新編曲 藏語+漢語版《青藏高原》
+
+
+Special thanks to Miu for editing and processing videos. @floyd_canvas_miu 
+
+
+
+
+
+更多資訊請關注阿蘭官方社群帳號
+Yout",20,87353672,595948,4367684,3206537,10465571,16745291,39155068,44757513,19,16,12,7,0,2019733,36380,0,659867,21394,0,386e2AK-CRI,https://www.youtube.com/watch?v=386e2AK-CRI,"Faith #tibet #tibetan #faith #love — Tibetan kowtow is an important practice in Tibetan Buddhism and a highly symbolic religious behavior in Tibetan culture.
+The unity of body, speech and mind: The action of kowtow (putt",0.8264,0.8611,0.1389,0.0234,0.1613,0.8387,high,middle_40_70pct_reach,6.686093,middle_40_70pct_reach,5.13657,middle_40_70pct_reach,5.655207,False,0
+30,玛纳斯,Manas,RL,口头传统/史诗,20,42,77,"{""sample_limit_reached"": 139}",139,139,2670119172,669968,19209490,12416560,31453360,85158438,214913061,759069202,94,82,76,65,0,40430270,239613,0,9409423,96606,0,kxgEBpTEqtE,https://www.youtube.com/watch?v=kxgEBpTEqtE,Yes！successfully completed the water ninja#stunt #extremesports #parkour #funny #pov #waterpark — ,20,113260,170,5663,953,1964,9433,83324,101797,5,1,1,0,0,1267,209,0,1115,198,0,mMJfMtC7IqE,https://www.youtube.com/watch?v=mMJfMtC7IqE,Central Asia: The Land of Manas-Kyrgyztan (Full Movie) — ,62,38190344,306,615973,1317,27410,100869,14567696,28716715,20,8,4,3,0,160317,2070,0,103229,1739,0,pr82EjaFzrk,https://www.youtube.com/watch?v=pr82EjaFzrk,"ramayan 💕 ramanand sagar all episodes || ramayan story in englis 🥰 — ramayan 💕 ramanand sagar all episodes || ramayan story in englis 🥰
+
+
+
+shri ram charit manas song
+srimad ramayana full episodes
+ram charit manas katha
+t",77,2631928828,9072733,34180894,23829316,82853123,131583178,362783939,759069202,74,74,72,62,0,40269953,237543,0,9409423,96606,0,kxgEBpTEqtE,https://www.youtube.com/watch?v=kxgEBpTEqtE,Yes！successfully completed the water ninja#stunt #extremesports #parkour #funny #pov #waterpark — ,0.1439,0.446,0.554,0.0,0.0143,0.9857,high,top_20pct_reach,8.039571,lower_70_90pct_reach,4.191723,middle_40_70pct_reach,5.966524,True,-3
+31,蒙古族呼麦,"Mongolian art of singing, Khoomei",RL,表演艺术(音乐),132,80,168,"{""exhausted"": 100, ""sample_limit_reached"": 280}",280,287,363381289,4757,1266137,186772,1873864,4678561,15446803,124010688,187,120,84,39,0,9088729,411639,0,1632387,152990,0,jM8dCGIm6yc,https://www.youtube.com/watch?v=jM8dCGIm6yc,"The HU - Wolf Totem (Official Music Video) — Official music video for 'Wolf Totem' by The HU.
+The Hu Live At Glastonbury here: https://thehu.ffm.to/liveatglastonbury
+Get your tickets here:https://thehu.ffm.to/tour
+Stream",117,48078106,749,410924,6285,77079,358754,2870270,39369379,53,22,11,5,0,1550938,73422,0,1305418,61798,0,p_5yt5IX38I,https://www.youtube.com/watch?v=p_5yt5IX38I,"Chinggis khaanii Magtaal - Batzorig Vaanchig — Dear friends,
+
+Please consider supporting me on my Patreon https://www.patreon.com/batzorigvaanchig so I can continue to make beautiful music 🎼 for you and show your my beau",177,94178420,1475,532081,16310,216525,1227032,12311245,39369379,98,49,26,12,0,3724589,117311,0,1305418,61798,0,p_5yt5IX38I,https://www.youtube.com/watch?v=p_5yt5IX38I,"Chinggis khaanii Magtaal - Batzorig Vaanchig — Dear friends,
+
+Please consider supporting me on my Patreon https://www.patreon.com/batzorigvaanchig so I can continue to make beautiful music 🎼 for you and show your my beau",113,269460671,130995,2384608,904512,3989486,8009638,15972786,124010688,92,74,60,27,0,5370222,294541,0,1632387,152990,0,jM8dCGIm6yc,https://www.youtube.com/watch?v=jM8dCGIm6yc,"The HU - Wolf Totem (Official Music Video) — Official music video for 'Wolf Totem' by The HU.
+The Hu Live At Glastonbury here: https://thehu.ffm.to/liveatglastonbury
+Get your tickets here:https://thehu.ffm.to/tour
+Stream",0.4077,0.6167,0.3937,0.1323,0.2592,0.7415,high,high_20_40pct_reach,7.1423,high_20_40pct_reach,6.259811,top_20pct_reach,6.584151,False,0
+32,花儿,Hua'er,RL,表演艺术(民歌),238,75,111,"{""sample_limit_reached"": 424}",424,359,352841359,1020,982845,13752,1162018,2689931,32173995,56091779,180,98,64,40,1,5721790,65948,0,1751366,25743,0,9sekgEXGm-E,https://www.youtube.com/watch?v=9sekgEXGm-E,"Coke Studio Season 10| Faasle| Kaavish & Quratulain Balouch — Coke Studio Season 10| Episode 2
+Produced & Directed by Strings
+Music Directed by Jaffer Zaidi
+Composed by Jaffer Zaidi
+Lyrics by Jaffer Zaidi
+
+A masterfully ",198,11329272,929,57219,5286,27751,71894,880006,6317417,98,39,10,2,1,54942,2149,0,18057,675,0,dtZy312HJbM,https://www.youtube.com/watch?v=dtZy312HJbM,"【纯享】《#我等到花儿也谢了》#A-Lin 黄丽玲  灵魂歌声超催泪 每一帧都是绝望美学的声带暴击 | 我是歌手3 | I AM A SINGER 3 | MangoTV Music — 【 欢迎订阅歌手官方音乐频道:  https://goo.gl/zWxtx8 】
+
+《我是歌手第三季》是湖南卫视推出的歌唱真人秀节目，古巨基、孙楠等担任主持人，节目每期邀请专业歌手之间进行歌唱竞赛，首发歌手为韩红、孙楠、张靓颖、黄丽玲、古巨基、胡彦斌、",250,12817778,571,51271,3404,21048,59914,1131259,6317417,109,40,11,3,1,116818,3675,0,61266,1497,0,dtZy312HJbM,https://www.youtube.com/watch?v=dtZy312HJbM,"【纯享】《#我等到花儿也谢了》#A-Lin 黄丽玲  灵魂歌声超催泪 每一帧都是绝望美学的声带暴击 | 我是歌手3 | I AM A SINGER 3 | MangoTV Music — 【 欢迎订阅歌手官方音乐频道:  https://goo.gl/zWxtx8 】
+
+《我是歌手第三季》是湖南卫视推出的歌唱真人秀节目，古巨基、孙楠等担任主持人，节目每期邀请专业歌手之间进行歌唱竞赛，首发歌手为韩红、孙楠、张靓颖、黄丽玲、古巨基、胡彦斌、",109,340023581,65059,3119482,1270975,4711216,17370725,47656911,56091779,71,58,53,37,0,5604972,62273,0,1751366,25743,0,9sekgEXGm-E,https://www.youtube.com/watch?v=9sekgEXGm-E,"Coke Studio Season 10| Faasle| Kaavish & Quratulain Balouch — Coke Studio Season 10| Episode 2
+Produced & Directed by Strings
+Music Directed by Jaffer Zaidi
+Composed by Jaffer Zaidi
+Lyrics by Jaffer Zaidi
+
+A masterfully ",0.5515,0.6964,0.3036,0.0321,0.0363,0.9637,high,high_20_40pct_reach,6.973133,middle_40_70pct_reach,5.633062,middle_40_70pct_reach,5.627898,True,-1
+33,中国朝鲜族农乐舞,Farmers' dance of China's Korean ethnic group,RL,表演艺术(舞蹈),9,34,103,"{""sample_limit_reached"": 146}",146,146,351501557,530,2407545,3822,404730,2450607,58222073,181466138,60,24,18,13,0,11820632,79300,0,8200186,42145,0,2_FuN1tV19Q,https://www.youtube.com/watch?v=2_FuN1tV19Q,"Mayyas 🤩 Sofia Vergara's Golden Buzzer #agt #shorts — AGT winners Mayyas received the Golden Buzzer from Sofia Vergara! We'll never forget this amazing audition.
+
+» Get The America's Got Talent App: http://bit.ly/AGTAppD",9,14930,553,1659,929,3869,6581,8751,9293,2,0,0,0,0,169,14,0,58,7,0,55M0kqCD1E4,https://www.youtube.com/watch?v=55M0kqCD1E4,"Farmers dance of Chinas Korean ethnic group — UNESCO: Representative List of the Intangible Cultural Heritage of Humanity - 2009
+URL: http://www.unesco.org/culture/ich/RL/00213
+Description: Gathering in fields or villa",43,78595,410,1828,1254,4972,8974,15534,19704,12,1,0,0,0,891,56,0,229,9,0,d5CJ47R9bxo,https://www.youtube.com/watch?v=d5CJ47R9bxo,"哈哈哈哈哈S6 EP10完整版：鹿晗转圈晕到“走回北京” 韩庚一字马劈到2米1  #哈哈哈哈哈6 #HAHAHAHAHA6 | iQIYI潮综艺 #邓超 #陈赫 #鹿晗 #范志毅 #王勉 — 🖐👆《哈哈哈哈哈6》来溜一下！4月11日起每周六周日12：00免费正片上线！
+
+😄Chapter章节
+00:00 片头
+13:44 转圈跳高
+48:06 反应力游戏烧干CPU
+1:12:28 劈叉量腿长
+1:46:48 笔帽挑战
+2:05:47 瓶",103,351422962,569,3411873,7982,1270115,3713872,77211048,181466138,48,23,18,13,0,11819741,79244,0,8200186,42145,0,2_FuN1tV19Q,https://www.youtube.com/watch?v=2_FuN1tV19Q,"Mayyas 🤩 Sofia Vergara's Golden Buzzer #agt #shorts — AGT winners Mayyas received the Golden Buzzer from Sofia Vergara! We'll never forget this amazing audition.
+
+» Get The America's Got Talent App: http://bit.ly/AGTAppD",0.0616,0.2945,0.7055,0.0,0.0002,0.9998,high,high_20_40pct_reach,7.006955,bottom_10pct_reach,3.590997,bottom_10pct_reach,3.955868,True,-3
+34,中国书法,Chinese calligraphy,RL,传统手工艺/视觉艺术,126,4,2,"{""sample_limit_reached"": 132}",132,132,29394125,20224,222683,108848,662514,1110378,2948178,4068005,126,82,36,9,0,497665,17050,0,111084,5409,0,u4NymUSXVBI,https://www.youtube.com/watch?v=u4NymUSXVBI,"They Thought Chinese Calligraphy Was Simple... But It Wasn't Easy! 😨 — #factsdastan #dastan #facts
+
+Facts Dastan - Here you will find amazing videos & everything.
+
+Join the channel membership and get priority responses t",126,25339037,18987,201103,102565,552495,1077316,2526130,4068005,120,77,33,8,0,369851,10927,0,62811,1793,0,u4NymUSXVBI,https://www.youtube.com/watch?v=u4NymUSXVBI,"They Thought Chinese Calligraphy Was Simple... But It Wasn't Easy! 😨 — #factsdastan #dastan #facts
+
+Facts Dastan - Here you will find amazing videos & everything.
+
+Join the channel membership and get priority responses t",130,28478518,19209,219066,102565,688897,1115609,2955755,4068005,124,80,34,9,0,482900,16474,0,111084,5409,0,u4NymUSXVBI,https://www.youtube.com/watch?v=u4NymUSXVBI,"They Thought Chinese Calligraphy Was Simple... But It Wasn't Easy! 😨 — #factsdastan #dastan #facts
+
+Facts Dastan - Here you will find amazing videos & everything.
+
+Join the channel membership and get priority responses t",2,915607,457803,457804,497883,521931,529947,536360,537963,2,2,2,0,0,14765,576,0,12686,485,0,EQfFPS2uyzU,https://www.youtube.com/watch?v=EQfFPS2uyzU,How to write and in Chinese language handwriting | learn Chinese handwriting practice for beginners — ,0.9545,0.9848,0.0152,0.862,0.9689,0.0311,low,middle_40_70pct_reach,6.208503,high_20_40pct_reach,6.177671,high_20_40pct_reach,6.201994,True,1
+35,中国篆刻,Art of Chinese seal engraving,RL,传统手工艺,271,15,9,"{""sample_limit_reached"": 295}",295,251,44404227,361,176909,4067,18825,48098,6665100,14664327,89,47,11,5,1,1003918,2727,0,225729,507,0,Ykv0Ulx6kNM,https://www.youtube.com/watch?v=Ykv0Ulx6kNM,The art of Chinese seal engraving#sculpture #art — ,227,38579585,293,169954,2181,15292,33270,7288177,14664327,74,37,7,4,1,808365,1928,0,225729,507,0,Ykv0Ulx6kNM,https://www.youtube.com/watch?v=Ykv0Ulx6kNM,The art of Chinese seal engraving#sculpture #art — ,242,39413058,360,162864,3814,17516,34886,6898754,14664327,84,44,9,4,1,824319,2301,0,225729,507,0,Ykv0Ulx6kNM,https://www.youtube.com/watch?v=Ykv0Ulx6kNM,The art of Chinese seal engraving#sculpture #art — ,9,4991169,1444,554574,16302,1464880,2825863,3914649,4186846,5,3,2,1,0,179599,426,0,166185,375,0,uhaQeAWiOaE,https://www.youtube.com/watch?v=uhaQeAWiOaE,Carving Super Mario in stone.  #seal #asmr #satisfying — Carving Super Mario in stone.  #seal #asmr #satisfying,0.9044,0.9641,0.0359,0.8688,0.8876,0.1124,low,middle_40_70pct_reach,5.856517,high_20_40pct_reach,5.76151,middle_40_70pct_reach,5.781659,True,1
+36,中国剪纸,Chinese paper-cut,RL,传统手工艺,284,3,1,"{""sample_limit_reached"": 288}",288,268,12631302,638,47132,2828,22497,73717,989985,6478355,116,38,11,3,0,123342,2512,0,45823,1638,0,Rz-VExRz2yo,https://www.youtube.com/watch?v=Rz-VExRz2yo,"Paper Cutting Snowflake For Christmas | DIY Paper Christmas Decorations | Easy Paper Crafts — Paper Cutting Snowflake For Christmas | DIY Paper Christmas Decorations | Easy Paper Crafts.
+Today i will show you how to make",265,12616955,630,47611,2785,22639,74695,999385,6478355,114,37,11,3,0,123145,2512,0,45823,1638,0,Rz-VExRz2yo,https://www.youtube.com/watch?v=Rz-VExRz2yo,"Paper Cutting Snowflake For Christmas | DIY Paper Christmas Decorations | Easy Paper Crafts — Paper Cutting Snowflake For Christmas | DIY Paper Christmas Decorations | Easy Paper Crafts.
+Today i will show you how to make",267,12630739,646,47306,2870,22545,74043,993118,6478355,116,38,11,3,0,123332,2512,0,45823,1638,0,Rz-VExRz2yo,https://www.youtube.com/watch?v=Rz-VExRz2yo,"Paper Cutting Snowflake For Christmas | DIY Paper Christmas Decorations | Easy Paper Crafts — Paper Cutting Snowflake For Christmas | DIY Paper Christmas Decorations | Easy Paper Crafts.
+Today i will show you how to make",1,563,563,563,563,563,563,563,563,0,0,0,0,0,10,0,0,10,0,0,ZJDaNp2siX0,https://www.youtube.com/watch?v=ZJDaNp2siX0,Hướng dẫn cách cắt chữ Trung Quốc treo tết — ,0.9888,0.9963,0.0037,0.9989,1.0,0.0,low,lower_70_90pct_reach,5.659369,middle_40_70pct_reach,5.661199,middle_40_70pct_reach,5.660033,True,1
+37,中国传统木结构建筑营造技艺,Chinese traditional architectural craftsmanship for timber-framed structures,RL,传统手工艺/建筑,82,139,62,"{""sample_limit_reached"": 283}",283,252,298422787,524,1184217,5448,35497,79489,29791013,121921385,104,56,12,3,2,3735260,15790,0,1678217,8027,0,8PHCaWhfwtE,https://www.youtube.com/watch?v=8PHCaWhfwtE,Design of solid wood inverted folding bookshelf #furnituredesign #interiordesign #home#furniture — Welcome to subscribe to our channel to see more classic designs.,78,1787087,321,22911,1025,16793,33562,707804,785708,21,10,3,0,0,18670,1775,0,9990,191,0,Ytlptt9I8g4,https://www.youtube.com/watch?v=Ytlptt9I8g4,"This Ancient string line tool Built China’s Architecture 2,000 Years Ago#handmade — This video shows how @冷耀辉 recreates one of the oldest tools in Chinese carpentry—the string line tool, invented by the legendary Lu Ban ",199,3503585,364,17606,1927,28757,66480,247286,785708,68,36,8,0,2,47343,2461,0,9990,191,0,Ytlptt9I8g4,https://www.youtube.com/watch?v=Ytlptt9I8g4,"This Ancient string line tool Built China’s Architecture 2,000 Years Ago#handmade — This video shows how @冷耀辉 recreates one of the oldest tools in Chinese carpentry—the string line tool, invented by the legendary Lu Ban ",53,294919202,4686,5564513,19186,60749,24117201,116891572,121921385,36,20,4,3,0,3687917,13329,0,1678217,8027,0,8PHCaWhfwtE,https://www.youtube.com/watch?v=8PHCaWhfwtE,Design of solid wood inverted folding bookshelf #furnituredesign #interiordesign #home#furniture — Welcome to subscribe to our channel to see more classic designs.,0.3095,0.7897,0.2103,0.006,0.0117,0.9883,high,middle_40_70pct_reach,6.409911,middle_40_70pct_reach,5.011561,middle_40_70pct_reach,5.253,False,0
+38,端午节,Dragon Boat festival,RL,节庆民俗,245,17,4,"{""sample_limit_reached"": 266}",266,257,78825711,1275,306715,8088,94951,238065,13405195,21373698,144,62,26,5,2,1118306,26685,0,395877,14016,0,vusE2HqaAEY,https://www.youtube.com/watch?v=vusE2HqaAEY,"Dragon boat zongzi~龙舟枕头粽，端午记得回家吃粽子 丨Liziqi Channel — Please  subscribe to 【李子柒 Liziqi 】Liziqi Channel on YouTube if you like my videos: https://goo.gl/nkjpSx 
+#liziqi #李子柒 #lýtửthất #liziqicooking #李子柒粽子 #李子柒端午节 #cnliziq",237,56333109,1120,237692,6523,41519,167160,8389600,21373698,127,51,18,4,2,826369,19217,0,395877,14016,0,vusE2HqaAEY,https://www.youtube.com/watch?v=vusE2HqaAEY,"Dragon boat zongzi~龙舟枕头粽，端午记得回家吃粽子 丨Liziqi Channel — Please  subscribe to 【李子柒 Liziqi 】Liziqi Channel on YouTube if you like my videos: https://goo.gl/nkjpSx 
+#liziqi #李子柒 #lýtửthất #liziqicooking #李子柒粽子 #李子柒端午节 #cnliziq",253,58907676,1252,232837,8055,74028,216307,7212285,21373698,141,60,24,4,2,858105,20804,0,395877,14016,0,vusE2HqaAEY,https://www.youtube.com/watch?v=vusE2HqaAEY,"Dragon boat zongzi~龙舟枕头粽，端午记得回家吃粽子 丨Liziqi Channel — Please  subscribe to 【李子柒 Liziqi 】Liziqi Channel on YouTube if you like my videos: https://goo.gl/nkjpSx 
+#liziqi #李子柒 #lýtửthất #liziqicooking #李子柒粽子 #李子柒端午节 #cnliziq",4,19918035,212157,4979509,5189701,13771694,16632359,18920890,19493023,3,2,2,1,0,260201,5881,0,258006,5790,0,BL04tuS3uD4,https://www.youtube.com/watch?v=BL04tuS3uD4,"Boat Kid Out Here FARMING AURA 🔥 — Boat Kid Out Here FARMING AURA 🔥
+Song: Melly Mike Young Black & Rich From Selfish Nightmares Album
+Video By: @vibecreatorsrecords 
+
+Lyrics
+THIS KID IS GOING VIRAL FOR HIS WILD MOVES DUR",0.9222,0.9844,0.0156,0.7147,0.7473,0.2527,medium,middle_40_70pct_reach,6.25479,high_20_40pct_reach,6.134716,high_20_40pct_reach,6.192606,True,1
+39,妈祖信俗,Mazu belief and customs,RL,民俗信仰,130,3,7,"{""sample_limit_reached"": 140}",140,140,45491409,3966,324939,109192,237396,1056252,6158034,14689305,105,57,36,8,0,434706,20139,0,245333,9656,0,yd-L47K2luA,https://www.youtube.com/watch?v=yd-L47K2luA,"草屯囝仔 Caotun Boyz - 媽祖 Mazu (Official Music Video) — 草屯囝仔 - 媽祖 Mazu
+
+#天上聖母 #千里眼順風耳 #慈悲為懷
+
+詞 Lyricist | 陳樞育、李明倉
+曲 Composer | 陳樞育、李明倉
+編曲：Huangfu
+製作人：G.K. 高偉庭
+影像：沈皇名
+
+
+『你親像阮欸媽媽 拄著困難提醒著我。』
+從小聽長輩講著媽祖生平的故事，在大家小巷裡任何人都耳熟
+能響在我們的眼裡",130,36066888,4011,277438,105059,231527,745419,4952313,14689305,98,53,33,6,0,363931,16971,0,245333,9656,0,yd-L47K2luA,https://www.youtube.com/watch?v=yd-L47K2luA,"草屯囝仔 Caotun Boyz - 媽祖 Mazu (Official Music Video) — 草屯囝仔 - 媽祖 Mazu
+
+#天上聖母 #千里眼順風耳 #慈悲為懷
+
+詞 Lyricist | 陳樞育、李明倉
+曲 Composer | 陳樞育、李明倉
+編曲：Huangfu
+製作人：G.K. 高偉庭
+影像：沈皇名
+
+
+『你親像阮欸媽媽 拄著困難提醒著我。』
+從小聽長輩講著媽祖生平的故事，在大家小巷裡任何人都耳熟
+能響在我們的眼裡",133,38900764,4024,292487,108889,234841,919131,4868824,14689305,101,55,34,7,0,378453,17596,0,245333,9656,0,yd-L47K2luA,https://www.youtube.com/watch?v=yd-L47K2luA,"草屯囝仔 Caotun Boyz - 媽祖 Mazu (Official Music Video) — 草屯囝仔 - 媽祖 Mazu
+
+#天上聖母 #千里眼順風耳 #慈悲為懷
+
+詞 Lyricist | 陳樞育、李明倉
+曲 Composer | 陳樞育、李明倉
+編曲：Huangfu
+製作人：G.K. 高偉庭
+影像：沈皇名
+
+
+『你親像阮欸媽媽 拄著困難提醒著我。』
+從小聽長輩講著媽祖生平的故事，在大家小巷裡任何人都耳熟
+能響在我們的眼裡",7,6590645,1683,941521,87094,2667766,4540341,6038401,6412916,4,2,2,1,0,56253,2543,0,46530,2121,0,c2owXuRi2A8,https://www.youtube.com/watch?v=c2owXuRi2A8,"FULL PİNK TREE HOUSE DESİNG!!!AND SAD STORY 😭🥺 — Hi☺️🌸I would redesign every room to live in this pink treehouse in Avatar World.In this video show you FULL FREE PINK TREE HOUSE and SAD STORY , ALONE LIFE ,SINGLE MOM , L",0.9286,0.95,0.05,0.7928,0.8551,0.1449,low,middle_40_70pct_reach,6.378815,top_20pct_reach,6.286877,high_20_40pct_reach,6.331475,True,2
+40,中国雕版印刷技艺,China engraved block printing technique,RL,传统手工艺,118,105,55,"{""sample_limit_reached"": 278}",278,216,281752249,1107,1304409,17670,305352,3521611,14275622,141012259,111,66,36,12,1,8715088,45405,0,6428456,14607,0,XSrolys3uqo,https://www.youtube.com/watch?v=XSrolys3uqo,Howard letterpress prints the news for our latest YouTube milestone. — We just reached a social media milestone that we never thought was achievable. The Sacramento History Museum now has over one million subscribers on ,87,20339669,491,233789,4750,68540,655994,5197564,12871284,36,18,8,2,1,456185,8367,0,391168,6474,0,SG0MdDS2WI0,https://www.youtube.com/watch?v=SG0MdDS2WI0,"（木活字）Woodblock printing, engraved with the essence of the ancient Chinese culture |Liziqi Channel — Please subscribe to 【李子柒 Liziqi 】Liziqi Channel on YouTube if you like my videos: https://goo.gl/nkjpSx 
+#李子柒#liziqi#lýt",174,50925671,778,292676,11827,136139,721731,8362421,12873947,82,45,21,6,1,1337159,20152,0,669985,6474,0,t2kwc-fk1P4,https://www.youtube.com/watch?v=t2kwc-fk1P4,"From Mud to Magic: See Ancient Printing in Action! — Before information was instant, it was intimate—shaped by the patient hand of a master craftsman who gave physical form to our thoughts.
+
+This video is a tribute to th",42,230826578,13142,5495871,181741,7339002,14170438,104202267,141012259,29,21,15,6,0,7377929,25253,0,6428456,14607,0,XSrolys3uqo,https://www.youtube.com/watch?v=XSrolys3uqo,Howard letterpress prints the news for our latest YouTube milestone. — We just reached a social media milestone that we never thought was achievable. The Sacramento History Museum now has over one million subscribers on ,0.4028,0.8056,0.1944,0.0722,0.1807,0.8193,high,high_20_40pct_reach,7.035485,high_20_40pct_reach,6.111184,high_20_40pct_reach,6.304044,False,0
+41,昆曲,Kun Qu opera,RL,表演艺术(戏曲),137,2,1,"{""sample_limit_reached"": 140}",140,140,5143973,383,36743,1873,11930,83916,1043479,1745731,47,16,7,2,0,134883,6620,0,48427,2447,0,TDD3AnPmU7o,https://www.youtube.com/watch?v=TDD3AnPmU7o,"Enjoying the classic Peking Opera 'Drunken Concubine' at Mid Autumn Festival — The Mid-Autumn Festival falls on October 1 this year, marking one of the most important and poetic Chinese festivals. People across the count",137,3315499,374,24201,1784,8620,49150,643968,1188891,45,14,6,1,0,85568,4093,0,42016,2203,0,m1GxmBsxQ1g,https://www.youtube.com/watch?v=m1GxmBsxQ1g,"【古琴GuqinX昆曲Kunqu Opera】《牡丹亭·皂罗袍》The Peony Pavilion ——Tang Xianzu, known as Oriental Shakespeare — 作曲：曲牌
+作词： [明]汤显祖
+演唱：钱瑜婷【微博@钱瑜婷sunshine】 
+古琴演奏：白无瑕【微博@古琴白无瑕】
+古琴移植：唐彬 【微博@超级唐葫芦】
+摄影/录音/混音/后期：唐彬 
+出品：自得琴社 【微信公众平台Zideqinshe】 ",139,3398242,381,24448,1824,10856,80243,634409,1188891,46,15,6,1,0,86456,4173,0,42016,2203,0,m1GxmBsxQ1g,https://www.youtube.com/watch?v=m1GxmBsxQ1g,"【古琴GuqinX昆曲Kunqu Opera】《牡丹亭·皂罗袍》The Peony Pavilion ——Tang Xianzu, known as Oriental Shakespeare — 作曲：曲牌
+作词： [明]汤显祖
+演唱：钱瑜婷【微博@钱瑜婷sunshine】 
+古琴演奏：白无瑕【微博@古琴白无瑕】
+古琴移植：唐彬 【微博@超级唐葫芦】
+摄影/录音/混音/后期：唐彬 
+出品：自得琴社 【微信公众平台Zideqinshe】 ",1,1745731,1745731,1745731,1745731,1745731,1745731,1745731,1745731,1,1,1,1,0,48427,2447,0,48427,2447,0,TDD3AnPmU7o,https://www.youtube.com/watch?v=TDD3AnPmU7o,"Enjoying the classic Peking Opera 'Drunken Concubine' at Mid Autumn Festival — The Mid-Autumn Festival falls on October 1 this year, marking one of the most important and poetic Chinese festivals. People across the count",0.9786,0.9929,0.0071,0.6445,0.6606,0.3394,medium,lower_70_90pct_reach,5.411007,middle_40_70pct_reach,5.223767,middle_40_70pct_reach,5.302022,True,1
+42,古琴艺术,Guqin and its music,RL,表演艺术(音乐),236,35,9,"{""sample_limit_reached"": 280}",280,244,310843383,12498,1273948,342773,2834263,6563214,19176461,28695108,180,124,88,41,0,5972793,155143,0,559401,16531,0,IxM1tjTvFAc,https://www.youtube.com/watch?v=IxM1tjTvFAc,"【箏鼓和鳴】權御天下 Sun Quan The Emperor (Guzheng&Drum Ver.) — Godlike I go BOOOM!
+Hope you enjoy this very Han Chinese styled music.
+Original Song: 權御天下(洛天依) - https://youtu.be/LJms1CGHjn8
+
+Credits:
+Music: 乌龟sui
+Guzheng/PV/Mixin",210,157280533,5980,748955,190606,1214137,3355791,17532412,25407032,149,98,66,25,0,3038119,79612,0,472880,16531,0,gf6v59c5yuY,https://www.youtube.com/watch?v=gf6v59c5yuY,"The Eagles - Hotel California - Reimagined on the Traditional Chinese Guzheng | Moyun — This time I will bring you a fun loop form! Different from the previous multi-part ensemble, it is possible to complete a piece of m",235,276896284,7892,1178282,287106,2538664,6211601,19137826,28695108,171,115,80,36,0,5536175,144728,0,559401,16531,0,IxM1tjTvFAc,https://www.youtube.com/watch?v=IxM1tjTvFAc,"【箏鼓和鳴】權御天下 Sun Quan The Emperor (Guzheng&Drum Ver.) — Godlike I go BOOOM!
+Hope you enjoy this very Han Chinese styled music.
+Original Song: 權御天下(洛天依) - https://youtu.be/LJms1CGHjn8
+
+Credits:
+Music: 乌龟sui
+Guzheng/PV/Mixin",9,33947099,1598277,3771900,2075164,11076377,14631711,17475978,18187045,9,9,8,5,0,436618,10415,0,260820,7880,0,GwyXQO0tSW4,https://www.youtube.com/watch?v=GwyXQO0tSW4,"Relaxing With Chinese Bamboo Flute, Guzheng, Erhu | Instrumental Music Collection — The best music of the channel, please check it out for more details
+https://www.youtube.com/watch?v=acUTQLODdxs
+
+♫ Spotify: https://spot",0.8607,0.9631,0.0369,0.506,0.8908,0.1092,low,high_20_40pct_reach,7.044881,top_20pct_reach,6.816463,top_20pct_reach,7.014842,True,1
+43,新疆维吾尔木卡姆艺术,Uyghur Muqam of Xinjiang,RL,表演艺术(音乐),72,63,2,"{""sample_limit_reached"": 137}",137,137,1133200,2518,8272,8360,24003,34717,71879,116799,99,28,1,0,0,27314,1658,0,2706,135,0,VUcNcRopfko,https://www.youtube.com/watch?v=VUcNcRopfko,Uyghur Muqam Performance (Part from Oshaq Muqam) — Uyghur muqam,72,686528,2042,9535,7053,34130,43958,94144,116799,46,14,1,0,0,9264,742,0,732,135,0,VUcNcRopfko,https://www.youtube.com/watch?v=VUcNcRopfko,Uyghur Muqam Performance (Part from Oshaq Muqam) — Uyghur muqam,135,1130695,2562,8376,8562,24990,34835,72602,116799,97,28,1,0,0,27075,1653,0,2706,135,0,VUcNcRopfko,https://www.youtube.com/watch?v=VUcNcRopfko,Uyghur Muqam Performance (Part from Oshaq Muqam) — Uyghur muqam,2,2505,1252,1252,1274,1287,1292,1295,1296,2,0,0,0,0,239,5,0,159,3,0,NguUNsxlofA,https://www.youtube.com/watch?v=NguUNsxlofA,"Uyghurum #shorts #uyghur #uyghurmusic #uigur #shortvideo #short #uyghurfood — https://www.buymeacoffee.com/uyghureyesg
+Uyghurum #shorts #uyghur #uyghurmusic #uigur #shortvideo #short #uyghurfood",0.5255,0.9854,0.0146,0.6058,0.9978,0.0022,low,bottom_10pct_reach,4.751793,middle_40_70pct_reach,4.711489,lower_70_90pct_reach,4.751973,True,2
+44,蒙古族长调民歌,"Urtiin Duu, traditional folk long song",RL,表演艺术(音乐),108,33,107,"{""exhausted"": 123, ""sample_limit_reached"": 125}",125,238,603175977,136608,2534353,1550188,8002200,12736813,38530293,67531191,190,158,125,70,10,6654469,323077,0,1357414,97199,0,EDK9KOfknTw,https://www.youtube.com/watch?v=EDK9KOfknTw,"Trio Mandili - Kakhuri — Our CD-albums are available here: https://georgianarts.com
+Become a member: https://www.youtube.com/c/TrioMandili/join
+Facebook:  https://www.facebook.com/triomandili.band",102,30638803,5591,300380,38296,707076,1164720,3771220,12846783,66,42,21,7,9,116154,8954,0,63729,2832,0,pR-CU9DKzz8,https://www.youtube.com/watch?v=pR-CU9DKzz8,"Dashnyam.E | "" Ner ugui salkhi, Gavalmaa "" | The Knock Out | The Voice of Mongolia S2 — Э.Дашням The Voice of Mongolia шоуны The Knock Out шатнаа уртын дууны уран яруу эгшгийг үзэгчдэд хүргэлээ.
+Dashnyam.E performed Mong",132,71037446,6755,538162,102119,828068,1933708,12489464,14306685,91,61,34,12,9,531674,26311,0,207795,7165,0,jJfCI3FL9WI,https://www.youtube.com/watch?v=jJfCI3FL9WI,"alan 阿蘭 - ‘青藏高原(藏/漢語版)’ ｜ Tibetan Plateau (Tibetan＆Chinese version) @2020環球綜藝秀 — alan阿蘭於2020年環球綜藝秀演唱新編曲 藏語+漢語版《青藏高原》
+
+
+Special thanks to Miu for editing and processing videos. @floyd_canvas_miu 
+
+
+
+
+
+更多資訊請關注阿蘭官方社群帳號
+Yout",106,532138531,1378982,5020175,5455506,12674824,18972892,41805884,67531191,99,97,91,58,1,6122795,296766,0,1357414,97199,0,EDK9KOfknTw,https://www.youtube.com/watch?v=EDK9KOfknTw,"Trio Mandili - Kakhuri — Our CD-albums are available here: https://georgianarts.com
+Become a member: https://www.youtube.com/c/TrioMandili/join
+Facebook:  https://www.facebook.com/triomandili.band",0.4286,0.5546,0.4454,0.0508,0.1178,0.8822,high,top_20pct_reach,7.335865,top_20pct_reach,6.299374,top_20pct_reach,6.533772,False,0
