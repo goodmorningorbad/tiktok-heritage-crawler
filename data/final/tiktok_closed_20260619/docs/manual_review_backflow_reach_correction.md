@@ -1,0 +1,75 @@
+# TikTok 人工核查回流后的触达修正（2026-06-19）
+
+> 生成时间：2026-06-19 14:21:00
+> 口径：`manual_relevance` 覆盖自动 `quality_label`；未核查视频保留自动标签；raw 不删。
+
+## 1. 回流覆盖
+
+- 人工 CSV 行数：298
+- 成功匹配 baseline URL：297
+- 未匹配 URL：1
+- 实际应用覆盖行：390
+- 其中改写自动标签：213
+- 人工相关/拿不准/不相关：51 / 13 / 326
+
+## 2. 修正后的象限分布
+
+- `stock_high__reach_high`: 7
+- `stock_high__reach_low`: 3
+- `stock_low__reach_high`: 8
+- `stock_low__reach_low`: 26
+
+## 3. 关键冲突项目确认
+
+- **麦西热甫**: manual=0相关/0拿不准/10不相关；likely_play 145,911,002 → 61,411,002；tier high_20_40pct_reach → manual_demoted_false_breakout；quadrant stock_low__reach_high → stock_low__reach_low。
+- **中国水密隔舱福船制造技艺**: manual=0相关/0拿不准/9不相关；likely_play 302,908,225 → 184,008,225；tier top_20pct_reach → manual_demoted_false_breakout；quadrant stock_low__reach_high → stock_low__reach_low。
+- **中国珠算**: manual=0相关/0拿不准/9不相关；likely_play 283,844,719 → 169,744,719；tier top_20pct_reach → manual_demoted_false_breakout；quadrant stock_low__reach_high → stock_low__reach_low。
+
+结论：麦西热甫、福船、珠算此前的“低存量高触达/小而精破圈”是典型假性高触达；抽查确认由噪声、衍生品或撞词内容撑起，应作为“看似破圈实为噪声”的方法论发现保留。
+
+珠算人工口径：UNESCO 项是“算盘被实际使用的计算实践”。判断尺子是算盘是否被拨、被用来算；拨珠运算算相关，算盘摆着/装饰/心算/闪卡/珠心算衍生训练不算。出现算盘 ≠ 使用算盘。
+
+## 4. 象限/触达档变动项目
+
+- **中国珠算**: stock_low__reach_high → stock_low__reach_low; likely_play_delta=-114,100,000
+- **麦西热甫**: stock_low__reach_high → stock_low__reach_low; likely_play_delta=-84,500,000
+- **中国水密隔舱福船制造技艺**: stock_low__reach_high → stock_low__reach_low; likely_play_delta=-118,900,000
+- **端午节**: stock_low__reach_low → stock_low__reach_high; likely_play_delta=0
+
+### Reach tier changed
+
+- **太极拳**: high_20_40pct_reach → top_20pct_reach; likely_play 248,769,168 → 248,769,168
+- **中国珠算**: top_20pct_reach → manual_demoted_false_breakout; likely_play 283,844,719 → 169,744,719
+- **赫哲族伊玛堪**: middle_40_70pct_reach → lower_70_90pct_reach; likely_play 15,530,401 → 8,230,401
+- **麦西热甫**: high_20_40pct_reach → manual_demoted_false_breakout; likely_play 145,911,002 → 61,411,002
+- **中国水密隔舱福船制造技艺**: top_20pct_reach → manual_demoted_false_breakout; likely_play 302,908,225 → 184,008,225
+- **中国木活字印刷术**: high_20_40pct_reach → top_20pct_reach; likely_play 116,544,338 → 140,944,338
+- **南音**: middle_40_70pct_reach → lower_70_90pct_reach; likely_play 18,814,705 → 14,314,705
+- **粤剧**: lower_70_90pct_reach → middle_40_70pct_reach; likely_play 13,055,989 → 40,755,989
+- **端午节**: middle_40_70pct_reach → high_20_40pct_reach; likely_play 111,202,009 → 111,202,009
+- **蒙古族长调民歌**: lower_70_90pct_reach → middle_40_70pct_reach; likely_play 7,254,977 → 153,711,277
+
+## 5. likely 触达降幅最大
+
+- **中国水密隔舱福船制造技艺**: delta=-118,900,000; reviewed=9; unrelated=9; quadrant=stock_low__reach_low
+- **中国珠算**: delta=-114,100,000; reviewed=9; unrelated=9; quadrant=stock_low__reach_low
+- **麦西热甫**: delta=-84,500,000; reviewed=10; unrelated=10; quadrant=stock_low__reach_low
+- **中医针灸**: delta=-84,000,000; reviewed=8; unrelated=5; quadrant=stock_low__reach_high
+- **龙泉青瓷传统烧制技艺**: delta=-56,400,000; reviewed=16; unrelated=10; quadrant=stock_low__reach_high
+- **中国传统木结构建筑营造技艺**: delta=-31,900,000; reviewed=13; unrelated=10; quadrant=stock_high__reach_low
+- **中国篆刻**: delta=-29,100,000; reviewed=13; unrelated=12; quadrant=stock_low__reach_low
+- **妈祖信俗**: delta=-21,400,000; reviewed=9; unrelated=9; quadrant=stock_high__reach_low
+- **送王船**: delta=-21,200,000; reviewed=10; unrelated=10; quadrant=stock_low__reach_low
+- **古琴艺术**: delta=-17,800,000; reviewed=12; unrelated=6; quadrant=stock_low__reach_high
+- **西安鼓乐**: delta=-14,200,000; reviewed=10; unrelated=10; quadrant=stock_low__reach_low
+- **宣纸传统制作技艺**: delta=-9,300,000; reviewed=10; unrelated=6; quadrant=stock_low__reach_high
+- **二十四节气**: delta=-9,200,000; reviewed=11; unrelated=11; quadrant=stock_low__reach_low
+- **赫哲族伊玛堪**: delta=-7,300,000; reviewed=10; unrelated=10; quadrant=stock_low__reach_low
+- **中国蚕桑丝织技艺**: delta=-4,800,000; reviewed=4; unrelated=4; quadrant=stock_low__reach_low
+
+## 6. 输出
+
+- `data/derived/video_relevance_labels_manual_corrected.ndjson`
+- `data/derived/manual_review_returned_applied.csv`
+- `data/derived/project_reach_manual_corrected.csv/json`
+- `data/derived/project_stock_reach_matrix_manual_corrected.csv/json`

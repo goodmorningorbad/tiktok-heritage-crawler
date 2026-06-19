@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TikTok 非遗收口数据可视化 Dashboard</title>
+<style>
+:root {
+  --bg:#f8fafc; --ink:#0f172a; --muted:#64748b; --line:#dbe3ef; --card:#ffffff;
+  --green:#1f9d7a; --blue:#3b82f6; --amber:#d88923; --red:#dc2626; --slate:#64748b;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif}
+header{padding:34px 42px 22px;background:#0f172a;color:white}
+header h1{margin:0 0 10px;font-size:30px;letter-spacing:-.02em}
+header p{margin:0;color:#cbd5e1;max-width:980px}
+main{padding:26px 42px 56px;max-width:1500px;margin:auto}
+.kpis{display:grid;grid-template-columns:repeat(5,minmax(150px,1fr));gap:14px;margin:0 0 20px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;box-shadow:0 12px 35px rgba(15,23,42,.05)}
+.kpi span{display:block;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+.kpi strong{display:block;font-size:28px;margin-top:6px}
+.section{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;margin:18px 0;box-shadow:0 14px 36px rgba(15,23,42,.05)}
+.section h2{margin:0 0 8px;font-size:21px}
+.section .note{margin:0 0 16px;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.svg-wrap{overflow:auto;border-radius:16px;border:1px solid #edf2f7;background:white;padding:6px}
+svg{max-width:100%;height:auto;display:block}
+.narrative-grid{display:grid;grid-template-columns:repeat(3,minmax(260px,1fr));gap:14px}
+.narrative{border:1px solid var(--line);border-radius:18px;padding:16px;background:#fbfdff}
+.narrative h3{margin:0 0 8px;font-size:17px}
+.narrative p{margin:0;color:#475569}
+.project-list{display:grid;grid-template-columns:repeat(4,minmax(220px,1fr));gap:12px}
+.project-card{border:1px solid var(--line);border-radius:16px;background:white;padding:13px;min-height:160px}
+.project-card h4{margin:8px 0 6px;font-size:17px}
+.project-card p{margin:0 0 12px;color:#475569;font-size:13px}
+.project-top{display:flex;gap:8px;align-items:center;justify-content:space-between;color:var(--muted);font-size:12px}
+.pill{display:inline-flex;align-items:center;border-radius:999px;padding:3px 8px;background:color-mix(in srgb,var(--c) 13%, white);color:var(--c);font-weight:700;white-space:nowrap}
+dl{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0}dt{font-size:11px;color:var(--muted)}dd{margin:0;font-weight:800}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 14px}input,select{border:1px solid var(--line);border-radius:12px;padding:9px 11px;background:white;color:var(--ink)}
+table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:white}
+th,td{padding:10px 12px;border-bottom:1px solid #eef2f7;text-align:left;vertical-align:top}th{position:sticky;top:0;background:#f8fafc;font-size:12px;color:#475569;z-index:1}td span{color:var(--muted);font-size:12px}td.num{font-variant-numeric:tabular-nums;text-align:right}tr:last-child td{border-bottom:none}
+.caveat{border-left:4px solid var(--amber);background:#fffbeb;border-radius:12px;padding:12px 14px;color:#713f12}
+@media (max-width:1100px){.kpis{grid-template-columns:repeat(2,1fr)}.grid2,.narrative-grid,.project-list{grid-template-columns:1fr}main,header{padding-left:18px;padding-right:18px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>TikTok 非遗收口数据可视化：从矩阵到叙事</h1>
+  <p>基于人工回流后的 TikTok 收口数据。目标是内部判断“哪些结论能讲、哪些必须降噪、哪些适合转化成故事线”，不是最终展示稿。</p>
+</header>
+<main>
+  <section class="kpis">
+    <div class="kpi"><span>项目总数</span><strong>44</strong></div>
+    <div class="kpi"><span>T1 规模化候选</span><strong>7</strong></div>
+    <div class="kpi"><span>T2 小众破圈</span><strong>8</strong></div>
+    <div class="kpi"><span>人工剔除假破圈</span><strong>3</strong></div>
+    <div class="kpi"><span>总 likely 播放</span><strong>5.56B</strong></div>
+  </section>
+
+  <section class="section">
+    <h2>1. 先看结构：存量 × 相关触达矩阵</h2>
+    <p class="note">气泡大小代表 TikTok 相关播放量；颜色代表最终叙事层级；黑描边代表人工确认的假破圈/强修正。</p>
+    <div class="svg-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="980" height="680" viewBox="0 0 980 680" role="img">
+<style>
+.svg-title{font:700 22px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#0f172a}
+.svg-subtitle{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#334155}
+.svg-label{font:600 14px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#334155}
+.svg-value{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#0f172a}
+.svg-axis{font:600 13px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#475569}
+.svg-small{font:12px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#334155}
+.svg-quad-label{font:700 13px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#334155}
+</style>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24" y="34" class="svg-title">TikTok 存量 × 相关触达矩阵（人工回流后）</text>
+<rect x="110" y="72" width="400.0" height="260.0" fill="#dbeafe" stroke="#cbd5e1"/>
+<text x="128" y="102" class="svg-quad-label">低存量 × 高触达：小众破圈/假亮点待辨</text>
+<rect x="510.0" y="72" width="400.0" height="260.0" fill="#dcfce7" stroke="#cbd5e1"/>
+<text x="528.0" y="102" class="svg-quad-label">高存量 × 高触达：真规模化候选</text>
+<rect x="110" y="332.0" width="400.0" height="260.0" fill="#f1f5f9" stroke="#cbd5e1"/>
+<text x="128" y="362.0" class="svg-quad-label">低存量 × 低触达：近不可见或已剔除</text>
+<rect x="510.0" y="332.0" width="400.0" height="260.0" fill="#fef3c7" stroke="#cbd5e1"/>
+<text x="528.0" y="362.0" class="svg-quad-label">高存量 × 低触达：弱外溢/国内自循环</text>
+<line x1="510.0" y1="72" x2="510.0" y2="592" stroke="#94a3b8" stroke-dasharray="5 6"/>
+<line x1="110" y1="332.0" x2="910" y2="332.0" stroke="#94a3b8" stroke-dasharray="5 6"/>
+<text x="510.0" y="645" text-anchor="middle" class="svg-axis">存量：低 → 高（hashtag videoCount 定性分档）</text>
+<text x="28" y="332.0" transform="rotate(-90 28 332.0)" text-anchor="middle" class="svg-axis">相关触达：低 → 高（likely play）</text>
+<circle cx="600.0" cy="160.0" r="25.0" fill="#1f9d7a" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>春节｜T1 规模化出海｜播放 1.19B｜噪声 0.2856</title></circle>
+<text x="629.0" y="164.0" class="svg-small">春节</text>
+<circle cx="655.0" cy="160.0" r="24.4" fill="#1f9d7a" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中国书法｜T1 规模化出海｜播放 842.2M｜噪声 0.2143</title></circle>
+<text x="683.4" y="164.0" class="svg-small">中国书法</text>
+<circle cx="710.0" cy="160.0" r="22.1" fill="#1f9d7a" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>太极拳｜T1 规模化出海｜播放 248.8M｜噪声 0.234</title></circle>
+<text x="736.1" y="164.0" class="svg-small">太极拳</text>
+<circle cx="765.0" cy="160.0" r="21.7" fill="#1f9d7a" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中国剪纸｜T1 规模化出海｜播放 205.3M｜噪声 0.4342</title></circle>
+<text x="790.7" y="164.0" class="svg-small">中国剪纸</text>
+<circle cx="820.0" cy="160.0" r="21.1" fill="#d88923" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中国传统制茶技艺及其相关习俗｜T1 噪声风险头部｜播放 143.1M｜噪声 0.5926</title></circle>
+<text x="845.1" y="164.0" class="svg-small">中国传统制茶技艺</text>
+<circle cx="600.0" cy="202.0" r="20.4" fill="#d88923" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>南京云锦织造技艺｜T1 噪声风险头部｜播放 101.8M｜噪声 0.7331</title></circle>
+<text x="624.4" y="206.0" class="svg-small">南京云锦织造技艺</text>
+<circle cx="655.0" cy="202.0" r="20.4" fill="#d88923" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>玛纳斯｜T1 噪声风险头部｜播放 101.3M｜噪声 0.711</title></circle>
+<text x="679.4" y="206.0" class="svg-small">玛纳斯</text>
+<circle cx="200.0" cy="160.0" r="22.7" fill="#3b82f6" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>京剧｜T2 小众破圈｜播放 344.4M｜噪声 0.328</title></circle>
+<text x="226.7" y="164.0" class="svg-small">京剧</text>
+<circle cx="255.0" cy="160.0" r="22.6" fill="#3b82f6" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>蒙古族呼麦｜T2 小众破圈｜播放 320.3M｜噪声 0.4802</title></circle>
+<text x="281.6" y="164.0" class="svg-small">蒙古族呼麦</text>
+<circle cx="310.0" cy="160.0" r="22.3" fill="#3b82f6" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>宣纸传统制作技艺｜T2 小众破圈｜播放 273.5M｜噪声 0.4143</title></circle>
+<text x="336.3" y="164.0" class="svg-small">宣纸传统制作技艺</text>
+<circle cx="365.0" cy="160.0" r="22.1" fill="#3b82f6" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中医针灸｜T2 小众破圈｜播放 245.2M｜噪声 0.5744</title></circle>
+<text x="391.1" y="164.0" class="svg-small">中医针灸</text>
+<circle cx="420.0" cy="160.0" r="21.1" fill="#3b82f6" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中国木活字印刷术｜T2 小众破圈｜播放 140.9M｜噪声 0.8156</title></circle>
+<text x="445.1" y="164.0" class="svg-small">中国木活字印刷术</text>
+<circle cx="200.0" cy="202.0" r="20.6" fill="#3b82f6" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>龙泉青瓷传统烧制技艺｜T2 小众破圈｜播放 112.1M｜噪声 0.5863</title></circle>
+<text x="224.6" y="206.0" class="svg-small">龙泉青瓷传统烧制</text>
+<circle cx="255.0" cy="202.0" r="20.6" fill="#3b82f6" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>端午节｜T2 小众破圈｜播放 111.2M｜噪声 0.399</title></circle>
+<text x="279.6" y="206.0" class="svg-small">端午节</text>
+<circle cx="310.0" cy="202.0" r="20.5" fill="#3b82f6" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>古琴艺术｜T2 小众破圈｜播放 106.4M｜噪声 0.5991</title></circle>
+<text x="334.5" y="206.0" class="svg-small">古琴艺术</text>
+<circle cx="600.0" cy="420.0" r="20.3" fill="#8b5cf6" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中国雕版印刷技艺｜T3 国内/自循环｜播放 93.4M｜噪声 0.7101</title></circle>
+<text x="624.3" y="424.0" class="svg-small">中国雕版印刷技艺</text>
+<circle cx="655.0" cy="420.0" r="19.0" fill="#8b5cf6" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>妈祖信俗｜T3 国内/自循环｜播放 46.8M｜噪声 0.8212</title></circle>
+<circle cx="710.0" cy="420.0" r="18.7" fill="#8b5cf6" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中国传统木结构建筑营造技艺｜T3 国内/自循环｜播放 38.8M｜噪声 0.8407</title></circle>
+<circle cx="200.0" cy="420.0" r="21.5" fill="#dc2626" fill-opacity="0.88" stroke="#111827" stroke-width="2"><title>中国水密隔舱福船制造技艺｜T0 假破圈剔除｜播放 184.0M｜噪声 0.7543</title></circle>
+<text x="225.5" y="424.0" class="svg-small">中国水密隔舱福船</text>
+<circle cx="255.0" cy="420.0" r="21.4" fill="#dc2626" fill-opacity="0.88" stroke="#111827" stroke-width="2"><title>中国珠算｜T0 假破圈剔除｜播放 169.7M｜噪声 0.6549</title></circle>
+<text x="280.4" y="424.0" class="svg-small">中国珠算</text>
+<circle cx="365.0" cy="420.0" r="19.5" fill="#dc2626" fill-opacity="0.88" stroke="#111827" stroke-width="2"><title>麦西热甫｜T0 假破圈剔除｜播放 61.4M｜噪声 0.8473</title></circle>
+<text x="388.5" y="424.0" class="svg-small">麦西热甫</text>
+<circle cx="310.0" cy="420.0" r="21.2" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>蒙古族长调民歌｜T4 近不可见/已查噪｜播放 153.7M｜噪声 0.8501</title></circle>
+<text x="335.2" y="424.0" class="svg-small">蒙古族长调民歌</text>
+<circle cx="420.0" cy="420.0" r="19.4" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中国篆刻｜T4 近不可见/已查噪｜播放 56.3M｜噪声 0.9267</title></circle>
+<text x="443.4" y="424.0" class="svg-small">中国篆刻</text>
+<circle cx="200.0" cy="462.0" r="19.1" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中国蚕桑丝织技艺｜T4 近不可见/已查噪｜播放 48.9M｜噪声 0.7448</title></circle>
+<circle cx="310.0" cy="462.0" r="18.7" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>羌年｜T4 近不可见/已查噪｜播放 38.7M｜噪声 0.7935</title></circle>
+<circle cx="365.0" cy="462.0" r="17.7" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>二十四节气｜T4 近不可见/已查噪｜播放 22.5M｜噪声 0.9052</title></circle>
+<circle cx="420.0" cy="462.0" r="17.5" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>送王船｜T4 近不可见/已查噪｜播放 20.8M｜噪声 0.9151</title></circle>
+<circle cx="200.0" cy="504.0" r="17.2" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>黎族传统纺染织绣技艺｜T4 近不可见/已查噪｜播放 17.7M｜噪声 0.9076</title></circle>
+<circle cx="255.0" cy="504.0" r="16.8" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>南音｜T4 近不可见/已查噪｜播放 14.3M｜噪声 0.957</title></circle>
+<circle cx="310.0" cy="504.0" r="16.7" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中国皮影戏｜T4 近不可见/已查噪｜播放 13.3M｜噪声 0.9527</title></circle>
+<circle cx="365.0" cy="504.0" r="16.3" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>西安鼓乐｜T4 近不可见/已查噪｜播放 10.9M｜噪声 0.9836</title></circle>
+<circle cx="420.0" cy="504.0" r="15.8" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>赫哲族伊玛堪｜T4 近不可见/已查噪｜播放 8.2M｜噪声 0.9661</title></circle>
+<circle cx="200.0" cy="546.0" r="15.4" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>新疆维吾尔木卡姆艺术｜T4 近不可见/已查噪｜播放 6.7M｜噪声 0.9495</title></circle>
+<circle cx="255.0" cy="546.0" r="15.3" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>昆曲｜T4 近不可见/已查噪｜播放 6.3M｜噪声 0.9398</title></circle>
+<circle cx="310.0" cy="546.0" r="14.5" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中国木拱桥传统营造技艺｜T4 近不可见/已查噪｜播放 4.1M｜噪声 0.9338</title></circle>
+<circle cx="365.0" cy="546.0" r="14.5" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>热贡艺术｜T4 近不可见/已查噪｜播放 4.0M｜噪声 0.9799</title></circle>
+<circle cx="420.0" cy="546.0" r="13.7" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中国朝鲜族农乐舞｜T4 近不可见/已查噪｜播放 2.7M｜噪声 0.975</title></circle>
+<circle cx="200.0" cy="588.0" r="13.0" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>格萨(斯)尔史诗传统｜T4 近不可见/已查噪｜播放 1.8M｜噪声 0.464</title></circle>
+<circle cx="255.0" cy="588.0" r="12.9" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>藏戏｜T4 近不可见/已查噪｜播放 1.7M｜噪声 0.9151</title></circle>
+<circle cx="310.0" cy="588.0" r="11.9" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>藏医药浴法｜T4 近不可见/已查噪｜播放 1.0M｜噪声 0.9873</title></circle>
+<circle cx="365.0" cy="588.0" r="10.9" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>福建木偶戏｜T4 近不可见/已查噪｜播放 590K｜噪声 0.9541</title></circle>
+<circle cx="420.0" cy="588.0" r="8.4" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>侗族大歌｜T4 近不可见/已查噪｜播放 149K｜噪声 0.9863</title></circle>
+<circle cx="200.0" cy="630.0" r="7.0" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>花儿｜T4 近不可见/已查噪｜播放 71K｜噪声 0.9751</title></circle>
+<circle cx="255.0" cy="462.0" r="18.8" fill="#94a3b8" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>粤剧｜T4 近不可见｜播放 40.8M｜噪声 0.4862</title></circle>
+<circle cx="110" cy="610" r="7" fill="#1f9d7a"/>
+<text x="124" y="615" class="svg-small">T1 规模化出海</text>
+<circle cx="370" cy="610" r="7" fill="#d88923"/>
+<text x="384" y="615" class="svg-small">T1 噪声风险头部</text>
+<circle cx="630" cy="610" r="7" fill="#3b82f6"/>
+<text x="644" y="615" class="svg-small">T2 小众破圈</text>
+<circle cx="110" cy="636" r="7" fill="#8b5cf6"/>
+<text x="124" y="641" class="svg-small">T3 国内/自循环</text>
+<circle cx="370" cy="636" r="7" fill="#dc2626"/>
+<text x="384" y="641" class="svg-small">T0 假破圈剔除</text>
+<circle cx="630" cy="636" r="7" fill="#64748b"/>
+<text x="644" y="641" class="svg-small">T4 近不可见/已查噪</text>
+</svg></div>
+  </section>
+
+  <section class="grid2">
+    <div class="section">
+      <h2>2. 最终分层分布</h2>
+      <p class="note">这张图用于决定报告章节结构：不是所有项目都讲，重点讲层级之间的机制差异。</p>
+      <div class="svg-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="920" height="360" viewBox="0 0 920 360" role="img">
+<style>
+.svg-title{font:700 22px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#0f172a}
+.svg-subtitle{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#334155}
+.svg-label{font:600 14px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#334155}
+.svg-value{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#0f172a}
+.svg-axis{font:600 13px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#475569}
+.svg-small{font:12px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#334155}
+.svg-quad-label{font:700 13px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#334155}
+</style>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24" y="28" class="svg-title">最终分层分布：先按叙事角色看，不按项目清单顺序看</text>
+<text x="24" y="61" class="svg-label">T1 规模化出海</text>
+<rect x="250" y="42" width="101.8" height="26" rx="7" fill="#1f9d7a"/>
+<text x="363.8" y="61" class="svg-value">4 项</text>
+<text x="24" y="103" class="svg-label">T1 噪声风险头部</text>
+<rect x="250" y="84" width="76.4" height="26" rx="7" fill="#d88923"/>
+<text x="338.4" y="103" class="svg-value">3 项</text>
+<text x="24" y="145" class="svg-label">T2 小众破圈</text>
+<rect x="250" y="126" width="203.6" height="26" rx="7" fill="#3b82f6"/>
+<text x="465.6" y="145" class="svg-value">8 项</text>
+<text x="24" y="187" class="svg-label">T3 国内/自循环</text>
+<rect x="250" y="168" width="76.4" height="26" rx="7" fill="#8b5cf6"/>
+<text x="338.4" y="187" class="svg-value">3 项</text>
+<text x="24" y="229" class="svg-label">T0 假破圈剔除</text>
+<rect x="250" y="210" width="76.4" height="26" rx="7" fill="#dc2626"/>
+<text x="338.4" y="229" class="svg-value">3 项</text>
+<text x="24" y="271" class="svg-label">T4 近不可见/已查噪</text>
+<rect x="250" y="252" width="560.0" height="26" rx="7" fill="#64748b"/>
+<text x="822.0" y="271" class="svg-value">22 项</text>
+<text x="24" y="313" class="svg-label">T4 近不可见</text>
+<rect x="250" y="294" width="25.5" height="26" rx="7" fill="#94a3b8"/>
+<text x="287.5" y="313" class="svg-value">1 项</text>
+</svg></div>
+    </div>
+    <div class="section">
+      <h2>3. 噪声/假破圈是一个结论，不是瑕疵</h2>
+      <p class="note">高播放不等于相关传播；人工回流剔除的假亮点可以作为方法论亮点。</p>
+      <div class="svg-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="980" height="420" viewBox="0 0 980 420" role="img">
+<style>
+.svg-title{font:700 22px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#0f172a}
+.svg-subtitle{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#334155}
+.svg-label{font:600 14px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#334155}
+.svg-value{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#0f172a}
+.svg-axis{font:600 13px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#475569}
+.svg-small{font:12px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#334155}
+.svg-quad-label{font:700 13px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#334155}
+</style>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24" y="34" class="svg-title">噪声与人工回流：哪些“高触达”不能直接讲成传播成功</text>
+<text x="24" y="70" class="svg-subtitle">低相关播放占比 Top 12</text>
+<text x="24" y="106" class="svg-small">藏医药浴法</text>
+<rect x="170" y="92" width="296.2" height="14" rx="4" fill="#ef4444" opacity="0.78"/>
+<text x="474.2" y="104" class="svg-small">99%</text>
+<text x="24" y="130" class="svg-small">侗族大歌</text>
+<rect x="170" y="116" width="295.9" height="14" rx="4" fill="#ef4444" opacity="0.78"/>
+<text x="473.9" y="128" class="svg-small">99%</text>
+<text x="24" y="154" class="svg-small">西安鼓乐</text>
+<rect x="170" y="140" width="295.1" height="14" rx="4" fill="#ef4444" opacity="0.78"/>
+<text x="473.1" y="152" class="svg-small">98%</text>
+<text x="24" y="178" class="svg-small">热贡艺术</text>
+<rect x="170" y="164" width="294.0" height="14" rx="4" fill="#ef4444" opacity="0.78"/>
+<text x="472.0" y="176" class="svg-small">98%</text>
+<text x="24" y="202" class="svg-small">花儿</text>
+<rect x="170" y="188" width="292.5" height="14" rx="4" fill="#ef4444" opacity="0.78"/>
+<text x="470.5" y="200" class="svg-small">98%</text>
+<text x="24" y="226" class="svg-small">中国朝鲜族农乐舞</text>
+<rect x="170" y="212" width="292.5" height="14" rx="4" fill="#ef4444" opacity="0.78"/>
+<text x="470.5" y="224" class="svg-small">98%</text>
+<text x="24" y="250" class="svg-small">赫哲族伊玛堪</text>
+<rect x="170" y="236" width="289.8" height="14" rx="4" fill="#ef4444" opacity="0.78"/>
+<text x="467.8" y="248" class="svg-small">97%</text>
+<text x="24" y="274" class="svg-small">南音</text>
+<rect x="170" y="260" width="287.1" height="14" rx="4" fill="#ef4444" opacity="0.78"/>
+<text x="465.1" y="272" class="svg-small">96%</text>
+<text x="24" y="298" class="svg-small">福建木偶戏</text>
+<rect x="170" y="284" width="286.2" height="14" rx="4" fill="#ef4444" opacity="0.78"/>
+<text x="464.2" y="296" class="svg-small">95%</text>
+<text x="24" y="322" class="svg-small">中国皮影戏</text>
+<rect x="170" y="308" width="285.8" height="14" rx="4" fill="#ef4444" opacity="0.78"/>
+<text x="463.8" y="320" class="svg-small">95%</text>
+<text x="24" y="346" class="svg-small">新疆维吾尔木卡姆艺术</text>
+<rect x="170" y="332" width="284.9" height="14" rx="4" fill="#ef4444" opacity="0.78"/>
+<text x="462.9" y="344" class="svg-small">95%</text>
+<text x="24" y="370" class="svg-small">昆曲</text>
+<rect x="170" y="356" width="281.9" height="14" rx="4" fill="#ef4444" opacity="0.78"/>
+<text x="459.9" y="368" class="svg-small">94%</text>
+<text x="540" y="70" class="svg-subtitle">人工回流确认的触达修正 / 假破圈</text>
+<text x="540" y="107" class="svg-small">中国水密隔舱福船制造技艺</text>
+<rect x="665" y="92" width="300.0" height="16" rx="4" fill="#dc2626" opacity="0.82"/>
+<text x="973.0" y="105" class="svg-small">-118.9M · false_breakout_confirmed</text>
+<text x="540" y="137" class="svg-small">中国珠算</text>
+<rect x="665" y="122" width="287.9" height="16" rx="4" fill="#dc2626" opacity="0.82"/>
+<text x="960.9" y="135" class="svg-small">-114.1M · false_breakout_confirmed</text>
+<text x="540" y="167" class="svg-small">麦西热甫</text>
+<rect x="665" y="152" width="213.2" height="16" rx="4" fill="#dc2626" opacity="0.82"/>
+<text x="886.2" y="165" class="svg-small">-84.5M · false_breakout_confirmed</text>
+<text x="540" y="197" class="svg-small">中医针灸</text>
+<rect x="665" y="182" width="211.9" height="16" rx="4" fill="#f97316" opacity="0.82"/>
+<text x="884.9" y="195" class="svg-small">-84.0M · row override</text>
+<text x="540" y="227" class="svg-small">龙泉青瓷传统烧制技艺</text>
+<rect x="665" y="212" width="142.3" height="16" rx="4" fill="#f97316" opacity="0.82"/>
+<text x="815.3" y="225" class="svg-small">-56.4M · row override</text>
+<text x="540" y="257" class="svg-small">中国传统木结构建筑营造技</text>
+<rect x="665" y="242" width="80.5" height="16" rx="4" fill="#f97316" opacity="0.82"/>
+<text x="753.5" y="255" class="svg-small">-31.9M · row override</text>
+<text x="540" y="287" class="svg-small">中国篆刻</text>
+<rect x="665" y="272" width="73.4" height="16" rx="4" fill="#f97316" opacity="0.82"/>
+<text x="746.4" y="285" class="svg-small">-29.1M · row override</text>
+<text x="540" y="317" class="svg-small">妈祖信俗</text>
+<rect x="665" y="302" width="54.0" height="16" rx="4" fill="#f97316" opacity="0.82"/>
+<text x="727.0" y="315" class="svg-small">-21.4M · row override</text>
+<text x="540" y="347" class="svg-small">送王船</text>
+<rect x="665" y="332" width="53.5" height="16" rx="4" fill="#f97316" opacity="0.82"/>
+<text x="726.5" y="345" class="svg-small">-21.2M · row override</text>
+<text x="540" y="377" class="svg-small">古琴艺术</text>
+<rect x="665" y="362" width="44.9" height="16" rx="4" fill="#f97316" opacity="0.82"/>
+<text x="717.9" y="375" class="svg-small">-17.8M · row override</text>
+</svg></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>4. 可转成叙事的五条线</h2>
+    <div class="narrative-grid">
+      <div class="narrative"><h3>规模化出海</h3><p>春节、太极拳等同时具备高存量与高相关触达，可作为“可见性强”的主证据，但仍只讲 visibility，不讲受众认同。</p></div>
+      <div class="narrative"><h3>噪声型头部</h3><p>部分头部项目低相关播放占比高，说明平台热度会被娱乐、政治、泛文化内容稀释，需要保留噪声层。</p></div>
+      <div class="narrative"><h3>小众破圈</h3><p>低存量高触达项目适合作为“非规模化但有事件/内容触发”的故事线，后续要看 top evidence 是否稳定。</p></div>
+      <div class="narrative"><h3>高存量低触达</h3><p>存量不低但相关触达弱，说明社区内自循环或海外语境弱，适合解释“有内容，不一定外溢”。</p></div>
+      <div class="narrative"><h3>假破圈剔除</h3><p>麦西热甫、福船、珠算等人工确认降级：这是最能体现研究严谨性的反例组。</p></div>
+      <div class="narrative"><h3>近不可见长尾</h3><p>大量项目在 TikTok 上缺少稳定可见性，可作为平台偏好与非遗类型差异的背景层。</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>5. 重点项目卡片</h2>
+    <p class="note">先用这些卡片讨论叙事主线，再决定哪些进最终报告。</p>
+    <h3>Top 相关触达</h3>
+    <div class="project-list">
+<article class="project-card" data-tier="T1_scale_export" data-project="春节">
+  <div class="project-top"><span class="pill" style="--c:#1f9d7a">T1 规模化出海</span><span>真·规模化出海候选</span></div>
+  <h4>春节</h4>
+  <p>春节 是规模与相关触达均较强的头部可见项目。</p>
+  <dl><div><dt>相关播放</dt><dd>1.19B</dd></div><div><dt>存量</dt><dd>641K</dd></div><div><dt>低相关占比</dt><dd>29%</dd></div></dl>
+</article>
+
+<article class="project-card" data-tier="T1_scale_export" data-project="中国书法">
+  <div class="project-top"><span class="pill" style="--c:#1f9d7a">T1 规模化出海</span><span>真·规模化出海候选</span></div>
+  <h4>中国书法</h4>
+  <p>中国书法 是规模与相关触达均较强的头部可见项目。</p>
+  <dl><div><dt>相关播放</dt><dd>842.2M</dd></div><div><dt>存量</dt><dd>1.7M</dd></div><div><dt>低相关占比</dt><dd>21%</dd></div></dl>
+</article>
+
+<article class="project-card" data-tier="T2_small_breakout" data-project="京剧">
+  <div class="project-top"><span class="pill" style="--c:#3b82f6">T2 小众破圈</span><span>低存量高触达：小而精破圈候选</span></div>
+  <h4>京剧</h4>
+  <p>京剧 是低存量但高触达的“小而精破圈”候选。</p>
+  <dl><div><dt>相关播放</dt><dd>344.4M</dd></div><div><dt>存量</dt><dd>8K</dd></div><div><dt>低相关占比</dt><dd>33%</dd></div></dl>
+</article>
+
+<article class="project-card" data-tier="T2_small_breakout" data-project="蒙古族呼麦">
+  <div class="project-top"><span class="pill" style="--c:#3b82f6">T2 小众破圈</span><span>低存量高触达：小而精破圈候选</span></div>
+  <h4>蒙古族呼麦</h4>
+  <p>蒙古族呼麦 是低存量但高触达的“小而精破圈”候选。</p>
+  <dl><div><dt>相关播放</dt><dd>320.3M</dd></div><div><dt>存量</dt><dd>902</dd></div><div><dt>低相关占比</dt><dd>48%</dd></div></dl>
+</article>
+
+<article class="project-card" data-tier="T2_small_breakout" data-project="宣纸传统制作技艺">
+  <div class="project-top"><span class="pill" style="--c:#3b82f6">T2 小众破圈</span><span>低存量高触达：小而精破圈候选</span></div>
+  <h4>宣纸传统制作技艺</h4>
+  <p>宣纸传统制作技艺 是低存量但高触达的“小而精破圈”候选。</p>
+  <dl><div><dt>相关播放</dt><dd>273.5M</dd></div><div><dt>存量</dt><dd>128</dd></div><div><dt>低相关占比</dt><dd>41%</dd></div></dl>
+</article>
+
+<article class="project-card" data-tier="T1_scale_export" data-project="太极拳">
+  <div class="project-top"><span class="pill" style="--c:#1f9d7a">T1 规模化出海</span><span>真·规模化出海候选</span></div>
+  <h4>太极拳</h4>
+  <p>太极拳 是规模与相关触达均较强的头部可见项目。</p>
+  <dl><div><dt>相关播放</dt><dd>248.8M</dd></div><div><dt>存量</dt><dd>211K</dd></div><div><dt>低相关占比</dt><dd>23%</dd></div></dl>
+</article>
+
+<article class="project-card" data-tier="T2_small_breakout" data-project="中医针灸">
+  <div class="project-top"><span class="pill" style="--c:#3b82f6">T2 小众破圈</span><span>低存量高触达：小而精破圈候选</span></div>
+  <h4>中医针灸</h4>
+  <p>中医针灸 是低存量但高触达的“小而精破圈”候选。</p>
+  <dl><div><dt>相关播放</dt><dd>245.2M</dd></div><div><dt>存量</dt><dd>7K</dd></div><div><dt>低相关占比</dt><dd>57%</dd></div></dl>
+</article>
+
+<article class="project-card" data-tier="T1_scale_export" data-project="中国剪纸">
+  <div class="project-top"><span class="pill" style="--c:#1f9d7a">T1 规模化出海</span><span>真·规模化出海候选</span></div>
+  <h4>中国剪纸</h4>
+  <p>中国剪纸 是规模与相关触达均较强的头部可见项目。</p>
+  <dl><div><dt>相关播放</dt><dd>205.3M</dd></div><div><dt>存量</dt><dd>28K</dd></div><div><dt>低相关占比</dt><dd>43%</dd></div></dl>
+</article></div>
+    <h3>小众破圈 / 低存量高触达</h3>
+    <div class="project-list">
+<article class="project-card" data-tier="T2_small_breakout" data-project="京剧">
+  <div class="project-top"><span class="pill" style="--c:#3b82f6">T2 小众破圈</span><span>低存量高触达：小而精破圈候选</span></div>
+  <h4>京剧</h4>
+  <p>京剧 是低存量但高触达的“小而精破圈”候选。</p>
+  <dl><div><dt>相关播放</dt><dd>344.4M</dd></div><div><dt>存量</dt><dd>8K</dd></div><div><dt>低相关占比</dt><dd>33%</dd></div></dl>
+</article>
+
+<article class="project-card" data-tier="T2_small_breakout" data-project="蒙古族呼麦">
+  <div class="project-top"><span class="pill" style="--c:#3b82f6">T2 小众破圈</span><span>低存量高触达：小而精破圈候选</span></div>
+  <h4>蒙古族呼麦</h4>
+  <p>蒙古族呼麦 是低存量但高触达的“小而精破圈”候选。</p>
+  <dl><div><dt>相关播放</dt><dd>320.3M</dd></div><div><dt>存量</dt><dd>902</dd></div><div><dt>低相关占比</dt><dd>48%</dd></div></dl>
+</article>
+
+<article class="project-card" data-tier="T2_small_breakout" data-project="宣纸传统制作技艺">
+  <div class="project-top"><span class="pill" style="--c:#3b82f6">T2 小众破圈</span><span>低存量高触达：小而精破圈候选</span></div>
+  <h4>宣纸传统制作技艺</h4>
+  <p>宣纸传统制作技艺 是低存量但高触达的“小而精破圈”候选。</p>
+  <dl><div><dt>相关播放</dt><dd>273.5M</dd></div><div><dt>存量</dt><dd>128</dd></div><div><dt>低相关占比</dt><dd>41%</dd></div></dl>
+</article>
+
+<article class="project-card" data-tier="T2_small_breakout" data-project="中医针灸">
+  <div class="project-top"><span class="pill" style="--c:#3b82f6">T2 小众破圈</span><span>低存量高触达：小而精破圈候选</span></div>
+  <h4>中医针灸</h4>
+  <p>中医针灸 是低存量但高触达的“小而精破圈”候选。</p>
+  <dl><div><dt>相关播放</dt><dd>245.2M</dd></div><div><dt>存量</dt><dd>7K</dd></div><div><dt>低相关占比</dt><dd>57%</dd></div></dl>
+</article>
+
+<article class="project-card" data-tier="T2_small_breakout" data-project="中国木活字印刷术">
+  <div class="project-top"><span class="pill" style="--c:#3b82f6">T2 小众破圈</span><span>低存量高触达：小而精破圈候选</span></div>
+  <h4>中国木活字印刷术</h4>
+  <p>中国木活字印刷术 是低存量但高触达的“小而精破圈”候选。</p>
+  <dl><div><dt>相关播放</dt><dd>140.9M</dd></div><div><dt>存量</dt><dd>171</dd></div><div><dt>低相关占比</dt><dd>82%</dd></div></dl>
+</article>
+
+<article class="project-card" data-tier="T2_small_breakout" data-project="龙泉青瓷传统烧制技艺">
+  <div class="project-top"><span class="pill" style="--c:#3b82f6">T2 小众破圈</span><span>低存量高触达：小而精破圈候选</span></div>
+  <h4>龙泉青瓷传统烧制技艺</h4>
+  <p>龙泉青瓷传统烧制技艺 是低存量但高触达的“小而精破圈”候选。</p>
+  <dl><div><dt>相关播放</dt><dd>112.1M</dd></div><div><dt>存量</dt><dd>657</dd></div><div><dt>低相关占比</dt><dd>59%</dd></div></dl>
+</article>
+
+<article class="project-card" data-tier="T2_small_breakout" data-project="端午节">
+  <div class="project-top"><span class="pill" style="--c:#3b82f6">T2 小众破圈</span><span>低存量高触达：小而精破圈候选</span></div>
+  <h4>端午节</h4>
+  <p>端午节 是低存量但高触达的“小而精破圈”候选。</p>
+  <dl><div><dt>相关播放</dt><dd>111.2M</dd></div><div><dt>存量</dt><dd>9K</dd></div><div><dt>低相关占比</dt><dd>40%</dd></div></dl>
+</article>
+
+<article class="project-card" data-tier="T2_small_breakout" data-project="古琴艺术">
+  <div class="project-top"><span class="pill" style="--c:#3b82f6">T2 小众破圈</span><span>低存量高触达：小而精破圈候选</span></div>
+  <h4>古琴艺术</h4>
+  <p>古琴艺术 是低存量但高触达的“小而精破圈”候选。</p>
+  <dl><div><dt>相关播放</dt><dd>106.4M</dd></div><div><dt>存量</dt><dd>9K</dd></div><div><dt>低相关占比</dt><dd>60%</dd></div></dl>
+</article></div>
+    <h3>人工剔除假破圈</h3>
+    <div class="project-list">
+<article class="project-card" data-tier="T0_false_breakout_demoted" data-project="中国水密隔舱福船制造技艺">
+  <div class="project-top"><span class="pill" style="--c:#dc2626">T0 假破圈剔除</span><span>低存量低触达：近乎隐形候选</span></div>
+  <h4>中国水密隔舱福船制造技艺</h4>
+  <p>人工确认假破圈：高触达样本不构成非遗实践触达，最终按低触达解释。</p>
+  <dl><div><dt>相关播放</dt><dd>184.0M</dd></div><div><dt>存量</dt><dd>343</dd></div><div><dt>低相关占比</dt><dd>75%</dd></div></dl>
+</article>
+
+<article class="project-card" data-tier="T0_false_breakout_demoted" data-project="中国珠算">
+  <div class="project-top"><span class="pill" style="--c:#dc2626">T0 假破圈剔除</span><span>低存量低触达：近乎隐形候选</span></div>
+  <h4>中国珠算</h4>
+  <p>人工确认假破圈：高触达样本不构成非遗实践触达，最终按低触达解释。</p>
+  <dl><div><dt>相关播放</dt><dd>169.7M</dd></div><div><dt>存量</dt><dd>304</dd></div><div><dt>低相关占比</dt><dd>65%</dd></div></dl>
+</article>
+
+<article class="project-card" data-tier="T0_false_breakout_demoted" data-project="麦西热甫">
+  <div class="project-top"><span class="pill" style="--c:#dc2626">T0 假破圈剔除</span><span>低存量低触达：近乎隐形候选</span></div>
+  <h4>麦西热甫</h4>
+  <p>人工确认假破圈：高触达样本不构成非遗实践触达，最终按低触达解释。</p>
+  <dl><div><dt>相关播放</dt><dd>61.4M</dd></div><div><dt>存量</dt><dd>54</dd></div><div><dt>低相关占比</dt><dd>85%</dd></div></dl>
+</article></div>
+  </section>
+
+  <section class="section">
+    <h2>6. 全项目表：筛选后看细节</h2>
+    <div class="controls">
+      <input id="q" placeholder="搜项目/结论" />
+      <select id="tier"><option value="">全部层级</option><option value="T1_scale_export">T1 规模化出海</option><option value="T1_scale_export_with_noise_risk">T1 噪声风险头部</option><option value="T2_small_breakout">T2 小众破圈</option><option value="T3_domestic_or_self_circulating">T3 国内/自循环</option><option value="T0_false_breakout_demoted">T0 假破圈剔除</option><option value="T4_near_invisible_noise_checked">T4 近不可见/已查噪</option><option value="T4_near_invisible">T4 近不可见</option></select>
+      <select id="quad"><option value="">全部矩阵象限</option><option value="stock_high__reach_high">高存量 × 高触达：真规模化候选</option><option value="stock_low__reach_high">低存量 × 高触达：小众破圈/假亮点待辨</option><option value="stock_high__reach_low">高存量 × 低触达：弱外溢/国内自循环</option><option value="stock_low__reach_low">低存量 × 低触达：近不可见或已剔除</option></select>
+    </div>
+    <div style="max-height:620px;overflow:auto">
+      <table id="tbl"><thead><tr><th>Rank</th><th>项目</th><th>层级</th><th>象限</th><th>存量</th><th>相关播放</th><th>噪声占比</th><th>人工判定</th><th>一句话</th></tr></thead><tbody>
+<tr data-tier="T1_scale_export" data-quadrant="stock_high__reach_high" data-name="春节">
+<td>1</td><td><strong>春节</strong><br><span>节庆民俗</span></td>
+<td>T1 规模化出海</td><td>真·规模化出海候选</td>
+<td class="num">641K</td><td class="num">1.19B</td>
+<td class="num">29%</td><td>—</td>
+<td>春节 是规模与相关触达均较强的头部可见项目。</td>
+</tr>
+<tr data-tier="T1_scale_export" data-quadrant="stock_high__reach_high" data-name="中国书法">
+<td>2</td><td><strong>中国书法</strong><br><span>传统手工艺/视觉艺术</span></td>
+<td>T1 规模化出海</td><td>真·规模化出海候选</td>
+<td class="num">1.7M</td><td class="num">842.2M</td>
+<td class="num">21%</td><td>—</td>
+<td>中国书法 是规模与相关触达均较强的头部可见项目。</td>
+</tr>
+<tr data-tier="T1_scale_export" data-quadrant="stock_high__reach_high" data-name="太极拳">
+<td>3</td><td><strong>太极拳</strong><br><span>传统体育/养生</span></td>
+<td>T1 规模化出海</td><td>真·规模化出海候选</td>
+<td class="num">211K</td><td class="num">248.8M</td>
+<td class="num">23%</td><td>—</td>
+<td>太极拳 是规模与相关触达均较强的头部可见项目。</td>
+</tr>
+<tr data-tier="T1_scale_export" data-quadrant="stock_high__reach_high" data-name="中国剪纸">
+<td>4</td><td><strong>中国剪纸</strong><br><span>传统手工艺</span></td>
+<td>T1 规模化出海</td><td>真·规模化出海候选</td>
+<td class="num">28K</td><td class="num">205.3M</td>
+<td class="num">43%</td><td>—</td>
+<td>中国剪纸 是规模与相关触达均较强的头部可见项目。</td>
+</tr>
+<tr data-tier="T1_scale_export_with_noise_risk" data-quadrant="stock_high__reach_high" data-name="中国传统制茶技艺及其相关习俗">
+<td>5</td><td><strong>中国传统制茶技艺及其相关习俗</strong><br><span>手工艺/民俗</span></td>
+<td>T1 噪声风险头部</td><td>真·规模化出海候选</td>
+<td class="num">16K</td><td class="num">143.1M</td>
+<td class="num">59%</td><td>—</td>
+<td>中国传统制茶技艺及其相关习俗 是规模与相关触达均较强的头部可见项目。</td>
+</tr>
+<tr data-tier="T1_scale_export_with_noise_risk" data-quadrant="stock_high__reach_high" data-name="南京云锦织造技艺">
+<td>6</td><td><strong>南京云锦织造技艺</strong><br><span>传统手工艺</span></td>
+<td>T1 噪声风险头部</td><td>真·规模化出海候选</td>
+<td class="num">603K</td><td class="num">101.8M</td>
+<td class="num">73%</td><td>—</td>
+<td>南京云锦织造技艺 是规模与相关触达均较强的头部可见项目。</td>
+</tr>
+<tr data-tier="T1_scale_export_with_noise_risk" data-quadrant="stock_high__reach_high" data-name="玛纳斯">
+<td>7</td><td><strong>玛纳斯</strong><br><span>口头传统/史诗</span></td>
+<td>T1 噪声风险头部</td><td>真·规模化出海候选</td>
+<td class="num">104K</td><td class="num">101.3M</td>
+<td class="num">71%</td><td>—</td>
+<td>玛纳斯 是规模与相关触达均较强的头部可见项目。</td>
+</tr>
+<tr data-tier="T2_small_breakout" data-quadrant="stock_low__reach_high" data-name="京剧">
+<td>8</td><td><strong>京剧</strong><br><span>表演艺术(戏曲)</span></td>
+<td>T2 小众破圈</td><td>低存量高触达：小而精破圈候选</td>
+<td class="num">8K</td><td class="num">344.4M</td>
+<td class="num">33%</td><td>—</td>
+<td>京剧 是低存量但高触达的“小而精破圈”候选。</td>
+</tr>
+<tr data-tier="T2_small_breakout" data-quadrant="stock_low__reach_high" data-name="蒙古族呼麦">
+<td>9</td><td><strong>蒙古族呼麦</strong><br><span>表演艺术(音乐)</span></td>
+<td>T2 小众破圈</td><td>低存量高触达：小而精破圈候选</td>
+<td class="num">902</td><td class="num">320.3M</td>
+<td class="num">48%</td><td>—</td>
+<td>蒙古族呼麦 是低存量但高触达的“小而精破圈”候选。</td>
+</tr>
+<tr data-tier="T2_small_breakout" data-quadrant="stock_low__reach_high" data-name="宣纸传统制作技艺">
+<td>10</td><td><strong>宣纸传统制作技艺</strong><br><span>传统手工艺</span></td>
+<td>T2 小众破圈</td><td>低存量高触达：小而精破圈候选</td>
+<td class="num">128</td><td class="num">273.5M</td>
+<td class="num">41%</td><td>—</td>
+<td>宣纸传统制作技艺 是低存量但高触达的“小而精破圈”候选。</td>
+</tr>
+<tr data-tier="T2_small_breakout" data-quadrant="stock_low__reach_high" data-name="中医针灸">
+<td>11</td><td><strong>中医针灸</strong><br><span>传统医药</span></td>
+<td>T2 小众破圈</td><td>低存量高触达：小而精破圈候选</td>
+<td class="num">7K</td><td class="num">245.2M</td>
+<td class="num">57%</td><td>—</td>
+<td>中医针灸 是低存量但高触达的“小而精破圈”候选。</td>
+</tr>
+<tr data-tier="T2_small_breakout" data-quadrant="stock_low__reach_high" data-name="中国木活字印刷术">
+<td>12</td><td><strong>中国木活字印刷术</strong><br><span>传统手工艺</span></td>
+<td>T2 小众破圈</td><td>低存量高触达：小而精破圈候选</td>
+<td class="num">171</td><td class="num">140.9M</td>
+<td class="num">82%</td><td>—</td>
+<td>中国木活字印刷术 是低存量但高触达的“小而精破圈”候选。</td>
+</tr>
+<tr data-tier="T2_small_breakout" data-quadrant="stock_low__reach_high" data-name="龙泉青瓷传统烧制技艺">
+<td>13</td><td><strong>龙泉青瓷传统烧制技艺</strong><br><span>传统手工艺</span></td>
+<td>T2 小众破圈</td><td>低存量高触达：小而精破圈候选</td>
+<td class="num">657</td><td class="num">112.1M</td>
+<td class="num">59%</td><td>—</td>
+<td>龙泉青瓷传统烧制技艺 是低存量但高触达的“小而精破圈”候选。</td>
+</tr>
+<tr data-tier="T2_small_breakout" data-quadrant="stock_low__reach_high" data-name="端午节">
+<td>14</td><td><strong>端午节</strong><br><span>节庆民俗</span></td>
+<td>T2 小众破圈</td><td>低存量高触达：小而精破圈候选</td>
+<td class="num">9K</td><td class="num">111.2M</td>
+<td class="num">40%</td><td>—</td>
+<td>端午节 是低存量但高触达的“小而精破圈”候选。</td>
+</tr>
+<tr data-tier="T2_small_breakout" data-quadrant="stock_low__reach_high" data-name="古琴艺术">
+<td>15</td><td><strong>古琴艺术</strong><br><span>表演艺术(音乐)</span></td>
+<td>T2 小众破圈</td><td>低存量高触达：小而精破圈候选</td>
+<td class="num">9K</td><td class="num">106.4M</td>
+<td class="num">60%</td><td>—</td>
+<td>古琴艺术 是低存量但高触达的“小而精破圈”候选。</td>
+</tr>
+<tr data-tier="T3_domestic_or_self_circulating" data-quadrant="stock_high__reach_low" data-name="中国雕版印刷技艺">
+<td>16</td><td><strong>中国雕版印刷技艺</strong><br><span>传统手工艺</span></td>
+<td>T3 国内/自循环</td><td>高存量低触达：自产自销/虚假繁荣候选</td>
+<td class="num">32K</td><td class="num">93.4M</td>
+<td class="num">71%</td><td>—</td>
+<td>中国雕版印刷技艺 存量较高但相关触达未同步放大，偏自产自销/弱外溢。</td>
+</tr>
+<tr data-tier="T3_domestic_or_self_circulating" data-quadrant="stock_high__reach_low" data-name="妈祖信俗">
+<td>17</td><td><strong>妈祖信俗</strong><br><span>民俗信仰</span></td>
+<td>T3 国内/自循环</td><td>高存量低触达：自产自销/虚假繁荣候选</td>
+<td class="num">14K</td><td class="num">46.8M</td>
+<td class="num">82%</td><td>—</td>
+<td>妈祖信俗 存量较高但相关触达未同步放大，偏自产自销/弱外溢。</td>
+</tr>
+<tr data-tier="T3_domestic_or_self_circulating" data-quadrant="stock_high__reach_low" data-name="中国传统木结构建筑营造技艺">
+<td>18</td><td><strong>中国传统木结构建筑营造技艺</strong><br><span>传统手工艺/建筑</span></td>
+<td>T3 国内/自循环</td><td>高存量低触达：自产自销/虚假繁荣候选</td>
+<td class="num">16K</td><td class="num">38.8M</td>
+<td class="num">84%</td><td>—</td>
+<td>中国传统木结构建筑营造技艺 存量较高但相关触达未同步放大，偏自产自销/弱外溢。</td>
+</tr>
+<tr data-tier="T0_false_breakout_demoted" data-quadrant="stock_low__reach_low" data-name="中国水密隔舱福船制造技艺">
+<td>19</td><td><strong>中国水密隔舱福船制造技艺</strong><br><span>传统手工艺</span></td>
+<td>T0 假破圈剔除</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">343</td><td class="num">184.0M</td>
+<td class="num">75%</td><td>false_breakout_confirmed</td>
+<td>中国水密隔舱福船制造技艺 的高触达 breakout 被人工核查否定，最终不作为破圈案例。</td>
+</tr>
+<tr data-tier="T0_false_breakout_demoted" data-quadrant="stock_low__reach_low" data-name="中国珠算">
+<td>20</td><td><strong>中国珠算</strong><br><span>传统知识</span></td>
+<td>T0 假破圈剔除</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">304</td><td class="num">169.7M</td>
+<td class="num">65%</td><td>false_breakout_confirmed</td>
+<td>中国珠算 的高触达 breakout 被人工核查否定，最终不作为破圈案例。</td>
+</tr>
+<tr data-tier="T0_false_breakout_demoted" data-quadrant="stock_low__reach_low" data-name="麦西热甫">
+<td>21</td><td><strong>麦西热甫</strong><br><span>表演艺术/民俗</span></td>
+<td>T0 假破圈剔除</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">54</td><td class="num">61.4M</td>
+<td class="num">85%</td><td>false_breakout_confirmed</td>
+<td>麦西热甫 的高触达 breakout 被人工核查否定，最终不作为破圈案例。</td>
+</tr>
+<tr data-tier="T4_near_invisible_noise_checked" data-quadrant="stock_low__reach_low" data-name="蒙古族长调民歌">
+<td>22</td><td><strong>蒙古族长调民歌</strong><br><span>表演艺术(音乐)</span></td>
+<td>T4 近不可见/已查噪</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">21</td><td class="num">153.7M</td>
+<td class="num">85%</td><td>—</td>
+<td>蒙古族长调民歌 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr>
+<tr data-tier="T4_near_invisible_noise_checked" data-quadrant="stock_low__reach_low" data-name="中国篆刻">
+<td>23</td><td><strong>中国篆刻</strong><br><span>传统手工艺</span></td>
+<td>T4 近不可见/已查噪</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">3K</td><td class="num">56.3M</td>
+<td class="num">93%</td><td>—</td>
+<td>中国篆刻 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr>
+<tr data-tier="T4_near_invisible_noise_checked" data-quadrant="stock_low__reach_low" data-name="中国蚕桑丝织技艺">
+<td>24</td><td><strong>中国蚕桑丝织技艺</strong><br><span>传统手工艺</span></td>
+<td>T4 近不可见/已查噪</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">508</td><td class="num">48.9M</td>
+<td class="num">74%</td><td>—</td>
+<td>中国蚕桑丝织技艺 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr>
+<tr data-tier="T4_near_invisible_noise_checked" data-quadrant="stock_low__reach_low" data-name="羌年">
+<td>25</td><td><strong>羌年</strong><br><span>节庆民俗</span></td>
+<td>T4 近不可见/已查噪</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">7</td><td class="num">38.7M</td>
+<td class="num">79%</td><td>—</td>
+<td>羌年 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr>
+<tr data-tier="T4_near_invisible_noise_checked" data-quadrant="stock_low__reach_low" data-name="二十四节气">
+<td>26</td><td><strong>二十四节气</strong><br><span>传统知识/民俗</span></td>
+<td>T4 近不可见/已查噪</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">3K</td><td class="num">22.5M</td>
+<td class="num">91%</td><td>—</td>
+<td>二十四节气 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr>
+<tr data-tier="T4_near_invisible_noise_checked" data-quadrant="stock_low__reach_low" data-name="送王船">
+<td>27</td><td><strong>送王船</strong><br><span>民俗仪式</span></td>
+<td>T4 近不可见/已查噪</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">1K</td><td class="num">20.8M</td>
+<td class="num">92%</td><td>—</td>
+<td>送王船 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr>
+<tr data-tier="T4_near_invisible_noise_checked" data-quadrant="stock_low__reach_low" data-name="黎族传统纺染织绣技艺">
+<td>28</td><td><strong>黎族传统纺染织绣技艺</strong><br><span>传统手工艺</span></td>
+<td>T4 近不可见/已查噪</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">48</td><td class="num">17.7M</td>
+<td class="num">91%</td><td>—</td>
+<td>黎族传统纺染织绣技艺 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr>
+<tr data-tier="T4_near_invisible_noise_checked" data-quadrant="stock_low__reach_low" data-name="南音">
+<td>29</td><td><strong>南音</strong><br><span>表演艺术(音乐)</span></td>
+<td>T4 近不可见/已查噪</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">854</td><td class="num">14.3M</td>
+<td class="num">96%</td><td>—</td>
+<td>南音 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr>
+<tr data-tier="T4_near_invisible_noise_checked" data-quadrant="stock_low__reach_low" data-name="中国皮影戏">
+<td>30</td><td><strong>中国皮影戏</strong><br><span>表演艺术</span></td>
+<td>T4 近不可见/已查噪</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">935</td><td class="num">13.3M</td>
+<td class="num">95%</td><td>—</td>
+<td>中国皮影戏 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr>
+<tr data-tier="T4_near_invisible_noise_checked" data-quadrant="stock_low__reach_low" data-name="西安鼓乐">
+<td>31</td><td><strong>西安鼓乐</strong><br><span>表演艺术(音乐)</span></td>
+<td>T4 近不可见/已查噪</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">9</td><td class="num">10.9M</td>
+<td class="num">98%</td><td>—</td>
+<td>西安鼓乐 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr>
+<tr data-tier="T4_near_invisible_noise_checked" data-quadrant="stock_low__reach_low" data-name="赫哲族伊玛堪">
+<td>32</td><td><strong>赫哲族伊玛堪</strong><br><span>口头传统/史诗</span></td>
+<td>T4 近不可见/已查噪</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">17</td><td class="num">8.2M</td>
+<td class="num">97%</td><td>—</td>
+<td>赫哲族伊玛堪 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr>
+<tr data-tier="T4_near_invisible_noise_checked" data-quadrant="stock_low__reach_low" data-name="新疆维吾尔木卡姆艺术">
+<td>33</td><td><strong>新疆维吾尔木卡姆艺术</strong><br><span>表演艺术(音乐)</span></td>
+<td>T4 近不可见/已查噪</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">7K</td><td class="num">6.7M</td>
+<td class="num">95%</td><td>—</td>
+<td>新疆维吾尔木卡姆艺术 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr>
+<tr data-tier="T4_near_invisible_noise_checked" data-quadrant="stock_low__reach_low" data-name="昆曲">
+<td>34</td><td><strong>昆曲</strong><br><span>表演艺术(戏曲)</span></td>
+<td>T4 近不可见/已查噪</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">844</td><td class="num">6.3M</td>
+<td class="num">94%</td><td>—</td>
+<td>昆曲 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr>
+<tr data-tier="T4_near_invisible_noise_checked" data-quadrant="stock_low__reach_low" data-name="中国木拱桥传统营造技艺">
+<td>35</td><td><strong>中国木拱桥传统营造技艺</strong><br><span>传统手工艺/建筑</span></td>
+<td>T4 近不可见/已查噪</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">13</td><td class="num">4.1M</td>
+<td class="num">93%</td><td>—</td>
+<td>中国木拱桥传统营造技艺 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr>
+<tr data-tier="T4_near_invisible_noise_checked" data-quadrant="stock_low__reach_low" data-name="热贡艺术">
+<td>36</td><td><strong>热贡艺术</strong><br><span>传统手工艺/宗教艺术</span></td>
+<td>T4 近不可见/已查噪</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">37</td><td class="num">4.0M</td>
+<td class="num">98%</td><td>—</td>
+<td>热贡艺术 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr>
+<tr data-tier="T4_near_invisible_noise_checked" data-quadrant="stock_low__reach_low" data-name="中国朝鲜族农乐舞">
+<td>37</td><td><strong>中国朝鲜族农乐舞</strong><br><span>表演艺术(舞蹈)</span></td>
+<td>T4 近不可见/已查噪</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">41</td><td class="num">2.7M</td>
+<td class="num">98%</td><td>—</td>
+<td>中国朝鲜族农乐舞 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr>
+<tr data-tier="T4_near_invisible_noise_checked" data-quadrant="stock_low__reach_low" data-name="格萨(斯)尔史诗传统">
+<td>38</td><td><strong>格萨(斯)尔史诗传统</strong><br><span>口头传统/史诗</span></td>
+<td>T4 近不可见/已查噪</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">227</td><td class="num">1.8M</td>
+<td class="num">46%</td><td>—</td>
+<td>格萨(斯)尔史诗传统 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr>
+<tr data-tier="T4_near_invisible_noise_checked" data-quadrant="stock_low__reach_low" data-name="藏戏">
+<td>39</td><td><strong>藏戏</strong><br><span>表演艺术(戏曲)</span></td>
+<td>T4 近不可见/已查噪</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">808</td><td class="num">1.7M</td>
+<td class="num">92%</td><td>—</td>
+<td>藏戏 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr>
+<tr data-tier="T4_near_invisible_noise_checked" data-quadrant="stock_low__reach_low" data-name="藏医药浴法">
+<td>40</td><td><strong>藏医药浴法</strong><br><span>传统医药</span></td>
+<td>T4 近不可见/已查噪</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">256</td><td class="num">1.0M</td>
+<td class="num">99%</td><td>—</td>
+<td>藏医药浴法 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr>
+<tr data-tier="T4_near_invisible_noise_checked" data-quadrant="stock_low__reach_low" data-name="福建木偶戏">
+<td>41</td><td><strong>福建木偶戏</strong><br><span>保护实践(木偶戏)</span></td>
+<td>T4 近不可见/已查噪</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">315</td><td class="num">590K</td>
+<td class="num">95%</td><td>—</td>
+<td>福建木偶戏 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr>
+<tr data-tier="T4_near_invisible_noise_checked" data-quadrant="stock_low__reach_low" data-name="侗族大歌">
+<td>42</td><td><strong>侗族大歌</strong><br><span>表演艺术(音乐)</span></td>
+<td>T4 近不可见/已查噪</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">10</td><td class="num">149K</td>
+<td class="num">99%</td><td>—</td>
+<td>侗族大歌 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr>
+<tr data-tier="T4_near_invisible_noise_checked" data-quadrant="stock_low__reach_low" data-name="花儿">
+<td>43</td><td><strong>花儿</strong><br><span>表演艺术(民歌)</span></td>
+<td>T4 近不可见/已查噪</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">166</td><td class="num">71K</td>
+<td class="num">98%</td><td>—</td>
+<td>花儿 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr>
+<tr data-tier="T4_near_invisible" data-quadrant="stock_low__reach_low" data-name="粤剧">
+<td>44</td><td><strong>粤剧</strong><br><span>表演艺术(戏曲)</span></td>
+<td>T4 近不可见</td><td>低存量低触达：近乎隐形候选</td>
+<td class="num">289</td><td class="num">40.8M</td>
+<td class="num">49%</td><td>—</td>
+<td>粤剧 当前呈低存量低触达，接近隐形或被噪声掩盖。</td>
+</tr></tbody></table>
+    </div>
+  </section>
+
+  <section class="section caveat">
+    <strong>解释边界：</strong>这里衡量的是 TikTok 平台可见性 / likely 触达。即便是 T1，也不能直接推出“受众认同”或“传播成功”；T0/噪声组不是失败，而是关键词平台研究必须显式处理的偏差。
+  </section>
+</main>
+<script>
+const DATA = [{"final_rank": "1", "final_tier": "T1_scale_export", "project_id": "1", "project_name": "春节", "project_name_en": "Spring Festival, social practices of the Chinese people in celebration of traditional new year", "list_type": "RL", "category": "节庆民俗", "quadrant": "stock_high__reach_high", "quadrant_label": "真·规模化出海候选", "stock_band": "stock_high", "scale_video_count_best": "640926", "scale_video_count_tier": "head", "likely_reach_tier_final": "top_20pct_reach", "likely_reach_tier_statistical": "top_20pct_reach", "likely_total_play": "1190216794", "likely_unique_videos": "900", "low_relevance_play_ratio": "0.2856", "reach_noise_risk": "medium", "raw_to_likely_tier_delta": "0", "manual_reviewed_rows": "2", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "2", "manual_changed_rows": "0", "manual_audit_verdict": "", "previous_quadrant": "stock_high__reach_high", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "0", "review_priority": "P3_normal", "interpretation": "高存量高触达，属于当前最强规模化可见性组。", "headline_claim": "春节 是规模与相关触达均较强的头部可见项目。", "top_likely_url": "https://www.tiktok.com/@mcplaygt/video/7608687823369047310", "top_likely_play": "37300000", "top_likely_desc": "So anyone else got this much or less? 😭 #mcplaygt #fyp #skit #lunarnewyear #comedy", "top_noise_url": "https://www.tiktok.com/@cnn/video/7614151831207398670", "top_noise_play": "71900000", "top_noise_desc": "President Donald Trump hosted the 2025 MLS Cup Champions Inter Miami on Thursday, marking Lionel Messi's first visit to the White House."}, {"final_rank": "2", "final_tier": "T1_scale_export", "project_id": "34", "project_name": "中国书法", "project_name_en": "Chinese calligraphy", "list_type": "RL", "category": "传统手工艺/视觉艺术", "quadrant": "stock_high__reach_high", "quadrant_label": "真·规模化出海候选", "stock_band": "stock_high", "scale_video_count_best": "1715067", "scale_video_count_tier": "head", "likely_reach_tier_final": "top_20pct_reach", "likely_reach_tier_statistical": "top_20pct_reach", "likely_total_play": "842210064", "likely_unique_videos": "402", "low_relevance_play_ratio": "0.2143", "reach_noise_risk": "low", "raw_to_likely_tier_delta": "0", "manual_reviewed_rows": "0", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "0", "manual_changed_rows": "0", "manual_audit_verdict": "", "previous_quadrant": "stock_high__reach_high", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "0", "review_priority": "P3_normal", "interpretation": "高存量高触达，属于当前最强规模化可见性组。", "headline_claim": "中国书法 是规模与相关触达均较强的头部可见项目。", "top_likely_url": "https://www.tiktok.com/@wk_writer__2/video/7542145372022410504", "top_likely_play": "67300000", "top_likely_desc": "best handwriting in the world 💕💫😇 #handwriting #trending #calligraphy #viral #foryou", "top_noise_url": "https://www.tiktok.com/@dailychallenge0/video/7590099046388321549", "top_noise_play": "19700000", "top_noise_desc": "funny challenge game #funny #challenge #game"}, {"final_rank": "3", "final_tier": "T1_scale_export", "project_id": "3", "project_name": "太极拳", "project_name_en": "Taijiquan", "list_type": "RL", "category": "传统体育/养生", "quadrant": "stock_high__reach_high", "quadrant_label": "真·规模化出海候选", "stock_band": "stock_high", "scale_video_count_best": "210873", "scale_video_count_tier": "head", "likely_reach_tier_final": "top_20pct_reach", "likely_reach_tier_statistical": "top_20pct_reach", "likely_total_play": "248769168", "likely_unique_videos": "377", "low_relevance_play_ratio": "0.234", "reach_noise_risk": "low", "raw_to_likely_tier_delta": "2", "manual_reviewed_rows": "1", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "1", "manual_changed_rows": "1", "manual_audit_verdict": "", "previous_quadrant": "stock_high__reach_high", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "0", "review_priority": "P3_normal", "interpretation": "高存量高触达，属于当前最强规模化可见性组。", "headline_claim": "太极拳 是规模与相关触达均较强的头部可见项目。", "top_likely_url": "https://www.tiktok.com/@tairi46/video/7555853013085130002", "top_likely_play": "33400000", "top_likely_desc": "姫にダンスを操られる俺たち🎽@TAICHI（筋達磨）💪👹 @中島 結音（ゆのん）", "top_noise_url": "https://www.tiktok.com/@yukungfu.com/video/7647935446462254367", "top_noise_play": "39800000", "top_noise_desc": "Kung fu shapes body, discipline shapes soul. #Training #kungfu"}, {"final_rank": "4", "final_tier": "T1_scale_export", "project_id": "36", "project_name": "中国剪纸", "project_name_en": "Chinese paper-cut", "list_type": "RL", "category": "传统手工艺", "quadrant": "stock_high__reach_high", "quadrant_label": "真·规模化出海候选", "stock_band": "stock_high", "scale_video_count_best": "28432", "scale_video_count_tier": "mid", "likely_reach_tier_final": "high_20_40pct_reach", "likely_reach_tier_statistical": "high_20_40pct_reach", "likely_total_play": "205339021", "likely_unique_videos": "300", "low_relevance_play_ratio": "0.4342", "reach_noise_risk": "medium", "raw_to_likely_tier_delta": "0", "manual_reviewed_rows": "1", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "1", "manual_changed_rows": "0", "manual_audit_verdict": "", "previous_quadrant": "stock_high__reach_high", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "0", "review_priority": "P3_normal", "interpretation": "高存量高触达，属于当前最强规模化可见性组。", "headline_claim": "中国剪纸 是规模与相关触达均较强的头部可见项目。", "top_likely_url": "https://www.tiktok.com/@onlyjayus/video/6943714855299943685", "top_likely_play": "36500000", "top_likely_desc": "Life Advice with Jayus 🤓🐝 #fyp #lifeadvice #advice #lifehacks #hacks #protip #tips #onlyjayus #bees #papercut #hiccups #gay #onlyjayus", "top_noise_url": "https://www.tiktok.com/@_vector_/video/7479295047393971487", "top_noise_play": "30400000", "top_noise_desc": "How to make a spider snowflake"}, {"final_rank": "5", "final_tier": "T1_scale_export_with_noise_risk", "project_id": "2", "project_name": "中国传统制茶技艺及其相关习俗", "project_name_en": "Traditional tea processing techniques and associated social practices in China", "list_type": "RL", "category": "手工艺/民俗", "quadrant": "stock_high__reach_high", "quadrant_label": "真·规模化出海候选", "stock_band": "stock_high", "scale_video_count_best": "16140", "scale_video_count_tier": "mid", "likely_reach_tier_final": "high_20_40pct_reach", "likely_reach_tier_statistical": "high_20_40pct_reach", "likely_total_play": "143086500", "likely_unique_videos": "473", "low_relevance_play_ratio": "0.5926", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "1", "manual_reviewed_rows": "1", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "1", "manual_changed_rows": "0", "manual_audit_verdict": "", "previous_quadrant": "stock_high__reach_high", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "0", "review_priority": "P2_noise_risk", "interpretation": "高存量高触达，但低相关播放占比偏高，作为规模化出海候选同时保留噪声 caveat。", "headline_claim": "中国传统制茶技艺及其相关习俗 是规模与相关触达均较强的头部可见项目。", "top_likely_url": "https://www.tiktok.com/@tk25145156z/video/7569553905730768142", "top_likely_play": "14500000", "top_likely_desc": "中国茶道知多少？让南方小牛牛给你们展示下吧#召唤茶友 #传统文化 #中国功夫茶 #茶文化茶生活以茶會友", "top_noise_url": "https://www.tiktok.com/@tk25145156z/video/7566599130772983054", "top_noise_play": "32800000", "top_noise_desc": "一老一少在泡茶，怎么样香不#传统文化 #召唤茶友 #茶文化茶生活以茶會友"}, {"final_rank": "6", "final_tier": "T1_scale_export_with_noise_risk", "project_id": "23", "project_name": "南京云锦织造技艺", "project_name_en": "Craftsmanship of Nanjing Yunjin brocade", "list_type": "RL", "category": "传统手工艺", "quadrant": "stock_high__reach_high", "quadrant_label": "真·规模化出海候选", "stock_band": "stock_high", "scale_video_count_best": "603357", "scale_video_count_tier": "head", "likely_reach_tier_final": "high_20_40pct_reach", "likely_reach_tier_statistical": "high_20_40pct_reach", "likely_total_play": "101751989", "likely_unique_videos": "207", "low_relevance_play_ratio": "0.7331", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "1", "manual_reviewed_rows": "0", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "0", "manual_changed_rows": "0", "manual_audit_verdict": "", "previous_quadrant": "stock_high__reach_high", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "0", "review_priority": "P2_noise_risk", "interpretation": "高存量高触达，但低相关播放占比偏高，作为规模化出海候选同时保留噪声 caveat。", "headline_claim": "南京云锦织造技艺 是规模与相关触达均较强的头部可见项目。", "top_likely_url": "https://www.tiktok.com/@le_sserafim/video/7632561832489733384", "top_likely_play": "13000000", "top_likely_desc": "𝒯𝒾𝓂ℯ 𝓉ℴ 𝒸ℯ𝓁ℯ𝒷𝓇𝒶𝓉ℯ #HUHYUNJIN ✮ #CELEBRATION", "top_noise_url": "https://www.tiktok.com/@destinationexplore/video/7227057440968183042", "top_noise_play": "106000000", "top_noise_desc": "Wow, so beautiful.❤️✨ 📍Nanjing| Nanjing Zhongshan #naturesms"}, {"final_rank": "7", "final_tier": "T1_scale_export_with_noise_risk", "project_id": "30", "project_name": "玛纳斯", "project_name_en": "Manas", "list_type": "RL", "category": "口头传统/史诗", "quadrant": "stock_high__reach_high", "quadrant_label": "真·规模化出海候选", "stock_band": "stock_high", "scale_video_count_best": "103875", "scale_video_count_tier": "head", "likely_reach_tier_final": "high_20_40pct_reach", "likely_reach_tier_statistical": "high_20_40pct_reach", "likely_total_play": "101345094", "likely_unique_videos": "89", "low_relevance_play_ratio": "0.711", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "1", "manual_reviewed_rows": "1", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "1", "manual_changed_rows": "0", "manual_audit_verdict": "", "previous_quadrant": "stock_high__reach_high", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "0", "review_priority": "P2_noise_risk", "interpretation": "高存量高触达，但低相关播放占比偏高，作为规模化出海候选同时保留噪声 caveat。", "headline_claim": "玛纳斯 是规模与相关触达均较强的头部可见项目。", "top_likely_url": "https://www.tiktok.com/@manaspalaparti/video/7604472694184185102", "top_likely_play": "24700000", "top_likely_desc": "please ignore the ugly grandma bun ok so quick update lol, my main talking point in this was my dress, not my terrible hair or my lack of makeup. this was filmed close to 3:21 AM …", "top_noise_url": "https://www.tiktok.com/@michaelcj.official/video/7538107186161995038", "top_noise_play": "27500000", "top_noise_desc": "When Cai Jun Dances Like MJ – Coolness Defined in Every Glide#caijun #michaeljacksoncaijun#michael #mj #dance #moonwalk #theydontcareaboutus"}, {"final_rank": "8", "final_tier": "T2_small_breakout", "project_id": "14", "project_name": "京剧", "project_name_en": "Peking opera", "list_type": "RL", "category": "表演艺术(戏曲)", "quadrant": "stock_low__reach_high", "quadrant_label": "低存量高触达：小而精破圈候选", "stock_band": "stock_mid", "scale_video_count_best": "7633", "scale_video_count_tier": "long_tail", "likely_reach_tier_final": "top_20pct_reach", "likely_reach_tier_statistical": "top_20pct_reach", "likely_total_play": "344408249", "likely_unique_videos": "364", "low_relevance_play_ratio": "0.328", "reach_noise_risk": "medium", "raw_to_likely_tier_delta": "1", "manual_reviewed_rows": "19", "manual_related_rows": "4", "manual_uncertain_rows": "2", "manual_unrelated_rows": "13", "manual_changed_rows": "12", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_high", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "11800000", "review_priority": "P1_low_stock_high_reach", "interpretation": "低存量高触达，少量内容/词条贡献跨圈触达，是“小而精破圈”组。", "headline_claim": "京剧 是低存量但高触达的“小而精破圈”候选。", "top_likely_url": "https://www.tiktok.com/@musicwang136/video/7205388003118697770", "top_likely_play": "57700000", "top_likely_desc": "#chinese #京剧 #foryou", "top_noise_url": "https://www.tiktok.com/@brian.liu1/video/7637255776473517319", "top_noise_play": "24500000", "top_noise_desc": "看看【蒲公英的作品】真正的绝活# 戏曲舞台技术技巧 # 台上一分鐘台下#網絡搬運"}, {"final_rank": "9", "final_tier": "T2_small_breakout", "project_id": "31", "project_name": "蒙古族呼麦", "project_name_en": "Mongolian art of singing, Khoomei", "list_type": "RL", "category": "表演艺术(音乐)", "quadrant": "stock_low__reach_high", "quadrant_label": "低存量高触达：小而精破圈候选", "stock_band": "stock_low", "scale_video_count_best": "902", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "top_20pct_reach", "likely_reach_tier_statistical": "top_20pct_reach", "likely_total_play": "320266425", "likely_unique_videos": "162", "low_relevance_play_ratio": "0.4802", "reach_noise_risk": "medium", "raw_to_likely_tier_delta": "0", "manual_reviewed_rows": "9", "manual_related_rows": "3", "manual_uncertain_rows": "0", "manual_unrelated_rows": "6", "manual_changed_rows": "7", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_high", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "63200000", "review_priority": "P1_low_stock_high_reach", "interpretation": "低存量高触达，少量内容/词条贡献跨圈触达，是“小而精破圈”组。", "headline_claim": "蒙古族呼麦 是低存量但高触达的“小而精破圈”候选。", "top_likely_url": "https://www.tiktok.com/@erklen/video/7544518597226401037", "top_likely_play": "81000000", "top_likely_desc": "throat singing chicken 2 #throatsinging #throatsing #mongolianthroatsinging #erklen #berkleecollegeofmusic", "top_noise_url": "https://www.tiktok.com/@mochalatteeeee_j/video/7641989538625244423", "top_noise_play": "48400000", "top_noise_desc": "belated and advance happy bday to us, my homies!🥳 #fyp #birthday #friends"}, {"final_rank": "10", "final_tier": "T2_small_breakout", "project_id": "24", "project_name": "宣纸传统制作技艺", "project_name_en": "Traditional handicrafts of making Xuan paper", "list_type": "RL", "category": "传统手工艺", "quadrant": "stock_low__reach_high", "quadrant_label": "低存量高触达：小而精破圈候选", "stock_band": "stock_low", "scale_video_count_best": "128", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "top_20pct_reach", "likely_reach_tier_statistical": "top_20pct_reach", "likely_total_play": "273472611", "likely_unique_videos": "251", "low_relevance_play_ratio": "0.4143", "reach_noise_risk": "medium", "raw_to_likely_tier_delta": "0", "manual_reviewed_rows": "10", "manual_related_rows": "3", "manual_uncertain_rows": "1", "manual_unrelated_rows": "6", "manual_changed_rows": "9", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_high", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-9300000", "review_priority": "P1_low_stock_high_reach", "interpretation": "低存量高触达，少量内容/词条贡献跨圈触达，是“小而精破圈”组。", "headline_claim": "宣纸传统制作技艺 是低存量但高触达的“小而精破圈”候选。", "top_likely_url": "https://www.tiktok.com/@trendygabriel/video/7321072687260962091", "top_likely_play": "38000000", "top_likely_desc": "Replying to @ムズキフ he knows how to make that paper💰 #wow #howitsmade", "top_noise_url": "https://www.tiktok.com/@meet_east/video/7130057943722003758", "top_noise_play": "53000000", "top_noise_desc": "Ancient papermaking #handwork"}, {"final_rank": "11", "final_tier": "T2_small_breakout", "project_id": "15", "project_name": "中医针灸", "project_name_en": "Acupuncture and moxibustion of traditional Chinese medicine", "list_type": "RL", "category": "传统医药", "quadrant": "stock_low__reach_high", "quadrant_label": "低存量高触达：小而精破圈候选", "stock_band": "stock_mid", "scale_video_count_best": "7351", "scale_video_count_tier": "long_tail", "likely_reach_tier_final": "top_20pct_reach", "likely_reach_tier_statistical": "top_20pct_reach", "likely_total_play": "245199475", "likely_unique_videos": "365", "low_relevance_play_ratio": "0.5744", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "0", "manual_reviewed_rows": "8", "manual_related_rows": "1", "manual_uncertain_rows": "2", "manual_unrelated_rows": "5", "manual_changed_rows": "5", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_high", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-84000000", "review_priority": "P1_low_stock_high_reach", "interpretation": "低存量高触达，少量内容/词条贡献跨圈触达，是“小而精破圈”组。", "headline_claim": "中医针灸 是低存量但高触达的“小而精破圈”候选。", "top_likely_url": "https://www.tiktok.com/@geotherapy/video/7416634811328007456", "top_likely_play": "15800000", "top_likely_desc": "His knots were so big i has to needle them out! #massage #physio #dryneedling #acupuncture #traps", "top_noise_url": "https://www.tiktok.com/@thecupdoc/video/7520493733565992206", "top_noise_play": "145100000", "top_noise_desc": "Wet cupping promotes tissue recovery by decompressing tight areas and drawing out trapped waste from under the skin. Studies have shown that cupping: • Improves microcirculation a…"}, {"final_rank": "12", "final_tier": "T2_small_breakout", "project_id": "13", "project_name": "中国木活字印刷术", "project_name_en": "Wooden movable-type printing of China", "list_type": "USL", "category": "传统手工艺", "quadrant": "stock_low__reach_high", "quadrant_label": "低存量高触达：小而精破圈候选", "stock_band": "stock_low", "scale_video_count_best": "171", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "top_20pct_reach", "likely_reach_tier_statistical": "top_20pct_reach", "likely_total_play": "140944338", "likely_unique_videos": "66", "low_relevance_play_ratio": "0.8156", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "1", "manual_reviewed_rows": "14", "manual_related_rows": "7", "manual_uncertain_rows": "1", "manual_unrelated_rows": "6", "manual_changed_rows": "4", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_high", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "24400000", "review_priority": "P0_noise_or_tier_drop", "interpretation": "低存量高触达，少量内容/词条贡献跨圈触达，是“小而精破圈”组。", "headline_claim": "中国木活字印刷术 是低存量但高触达的“小而精破圈”候选。", "top_likely_url": "https://www.tiktok.com/@xiedapao88/video/7404039857405742344", "top_likely_play": "47700000", "top_likely_desc": "中国四大发明之一：活字印刷术。一起来感受中国传统文化的魅力！One of the four great inventions of China: movable type printing. Let's feel the charm of traditional Chinese culture!#活字印刷术 #中国传统文化 #中国非物质文化遗产 #传统文化…", "top_noise_url": "https://www.tiktok.com/@engineezy/video/7632096837394058516", "top_noise_play": "90100000", "top_noise_desc": "This machine can draw any shape ••• Every mechanism I've built so far can only draw one shape. So I built one that can draw all of them using a custom app I coded with @ChatGPT to…"}, {"final_rank": "13", "final_tier": "T2_small_breakout", "project_id": "27", "project_name": "龙泉青瓷传统烧制技艺", "project_name_en": "Traditional firing technology of Longquan celadon", "list_type": "RL", "category": "传统手工艺", "quadrant": "stock_low__reach_high", "quadrant_label": "低存量高触达：小而精破圈候选", "stock_band": "stock_low", "scale_video_count_best": "657", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "high_20_40pct_reach", "likely_reach_tier_statistical": "high_20_40pct_reach", "likely_total_play": "112095917", "likely_unique_videos": "278", "low_relevance_play_ratio": "0.5863", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "1", "manual_reviewed_rows": "16", "manual_related_rows": "5", "manual_uncertain_rows": "1", "manual_unrelated_rows": "10", "manual_changed_rows": "12", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_high", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-56400000", "review_priority": "P1_low_stock_high_reach", "interpretation": "低存量高触达，少量内容/词条贡献跨圈触达，是“小而精破圈”组。", "headline_claim": "龙泉青瓷传统烧制技艺 是低存量但高触达的“小而精破圈”候选。", "top_likely_url": "https://www.tiktok.com/@shanbai09/video/7569629481434975502", "top_likely_play": "46100000", "top_likely_desc": "龙泉青瓷 Longquan Celadon | Originated in the Five Dynasties, flourished in the Song Dynasty, crafted in Longquan (Zhejiang) with its iconic celadon glaze, a treasure of Chinese porce…", "top_noise_url": "https://www.tiktok.com/@user8513083442827/video/7633736301002362119", "top_noise_play": "19900000", "top_noise_desc": "Better broken jade than whole tile. #LongquanCeladon #china #fyp #OrientalAesthetic#giftideas"}, {"final_rank": "14", "final_tier": "T2_small_breakout", "project_id": "38", "project_name": "端午节", "project_name_en": "Dragon Boat festival", "list_type": "RL", "category": "节庆民俗", "quadrant": "stock_low__reach_high", "quadrant_label": "低存量高触达：小而精破圈候选", "stock_band": "stock_mid", "scale_video_count_best": "8891", "scale_video_count_tier": "long_tail", "likely_reach_tier_final": "high_20_40pct_reach", "likely_reach_tier_statistical": "high_20_40pct_reach", "likely_total_play": "111202009", "likely_unique_videos": "388", "low_relevance_play_ratio": "0.399", "reach_noise_risk": "medium", "raw_to_likely_tier_delta": "2", "manual_reviewed_rows": "1", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "1", "manual_changed_rows": "0", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "True", "manual_reach_play_delta": "0", "review_priority": "P1_low_stock_high_reach", "interpretation": "低存量高触达，少量内容/词条贡献跨圈触达，是“小而精破圈”组。", "headline_claim": "端午节 是低存量但高触达的“小而精破圈”候选。", "top_likely_url": "https://www.tiktok.com/@art6859/video/7378664738378517806", "top_likely_play": "48300000", "top_likely_desc": "端午安康#dominoeffect #domino #foryou", "top_noise_url": "https://www.tiktok.com/@baby_bear19999/video/7506532829501639944", "top_noise_play": "16900000", "top_noise_desc": "the silence is too loud #blowthisup #xybca #xybca #blowthisup #fyp #roblox #fyppppppppppppppppppppppp #fyppppppppppppppppppppppp #viralvideo #fyp #fyp #fyp #fyp #fyppppppppppppppp…"}, {"final_rank": "15", "final_tier": "T2_small_breakout", "project_id": "42", "project_name": "古琴艺术", "project_name_en": "Guqin and its music", "list_type": "RL", "category": "表演艺术(音乐)", "quadrant": "stock_low__reach_high", "quadrant_label": "低存量高触达：小而精破圈候选", "stock_band": "stock_mid", "scale_video_count_best": "9346", "scale_video_count_tier": "long_tail", "likely_reach_tier_final": "high_20_40pct_reach", "likely_reach_tier_statistical": "high_20_40pct_reach", "likely_total_play": "106426001", "likely_unique_videos": "276", "low_relevance_play_ratio": "0.5991", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "1", "manual_reviewed_rows": "12", "manual_related_rows": "6", "manual_uncertain_rows": "0", "manual_unrelated_rows": "6", "manual_changed_rows": "9", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_high", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-17800000", "review_priority": "P1_low_stock_high_reach", "interpretation": "低存量高触达，少量内容/词条贡献跨圈触达，是“小而精破圈”组。", "headline_claim": "古琴艺术 是低存量但高触达的“小而精破圈”候选。", "top_likely_url": "https://www.tiktok.com/@mizdramaholic/video/7485060943156694303", "top_likely_play": "20200000", "top_likely_desc": "The Orchid Pavilion #兰亭序 #Guzheng #古筝 #iguzheng #guzhengmaster", "top_noise_url": "https://www.tiktok.com/@hudddjd/video/7569493475566030135", "top_noise_play": "38900000", "top_noise_desc": "Ru porcelain and guqin making#craftsman#handmade #fyp #rurallife #handwork"}, {"final_rank": "16", "final_tier": "T3_domestic_or_self_circulating", "project_id": "40", "project_name": "中国雕版印刷技艺", "project_name_en": "China engraved block printing technique", "list_type": "RL", "category": "传统手工艺", "quadrant": "stock_high__reach_low", "quadrant_label": "高存量低触达：自产自销/虚假繁荣候选", "stock_band": "stock_high", "scale_video_count_best": "31993", "scale_video_count_tier": "mid", "likely_reach_tier_final": "middle_40_70pct_reach", "likely_reach_tier_statistical": "middle_40_70pct_reach", "likely_total_play": "93351113", "likely_unique_videos": "229", "low_relevance_play_ratio": "0.7101", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "1", "manual_reviewed_rows": "10", "manual_related_rows": "3", "manual_uncertain_rows": "1", "manual_unrelated_rows": "6", "manual_changed_rows": "6", "manual_audit_verdict": "", "previous_quadrant": "stock_high__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "30800000", "review_priority": "P0_stock_high_reach_low", "interpretation": "高存量但相关触达不高，倾向自产自销/平台内弱外溢。", "headline_claim": "中国雕版印刷技艺 存量较高但相关触达未同步放大，偏自产自销/弱外溢。", "top_likely_url": "https://www.tiktok.com/@explore.china6/video/7322759248818081055", "top_likely_play": "24400000", "top_likely_desc": "#handcraft #handmade #fyp #learnontiktok #chineseculture", "top_noise_url": "https://www.tiktok.com/@skylineprintworks/video/6980455050179005702", "top_noise_play": "21000000", "top_noise_desc": "Part 2! #printmaking #arttok #blockprint #jigsawprint #oddlysatisfying #asmr #trusttheprocess"}, {"final_rank": "17", "final_tier": "T3_domestic_or_self_circulating", "project_id": "39", "project_name": "妈祖信俗", "project_name_en": "Mazu belief and customs", "list_type": "RL", "category": "民俗信仰", "quadrant": "stock_high__reach_low", "quadrant_label": "高存量低触达：自产自销/虚假繁荣候选", "stock_band": "stock_high", "scale_video_count_best": "13995", "scale_video_count_tier": "mid", "likely_reach_tier_final": "middle_40_70pct_reach", "likely_reach_tier_statistical": "middle_40_70pct_reach", "likely_total_play": "46836788", "likely_unique_videos": "216", "low_relevance_play_ratio": "0.8212", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "1", "manual_reviewed_rows": "9", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "9", "manual_changed_rows": "5", "manual_audit_verdict": "", "previous_quadrant": "stock_high__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-21400000", "review_priority": "P0_manual_false_breakout", "interpretation": "高存量但相关触达不高，倾向自产自销/平台内弱外溢。", "headline_claim": "妈祖信俗 存量较高但相关触达未同步放大，偏自产自销/弱外溢。", "top_likely_url": "https://www.tiktok.com/@sury9201/video/7611006409509063956", "top_likely_play": "4100000", "top_likely_desc": "#douyin抖音 #Mazu #china", "top_noise_url": "https://www.tiktok.com/@mazzu777/video/7083716709554736385", "top_noise_play": "33600000", "top_noise_desc": "허허.🤔 #김준호 #마쭈 #mazzu #cat #추천 #추천떠라 #fyp #comedy #tiktokcomedy #웃긴영상 #틱톡순삭 #viral #xyzbca #이어찍기 @junya1gou"}, {"final_rank": "18", "final_tier": "T3_domestic_or_self_circulating", "project_id": "37", "project_name": "中国传统木结构建筑营造技艺", "project_name_en": "Chinese traditional architectural craftsmanship for timber-framed structures", "list_type": "RL", "category": "传统手工艺/建筑", "quadrant": "stock_high__reach_low", "quadrant_label": "高存量低触达：自产自销/虚假繁荣候选", "stock_band": "stock_high", "scale_video_count_best": "16173", "scale_video_count_tier": "mid", "likely_reach_tier_final": "middle_40_70pct_reach", "likely_reach_tier_statistical": "middle_40_70pct_reach", "likely_total_play": "38819861", "likely_unique_videos": "301", "low_relevance_play_ratio": "0.8407", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "-1", "manual_reviewed_rows": "13", "manual_related_rows": "0", "manual_uncertain_rows": "3", "manual_unrelated_rows": "10", "manual_changed_rows": "7", "manual_audit_verdict": "", "previous_quadrant": "stock_high__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-31900000", "review_priority": "P0_manual_false_breakout", "interpretation": "高存量但相关触达不高，倾向自产自销/平台内弱外溢。", "headline_claim": "中国传统木结构建筑营造技艺 存量较高但相关触达未同步放大，偏自产自销/弱外溢。", "top_likely_url": "https://www.tiktok.com/@goldeneaglelogtimber/video/7130212114853039406", "top_likely_play": "3200000", "top_likely_desc": "Welcome to the Timber Lake, our hottest trending floor plan! 🔥 Watch the full tour on youtube! Link bio #luxury #timberframe #newhome #homeideas #floorplans #loghouse #cabin #home…", "top_noise_url": "https://www.tiktok.com/@ishalcncwoodart_official/video/7591831028256296195", "top_noise_play": "83300000", "top_noise_desc": "Best CNC router machine for wood carving V #foruyou #treanding #asmr #diycrafts #Craftsmanship"}, {"final_rank": "19", "final_tier": "T0_false_breakout_demoted", "project_id": "12", "project_name": "中国水密隔舱福船制造技艺", "project_name_en": "Watertight-bulkhead technology of Chinese junks", "list_type": "USL", "category": "传统手工艺", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_low", "scale_video_count_best": "343", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "manual_demoted_false_breakout", "likely_reach_tier_statistical": "high_20_40pct_reach", "likely_total_play": "184008225", "likely_unique_videos": "239", "low_relevance_play_ratio": "0.7543", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "0", "manual_reviewed_rows": "9", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "9", "manual_changed_rows": "6", "manual_audit_verdict": "false_breakout_confirmed", "previous_quadrant": "stock_low__reach_high", "manual_corrected_quadrant_changed": "True", "manual_reach_play_delta": "-118900000", "review_priority": "P0_manual_false_breakout", "interpretation": "人工确认假破圈：高触达样本不构成非遗实践触达，最终按低触达解释。", "headline_claim": "中国水密隔舱福船制造技艺 的高触达 breakout 被人工核查否定，最终不作为破圈案例。", "top_likely_url": "https://www.tiktok.com/@jeweled.by.jolly/video/7493221326799293738", "top_likely_play": "15200000", "top_likely_desc": "Brown Junk Case 🤎 #fyp #viral #trendyphonecase #phonecase #coolphonecases #girlyaesthetic #browns #junkcase #earthyaesthetic #earthtone", "top_noise_url": "https://www.tiktok.com/@jungkook/video/7620981615036255509", "top_noise_play": "88500000", "top_noise_desc": "#BTS #JungKook #JK #V #SWIM @Kimtaehyung"}, {"final_rank": "20", "final_tier": "T0_false_breakout_demoted", "project_id": "7", "project_name": "中国珠算", "project_name_en": "Chinese Zhusuan, knowledge and practices of mathematical calculation through the abacus", "list_type": "RL", "category": "传统知识", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_low", "scale_video_count_best": "304", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "manual_demoted_false_breakout", "likely_reach_tier_statistical": "high_20_40pct_reach", "likely_total_play": "169744719", "likely_unique_videos": "214", "low_relevance_play_ratio": "0.6549", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "1", "manual_reviewed_rows": "9", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "9", "manual_changed_rows": "6", "manual_audit_verdict": "false_breakout_confirmed", "previous_quadrant": "stock_low__reach_high", "manual_corrected_quadrant_changed": "True", "manual_reach_play_delta": "-114100000", "review_priority": "P0_manual_false_breakout", "interpretation": "人工确认假破圈：高触达样本不构成非遗实践触达，最终按低触达解释。", "headline_claim": "中国珠算 的高触达 breakout 被人工核查否定，最终不作为破圈案例。", "top_likely_url": "https://www.tiktok.com/@sabrinakanashiro/video/7482392760788602167", "top_likely_play": "12800000", "top_likely_desc": "Multiplicação no Soroban ✖️🧮 #soroban #abaco #matematica #math #mathematics #calculomental #abacus #fyp #garotasapoiamgarotas #viral_video #viralvideos", "top_noise_url": "https://www.tiktok.com/@dy991891/video/7526849661034876165", "top_noise_play": "51000000", "top_noise_desc": "Generasi emas sesungguhnya dari sebuah bangsa🤴🏻 #sempoamental #abacus #matematika #genalpha"}, {"final_rank": "21", "final_tier": "T0_false_breakout_demoted", "project_id": "11", "project_name": "麦西热甫", "project_name_en": "Meshrep", "list_type": "USL", "category": "表演艺术/民俗", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_low", "scale_video_count_best": "54", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "manual_demoted_false_breakout", "likely_reach_tier_statistical": "middle_40_70pct_reach", "likely_total_play": "61411002", "likely_unique_videos": "91", "low_relevance_play_ratio": "0.8473", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "0", "manual_reviewed_rows": "10", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "10", "manual_changed_rows": "7", "manual_audit_verdict": "false_breakout_confirmed", "previous_quadrant": "stock_low__reach_high", "manual_corrected_quadrant_changed": "True", "manual_reach_play_delta": "-84500000", "review_priority": "P0_manual_false_breakout", "interpretation": "人工确认假破圈：高触达样本不构成非遗实践触达，最终按低触达解释。", "headline_claim": "麦西热甫 的高触达 breakout 被人工核查否定，最终不作为破圈案例。", "top_likely_url": "https://www.tiktok.com/@vincentmklee/video/7293368479342726408", "top_likely_play": "4200000", "top_likely_desc": "This girl is from Xinjiang and she is a Uyghur. Wanna visit Xinjiang? 😉 #xinjiang #xinjiangchina #xinjianguyghurs🇨🇳 #uyghur #uyghurs #uyghurpeople #uyghurgirl #china", "top_noise_url": "https://www.tiktok.com/@yuji_beleza/video/7515401417339702550", "top_noise_play": "66700000", "top_noise_desc": "Uyghur language ❤️ . #uyghur #turkish #uzbek #uzbekistan #japanese #azerban #vienna #turkic"}, {"final_rank": "22", "final_tier": "T4_near_invisible_noise_checked", "project_id": "44", "project_name": "蒙古族长调民歌", "project_name_en": "Urtiin Duu, traditional folk long song", "list_type": "RL", "category": "表演艺术(音乐)", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_low", "scale_video_count_best": "21", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "middle_40_70pct_reach", "likely_reach_tier_statistical": "middle_40_70pct_reach", "likely_total_play": "153711277", "likely_unique_videos": "65", "low_relevance_play_ratio": "0.8501", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "-2", "manual_reviewed_rows": "13", "manual_related_rows": "3", "manual_uncertain_rows": "0", "manual_unrelated_rows": "10", "manual_changed_rows": "9", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "146456300", "review_priority": "P0_noise_or_tier_drop", "interpretation": "低存量低触达，且人工/噪声核查显示热门 raw 信号多不可靠。", "headline_claim": "蒙古族长调民歌 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@erklen/video/7544518597226401037", "top_likely_play": "81000000", "top_likely_desc": "throat singing chicken 2 #throatsinging #throatsing #mongolianthroatsinging #erklen #berkleecollegeofmusic", "top_noise_url": "https://www.tiktok.com/@itsdxnmusic/video/7493231739372866823", "top_noise_play": "40500000", "top_noise_desc": "#spotify #fullsong #lyrics #fyp"}, {"final_rank": "23", "final_tier": "T4_near_invisible_noise_checked", "project_id": "35", "project_name": "中国篆刻", "project_name_en": "Art of Chinese seal engraving", "list_type": "RL", "category": "传统手工艺", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_mid", "scale_video_count_best": "2885", "scale_video_count_tier": "long_tail", "likely_reach_tier_final": "middle_40_70pct_reach", "likely_reach_tier_statistical": "middle_40_70pct_reach", "likely_total_play": "56311812", "likely_unique_videos": "321", "low_relevance_play_ratio": "0.9267", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "-2", "manual_reviewed_rows": "13", "manual_related_rows": "1", "manual_uncertain_rows": "0", "manual_unrelated_rows": "12", "manual_changed_rows": "8", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-29100000", "review_priority": "P0_noise_or_tier_drop", "interpretation": "低存量低触达，且人工/噪声核查显示热门 raw 信号多不可靠。", "headline_claim": "中国篆刻 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@craftheritage/video/7624096912974564621", "top_likely_play": "19700000", "top_likely_desc": "Longquan Ge Kiln is one of the Five Great Kilns of the Song Dynasty in China, famous for its distinctive crackle glaze (called \"gold thread and iron wire\"). known for elegant shap…", "top_noise_url": "https://www.tiktok.com/@seal_sealion/video/7584755757833325879", "top_noise_play": "156700000", "top_noise_desc": "#seal #sealion #fyp"}, {"final_rank": "24", "final_tier": "T4_near_invisible_noise_checked", "project_id": "21", "project_name": "中国蚕桑丝织技艺", "project_name_en": "Sericulture and silk craftsmanship of China", "list_type": "RL", "category": "传统手工艺", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_low", "scale_video_count_best": "508", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "middle_40_70pct_reach", "likely_reach_tier_statistical": "middle_40_70pct_reach", "likely_total_play": "48894741", "likely_unique_videos": "175", "low_relevance_play_ratio": "0.7448", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "-1", "manual_reviewed_rows": "4", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "4", "manual_changed_rows": "2", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-4800000", "review_priority": "P0_manual_false_breakout", "interpretation": "低存量低触达，且人工/噪声核查显示热门 raw 信号多不可靠。", "headline_claim": "中国蚕桑丝织技艺 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@peter.pan810/video/7285420837681892639", "top_likely_play": "29300000", "top_likely_desc": "5000 years ago, the Chinese learned to make quilts from the silk of the silkworm, which are breathable, light, and cozy.#culture #handcraft #handwork #fyp #foryou #ancient #china …", "top_noise_url": "https://www.tiktok.com/@lovemysilk/video/7446553422301629742", "top_noise_play": "56600000", "top_noise_desc": "Swap your milk for Silk Almondmilk® and #FeelPlantyGood"}, {"final_rank": "25", "final_tier": "T4_near_invisible_noise_checked", "project_id": "18", "project_name": "羌年", "project_name_en": "Qiang New Year festival", "list_type": "USL", "category": "节庆民俗", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_low", "scale_video_count_best": "7", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "middle_40_70pct_reach", "likely_reach_tier_statistical": "middle_40_70pct_reach", "likely_total_play": "38667397", "likely_unique_videos": "104", "low_relevance_play_ratio": "0.7935", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "-1", "manual_reviewed_rows": "3", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "3", "manual_changed_rows": "2", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "0", "review_priority": "P0_manual_false_breakout", "interpretation": "低存量低触达，且人工/噪声核查显示热门 raw 信号多不可靠。", "headline_claim": "羌年 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@qiangchinatravel/video/7595297313250135304", "top_likely_play": "8600000", "top_likely_desc": "Nhà của Dai Dai đón khách nhiều tới nỗi bố mẹ không muốn ra khỏi phòng nữa vì quá mệt . ăn tết có 2 ngày giờ thành 4 ngày còn chưa hết người #qiangchina #chinatravel #tourchina #d…", "top_noise_url": "https://www.tiktok.com/@poopthien/video/7566468066406567181", "top_noise_play": "48600000", "top_noise_desc": "#asian #viet #08 #baby #babyfever part 146"}, {"final_rank": "26", "final_tier": "T4_near_invisible_noise_checked", "project_id": "6", "project_name": "二十四节气", "project_name_en": "The Twenty-Four Solar Terms, knowledge in China of time and practices developed through observation of the sun's annual motion", "list_type": "RL", "category": "传统知识/民俗", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_mid", "scale_video_count_best": "2636", "scale_video_count_tier": "long_tail", "likely_reach_tier_final": "middle_40_70pct_reach", "likely_reach_tier_statistical": "middle_40_70pct_reach", "likely_total_play": "22500849", "likely_unique_videos": "188", "low_relevance_play_ratio": "0.9052", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "1", "manual_reviewed_rows": "11", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "11", "manual_changed_rows": "6", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-9200000", "review_priority": "P0_manual_false_breakout", "interpretation": "低存量低触达，且人工/噪声核查显示热门 raw 信号多不可靠。", "headline_claim": "二十四节气 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@zeianz/video/7615588769760038165", "top_likely_play": "2300000", "top_likely_desc": "Year of the Goat/Sheep !! 🐐 🐑 #chinesecalendar #chinesezodiac #trending #fypp #xybzca ib : @Loveclouds", "top_noise_url": "https://www.tiktok.com/@l0nelysoul0/video/7629582028886789406", "top_noise_play": "38700000", "top_noise_desc": "... #real #atmosphere #apathy #nature #vibes"}, {"final_rank": "27", "final_tier": "T4_near_invisible_noise_checked", "project_id": "4", "project_name": "送王船", "project_name_en": "Ong Chun/Wangchuan/Wangkang ceremony, rituals and related practices for maintaining the sustainable connection between man and the ocean", "list_type": "RL", "category": "民俗仪式", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_mid", "scale_video_count_best": "1302", "scale_video_count_tier": "long_tail", "likely_reach_tier_final": "middle_40_70pct_reach", "likely_reach_tier_statistical": "middle_40_70pct_reach", "likely_total_play": "20773209", "likely_unique_videos": "142", "low_relevance_play_ratio": "0.9151", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "2", "manual_reviewed_rows": "10", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "10", "manual_changed_rows": "5", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-21200000", "review_priority": "P0_manual_false_breakout", "interpretation": "低存量低触达，且人工/噪声核查显示热门 raw 信号多不可靠。", "headline_claim": "送王船 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@longchunchun/video/7279994056485145863", "top_likely_play": "5700000", "top_likely_desc": "Thích cái cách mà cô ấy phá tài sản để mè nheo những tài sản mới 😂 #longchun #tunpham", "top_noise_url": "https://www.tiktok.com/@khat_019/video/7617709236507675924", "top_noise_play": "20300000", "top_noise_desc": "คลิปนี้มีมวย5555🤔😂 #ฟีดดดシ #เทรนด์วันนี้ #อย่าปิดการมองเห็น #รําวงเพชรบุรี #มือคีย์บอดที่ชื่อสุดเขตอะ"}, {"final_rank": "28", "final_tier": "T4_near_invisible_noise_checked", "project_id": "16", "project_name": "黎族传统纺染织绣技艺", "project_name_en": "Traditional Li textile techniques: spinning, dyeing, weaving and embroidering", "list_type": "USL", "category": "传统手工艺", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_low", "scale_video_count_best": "48", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "middle_40_70pct_reach", "likely_reach_tier_statistical": "middle_40_70pct_reach", "likely_total_play": "17747302", "likely_unique_videos": "82", "low_relevance_play_ratio": "0.9076", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "0", "manual_reviewed_rows": "10", "manual_related_rows": "3", "manual_uncertain_rows": "0", "manual_unrelated_rows": "7", "manual_changed_rows": "2", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "0", "review_priority": "P0_noise_or_tier_drop", "interpretation": "低存量低触达，且人工/噪声核查显示热门 raw 信号多不可靠。", "headline_claim": "黎族传统纺染织绣技艺 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@littleturtlelisa/video/7409140339413470495", "top_likely_play": "5400000", "top_likely_desc": "Li Brocade Show#hainan #littleturtlelisa #tourofhainan #cycling #cycle", "top_noise_url": "https://www.tiktok.com/@huatieutieu/video/7631450622050454792", "top_noise_play": "53800000", "top_noise_desc": "Dệt tằm và thêu tranh, Nghề cổ truyền dân gian #huatieutieu #viraltiktok #xuhuong #viral"}, {"final_rank": "29", "final_tier": "T4_near_invisible_noise_checked", "project_id": "22", "project_name": "南音", "project_name_en": "Nanyin", "list_type": "RL", "category": "表演艺术(音乐)", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_low", "scale_video_count_best": "854", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "lower_70_90pct_reach", "likely_reach_tier_statistical": "lower_70_90pct_reach", "likely_total_play": "14314705", "likely_unique_videos": "129", "low_relevance_play_ratio": "0.957", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "0", "manual_reviewed_rows": "10", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "10", "manual_changed_rows": "5", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-4500000", "review_priority": "P0_manual_false_breakout", "interpretation": "低存量低触达，且人工/噪声核查显示热门 raw 信号多不可靠。", "headline_claim": "南音 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@nanf_music/video/7232797979835370794", "top_likely_play": "1200000", "top_likely_desc": "#music #fyp #我要上推薦 #音樂 #粉丝", "top_noise_url": "https://www.tiktok.com/@fujian1060/video/7152877072203975962", "top_noise_play": "19300000", "top_noise_desc": "#fujian #meyden #masukberandafyp #fypシ"}, {"final_rank": "30", "final_tier": "T4_near_invisible_noise_checked", "project_id": "10", "project_name": "中国皮影戏", "project_name_en": "Chinese shadow puppetry", "list_type": "RL", "category": "表演艺术", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_low", "scale_video_count_best": "935", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "lower_70_90pct_reach", "likely_reach_tier_statistical": "lower_70_90pct_reach", "likely_total_play": "13264017", "likely_unique_videos": "163", "low_relevance_play_ratio": "0.9527", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "-2", "manual_reviewed_rows": "14", "manual_related_rows": "6", "manual_uncertain_rows": "0", "manual_unrelated_rows": "8", "manual_changed_rows": "3", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "0", "review_priority": "P0_noise_or_tier_drop", "interpretation": "低存量低触达，且人工/噪声核查显示热门 raw 信号多不可靠。", "headline_claim": "中国皮影戏 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@pandatalk_/video/7017719800428285185", "top_likely_play": "3300000", "top_likely_desc": "An art of using shadows-Chinese shadow puppetry!#china #foryou #fyp #tiktok #shadow", "top_noise_url": "https://www.tiktok.com/@yigerenyetinghaode/video/7646044803981004050", "top_noise_play": "62900000", "top_noise_desc": "论戏精小猫如何出片 #街头摄影 #这个世界不能没有小猫 #领先烘焙猫粮 #领先猫粮 #领先羊奶鸡"}, {"final_rank": "31", "final_tier": "T4_near_invisible_noise_checked", "project_id": "20", "project_name": "西安鼓乐", "project_name_en": "Xi'an wind and percussion ensemble", "list_type": "RL", "category": "表演艺术(音乐)", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_low", "scale_video_count_best": "9", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "middle_40_70pct_reach", "likely_reach_tier_statistical": "middle_40_70pct_reach", "likely_total_play": "10852555", "likely_unique_videos": "52", "low_relevance_play_ratio": "0.9836", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "-2", "manual_reviewed_rows": "10", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "10", "manual_changed_rows": "5", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-14200000", "review_priority": "P0_manual_false_breakout", "interpretation": "低存量低触达，且人工/噪声核查显示热门 raw 信号多不可靠。", "headline_claim": "西安鼓乐 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@joejun0/video/7343513140216237313", "top_likely_play": "3300000", "top_likely_desc": "🇲🇾 2024 新山福州十邑会馆舞龍队 鼓乐篇 可爱的是那个女孩 打一下拔头发飞一下🤣🤣🤣凉爽 哈哈哈 其实有一幕小姐姐笑起来真好看😍 Drum music The cute thing is that girl. Hit it and pull out her hair and it will fly🤣🤣🤣It’s cool, hahaha In fac…", "top_noise_url": "https://www.tiktok.com/@thedrumpath/video/7397040267813080336", "top_noise_play": "67200000", "top_noise_desc": "Beggin’ - Måneskin #tiktok #tiktokviral #viral #tiktokviralvideo #viraltiktok #drums #drummer #drumcover #music #songs"}, {"final_rank": "32", "final_tier": "T4_near_invisible_noise_checked", "project_id": "9", "project_name": "赫哲族伊玛堪", "project_name_en": "Hezhe Yimakan storytelling", "list_type": "USL", "category": "口头传统/史诗", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_low", "scale_video_count_best": "17", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "lower_70_90pct_reach", "likely_reach_tier_statistical": "lower_70_90pct_reach", "likely_total_play": "8230401", "likely_unique_videos": "59", "low_relevance_play_ratio": "0.9661", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "1", "manual_reviewed_rows": "10", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "10", "manual_changed_rows": "5", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-7300000", "review_priority": "P0_manual_false_breakout", "interpretation": "低存量低触达，且人工/噪声核查显示热门 raw 信号多不可靠。", "headline_claim": "赫哲族伊玛堪 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@zhezhehe/video/7568091124795985160", "top_likely_play": "749600", "top_likely_desc": "With @cigwpols #xuhuong #viral #theapothecarydiaries", "top_noise_url": "https://www.tiktok.com/@mayilong0/video/7166206744530570497", "top_noise_play": "22000000", "top_noise_desc": "#ftx #dogecoin #elonmusk #tesla Really want to slap you both in the face. So many people put their trust in you, only to let them down."}, {"final_rank": "33", "final_tier": "T4_near_invisible_noise_checked", "project_id": "43", "project_name": "新疆维吾尔木卡姆艺术", "project_name_en": "Uyghur Muqam of Xinjiang", "list_type": "RL", "category": "表演艺术(音乐)", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_mid", "scale_video_count_best": "7108", "scale_video_count_tier": "long_tail", "likely_reach_tier_final": "lower_70_90pct_reach", "likely_reach_tier_statistical": "lower_70_90pct_reach", "likely_total_play": "6692744", "likely_unique_videos": "86", "low_relevance_play_ratio": "0.9495", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "1", "manual_reviewed_rows": "12", "manual_related_rows": "1", "manual_uncertain_rows": "0", "manual_unrelated_rows": "11", "manual_changed_rows": "4", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-2900000", "review_priority": "P0_noise_or_tier_drop", "interpretation": "低存量低触达，且人工/噪声核查显示热门 raw 信号多不可靠。", "headline_claim": "新疆维吾尔木卡姆艺术 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@fangxiaojieaizhuiju/video/7641792081266035988", "top_likely_play": "1000000", "top_likely_desc": "萬桐書決心獨自留守邊疆，執心潛心研習收錄木卡姆珍貴樂曲文化#我們愛追劇 #劇分享 #陸劇 #芳小姐愛追劇", "top_noise_url": "https://www.tiktok.com/@thomastfu/video/7589712529983589653", "top_noise_play": "18000000", "top_noise_desc": "#童年回忆"}, {"final_rank": "34", "final_tier": "T4_near_invisible_noise_checked", "project_id": "41", "project_name": "昆曲", "project_name_en": "Kun Qu opera", "list_type": "RL", "category": "表演艺术(戏曲)", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_low", "scale_video_count_best": "844", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "lower_70_90pct_reach", "likely_reach_tier_statistical": "lower_70_90pct_reach", "likely_total_play": "6347962", "likely_unique_videos": "262", "low_relevance_play_ratio": "0.9398", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "1", "manual_reviewed_rows": "11", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "11", "manual_changed_rows": "6", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-4159100", "review_priority": "P0_manual_false_breakout", "interpretation": "低存量低触达，且人工/噪声核查显示热门 raw 信号多不可靠。", "headline_claim": "昆曲 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@visitbeijing/video/7617774406609243406", "top_likely_play": "680000", "top_likely_desc": "Kunqu Opera—older than Peking opera, slower, more intricate. The kind of singing where a single phrase can stretch into something unexpected. Our host got up and tried to learn a …", "top_noise_url": "https://www.tiktok.com/@brian.liu1/video/7637255776473517319", "top_noise_play": "24500000", "top_noise_desc": "看看【蒲公英的作品】真正的绝活# 戏曲舞台技术技巧 # 台上一分鐘台下#網絡搬運"}, {"final_rank": "35", "final_tier": "T4_near_invisible_noise_checked", "project_id": "17", "project_name": "中国木拱桥传统营造技艺", "project_name_en": "Traditional design and practices for building Chinese wooden arch bridges", "list_type": "USL", "category": "传统手工艺/建筑", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_low", "scale_video_count_best": "13", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "lower_70_90pct_reach", "likely_reach_tier_statistical": "lower_70_90pct_reach", "likely_total_play": "4076393", "likely_unique_videos": "188", "low_relevance_play_ratio": "0.9338", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "1", "manual_reviewed_rows": "10", "manual_related_rows": "0", "manual_uncertain_rows": "1", "manual_unrelated_rows": "9", "manual_changed_rows": "6", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-2929000", "review_priority": "P0_manual_false_breakout", "interpretation": "低存量低触达，且人工/噪声核查显示热门 raw 信号多不可靠。", "headline_claim": "中国木拱桥传统营造技艺 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@lminghei4/video/7595561107331370270", "top_likely_play": "395600", "top_likely_desc": "情，始于廊桥，终于廊桥。爱，融于灵魂，镌刻一生。#此情永不移 #nothingsgonnachangemylove #小提琴 #音乐 #好的音乐总能触动人的心灵", "top_noise_url": "https://www.tiktok.com/@indra.dahal24/video/7642174414309575957", "top_noise_play": "26300000", "top_noise_desc": "mini bridge construction using by mini bricks,cement and wood##miniature #smallcreator #highbridge #construction"}, {"final_rank": "36", "final_tier": "T4_near_invisible_noise_checked", "project_id": "28", "project_name": "热贡艺术", "project_name_en": "Regong arts", "list_type": "RL", "category": "传统手工艺/宗教艺术", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_low", "scale_video_count_best": "37", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "lower_70_90pct_reach", "likely_reach_tier_statistical": "lower_70_90pct_reach", "likely_total_play": "3997651", "likely_unique_videos": "233", "low_relevance_play_ratio": "0.9799", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "-1", "manual_reviewed_rows": "10", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "10", "manual_changed_rows": "5", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-2901800", "review_priority": "P0_manual_false_breakout", "interpretation": "低存量低触达，且人工/噪声核查显示热门 raw 信号多不可靠。", "headline_claim": "热贡艺术 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@thangka.painting/video/7473271624385662254", "top_likely_play": "455500", "top_likely_desc": "#Thangka handmade painting, #religious art, #Tibetan Thangka", "top_noise_url": "https://www.tiktok.com/@rehome.life/video/7589872995724774670", "top_noise_play": "119400000", "top_noise_desc": "Source factory direct supply, factory craftsmanship, SPC flooring real material.#OEM#EasyInstall #factory#flooring#spc flooring"}, {"final_rank": "37", "final_tier": "T4_near_invisible_noise_checked", "project_id": "33", "project_name": "中国朝鲜族农乐舞", "project_name_en": "Farmers' dance of China's Korean ethnic group", "list_type": "RL", "category": "表演艺术(舞蹈)", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_low", "scale_video_count_best": "41", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "lower_70_90pct_reach", "likely_reach_tier_statistical": "lower_70_90pct_reach", "likely_total_play": "2671328", "likely_unique_videos": "85", "low_relevance_play_ratio": "0.975", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "0", "manual_reviewed_rows": "11", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "11", "manual_changed_rows": "6", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-3389200", "review_priority": "P0_manual_false_breakout", "interpretation": "低存量低触达，且人工/噪声核查显示热门 raw 信号多不可靠。", "headline_claim": "中国朝鲜族农乐舞 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@baannongakin/video/7623707906407468306", "top_likely_play": "341000", "top_likely_desc": "รถไฟโทมัสแบบนั่งขับพร้อมราง 🚂🚦 เด็กสามารถนั่งบังคับได้จริง มีเพลงธีมโทมัสแบบออริจินัล เสียงหวีดรถไฟ และมีไฟกะพริบ สมจริง! #ของเล่นเสริมพัฒนาการ #ของเล่นเด็ก #ของเล่น #รถไฟ #รีวิวข…", "top_noise_url": "https://www.tiktok.com/@shunlinainai2/video/7625496809963621654", "top_noise_play": "64800000", "top_noise_desc": "#过上了好日子红红火火 #过上了好日子 #农村人的快乐生活 #农村人爱唱歌"}, {"final_rank": "38", "final_tier": "T4_near_invisible_noise_checked", "project_id": "26", "project_name": "格萨(斯)尔史诗传统", "project_name_en": "Gesar epic tradition", "list_type": "RL", "category": "口头传统/史诗", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_low", "scale_video_count_best": "227", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "lower_70_90pct_reach", "likely_reach_tier_statistical": "lower_70_90pct_reach", "likely_total_play": "1787008", "likely_unique_videos": "76", "low_relevance_play_ratio": "0.464", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "-2", "manual_reviewed_rows": "10", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "10", "manual_changed_rows": "7", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-1724900", "review_priority": "P0_manual_false_breakout", "interpretation": "低存量低触达，且人工/噪声核查显示热门 raw 信号多不可靠。", "headline_claim": "格萨(斯)尔史诗传统 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@tehocana3333/video/7558969095731825951", "top_likely_play": "496400", "top_likely_desc": "Replying to @yiyi_.gym Busca el video de donde viene este comentario #nesara #gesara #soberano #libre #revelaciones369", "top_noise_url": "https://www.tiktok.com/@nksomin/video/6987630425363565850", "top_noise_play": "48000000", "top_noise_desc": "Venom epic moment 😎 #fyp #Venom2018 #Marvel"}, {"final_rank": "39", "final_tier": "T4_near_invisible_noise_checked", "project_id": "29", "project_name": "藏戏", "project_name_en": "Xizang opera", "list_type": "RL", "category": "表演艺术(戏曲)", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_low", "scale_video_count_best": "808", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "bottom_10pct_reach", "likely_reach_tier_statistical": "bottom_10pct_reach", "likely_total_play": "1731170", "likely_unique_videos": "159", "low_relevance_play_ratio": "0.9151", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "-2", "manual_reviewed_rows": "12", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "12", "manual_changed_rows": "6", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-1792800", "review_priority": "P0_manual_false_breakout", "interpretation": "低存量低触达，且人工/噪声核查显示热门 raw 信号多不可靠。", "headline_claim": "藏戏 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@theroyalfamilyofbhutan/video/7571090782103276808", "top_likely_play": "200800", "top_likely_desc": "Ashi Yeatso Lhamo, wife of His Royal Highness Gyaltsab Jigme Dorji Wangchuck and elder sister of Her Majesty The Gyaltsuen 💛🐉🇧🇹🙇‍♀️💐 #royalfamily #royalfamilyofbhutan #ashiyeatsho…", "top_noise_url": "https://www.tiktok.com/@laranaa8/video/7618553054584917261", "top_noise_play": "29500000", "top_noise_desc": ""}, {"final_rank": "40", "final_tier": "T4_near_invisible_noise_checked", "project_id": "5", "project_name": "藏医药浴法", "project_name_en": "Lum medicinal bathing of Sowa Rigpa, knowledge and practices concerning life, health and illness prevention and treatment among the Xizang people in China", "list_type": "RL", "category": "传统医药", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_low", "scale_video_count_best": "256", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "bottom_10pct_reach", "likely_reach_tier_statistical": "bottom_10pct_reach", "likely_total_play": "1011447", "likely_unique_videos": "121", "low_relevance_play_ratio": "0.9873", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "-1", "manual_reviewed_rows": "11", "manual_related_rows": "1", "manual_uncertain_rows": "0", "manual_unrelated_rows": "10", "manual_changed_rows": "4", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-344800", "review_priority": "P0_noise_or_tier_drop", "interpretation": "低存量低触达，且人工/噪声核查显示热门 raw 信号多不可靠。", "headline_claim": "藏医药浴法 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@cleo_abrahams/video/7126331545304059137", "top_likely_play": "282900", "top_likely_desc": "This ancient tibetan medicine massage helped me with my insomnia 💆‍♀️ #asmr #massage #tibetanmassage #headmassage #insomnia", "top_noise_url": "https://www.tiktok.com/@69scorpionqueen/video/7058758162630872322", "top_noise_play": "38400000", "top_noise_desc": "#сафарова #питер"}, {"final_rank": "41", "final_tier": "T4_near_invisible_noise_checked", "project_id": "8", "project_name": "福建木偶戏", "project_name_en": "Strategy for training coming generations of Fujian puppetry practitioners", "list_type": "GSP", "category": "保护实践(木偶戏)", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_low", "scale_video_count_best": "315", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "bottom_10pct_reach", "likely_reach_tier_statistical": "bottom_10pct_reach", "likely_total_play": "589865", "likely_unique_videos": "59", "low_relevance_play_ratio": "0.9541", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "-2", "manual_reviewed_rows": "13", "manual_related_rows": "3", "manual_uncertain_rows": "0", "manual_unrelated_rows": "10", "manual_changed_rows": "7", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-846600", "review_priority": "P0_noise_or_tier_drop", "interpretation": "低存量低触达，且人工/噪声核查显示热门 raw 信号多不可靠。", "headline_claim": "福建木偶戏 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@goodlivinginchina/video/7614505628744043832", "top_likely_play": "425900", "top_likely_desc": "🖐️Discover #Fujian's intangible cultural heritage: the #Budaixi glove puppet show! A master with 20 years of performing experience shows his amazing finger skills. Melinda and Aru…", "top_noise_url": "https://www.tiktok.com/@yigerenyetinghaode/video/7646044803981004050", "top_noise_play": "62900000", "top_noise_desc": "论戏精小猫如何出片 #街头摄影 #这个世界不能没有小猫 #领先烘焙猫粮 #领先猫粮 #领先羊奶鸡"}, {"final_rank": "42", "final_tier": "T4_near_invisible_noise_checked", "project_id": "19", "project_name": "侗族大歌", "project_name_en": "Grand song of the Dong ethnic group", "list_type": "RL", "category": "表演艺术(音乐)", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_low", "scale_video_count_best": "10", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "bottom_10pct_reach", "likely_reach_tier_statistical": "bottom_10pct_reach", "likely_total_play": "148748", "likely_unique_videos": "59", "low_relevance_play_ratio": "0.9863", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "-1", "manual_reviewed_rows": "10", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "10", "manual_changed_rows": "5", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-149500", "review_priority": "P0_manual_false_breakout", "interpretation": "低存量低触达，且人工/噪声核查显示热门 raw 信号多不可靠。", "headline_claim": "侗族大歌 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@unknowncultures/video/7032437244807875846", "top_likely_play": "31000", "top_likely_desc": "竹竿舞 #苗族 #瑶族 #黎族 #佤族 #侗族 #竹竿舞 #贵州 #少数民族 #民族服饰 #中国 #miaozu #hmong #yaozu #mienh #lizu #wazu #dongzu #china #bamboodance #dongpeople #wapeople #hmongb", "top_noise_url": "https://www.tiktok.com/@germangents/video/7545888844516822294", "top_noise_play": "97600000", "top_noise_desc": "Dame Un Grrr😏💅 #dameungrrr #suits #cringe #acappella #germangents"}, {"final_rank": "43", "final_tier": "T4_near_invisible_noise_checked", "project_id": "32", "project_name": "花儿", "project_name_en": "Hua'er", "list_type": "RL", "category": "表演艺术(民歌)", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_low", "scale_video_count_best": "166", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "bottom_10pct_reach", "likely_reach_tier_statistical": "bottom_10pct_reach", "likely_total_play": "71167", "likely_unique_videos": "53", "low_relevance_play_ratio": "0.9751", "reach_noise_risk": "high", "raw_to_likely_tier_delta": "-1", "manual_reviewed_rows": "10", "manual_related_rows": "0", "manual_uncertain_rows": "0", "manual_unrelated_rows": "10", "manual_changed_rows": "5", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "-310100", "review_priority": "P0_manual_false_breakout", "interpretation": "低存量低触达，且人工/噪声核查显示热门 raw 信号多不可靠。", "headline_claim": "花儿 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@lin_cen_ling/video/7649013595753172242", "top_likely_play": "9629", "top_likely_desc": "歌曲：花儿开花儿落 #歌曲花儿开花儿落 #花儿开花儿落 #神级现场 #Chinesesongs #bestchinesesongs", "top_noise_url": "https://www.tiktok.com/@bob485518/video/7587698504424852749", "top_noise_play": "20700000", "top_noise_desc": "what did i do to bro 😭"}, {"final_rank": "44", "final_tier": "T4_near_invisible", "project_id": "25", "project_name": "粤剧", "project_name_en": "Yueju opera", "list_type": "RL", "category": "表演艺术(戏曲)", "quadrant": "stock_low__reach_low", "quadrant_label": "低存量低触达：近乎隐形候选", "stock_band": "stock_low", "scale_video_count_best": "289", "scale_video_count_tier": "near_invisible", "likely_reach_tier_final": "middle_40_70pct_reach", "likely_reach_tier_statistical": "middle_40_70pct_reach", "likely_total_play": "40755989", "likely_unique_videos": "114", "low_relevance_play_ratio": "0.4862", "reach_noise_risk": "medium", "raw_to_likely_tier_delta": "0", "manual_reviewed_rows": "7", "manual_related_rows": "1", "manual_uncertain_rows": "1", "manual_unrelated_rows": "5", "manual_changed_rows": "4", "manual_audit_verdict": "", "previous_quadrant": "stock_low__reach_low", "manual_corrected_quadrant_changed": "False", "manual_reach_play_delta": "27700000", "review_priority": "P3_normal", "interpretation": "低存量低触达，当前跨平台可见性弱。", "headline_claim": "粤剧 当前呈低存量低触达，接近隐形或被噪声掩盖。", "top_likely_url": "https://www.tiktok.com/@maisieding6688/video/7159021562836913454", "top_likely_play": "27700000", "top_likely_desc": "Emergency change makeup #fy #fyp #foryou #foryoupage #opera #pekingopera #china #chineseculture", "top_noise_url": "https://www.tiktok.com/@selfwho0/video/7495059041585089835", "top_noise_play": "18900000", "top_noise_desc": "Madness or heartbreak? Hu Shi’s breakdown in The Auspicious Mirror of the Universe. 🎭💔 #TheAuspiciousMirror #HuShi #ChineseOpera #PekingOpera #EmotionalBreakdown #TraditionalTheat…"}];
+const q = document.getElementById('q');
+const tier = document.getElementById('tier');
+const quad = document.getElementById('quad');
+function filterRows() {
+  const text = q.value.trim().toLowerCase();
+  const tv = tier.value;
+  const qv = quad.value;
+  document.querySelectorAll('#tbl tbody tr').forEach(tr => {
+    const hay = tr.innerText.toLowerCase();
+    const ok = (!text || hay.includes(text)) && (!tv || tr.dataset.tier === tv) && (!qv || tr.dataset.quadrant === qv);
+    tr.style.display = ok ? '' : 'none';
+  });
+}
+[q,tier,quad].forEach(el => el.addEventListener('input', filterRows));
+</script>
+</body>
+</html>
