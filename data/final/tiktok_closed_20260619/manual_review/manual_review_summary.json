@@ -1,9 +1,33 @@
 {
-  "generated_at": "2026-06-19T06:21:00.890587+00:00",
+  "generated_at": "2026-06-19T17:02:18.110457+00:00",
   "manual_rows": 298,
   "manual_urls_with_valid_label": 298,
+  "manual_label_counts_raw": {
+    "不相关": 259,
+    "拿不准": 8,
+    "相关": 31
+  },
+  "manual_matched_urls": 297,
+  "manual_unmatched_urls": 1,
   "unmatched_urls": [
     "`"
   ],
-  "note": "manual_relevance overrides quality_label only for reviewed rows; unreviewed labels remain automatic."
+  "manual_applied_rows": 390,
+  "manual_changed_rows": 213,
+  "manual_unchanged_rows": 177,
+  "applied_label_counts": {
+    "low_relevance": 326,
+    "likely_relevant": 51,
+    "needs_review": 13
+  },
+  "row_labels_manual_review_applied_rows": 390,
+  "row_labels_manual_quality_label_counts": {
+    "low_relevance": 326,
+    "likely_relevant": 51,
+    "needs_review": 13
+  },
+  "manual_related_rows": 51,
+  "manual_uncertain_rows": 13,
+  "manual_unrelated_rows": 326,
+  "note": "manual_relevance overrides quality_label only for reviewed rows; unreviewed labels remain automatic. One manual row with malformed/placeholder URL did not match baseline."
 }
