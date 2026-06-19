@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="680" viewBox="0 0 980 680" role="img">
+<style>
+.svg-title{font:700 22px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#0f172a}
+.svg-subtitle{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#334155}
+.svg-label{font:600 14px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#334155}
+.svg-value{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#0f172a}
+.svg-axis{font:600 13px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#475569}
+.svg-small{font:12px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#334155}
+.svg-quad-label{font:700 13px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#334155}
+</style>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24" y="34" class="svg-title">TikTok 存量 × 相关触达矩阵（人工回流后）</text>
+<rect x="110" y="72" width="400.0" height="260.0" fill="#dbeafe" stroke="#cbd5e1"/>
+<text x="128" y="102" class="svg-quad-label">低存量 × 高触达：小众破圈/假亮点待辨</text>
+<rect x="510.0" y="72" width="400.0" height="260.0" fill="#dcfce7" stroke="#cbd5e1"/>
+<text x="528.0" y="102" class="svg-quad-label">高存量 × 高触达：真规模化候选</text>
+<rect x="110" y="332.0" width="400.0" height="260.0" fill="#f1f5f9" stroke="#cbd5e1"/>
+<text x="128" y="362.0" class="svg-quad-label">低存量 × 低触达：近不可见或已剔除</text>
+<rect x="510.0" y="332.0" width="400.0" height="260.0" fill="#fef3c7" stroke="#cbd5e1"/>
+<text x="528.0" y="362.0" class="svg-quad-label">高存量 × 低触达：弱外溢/国内自循环</text>
+<line x1="510.0" y1="72" x2="510.0" y2="592" stroke="#94a3b8" stroke-dasharray="5 6"/>
+<line x1="110" y1="332.0" x2="910" y2="332.0" stroke="#94a3b8" stroke-dasharray="5 6"/>
+<text x="510.0" y="645" text-anchor="middle" class="svg-axis">存量：低 → 高（hashtag videoCount 定性分档）</text>
+<text x="28" y="332.0" transform="rotate(-90 28 332.0)" text-anchor="middle" class="svg-axis">相关触达：低 → 高（likely play）</text>
+<circle cx="600.0" cy="160.0" r="25.0" fill="#1f9d7a" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>春节｜T1 规模化出海｜播放 1.19B｜噪声 0.2856</title></circle>
+<text x="629.0" y="164.0" class="svg-small">春节</text>
+<circle cx="655.0" cy="160.0" r="24.4" fill="#1f9d7a" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中国书法｜T1 规模化出海｜播放 842.2M｜噪声 0.2143</title></circle>
+<text x="683.4" y="164.0" class="svg-small">中国书法</text>
+<circle cx="710.0" cy="160.0" r="22.1" fill="#1f9d7a" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>太极拳｜T1 规模化出海｜播放 248.8M｜噪声 0.234</title></circle>
+<text x="736.1" y="164.0" class="svg-small">太极拳</text>
+<circle cx="765.0" cy="160.0" r="21.7" fill="#1f9d7a" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中国剪纸｜T1 规模化出海｜播放 205.3M｜噪声 0.4342</title></circle>
+<text x="790.7" y="164.0" class="svg-small">中国剪纸</text>
+<circle cx="820.0" cy="160.0" r="21.1" fill="#d88923" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中国传统制茶技艺及其相关习俗｜T1 噪声风险头部｜播放 143.1M｜噪声 0.5926</title></circle>
+<text x="845.1" y="164.0" class="svg-small">中国传统制茶技艺</text>
+<circle cx="600.0" cy="202.0" r="20.4" fill="#d88923" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>南京云锦织造技艺｜T1 噪声风险头部｜播放 101.8M｜噪声 0.7331</title></circle>
+<text x="624.4" y="206.0" class="svg-small">南京云锦织造技艺</text>
+<circle cx="655.0" cy="202.0" r="20.4" fill="#d88923" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>玛纳斯｜T1 噪声风险头部｜播放 101.3M｜噪声 0.711</title></circle>
+<text x="679.4" y="206.0" class="svg-small">玛纳斯</text>
+<circle cx="200.0" cy="160.0" r="22.7" fill="#3b82f6" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>京剧｜T2 小众破圈｜播放 344.4M｜噪声 0.328</title></circle>
+<text x="226.7" y="164.0" class="svg-small">京剧</text>
+<circle cx="255.0" cy="160.0" r="22.6" fill="#3b82f6" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>蒙古族呼麦｜T2 小众破圈｜播放 320.3M｜噪声 0.4802</title></circle>
+<text x="281.6" y="164.0" class="svg-small">蒙古族呼麦</text>
+<circle cx="310.0" cy="160.0" r="22.3" fill="#3b82f6" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>宣纸传统制作技艺｜T2 小众破圈｜播放 273.5M｜噪声 0.4143</title></circle>
+<text x="336.3" y="164.0" class="svg-small">宣纸传统制作技艺</text>
+<circle cx="365.0" cy="160.0" r="22.1" fill="#3b82f6" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中医针灸｜T2 小众破圈｜播放 245.2M｜噪声 0.5744</title></circle>
+<text x="391.1" y="164.0" class="svg-small">中医针灸</text>
+<circle cx="420.0" cy="160.0" r="21.1" fill="#3b82f6" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中国木活字印刷术｜T2 小众破圈｜播放 140.9M｜噪声 0.8156</title></circle>
+<text x="445.1" y="164.0" class="svg-small">中国木活字印刷术</text>
+<circle cx="200.0" cy="202.0" r="20.6" fill="#3b82f6" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>龙泉青瓷传统烧制技艺｜T2 小众破圈｜播放 112.1M｜噪声 0.5863</title></circle>
+<text x="224.6" y="206.0" class="svg-small">龙泉青瓷传统烧制</text>
+<circle cx="255.0" cy="202.0" r="20.6" fill="#3b82f6" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>端午节｜T2 小众破圈｜播放 111.2M｜噪声 0.399</title></circle>
+<text x="279.6" y="206.0" class="svg-small">端午节</text>
+<circle cx="310.0" cy="202.0" r="20.5" fill="#3b82f6" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>古琴艺术｜T2 小众破圈｜播放 106.4M｜噪声 0.5991</title></circle>
+<text x="334.5" y="206.0" class="svg-small">古琴艺术</text>
+<circle cx="600.0" cy="420.0" r="20.3" fill="#8b5cf6" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中国雕版印刷技艺｜T3 国内/自循环｜播放 93.4M｜噪声 0.7101</title></circle>
+<text x="624.3" y="424.0" class="svg-small">中国雕版印刷技艺</text>
+<circle cx="655.0" cy="420.0" r="19.0" fill="#8b5cf6" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>妈祖信俗｜T3 国内/自循环｜播放 46.8M｜噪声 0.8212</title></circle>
+<circle cx="710.0" cy="420.0" r="18.7" fill="#8b5cf6" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中国传统木结构建筑营造技艺｜T3 国内/自循环｜播放 38.8M｜噪声 0.8407</title></circle>
+<circle cx="200.0" cy="420.0" r="21.5" fill="#dc2626" fill-opacity="0.88" stroke="#111827" stroke-width="2"><title>中国水密隔舱福船制造技艺｜T0 假破圈剔除｜播放 184.0M｜噪声 0.7543</title></circle>
+<text x="225.5" y="424.0" class="svg-small">中国水密隔舱福船</text>
+<circle cx="255.0" cy="420.0" r="21.4" fill="#dc2626" fill-opacity="0.88" stroke="#111827" stroke-width="2"><title>中国珠算｜T0 假破圈剔除｜播放 169.7M｜噪声 0.6549</title></circle>
+<text x="280.4" y="424.0" class="svg-small">中国珠算</text>
+<circle cx="365.0" cy="420.0" r="19.5" fill="#dc2626" fill-opacity="0.88" stroke="#111827" stroke-width="2"><title>麦西热甫｜T0 假破圈剔除｜播放 61.4M｜噪声 0.8473</title></circle>
+<text x="388.5" y="424.0" class="svg-small">麦西热甫</text>
+<circle cx="310.0" cy="420.0" r="21.2" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>蒙古族长调民歌｜T4 近不可见/已查噪｜播放 153.7M｜噪声 0.8501</title></circle>
+<text x="335.2" y="424.0" class="svg-small">蒙古族长调民歌</text>
+<circle cx="420.0" cy="420.0" r="19.4" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中国篆刻｜T4 近不可见/已查噪｜播放 56.3M｜噪声 0.9267</title></circle>
+<text x="443.4" y="424.0" class="svg-small">中国篆刻</text>
+<circle cx="200.0" cy="462.0" r="19.1" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中国蚕桑丝织技艺｜T4 近不可见/已查噪｜播放 48.9M｜噪声 0.7448</title></circle>
+<circle cx="310.0" cy="462.0" r="18.7" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>羌年｜T4 近不可见/已查噪｜播放 38.7M｜噪声 0.7935</title></circle>
+<circle cx="365.0" cy="462.0" r="17.7" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>二十四节气｜T4 近不可见/已查噪｜播放 22.5M｜噪声 0.9052</title></circle>
+<circle cx="420.0" cy="462.0" r="17.5" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>送王船｜T4 近不可见/已查噪｜播放 20.8M｜噪声 0.9151</title></circle>
+<circle cx="200.0" cy="504.0" r="17.2" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>黎族传统纺染织绣技艺｜T4 近不可见/已查噪｜播放 17.7M｜噪声 0.9076</title></circle>
+<circle cx="255.0" cy="504.0" r="16.8" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>南音｜T4 近不可见/已查噪｜播放 14.3M｜噪声 0.957</title></circle>
+<circle cx="310.0" cy="504.0" r="16.7" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中国皮影戏｜T4 近不可见/已查噪｜播放 13.3M｜噪声 0.9527</title></circle>
+<circle cx="365.0" cy="504.0" r="16.3" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>西安鼓乐｜T4 近不可见/已查噪｜播放 10.9M｜噪声 0.9836</title></circle>
+<circle cx="420.0" cy="504.0" r="15.8" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>赫哲族伊玛堪｜T4 近不可见/已查噪｜播放 8.2M｜噪声 0.9661</title></circle>
+<circle cx="200.0" cy="546.0" r="15.4" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>新疆维吾尔木卡姆艺术｜T4 近不可见/已查噪｜播放 6.7M｜噪声 0.9495</title></circle>
+<circle cx="255.0" cy="546.0" r="15.3" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>昆曲｜T4 近不可见/已查噪｜播放 6.3M｜噪声 0.9398</title></circle>
+<circle cx="310.0" cy="546.0" r="14.5" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中国木拱桥传统营造技艺｜T4 近不可见/已查噪｜播放 4.1M｜噪声 0.9338</title></circle>
+<circle cx="365.0" cy="546.0" r="14.5" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>热贡艺术｜T4 近不可见/已查噪｜播放 4.0M｜噪声 0.9799</title></circle>
+<circle cx="420.0" cy="546.0" r="13.7" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>中国朝鲜族农乐舞｜T4 近不可见/已查噪｜播放 2.7M｜噪声 0.975</title></circle>
+<circle cx="200.0" cy="588.0" r="13.0" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>格萨(斯)尔史诗传统｜T4 近不可见/已查噪｜播放 1.8M｜噪声 0.464</title></circle>
+<circle cx="255.0" cy="588.0" r="12.9" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>藏戏｜T4 近不可见/已查噪｜播放 1.7M｜噪声 0.9151</title></circle>
+<circle cx="310.0" cy="588.0" r="11.9" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>藏医药浴法｜T4 近不可见/已查噪｜播放 1.0M｜噪声 0.9873</title></circle>
+<circle cx="365.0" cy="588.0" r="10.9" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>福建木偶戏｜T4 近不可见/已查噪｜播放 590K｜噪声 0.9541</title></circle>
+<circle cx="420.0" cy="588.0" r="8.4" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>侗族大歌｜T4 近不可见/已查噪｜播放 149K｜噪声 0.9863</title></circle>
+<circle cx="200.0" cy="630.0" r="7.0" fill="#64748b" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>花儿｜T4 近不可见/已查噪｜播放 71K｜噪声 0.9751</title></circle>
+<circle cx="255.0" cy="462.0" r="18.8" fill="#94a3b8" fill-opacity="0.88" stroke="#ffffff" stroke-width="2"><title>粤剧｜T4 近不可见｜播放 40.8M｜噪声 0.4862</title></circle>
+<circle cx="110" cy="610" r="7" fill="#1f9d7a"/>
+<text x="124" y="615" class="svg-small">T1 规模化出海</text>
+<circle cx="370" cy="610" r="7" fill="#d88923"/>
+<text x="384" y="615" class="svg-small">T1 噪声风险头部</text>
+<circle cx="630" cy="610" r="7" fill="#3b82f6"/>
+<text x="644" y="615" class="svg-small">T2 小众破圈</text>
+<circle cx="110" cy="636" r="7" fill="#8b5cf6"/>
+<text x="124" y="641" class="svg-small">T3 国内/自循环</text>
+<circle cx="370" cy="636" r="7" fill="#dc2626"/>
+<text x="384" y="641" class="svg-small">T0 假破圈剔除</text>
+<circle cx="630" cy="636" r="7" fill="#64748b"/>
+<text x="644" y="641" class="svg-small">T4 近不可见/已查噪</text>
+</svg>
