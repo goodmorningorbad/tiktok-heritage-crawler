@@ -1,24 +1,24 @@
 {
   "total_projects": 44,
   "t1_count": 7,
-  "t2_count": 8,
+  "t2_count": 9,
   "false_breakout_count": 3,
-  "t4_count": 23,
-  "likely_total_play_sum": 5556055100.0,
+  "t4_count": 22,
+  "likely_total_play_sum": 5136679877.0,
   "tier_counts": {
     "T1_scale_export": 4,
     "T1_scale_export_with_noise_risk": 3,
-    "T2_small_breakout": 8,
+    "T2_small_breakout": 9,
     "T3_domestic_or_self_circulating": 3,
     "T0_false_breakout_demoted": 3,
-    "T4_near_invisible_noise_checked": 22,
+    "T4_near_invisible_noise_checked": 21,
     "T4_near_invisible": 1
   },
   "quadrant_counts": {
     "stock_high__reach_high": 7,
-    "stock_low__reach_high": 8,
+    "stock_low__reach_high": 9,
     "stock_high__reach_low": 3,
-    "stock_low__reach_low": 26
+    "stock_low__reach_low": 25
   },
   "top_reach_projects": [
     "春节",
@@ -29,7 +29,7 @@
     "太极拳",
     "中医针灸",
     "中国剪纸",
-    "中国水密隔舱福船制造技艺",
-    "中国珠算"
+    "蒙古族长调民歌",
+    "中国传统制茶技艺及其相关习俗"
   ]
 }

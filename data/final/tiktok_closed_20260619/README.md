@@ -12,7 +12,9 @@
 
 - `final_tier`：最终叙事分层，例如 `T1_scale_export`、`T2_small_breakout`、`T0_false_breakout_demoted`
 - `quadrant` / `quadrant_label`：存量 × 触达象限
-- `likely_total_play`：人工修正后相关触达播放量
+- `likely_total_play`：最终展示/矩阵口径下的相关触达播放量；人工确认假破圈项目会被置为 0/低触达
+- `statistical_likely_total_play`：行级人工回流后、但未做项目级审计降级的统计值，用于追溯
+- `final_likely_total_play` / `audit_adjusted_likely_total_play`：与 `likely_total_play` 一致的审计后最终触达值
 - `low_relevance_play_ratio`：低相关/噪声播放占比
 - `manual_audit_verdict`：人工确认的假破圈等判定
 - `headline_claim` / `interpretation`：可直接用于报告讨论的一句话解释
@@ -114,19 +116,20 @@ TikTok 人工修正后正式分层与发现说明。
 
 - 原始采集数据未修改；这里全部是 derived/final 复制件。
 - TikTok stock 使用 hashtag `videoCount` 的定性分档。
-- TikTok reach 使用人工修正后的 `likely_relevant` 播放量。
+- TikTok reach 使用审计后最终 `likely_total_play` 播放量；行级统计值保留在 `statistical_likely_total_play`。
 - 人工回流优先于自动标签。
-- 对人工确认的假破圈项目，即使仍有未核查自动 likely 行，也在最终矩阵中按人工审计结论降级。
+- 对人工确认的假破圈项目，即使仍有未核查自动 likely 行，也在最终矩阵中按人工审计结论降级；福船、珠算、麦西热甫最终展示触达置为 0/低触达，同时保留统计值供追溯。
+- 蒙古族长调民歌经人工核查确认存在相关高播放样本，因此从“近不可见”修正为高噪声小众破圈案例；报告时必须同时说明噪声/边界风险。
 - 输出只说明平台可见性/likely 触达，不直接推出受众认同、文化理解或传播成功。
 
 ## 当前最终分层摘要
 
 - T1 规模化出海：4 项
 - T1 噪声风险头部：3 项
-- T2 小众破圈：8 项
+- T2 小众破圈：9 项
 - T3 国内/自循环：3 项
 - T0 人工确认假破圈剔除：3 项
-- T4 近不可见/已查噪：22 项
+- T4 近不可见/已查噪：21 项
 - T4 近不可见：1 项
 
 总项目数：44。
