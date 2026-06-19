@@ -1,0 +1,144 @@
+{
+  "input_rows": 7320,
+  "ai_rows": 7320,
+  "machine_label_counts": {
+    "likely_relevant": 5743,
+    "needs_review": 959,
+    "low_relevance": 618
+  },
+  "ai_verdict_counts": {
+    "相关": 4352,
+    "不相关": 2313,
+    "拿不准": 655
+  },
+  "fusion_label_counts": {
+    "machine_ai_agree_likely": 3988,
+    "conflict_ai_negative_machine_likely": 1324,
+    "candidate_ai_positive_machine_weak": 364,
+    "uncertain_ai_machine_likely": 431,
+    "auto_demote_low_machine_weak_ai_irrelevant": 989,
+    "middle_confidence_needs_review_ai_uncertain": 128,
+    "middle_confidence_low_relevance_ai_uncertain": 96
+  },
+  "manual_queue_rows": 250,
+  "manual_queue_by_project": {
+    "中国蚕桑丝织技艺": 108,
+    "春节": 22,
+    "蒙古族呼麦": 14,
+    "太极拳": 11,
+    "古琴艺术": 10,
+    "中国传统制茶技艺及其相关习俗": 10,
+    "中国篆刻": 6,
+    "端午节": 10,
+    "宣纸传统制作技艺": 9,
+    "中国书法": 10,
+    "中国木活字印刷术": 4,
+    "粤剧": 10,
+    "妈祖信俗": 10,
+    "京剧": 10,
+    "中医针灸": 6
+  },
+  "manual_queue_high_impact_ge_5m": 66,
+  "manual_queue_sericulture_rows": 108,
+  "sericulture_top10_in_queue": [
+    "21:87duJEtkLs4",
+    "21:rTqGygoYu9w",
+    "21:OrXiXDUQia8",
+    "21:ht6SPPJMqwE",
+    "21:xBz40ZxKJBs",
+    "21:3LcysDwqClY"
+  ],
+  "sericulture_top10": [
+    {
+      "id": "21:87duJEtkLs4",
+      "views": 128533351,
+      "title": "Amazing Silk Preparation Complete Process Using Silkworm #shorts",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely",
+      "in_manual_queue": true
+    },
+    {
+      "id": "21:rTqGygoYu9w",
+      "views": 61703460,
+      "title": "Suzhou Embroidery: China’s 2,500-Year-Old Luxury Silk Art That Inspires the World",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely",
+      "in_manual_queue": true
+    },
+    {
+      "id": "21:jL0lvjynycg",
+      "views": 33869734,
+      "title": "Why I Don't Wear Silk #353",
+      "machine": "needs_review",
+      "ai": "不相关",
+      "fusion": "auto_demote_low_machine_weak_ai_irrelevant",
+      "in_manual_queue": false
+    },
+    {
+      "id": "21:OrXiXDUQia8",
+      "views": 32422970,
+      "title": "古老的东方蚕桑文化，治愈每一个怕冷的人——蚕丝被 winter bedding from double-cocoon silk | Liziqi Channel",
+      "machine": "likely_relevant",
+      "ai": "相关",
+      "fusion": "machine_ai_agree_likely",
+      "in_manual_queue": true
+    },
+    {
+      "id": "21:frUcQ0gWtlo",
+      "views": 18912830,
+      "title": "Making Fabric From Caterpillar Cocoons",
+      "machine": "needs_review",
+      "ai": "不相关",
+      "fusion": "auto_demote_low_machine_weak_ai_irrelevant",
+      "in_manual_queue": false
+    },
+    {
+      "id": "21:y69OO0QuSu0",
+      "views": 7731973,
+      "title": "Silk manufacturing explained #factsintelugu 😱పట్టు పురుగులు😱 #amazingfacts #truefacts #shorts",
+      "machine": "low_relevance",
+      "ai": "不相关",
+      "fusion": "auto_demote_low_machine_weak_ai_irrelevant",
+      "in_manual_queue": false
+    },
+    {
+      "id": "21:ht6SPPJMqwE",
+      "views": 5965291,
+      "title": "SilkWorm Farm - How Billions of SilkWorm for silk Chinese - Silk Cocoon Harvest Processing Factory",
+      "machine": "needs_review",
+      "ai": "相关",
+      "fusion": "candidate_ai_positive_machine_weak",
+      "in_manual_queue": true
+    },
+    {
+      "id": "21:xBz40ZxKJBs",
+      "views": 4959104,
+      "title": "How Mountains Of Worm Cocoons Are Turned Into Expensive Silk In Vietnam | Big Business",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely",
+      "in_manual_queue": true
+    },
+    {
+      "id": "21:oIPYqWkBhhA",
+      "views": 4557503,
+      "title": "The Fuguangjin Silk #clothing #chinaculture #learnchinese #silk #style #fashion #fabric",
+      "machine": "needs_review",
+      "ai": "不相关",
+      "fusion": "auto_demote_low_machine_weak_ai_irrelevant",
+      "in_manual_queue": false
+    },
+    {
+      "id": "21:3LcysDwqClY",
+      "views": 4397318,
+      "title": "How Silkworms Create the World’s Most Luxurious Fabric?",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely",
+      "in_manual_queue": true
+    }
+  ],
+  "caveat": "YouTube high-view evidence is manually queued; mid/low-view rows remain AI+machine fused without row-by-row manual audit and may contain residual noise."
+}

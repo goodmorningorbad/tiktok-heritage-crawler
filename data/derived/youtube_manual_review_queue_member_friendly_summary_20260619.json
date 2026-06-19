@@ -1,0 +1,333 @@
+{
+  "input_rows": 250,
+  "output_rows": 180,
+  "sericulture_input_rows": 108,
+  "sericulture_kept_rows": 38,
+  "sericulture_dropped_rows": 70,
+  "sericulture_keep_rule": "top 38 by stats_play_count; low-view long tail dropped",
+  "project_counts": {
+    "中国蚕桑丝织技艺": 38,
+    "春节": 22,
+    "蒙古族呼麦": 14,
+    "太极拳": 11,
+    "古琴艺术": 10,
+    "中国传统制茶技艺及其相关习俗": 10,
+    "中国篆刻": 6,
+    "端午节": 10,
+    "宣纸传统制作技艺": 9,
+    "中国书法": 10,
+    "中国木活字印刷术": 4,
+    "粤剧": 10,
+    "妈祖信俗": 10,
+    "京剧": 10,
+    "中医针灸": 6
+  },
+  "sericulture_kept": [
+    {
+      "views": 128533351,
+      "title": "Amazing Silk Preparation Complete Process Using Silkworm #shorts",
+      "url": "https://www.youtube.com/watch?v=87duJEtkLs4",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 61703460,
+      "title": "Suzhou Embroidery: China’s 2,500-Year-Old Luxury Silk Art That Inspires the World",
+      "url": "https://www.youtube.com/watch?v=rTqGygoYu9w",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 32422970,
+      "title": "古老的东方蚕桑文化，治愈每一个怕冷的人——蚕丝被 winter bedding from double-cocoon silk | Liziqi Channel",
+      "url": "https://www.youtube.com/watch?v=OrXiXDUQia8",
+      "machine": "likely_relevant",
+      "ai": "相关",
+      "fusion": "machine_ai_agree_likely"
+    },
+    {
+      "views": 5965291,
+      "title": "SilkWorm Farm - How Billions of SilkWorm for silk Chinese - Silk Cocoon Harvest Processing Factory",
+      "url": "https://www.youtube.com/watch?v=ht6SPPJMqwE",
+      "machine": "needs_review",
+      "ai": "相关",
+      "fusion": "candidate_ai_positive_machine_weak"
+    },
+    {
+      "views": 4959104,
+      "title": "How Mountains Of Worm Cocoons Are Turned Into Expensive Silk In Vietnam | Big Business",
+      "url": "https://www.youtube.com/watch?v=xBz40ZxKJBs",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 4397318,
+      "title": "How Silkworms Create the World’s Most Luxurious Fabric?",
+      "url": "https://www.youtube.com/watch?v=3LcysDwqClY",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 1781043,
+      "title": "How silkworms make silk",
+      "url": "https://www.youtube.com/watch?v=77ktNSPFbwQ",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 1613104,
+      "title": "How Chinese Silkworm Farms Raise Billions of Silkworms to Produce Silk | Silk Production Factory",
+      "url": "https://www.youtube.com/watch?v=sgn33fS9_H0",
+      "machine": "needs_review",
+      "ai": "相关",
+      "fusion": "candidate_ai_positive_machine_weak"
+    },
+    {
+      "views": 935068,
+      "title": "How Silkworms Make Silk",
+      "url": "https://www.youtube.com/watch?v=4_2l9D4SFzs",
+      "machine": "likely_relevant",
+      "ai": "拿不准",
+      "fusion": "uncertain_ai_machine_likely"
+    },
+    {
+      "views": 861585,
+      "title": "Amazing Silk Preparation Complete Process Using Silkworm - China Technology #Shorts #Sericulture",
+      "url": "https://www.youtube.com/watch?v=BFRSQ-027ZI",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 656769,
+      "title": "The Crazy Engineering of Silk",
+      "url": "https://www.youtube.com/watch?v=KTIOl4oMRuA",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 631128,
+      "title": "Tussar Silk, The Story Of No-Violence Silk From India",
+      "url": "https://www.youtube.com/watch?v=c2XDvWATjqA",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 493220,
+      "title": "Silkworm breeding technology #satisfying #farming #agriculture #farmlife",
+      "url": "https://www.youtube.com/watch?v=UiU_eswxMVw",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 402112,
+      "title": "How SILK Is Made From MILLIONS of SILKWORMS? Amazing Cocoon Harvesting Process!",
+      "url": "https://www.youtube.com/watch?v=GN8yEmkVLGs",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 361804,
+      "title": "Let’s raise silkworms! BUT WAIT.. #moths #silkworms Bombyxmori",
+      "url": "https://www.youtube.com/watch?v=f7obXs-6EpU",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 330758,
+      "title": "How to set up your own worm farms! #silk #silkworm #insects #moth #farm #cocoon #tiktok #shorts",
+      "url": "https://www.youtube.com/watch?v=zGZcqcr8T_M",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 320197,
+      "title": "How silk cloth is made | sericulture | life cycle of silkworm | silkworm farm",
+      "url": "https://www.youtube.com/watch?v=VpX5oawfxvI",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 302422,
+      "title": "Secret Technology Behind China’s Silk Worm Farming #shorts #trendingshorts #silkworm",
+      "url": "https://www.youtube.com/watch?v=M2R2RjX9iEo",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 200718,
+      "title": "Silkworm making Cocoon | Bombyx Mori | Sericulture",
+      "url": "https://www.youtube.com/watch?v=RwwEDkaHT2Y",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 166021,
+      "title": "Silk Farming (Sericulture) | How Silkworm Cocoons Turned into Silk | Complete Process",
+      "url": "https://www.youtube.com/watch?v=Ed1FmTSQS2Q",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 81061,
+      "title": "silkworm making silk #silkworm #agriculture #sericulture",
+      "url": "https://www.youtube.com/watch?v=yoInGKOB6D0",
+      "machine": "likely_relevant",
+      "ai": "拿不准",
+      "fusion": "uncertain_ai_machine_likely"
+    },
+    {
+      "views": 80300,
+      "title": "The Legend of Silk in Ancient China - What Is Silk?",
+      "url": "https://www.youtube.com/watch?v=RTTQXOnINmU",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 79998,
+      "title": "இதுல இருந்து 1.5 கி.மீ கு நூல் வருதா! #sericulture #silkworms #silksaree #silk",
+      "url": "https://www.youtube.com/watch?v=4WCkDnRvcAE",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 77355,
+      "title": "Sericulture, silk worms and how silk is made! #shorts",
+      "url": "https://www.youtube.com/watch?v=oA57xQs8suY",
+      "machine": "likely_relevant",
+      "ai": "拿不准",
+      "fusion": "uncertain_ai_machine_likely"
+    },
+    {
+      "views": 61904,
+      "title": "चीन में ये कीट बनाते हैं सफेद रेशम 😯l #shorts #silkworm",
+      "url": "https://www.youtube.com/watch?v=A99J5blmeW8",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 43181,
+      "title": "Millions Earned from Silkworms in China 🤯",
+      "url": "https://www.youtube.com/watch?v=86CsGUmjmFw",
+      "machine": "likely_relevant",
+      "ai": "拿不准",
+      "fusion": "uncertain_ai_machine_likely"
+    },
+    {
+      "views": 36759,
+      "title": "Silkworm Cocoon Processing: Traditional Chinese Silk Production",
+      "url": "https://www.youtube.com/watch?v=ajvU-S8p93g",
+      "machine": "needs_review",
+      "ai": "相关",
+      "fusion": "candidate_ai_positive_machine_weak"
+    },
+    {
+      "views": 36382,
+      "title": "From Silkworm to Luxurious Silk #silk #history #education",
+      "url": "https://www.youtube.com/watch?v=dDtOJqoVOYY",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 33466,
+      "title": "Day 0 Preparing of silkworm rearing bed application of paper roll #sericulture #silkworm #silk",
+      "url": "https://www.youtube.com/watch?v=6mm6mSKBxWc",
+      "machine": "likely_relevant",
+      "ai": "拿不准",
+      "fusion": "uncertain_ai_machine_likely"
+    },
+    {
+      "views": 29320,
+      "title": "Silkworm breeding reaps profits for farmers in southwest China",
+      "url": "https://www.youtube.com/watch?v=jki_LKtmD2k",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 24799,
+      "title": "Soothing Silk Sericulture - lifecycle of a silkworm (bombyx mori)",
+      "url": "https://www.youtube.com/watch?v=5g-K51Kfj7I",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 21681,
+      "title": "The mystery of silk: a brief global history of the remarkable material",
+      "url": "https://www.youtube.com/watch?v=KbsS5IVHqqo",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 19965,
+      "title": "Silk Worm Mulberry Cultivation Sericulture In India Sourav Joshi #shorts #silk #mulberry #saifokh",
+      "url": "https://www.youtube.com/watch?v=TWf1sEs8GZY",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 14174,
+      "title": "#🐛 silk worm raring room clining with decol",
+      "url": "https://www.youtube.com/watch?v=q5qQzigmtHM",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 11818,
+      "title": "GLOBALink | Industrialized sericulture invigorates silk farming",
+      "url": "https://www.youtube.com/watch?v=vC2_W62x1KA",
+      "machine": "likely_relevant",
+      "ai": "不相关",
+      "fusion": "conflict_ai_negative_machine_likely"
+    },
+    {
+      "views": 11537,
+      "title": "How Silk is Made: Traditional Silk Production Process from Silkworm to Fabric",
+      "url": "https://www.youtube.com/watch?v=G9KxsAjLZkU",
+      "machine": "likely_relevant",
+      "ai": "拿不准",
+      "fusion": "uncertain_ai_machine_likely"
+    },
+    {
+      "views": 10447,
+      "title": "Silk reeling from Cocoons #shorts #silk",
+      "url": "https://www.youtube.com/watch?v=F6iwcVMRIX4",
+      "machine": "likely_relevant",
+      "ai": "拿不准",
+      "fusion": "uncertain_ai_machine_likely"
+    },
+    {
+      "views": 9923,
+      "title": "Harvesting silk in Suzhou China",
+      "url": "https://www.youtube.com/watch?v=lFZW_OGRads",
+      "machine": "low_relevance",
+      "ai": "相关",
+      "fusion": "candidate_ai_positive_machine_weak"
+    }
+  ],
+  "dropped_silk_max_views": 8066,
+  "caveat": "Sericulture is trimmed by view impact: retained high-play evidence determines project verdict; low-play sericulture tail remains AI+machine fused and unreviewed."
+}
