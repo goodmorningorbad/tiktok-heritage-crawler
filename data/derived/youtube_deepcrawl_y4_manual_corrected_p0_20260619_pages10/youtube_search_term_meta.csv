@@ -1,0 +1,8 @@
+﻿project_id,heritage_item,project_name_en,category,search_keyword,source_platform,region_code,search_order,api_key_index,api_key_attempts,search_calls_including_failed_attempts,search_quota_cost_including_failed_attempts,max_pages_requested,pages_fetched,search_calls,search_quota_cost,collected_count,unique_video_count,totalResults_estimate,nextPageToken_present_at_stop,stop_reason,error_message,started_or_recorded_at
+14,京剧,Peking opera,表演艺术(戏曲),Peking opera,youtube,US,relevance,1,[1],10,1000,10,10,10,1000,417,417,549590,True,ceiling_capped_500,,2026-06-19T06:17:16.207164+00:00
+15,中医针灸,Acupuncture and moxibustion of traditional Chinese medicine,传统医药,acupuncture moxibustion,youtube,US,relevance,2,[2],10,1000,10,10,10,1000,398,398,170682,False,exhausted,,2026-06-19T06:17:21.944163+00:00
+24,宣纸传统制作技艺,Traditional handicrafts of making Xuan paper,传统手工艺,Xuan paper making,youtube,US,relevance,3,[3],10,1000,10,10,10,1000,420,420,70475,True,ceiling_capped_500,,2026-06-19T06:17:27.376964+00:00
+31,蒙古族呼麦,"Mongolian art of singing, Khoomei",表演艺术(音乐),Khoomei,youtube,US,relevance,1,[1],10,1000,10,10,10,1000,409,409,62406,True,ceiling_capped_500,,2026-06-19T06:17:32.614194+00:00
+31,蒙古族呼麦,"Mongolian art of singing, Khoomei",表演艺术(音乐),Khoomei China,youtube,US,relevance,2,[2],8,800,10,8,8,800,343,343,20474,False,exhausted,,2026-06-19T06:17:36.863180+00:00
+38,端午节,Dragon Boat festival,节庆民俗,Dragon Boat Festival,youtube,US,relevance,3,[3],10,1000,10,10,10,1000,410,410,709800,True,ceiling_capped_500,,2026-06-19T06:17:42.546726+00:00
+38,端午节,Dragon Boat festival,节庆民俗,Duanwu,youtube,US,relevance,1,[1],10,1000,10,10,10,1000,435,435,144645,True,ceiling_capped_500,,2026-06-19T06:17:48.064344+00:00

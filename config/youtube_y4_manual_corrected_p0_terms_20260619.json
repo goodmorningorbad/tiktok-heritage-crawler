@@ -1,0 +1,92 @@
+{
+  "version": "youtube_y4_manual_corrected_p0_20260619",
+  "description": "Filtered P0 terms selected after TikTok manual-corrected matrix; for background 10-page YouTube deep crawl only.",
+  "source_file": "YouTube可用搜索词_合并表.xlsx",
+  "expected_project_count": 44,
+  "project_count": 5,
+  "usable_search_term_count": 7,
+  "unique_usable_search_term_count": 7,
+  "negative_terms_policy": "label_only_never_exclude",
+  "collection_defaults": {
+    "api": "YouTube Data API v3",
+    "search_part": "snippet",
+    "video_part": "snippet,statistics,contentDetails",
+    "type": "video",
+    "regionCode": "US",
+    "order": "relevance",
+    "maxResults_per_page": 50,
+    "max_pages_initial": 1,
+    "max_pages_full": 10,
+    "ceiling_video_count_per_keyword": 500,
+    "do_not_set_relevanceLanguage_by_default": true
+  },
+  "projects": [
+    {
+      "id": 14,
+      "name_cn": "京剧",
+      "name_en": "Peking opera",
+      "category": "表演艺术(戏曲)",
+      "youtube_search_terms": [
+        "Peking opera"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "多(待核实)",
+      "filled_by": "江茜"
+    },
+    {
+      "id": 15,
+      "name_cn": "中医针灸",
+      "name_en": "Acupuncture and moxibustion of traditional Chinese medicine",
+      "category": "传统医药",
+      "youtube_search_terms": [
+        "acupuncture moxibustion"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "多(待核实)",
+      "filled_by": "江茜"
+    },
+    {
+      "id": 24,
+      "name_cn": "宣纸传统制作技艺",
+      "name_en": "Traditional handicrafts of making Xuan paper",
+      "category": "传统手工艺",
+      "youtube_search_terms": [
+        "Xuan paper making"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "万奕贝贝"
+    },
+    {
+      "id": 31,
+      "name_cn": "蒙古族呼麦",
+      "name_en": "Mongolian art of singing, Khoomei",
+      "category": "表演艺术(音乐)",
+      "youtube_search_terms": [
+        "Khoomei",
+        "Khoomei China"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "豆子青"
+    },
+    {
+      "id": 38,
+      "name_cn": "端午节",
+      "name_en": "Dragon Boat festival",
+      "category": "节庆民俗",
+      "youtube_search_terms": [
+        "Dragon Boat Festival",
+        "Duanwu"
+      ],
+      "youtube_negative_terms": [],
+      "youtube_uncertain_terms": [],
+      "source_volume_note_ignored": "很多",
+      "filled_by": "豆子青"
+    }
+  ]
+}

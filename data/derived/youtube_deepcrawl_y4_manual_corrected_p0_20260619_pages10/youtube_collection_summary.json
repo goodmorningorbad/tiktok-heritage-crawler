@@ -1,0 +1,23 @@
+{
+  "source_platform": "youtube",
+  "created_at": "2026-06-19T06:18:07.143204+00:00",
+  "config": "config/youtube_y4_manual_corrected_p0_terms_20260619.json",
+  "out_dir": "data/derived/youtube_deepcrawl_y4_manual_corrected_p0_20260619_pages10",
+  "terms_requested": 7,
+  "max_pages": 10,
+  "region_code": "US",
+  "order": "relevance",
+  "api_keys_loaded": 3,
+  "search_calls": 68,
+  "search_quota_cost": 6800,
+  "videos_list_calls": 56,
+  "videos_list_quota_cost": 56,
+  "total_quota_cost_estimate": 6856,
+  "video_rows": 2832,
+  "video_rows_with_viewCount": 2830,
+  "unique_video_ids_global": 2788,
+  "term_stop_reason_counts": {
+    "ceiling_capped_500": 5,
+    "exhausted": 2
+  }
+}
