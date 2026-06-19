@@ -1,0 +1,14 @@
+﻿project_id,heritage_item,project_name_en,category,search_keyword,source_platform,region_code,search_order,max_pages_requested,pages_fetched,search_calls,search_quota_cost,collected_count,unique_video_count,totalResults_estimate,nextPageToken_present_at_stop,stop_reason,error_message,started_or_recorded_at,api_key_index,api_key_attempts,search_calls_including_failed_attempts,search_quota_cost_including_failed_attempts
+1,春节,"Spring Festival, social practices of the Chinese people in celebration of traditional new year",节庆民俗,Chinese New Year,youtube,US,relevance,10,10,10,1000,394,394,1000000,True,ceiling_capped_500,,2026-06-16T14:57:28.781683+00:00,2,"[1, 2]",10,1000
+2,中国传统制茶技艺及其相关习俗,Traditional tea processing techniques and associated social practices in China,手工艺/民俗,Chinese tea ceremony,youtube,US,relevance,10,5,5,500,175,175,418024,False,exhausted,,2026-06-16T14:57:37.248899+00:00,3,"[2, 3]",13,1300
+3,太极拳,Taijiquan,传统体育/养生,Tai Chi,youtube,US,relevance,10,10,10,1000,454,454,1000000,True,ceiling_capped_500,,2026-06-16T14:57:44.799317+00:00,3,[3],10,1000
+3,太极拳,Taijiquan,传统体育/养生,Taijiquan,youtube,US,relevance,10,10,10,1000,400,400,886849,True,ceiling_capped_500,,2026-06-16T14:57:51.408092+00:00,3,"[1, 2, 3]",10,1000
+13,中国木活字印刷术,Wooden movable-type printing of China,传统手工艺,Chinese wooden movable type,youtube,US,relevance,10,10,10,1000,472,472,1000000,True,ceiling_capped_500,,2026-06-16T14:57:58.457691+00:00,3,"[2, 3]",10,1000
+21,中国蚕桑丝织技艺,Sericulture and silk craftsmanship of China,传统手工艺,Chinese silk sericulture,youtube,US,relevance,10,7,7,700,264,264,22626,False,exhausted,,2026-06-19T05:56:40.054865+00:00,1,[1],7,700
+25,粤剧,Yueju opera (Cantonese opera),表演艺术(戏曲),Cantonese opera,youtube,US,relevance,10,10,10,1000,441,441,662293,True,ceiling_capped_500,,2026-06-19T05:56:45.993296+00:00,2,[2],10,1000
+34,中国书法,Chinese calligraphy,传统手工艺/视觉艺术,Chinese calligraphy,youtube,US,relevance,10,10,10,1000,451,451,644782,True,ceiling_capped_500,,2026-06-19T05:56:52.589305+00:00,3,[3],10,1000
+35,中国篆刻,Art of Chinese seal engraving,传统手工艺,Chinese seal engraving,youtube,US,relevance,10,10,10,1000,416,416,75756,True,ceiling_capped_500,,2026-06-19T05:56:58.817422+00:00,1,[1],10,1000
+35,中国篆刻,Art of Chinese seal engraving,传统手工艺,seal engraving,youtube,US,relevance,10,5,5,500,195,195,574180,False,exhausted,,2026-06-19T05:57:00.961484+00:00,2,[2],5,500
+39,妈祖信俗,Mazu belief and customs,民俗信仰,Mazu,youtube,US,relevance,10,6,6,600,229,229,985852,False,exhausted,,2026-06-19T05:57:04.015042+00:00,3,[3],6,600
+42,古琴艺术,Guqin and its music,表演艺术(音乐),Guqin,youtube,US,relevance,10,10,10,1000,434,434,516292,True,ceiling_capped_500,,2026-06-19T05:57:09.622603+00:00,1,[1],10,1000
+42,古琴艺术,Guqin and its music,表演艺术(音乐),Chinese Guqin,youtube,US,relevance,10,10,10,1000,408,408,504746,True,ceiling_capped_500,,2026-06-19T05:57:15.109954+00:00,2,[2],10,1000

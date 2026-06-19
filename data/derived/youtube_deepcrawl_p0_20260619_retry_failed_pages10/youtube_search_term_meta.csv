@@ -1,0 +1,9 @@
+﻿project_id,heritage_item,project_name_en,category,search_keyword,source_platform,region_code,search_order,api_key_index,api_key_attempts,search_calls_including_failed_attempts,search_quota_cost_including_failed_attempts,max_pages_requested,pages_fetched,search_calls,search_quota_cost,collected_count,unique_video_count,totalResults_estimate,nextPageToken_present_at_stop,stop_reason,error_message,started_or_recorded_at
+21,中国蚕桑丝织技艺,Sericulture and silk craftsmanship of China,传统手工艺,Chinese silk sericulture,youtube,US,relevance,1,[1],7,700,10,7,7,700,264,264,22626,False,exhausted,,2026-06-19T05:56:40.054865+00:00
+25,粤剧,Yueju opera (Cantonese opera),表演艺术(戏曲),Cantonese opera,youtube,US,relevance,2,[2],10,1000,10,10,10,1000,441,441,662293,True,ceiling_capped_500,,2026-06-19T05:56:45.993296+00:00
+34,中国书法,Chinese calligraphy,传统手工艺/视觉艺术,Chinese calligraphy,youtube,US,relevance,3,[3],10,1000,10,10,10,1000,451,451,644782,True,ceiling_capped_500,,2026-06-19T05:56:52.589305+00:00
+35,中国篆刻,Art of Chinese seal engraving,传统手工艺,Chinese seal engraving,youtube,US,relevance,1,[1],10,1000,10,10,10,1000,416,416,75756,True,ceiling_capped_500,,2026-06-19T05:56:58.817422+00:00
+35,中国篆刻,Art of Chinese seal engraving,传统手工艺,seal engraving,youtube,US,relevance,2,[2],5,500,10,5,5,500,195,195,574180,False,exhausted,,2026-06-19T05:57:00.961484+00:00
+39,妈祖信俗,Mazu belief and customs,民俗信仰,Mazu,youtube,US,relevance,3,[3],6,600,10,6,6,600,229,229,985852,False,exhausted,,2026-06-19T05:57:04.015042+00:00
+42,古琴艺术,Guqin and its music,表演艺术(音乐),Guqin,youtube,US,relevance,1,[1],10,1000,10,10,10,1000,434,434,516292,True,ceiling_capped_500,,2026-06-19T05:57:09.622603+00:00
+42,古琴艺术,Guqin and its music,表演艺术(音乐),Chinese Guqin,youtube,US,relevance,2,[2],10,1000,10,10,10,1000,408,408,504746,True,ceiling_capped_500,,2026-06-19T05:57:15.109954+00:00

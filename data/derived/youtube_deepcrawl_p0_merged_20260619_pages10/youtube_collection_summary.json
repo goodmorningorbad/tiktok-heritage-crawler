@@ -1,0 +1,21 @@
+{
+  "source_platform": "youtube",
+  "merged_from": [
+    "data/derived/youtube_deepcrawl_p0_20260616_pages10",
+    "data/derived/youtube_deepcrawl_p0_20260619_retry_failed_pages10"
+  ],
+  "terms_requested": 13,
+  "max_pages": 10,
+  "region_code": "US",
+  "order": "relevance",
+  "search_calls": 121,
+  "search_quota_cost": 12100,
+  "video_rows": 4733,
+  "video_rows_with_viewCount": 4730,
+  "unique_video_ids_global": 4524,
+  "term_stop_reason_counts": {
+    "ceiling_capped_500": 9,
+    "exhausted": 4
+  },
+  "merge_rule": "for terms retried on 2026-06-19, replaced partial failed 2026-06-16 rows with retry rows; kept completed 2026-06-16 terms unchanged"
+}

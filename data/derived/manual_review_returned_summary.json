@@ -1,0 +1,9 @@
+{
+  "generated_at": "2026-06-19T06:05:19.694407+00:00",
+  "manual_rows": 298,
+  "manual_urls_with_valid_label": 298,
+  "unmatched_urls": [
+    "`"
+  ],
+  "note": "manual_relevance overrides quality_label only for reviewed rows; unreviewed labels remain automatic."
+}
