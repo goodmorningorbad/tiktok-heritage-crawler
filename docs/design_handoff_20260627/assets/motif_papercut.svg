@@ -1,0 +1,17 @@
+<!-- 窗花 papercut motif, 8-fold symmetry, RGB-split (red+cyan) = "信号损坏的非遗符号". 主视觉母题。 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="400" height="400" role="img" aria-label="papercut motif">
+ <g fill="#FF3326" transform="translate(3,2)" style="mix-blend-mode:screen">
+  <g id="petR"><path d="M100 100 C92 64 84 42 100 18 C116 42 108 64 100 100Z"/><circle cx="100" cy="40" r="6" fill="#0B0B0D"/></g>
+  <use href="#petR" transform="rotate(45 100 100)"/><use href="#petR" transform="rotate(90 100 100)"/>
+  <use href="#petR" transform="rotate(135 100 100)"/><use href="#petR" transform="rotate(180 100 100)"/>
+  <use href="#petR" transform="rotate(225 100 100)"/><use href="#petR" transform="rotate(270 100 100)"/>
+  <use href="#petR" transform="rotate(315 100 100)"/><circle cx="100" cy="100" r="15"/>
+  <circle cx="100" cy="100" r="93" fill="none" stroke="#FF3326" stroke-width="3" stroke-dasharray="1 11"/>
+ </g>
+ <g fill="#1FF0D8" transform="translate(-3,-2)" opacity=".85" style="mix-blend-mode:screen">
+  <use href="#petR"/><use href="#petR" transform="rotate(45 100 100)"/><use href="#petR" transform="rotate(90 100 100)"/>
+  <use href="#petR" transform="rotate(135 100 100)"/><use href="#petR" transform="rotate(180 100 100)"/>
+  <use href="#petR" transform="rotate(225 100 100)"/><use href="#petR" transform="rotate(270 100 100)"/>
+  <use href="#petR" transform="rotate(315 100 100)"/><circle cx="100" cy="100" r="15"/>
+ </g>
+</svg>

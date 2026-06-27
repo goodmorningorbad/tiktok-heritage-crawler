@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>样板·识别实验 — 中国非遗走出去了，但被看到了吗</title>
+<style>
+ :root{
+  --bg:#0B0B0D; --bg2:#101013; --paper:#F4F1E8; --sub:#8A8A93;
+  --red:#FF3326; --cyan:#1FF0D8; --acid:#D9FF3D; --line:#23232A;
+ }
+ *{box-sizing:border-box}
+ body{margin:0;background:var(--bg);color:var(--paper);line-height:1.7;
+   font-family:"Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+   -webkit-font-smoothing:antialiased}
+ /* global grit: scanlines + vignette */
+ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;
+   background:repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 3px);mix-blend-mode:overlay}
+ .serif{font-family:"Songti SC","Source Han Serif SC","Noto Serif CJK SC","SimSun",serif}
+ .mono{font-family:ui-monospace,"SF Mono","Cascadia Code",Consolas,monospace;font-variant-numeric:tabular-nums}
+ .wrap{max-width:1140px;margin:0 auto;padding:0 26px}
+
+ /* ---------- hero ---------- */
+ .hero{position:relative;min-height:92vh;display:flex;flex-direction:column;justify-content:center;
+   padding:80px 0 50px;overflow:hidden}
+ .eyebrow{font-family:ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:.3em;
+   color:var(--cyan);font-weight:700;margin:0 0 28px;text-transform:uppercase}
+ .eyebrow b{color:var(--red)}
+ h1.title{font-size:clamp(46px,11vw,150px);line-height:.92;margin:0;font-weight:800;letter-spacing:-.01em;
+   position:relative;z-index:3}
+ h1.title .l1{display:block;color:var(--paper)}
+ h1.title .l2{display:block;margin-top:6px}
+ h1.title .but{color:var(--sub);font-weight:800}
+ h1.title .glitch{position:relative;color:var(--paper);
+   text-shadow:4px 0 rgba(255,51,38,.92),-4px 0 rgba(31,240,216,.75)}
+ .lede{font-size:clamp(15px,2vw,20px);color:#C8C6BD;max-width:54ch;margin:34px 0 0;position:relative;z-index:3}
+ .lede .hot{color:var(--paper);border-bottom:2px solid var(--red)}
+ .scrollcue{position:relative;z-index:3;margin-top:46px;font-family:ui-monospace,monospace;font-size:12px;
+   letter-spacing:.2em;color:var(--sub)}
+ /* glitched papercut motif, bleeding off right */
+ .motif{position:absolute;right:-130px;top:50%;transform:translateY(-50%) rotate(8deg);
+   width:min(60vw,620px);height:min(60vw,620px);z-index:1;opacity:.9}
+ .motif .c{mix-blend-mode:screen}
+ @media(max-width:820px){.motif{right:-40%;opacity:.45}}
+
+ /* ---------- section ---------- */
+ section{padding:50px 0 90px;position:relative}
+ .sechead{display:flex;align-items:flex-start;gap:22px;margin-bottom:10px}
+ .idx{font-family:ui-monospace,monospace;font-size:clamp(54px,9vw,120px);font-weight:800;line-height:.8;
+   color:transparent;-webkit-text-stroke:2px var(--red);text-stroke:2px var(--red);flex:0 0 auto;margin-top:4px}
+ .kicker{font-family:ui-monospace,monospace;font-size:12px;letter-spacing:.24em;color:var(--cyan);font-weight:700;margin:0 0 6px;text-transform:uppercase}
+ h2{font-size:clamp(28px,5vw,56px);margin:0;font-weight:800;line-height:1.02;letter-spacing:-.01em}
+ h2 .em{color:var(--red)}
+ .lead{font-size:clamp(15px,1.8vw,18px);color:#C8C6BD;max-width:62ch;margin:20px 0 0}
+ .lead b{color:var(--paper)}
+
+ /* term selector — chunky */
+ .terms{display:flex;gap:10px;flex-wrap:wrap;margin:34px 0 4px}
+ .term{appearance:none;border:2px solid var(--line);background:transparent;color:var(--sub);
+   font:inherit;font-weight:700;font-size:15px;padding:11px 20px;border-radius:0;cursor:pointer;transition:.15s}
+ .term:hover{border-color:var(--paper);color:var(--paper);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--red)}
+ .term.active{background:var(--red);border-color:var(--red);color:#0B0B0D}
+ .prompt{font-size:16px;color:#C8C6BD;margin:20px 0 2px}
+ .prompt b{color:var(--paper)} .prompt .t{color:var(--cyan);font-family:ui-monospace,monospace}
+
+ /* ---------- cards: tiktok-cover feed wall ---------- */
+ .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(184px,1fr));gap:16px;margin-top:22px}
+ .card{position:relative;cursor:pointer;transition:transform .14s}
+ .card:nth-child(2n){transform:translateY(14px)}        /* break the grid */
+ .card:nth-child(3n){transform:translateY(-8px)}
+ .card:hover{transform:translateY(-6px) scale(1.015);z-index:4}
+ .poster{position:relative;aspect-ratio:9/13;border:2px solid #000;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:14px}
+ .poster::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.62));z-index:1}
+ .g0 .poster{background:linear-gradient(150deg,#FF3326,#3a0a06)}
+ .g1 .poster{background:linear-gradient(150deg,#123c4a,#08090c)}
+ .g2 .poster{background:linear-gradient(150deg,#3a1f55,#0a0710)}
+ .g3 .poster{background:linear-gradient(150deg,#0f8f84,#06302c)}
+ .g4 .poster{background:linear-gradient(150deg,#6b7415,#14150a)}
+ .ptext{position:relative;z-index:2;font-weight:800;font-size:15px;line-height:1.3;color:#fff;
+   text-shadow:0 1px 8px rgba(0,0,0,.6);display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+ .play{position:relative;z-index:2;align-self:flex-start;font-family:ui-monospace,monospace;font-size:13px;font-weight:700;color:#fff;
+   background:rgba(0,0,0,.45);padding:3px 9px;backdrop-filter:blur(2px)}
+ .pick{position:absolute;top:10px;right:10px;z-index:3;width:26px;height:26px;border:2px solid #fff;
+   background:rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;color:#0B0B0D;font-weight:900;font-size:15px;transition:.12s}
+ .card.sel .pick{background:var(--acid);border-color:var(--acid)}
+ .card.sel .poster{outline:3px solid var(--acid);outline-offset:-3px}
+ .meta{padding:8px 2px 0;font-family:ui-monospace,monospace;font-size:11.5px;color:var(--sub);display:flex;justify-content:space-between;gap:6px}
+ .meta .tag{opacity:0;font-weight:700;transition:.25s;text-align:right}
+ /* reveal */
+ .stamp{position:absolute;z-index:5;top:38%;left:50%;transform:translate(-50%,-50%) rotate(-13deg) scale(.6);
+   font-family:"Songti SC","SimSun",serif;font-weight:800;font-size:30px;padding:6px 16px;border:4px solid;
+   opacity:0;transition:transform .25s,opacity .2s;white-space:nowrap;letter-spacing:.05em}
+ .revealed .stamp{opacity:1;transform:translate(-50%,-50%) rotate(-13deg) scale(1)}
+ .card.fake .stamp{color:var(--red);border-color:var(--red);background:rgba(11,11,13,.6);text-shadow:2px 2px 0 rgba(0,0,0,.4)}
+ .card.real .stamp{color:var(--cyan);border-color:var(--cyan);background:rgba(11,11,13,.6)}
+ .card.real .poster{outline:3px solid var(--cyan);outline-offset:-3px;box-shadow:0 0 26px rgba(31,240,216,.4)}
+ .card.fake .poster{filter:grayscale(.5) brightness(.7)}
+ .revealed .card.fake .ptext{text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px}
+ .revealed .card{cursor:default} .revealed .pick{display:none}
+ .revealed .card .tag{opacity:1}
+ .revealed .card.real .tag{color:var(--cyan)} .revealed .card.fake .tag{color:var(--red)}
+ .revealed .card.miss .poster{outline:3px dashed var(--acid)}
+
+ /* controls + banner */
+ .ctl{margin-top:30px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+ .btn{appearance:none;border:0;background:var(--acid);color:#0B0B0D;font:inherit;font-weight:800;font-size:16px;
+   padding:14px 30px;cursor:pointer;transition:.14s;letter-spacing:.02em}
+ .btn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--red)}
+ .hint{font-family:ui-monospace,monospace;font-size:12.5px;color:var(--sub)}
+ .banner{margin-top:30px;border:2px solid var(--line);border-left:8px solid var(--red);background:var(--bg2);
+   padding:24px 26px;display:none}
+ .banner.show{display:block;animation:slam .4s cubic-bezier(.2,1.2,.3,1) both}
+ .banner .score{font-family:"Songti SC","SimSun",serif;font-size:clamp(26px,4vw,44px);font-weight:800;margin:0;line-height:1.1}
+ .banner .score .hl{color:var(--red)} .banner .score .gd{color:var(--cyan)}
+ .banner p{margin:14px 0 0;font-size:15px;color:#C8C6BD} .banner p b{color:var(--paper)}
+ .banner .punch{font-family:"Songti SC","SimSun",serif;font-size:clamp(18px,2.6vw,26px);color:var(--paper);margin-top:16px;line-height:1.45}
+ .handoff{margin-top:60px;text-align:center;display:none}
+ .handoff .big{display:block;font-family:"Songti SC","SimSun",serif;font-weight:800;font-size:clamp(22px,4vw,40px);
+   color:var(--paper);line-height:1.2}
+ .handoff .big .em{color:var(--red)}
+ .handoff .sm{font-family:ui-monospace,monospace;font-size:13px;color:var(--sub);margin-top:14px;letter-spacing:.1em}
+ .note{margin-top:54px;font-family:ui-monospace,monospace;font-size:12px;color:#5b5b62;border-top:1px solid var(--line);padding-top:16px;line-height:1.7}
+ @keyframes slam{from{opacity:0;transform:scale(1.04) translateY(8px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+ <svg class="motif" viewBox="0 0 200 200" aria-hidden="true">
+  <g class="c" fill="#FF3326" transform="translate(3,2)">
+   <g id="petR"><path d="M100 100 C92 64 84 42 100 18 C116 42 108 64 100 100Z"/><circle cx="100" cy="40" r="6" fill="#0B0B0D"/></g>
+   <use href="#petR" transform="rotate(45 100 100)"/><use href="#petR" transform="rotate(90 100 100)"/>
+   <use href="#petR" transform="rotate(135 100 100)"/><use href="#petR" transform="rotate(180 100 100)"/>
+   <use href="#petR" transform="rotate(225 100 100)"/><use href="#petR" transform="rotate(270 100 100)"/>
+   <use href="#petR" transform="rotate(315 100 100)"/><circle cx="100" cy="100" r="15"/>
+   <circle cx="100" cy="100" r="93" fill="none" stroke="#FF3326" stroke-width="3" stroke-dasharray="1 11"/>
+  </g>
+  <g class="c" fill="#1FF0D8" transform="translate(-3,-2)" opacity=".85">
+   <use href="#petR"/><use href="#petR" transform="rotate(45 100 100)"/><use href="#petR" transform="rotate(90 100 100)"/>
+   <use href="#petR" transform="rotate(135 100 100)"/><use href="#petR" transform="rotate(180 100 100)"/>
+   <use href="#petR" transform="rotate(225 100 100)"/><use href="#petR" transform="rotate(270 100 100)"/>
+   <use href="#petR" transform="rotate(315 100 100)"/><circle cx="100" cy="100" r="15"/>
+  </g>
+ </svg>
+ <div class="wrap">
+  <p class="eyebrow">数据新闻 / 44 项 UNESCO 中国非遗 / <b>TikTok</b></p>
+  <h1 class="title serif">
+   <span class="l1">中国非遗走出去了。</span>
+   <span class="l2"><span class="but">但，</span><span class="glitch">被看到了吗？</span></span>
+  </h1>
+  <p class="lede">我们把 44 项中国非遗在海外短视频上的能见度逐项量化。先别急着看结论——
+   <span class="hot">你先来当一次算法</span>，试试看：你，能认出它们吗？</p>
+  <p class="scrollcue">▼ 往下，第一关</p>
+ </div>
+</header>
+
+<section><div class="wrap">
+ <div class="sechead">
+  <span class="idx">01</span>
+  <div>
+   <p class="kicker">识别实验 / RECOGNITION TEST</p>
+   <h2 class="serif">你能认出<br>哪个是<span class="em">真的中国非遗</span>吗？</h2>
+  </div>
+ </div>
+ <p class="lead">在 TikTok 搜一个非遗的英文名，会刷出一大堆同名视频。问题是——<b>有多少，真是中国的那个？</b>
+  凭直觉，点选你认为是<b>真·中国非遗</b>的，然后揭晓。</p>
+
+ <div class="terms" id="terms"></div>
+ <p class="prompt" id="prompt"></p>
+ <div class="cards" id="cards"></div>
+
+ <div class="ctl">
+  <button class="btn" id="reveal">揭晓答案</button>
+  <span class="hint" id="hint">点封面选择 // 选好后揭晓</span>
+ </div>
+
+ <div class="banner" id="banner">
+  <p class="score" id="score"></p>
+  <p id="bline"></p>
+  <p class="punch" id="punch"></p>
+ </div>
+
+ <div class="handoff" id="handoff">
+  <span class="big">你都难一眼认出，<span class="em">算法更认不出。</span></span>
+  <span class="sm">“搜出来一大堆” ≠ “真的被看见”。那真正被看见的，到底有多少？ ▼</span>
+ </div>
+
+ <p class="note">// 卡片均为真实采集到的视频文案摘录（2026-06 单区基准）。真伪依据文案内容与人工核查判定；<br>
+  // 日本書道、日本そろばん等属“同类但非中国”，按只计中国项的口径，不算中国非遗。</p>
+</div></section>
+
+<script>
+const ROUNDS=[
+ {term:"papercut", cn:"剪纸", rate:99, cards:[
+  {p:13900000,d:"⚠️ WARNING ⚠️ : 1 Papercut will murk ya ahh",a:"wrongcai",real:false,tag:"一道纸划伤"},
+  {p:11100000,d:"signed a deal, i got papercuts ✍🏻🩸",a:"mgk",real:false,tag:"歌手MGK签约受伤"},
+  {p:13000000,d:"I think my toe is gonna fall off #pain #papercut",a:"bbgbria1",real:false,tag:"受伤的脚趾"},
+  {p:5800000,d:"⚠️TW⚠️ Paper Cut Hacks 📄🔪 #bodyhacks",a:"onlyjayus",real:false,tag:"纸划伤小妙招"},
+  {p:7100000,d:"One paper cut and it’s over ! 😱",a:"tiboinshape",real:false,tag:"又一道划伤"},
+  {p:1414,d:"UFO Creative Paper Cutting Tutorial #papercutting",a:"chinesecutting2",real:true,tag:"真·中国剪纸教程"},
+ ]},
+ {term:"calligraphy", cn:"书法", rate:93, cards:[
+  {p:67300000,d:"best handwriting in the world 💕 #calligraphy",a:"wk_writer__2",real:false,tag:"英文炫字"},
+  {p:42700000,d:"I miss you. Day 6 #imissyou #art #calligraphy",a:"calligraphyti",real:false,tag:"英文艺术字"},
+  {p:38100000,d:"Coke written with sand | Satisfying sand calligraphy",a:"saqib.plays",real:false,tag:"沙子写可乐"},
+  {p:43300000,d:"I’m tired 🥱 #WritingASMR #chinesecalligraphyart",a:"mmmmovie18",real:true,tag:"真·中国书法ASMR"},
+  {p:31200000,d:"#china #китай #каллиграфия #иероглифы #hanzi",a:"china_calligraph",real:true,tag:"真·中国书法"},
+  {p:820900,d:"🇯🇵Hello! I’m a Japanese calligrapher. I wrote “徳” #書道",a:"moka_saka1",real:false,tag:"日本書道·非中国"},
+ ]},
+ {term:"abacus", cn:"珠算", rate:92, cards:[
+  {p:12800000,d:"Multiplicação no Soroban ✖️🧮 #soroban #abaco",a:"sabrinakanashiro",real:false,tag:"巴西玩日式算盘"},
+  {p:8500000,d:"BRAINIAC ABACUS 🧮 school competition day",a:"kotilensvlogging",real:false,tag:"珠心算培训机构"},
+  {p:6800000,d:"FINGER ABACUS: SUBTRACTION #fingerabacus",a:"teachaaaivy",real:false,tag:"手指算"},
+  {p:5600000,d:"The two boys from China were competing… #china",a:"mothershipsg",real:true,tag:"真·中国珠算比赛"},
+  {p:852400,d:"Chinese abacus #chinese #china #beijing #abacus",a:"renziqiang",real:true,tag:"真·中国珠算"},
+  {p:1000000,d:"今日はわり算📝 #そろばん #暗算 #abacus",a:"saki_abacus",real:false,tag:"日本そろばん·非中国"},
+ ]},
+];
+let cur=0, revealed=false;
+const $=id=>document.getElementById(id);
+function fmt(n){return n>=1e6?(n/1e6).toFixed(1)+"M":n>=1e3?n.toLocaleString("en"):String(n);}
+function buildTerms(){
+ $("terms").innerHTML=ROUNDS.map((r,i)=>`<button class="term${i==cur?' active':''}" data-i="${i}">搜「${r.term}」· ${r.cn}</button>`).join("");
+ document.querySelectorAll(".term").forEach(b=>b.onclick=()=>{cur=+b.dataset.i;render();});
+}
+function render(){
+ revealed=false;
+ const r=ROUNDS[cur];
+ document.querySelectorAll(".term").forEach(b=>b.classList.toggle("active",+b.dataset.i===cur));
+ $("prompt").innerHTML=`搜索词 <span class="t">${r.term}</span>（${r.cn}的英文名）刷出来这些。哪些是<b>真·中国${r.cn}</b>？`;
+ $("cards").className="cards";
+ $("cards").innerHTML=r.cards.map((c,j)=>`
+  <div class="card g${j%5}" data-j="${j}">
+   <div class="stamp">${c.real?"真":"撞词"}</div>
+   <div class="poster">
+    <div class="pick">✓</div>
+    <div class="ptext">${c.d}</div>
+    <span class="play">▶ ${fmt(c.p)}</span>
+   </div>
+   <div class="meta"><span>@${c.a}</span><span class="tag">${c.tag}</span></div>
+  </div>`).join("");
+ document.querySelectorAll(".card").forEach(card=>card.onclick=()=>{ if(!revealed)card.classList.toggle("sel"); });
+ $("banner").className="banner"; $("handoff").style.display="none";
+ $("reveal").textContent="揭晓答案"; $("reveal").onclick=onReveal;
+ $("hint").textContent="点封面选择 // 选好后揭晓";
+}
+function reveal(){
+ const r=ROUNDS[cur]; revealed=true;
+ $("cards").classList.add("revealed");
+ let correct=0, realTotal=0;
+ document.querySelectorAll(".card").forEach(card=>{
+   const c=r.cards[+card.dataset.j], sel=card.classList.contains("sel");
+   card.classList.add(c.real?"real":"fake");
+   if(c.real)realTotal++;
+   if((c.real&&sel)||(!c.real&&!sel))correct++; else card.classList.add("miss");
+ });
+ const real1=r.cards.filter(c=>c.real).sort((a,b)=>a.p-b.p)[0];
+ const fakeTop=r.cards.filter(c=>!c.real).sort((a,b)=>b.p-a.p)[0];
+ $("score").innerHTML=`你认对了 <span class="gd">${correct}</span>/${r.cards.length}　·　这一排只有 <span class="hl">${realTotal}</span> 个是真中国${r.cn}`;
+ $("bline").innerHTML=`真的那条只有 <b>${fmt(real1.p)}</b> 播放，旁边“${fakeTop.tag}”却有 <b style="color:var(--red)">${fmt(fakeTop.p)}</b>。在全部 <span class="mono">${r.term}</span> 视频里，<b style="color:var(--red)">${r.rate}%</b> 根本不是中国${r.cn}。`;
+ $("punch").textContent="你凭肉眼都难分，只靠关键词的算法，更分不出。";
+ $("banner").className="banner show";
+ $("handoff").style.display="block";
+ $("reveal").textContent="换个词再试 →";
+ $("reveal").onclick=()=>{cur=(cur+1)%ROUNDS.length;render();};
+ $("hint").textContent="";
+}
+function onReveal(){ if(!revealed)reveal(); }
+buildTerms(); render();
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+/* ============================================================
+   设计 TOKEN · 《中国非遗走出去了。但，被看到了吗？》
+   美学方向：传统 × 算法的碰撞 / 电光故障 / 大胆不无聊
+   提取自 samples/recognition_test.html（已定稿的开篇样板）
+   ============================================================ */
+
+:root{
+  /* 色板（高对比·电光·近黑底） */
+  --bg:    #0B0B0D;   /* 近黑（略冷，避免老气暖棕） */
+  --bg2:   #101013;   /* 次级面板 */
+  --paper: #F4F1E8;   /* 纸白·大字主色 */
+  --sub:   #8A8A93;   /* 冷灰·次要文字 */
+  --red:   #FF3326;   /* 电光朱砂红 = 撞词/噪声/警示（贯穿全站的“假”色） */
+  --cyan:  #1FF0D8;   /* 电光青 = 真值/信号/被认出（贯穿全站的“真”色） */
+  --acid:  #D9FF3D;   /* 酸性黄 = 行动点/高亮（按钮、选中），少量点睛 */
+  --line:  #23232A;   /* 描边/分隔 */
+
+  /* 字体 */
+  --serif: "Songti SC","Source Han Serif SC","Noto Serif CJK SC","SimSun",serif; /* 中文展示·标题（文化重量） */
+  --sans:  "Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",system-ui,sans-serif; /* 正文 */
+  --mono:  ui-monospace,"SF Mono","Cascadia Code",Consolas,monospace; /* 数字/标签/英文（算法冷感） */
+
+  /* 字号（流式，桌面/移动自适应） */
+  --t-hero:  clamp(46px,11vw,150px);  /* 开篇巨标题 */
+  --t-h2:    clamp(28px,5vw,56px);
+  --t-idx:   clamp(54px,9vw,120px);   /* 巨号轮廓章节数字 */
+  --t-lead:  clamp(15px,1.8vw,18px);
+}
+
+/* 语义约定（务必全站统一，靠颜色携带含义）：
+   红 = 撞词/机器虚高/“假” ；青 = 真值/被认出/“真” ；酸黄 = 用户操作/高亮 ；纸白 = 主文字 */
+
+/* —— 招牌动作：RGB 错位故障（标题关键词） —— */
+.glitch{ color:var(--paper);
+  text-shadow: 4px 0 rgba(255,51,38,.92), -4px 0 rgba(31,240,216,.75); }
+
+/* —— 巨号轮廓数字（章节序号 01/02…） —— */
+.idx{ font-family:var(--mono); font-weight:800; line-height:.8;
+  color:transparent; -webkit-text-stroke:2px var(--red); text-stroke:2px var(--red); }
+
+/* —— 硬投影按钮（偏移块） —— */
+.btn{ border:0; background:var(--acid); color:var(--bg); font-weight:800; padding:14px 30px; cursor:pointer;
+  transition:.14s; }
+.btn:hover{ transform:translate(-2px,-2px); box-shadow:5px 5px 0 var(--red); }
+
+/* —— 全局颗粒：扫描线（叠在最上层） —— */
+.grain::after{ content:""; position:fixed; inset:0; pointer-events:none; z-index:50;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 3px);
+  mix-blend-mode:overlay; }
+
+/* —— TikTok 文字封面卡 + 揭晓大红章（识别实验核心组件） —— */
+.poster{ aspect-ratio:9/13; border:2px solid #000; position:relative; overflow:hidden;
+  display:flex; flex-direction:column; justify-content:space-between; padding:14px; }
+.poster::after{ content:""; position:absolute; inset:0; z-index:1;
+  background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.62)); }
+/* 卡封面双调底（feed 墙的彩色撞色，循环 g0..g4） */
+.g0 .poster{background:linear-gradient(150deg,#FF3326,#3a0a06)}
+.g1 .poster{background:linear-gradient(150deg,#123c4a,#08090c)}
+.g2 .poster{background:linear-gradient(150deg,#3a1f55,#0a0710)}
+.g3 .poster{background:linear-gradient(150deg,#0f8f84,#06302c)}
+.g4 .poster{background:linear-gradient(150deg,#6b7415,#14150a)}
+/* 揭晓判定章：真=青，撞词=红，旋转拍上 */
+.stamp{ font-family:var(--serif); font-weight:800; border:4px solid; padding:6px 16px;
+  transform:rotate(-13deg); }
+.stamp.fake{ color:var(--red);  border-color:var(--red); }
+.stamp.real{ color:var(--cyan); border-color:var(--cyan); }
+
+/* 破规整：feed 墙交错（让网格“不齐”） */
+.cards .card:nth-child(2n){ transform:translateY(14px); }
+.cards .card:nth-child(3n){ transform:translateY(-8px); }
