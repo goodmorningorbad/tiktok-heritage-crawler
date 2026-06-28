@@ -114,7 +114,7 @@
     font-size:12.5px;color:var(--ink-soft);line-height:1.8}
   .foot-note .r{color:var(--cinnabar-deep)} .foot-note .g{color:var(--gold)}
   .finale{position:relative;min-height:72vh;padding:clamp(70px,9vw,128px) clamp(20px,4vw,40px) clamp(50px,6vw,86px);
-    overflow:hidden;background:linear-gradient(180deg,#5A4F39 0%,#B4A277 20%,#E9DEC2 45%,#D8C7A0 100%);color:var(--ink)}
+    overflow:hidden;background:linear-gradient(180deg,#E4D4AD 0%,#E9DEC2 42%,#D8C7A0 100%);color:var(--ink)}
   .finale::before{content:"";position:absolute;inset:0;opacity:.42;mix-blend-mode:multiply;
     background:
       repeating-linear-gradient(16deg,rgba(190,139,42,.22) 0 1px,transparent 1px 34px),
@@ -156,12 +156,12 @@
   body>section::after{content:"";position:absolute;left:0;right:0;top:-1px;height:92px;z-index:0;pointer-events:none;
     background:linear-gradient(180deg,rgba(233,222,194,.58),rgba(233,222,194,0))}
   body>section>*{position:relative;z-index:1}
-  body>section:nth-of-type(1){background:linear-gradient(180deg,#F0E5CC 0%,var(--paper) 35%,#E6D8B7 100%)!important}
-  body>section:nth-of-type(2){background:linear-gradient(180deg,#D9C99F 0%,#241D15 18%,#241D15 86%,#DCCDA8 100%)!important}
-  body>section:nth-of-type(3){background:linear-gradient(180deg,#DCCDA8 0%,var(--paper) 24%,#E2D4B2 100%)!important}
-  body>section:nth-of-type(4){background:linear-gradient(180deg,#E2D4B2 0%,#E7D9B7 52%,var(--paper) 100%)!important}
-  body>section:nth-of-type(5){background:linear-gradient(180deg,var(--paper) 0%,#E5D6B4 100%)!important}
-  body>section:nth-of-type(6){background:linear-gradient(180deg,#E5D6B4 0%,#241D15 14%,#241D15 90%,#5A4F39 100%)!important}
+  body>section:nth-of-type(1){background:linear-gradient(180deg,#F0E5CC 0%,var(--paper) 100%)!important}
+  body>section:nth-of-type(2){background:linear-gradient(180deg,var(--paper) 0%,#E6D8B7 100%)!important}
+  body>section:nth-of-type(3){background:linear-gradient(180deg,#E6D8B7 0%,var(--paper) 100%)!important}
+  body>section:nth-of-type(4){background:linear-gradient(180deg,var(--paper) 0%,#E7D9B7 100%)!important}
+  body>section:nth-of-type(5){background:linear-gradient(180deg,#E7D9B7 0%,var(--paper) 100%)!important}
+  body>section:nth-of-type(6){background:linear-gradient(180deg,var(--paper) 0%,#E5D6B4 100%)!important}
   @media(max-width:640px){ .legend{transform:scale(.86);transform-origin:top left} }
 </style>
 </head>
@@ -195,13 +195,13 @@
     -webkit-mask-image:linear-gradient(180deg,transparent 0,rgba(0,0,0,.62) 14%,rgba(0,0,0,.42) 56%,transparent 100%);
     mask-image:linear-gradient(180deg,transparent 0,rgba(0,0,0,.62) 14%,rgba(0,0,0,.42) 56%,transparent 100%);
     animation:sunwater 6s ease-in-out 1.8s infinite}
-  .hlayer.ship-cut{z-index:4;inset:0;width:100%;height:100%;opacity:.94;object-fit:cover;object-position:center bottom;
+  .hlayer.ship-cut{z-index:4;inset:0;width:100%;height:100%;opacity:.96;object-fit:cover;object-position:center bottom;
     filter:saturate(1.06) contrast(1.08) drop-shadow(0 8px 8px rgba(32,20,10,.1));mix-blend-mode:multiply;
-    -webkit-mask-image:linear-gradient(90deg,transparent 0 47%,rgba(0,0,0,.14) 53%,rgba(0,0,0,.78) 62%,#000 100%),
-      linear-gradient(180deg,transparent 0 34%,rgba(0,0,0,.9) 47%,#000 76%,rgba(0,0,0,.38) 100%);
+    -webkit-mask-image:linear-gradient(90deg,transparent 0 52%,rgba(0,0,0,.18) 56%,rgba(0,0,0,.96) 60%,#000 72%,rgba(0,0,0,.34) 78%,transparent 86%),
+      linear-gradient(180deg,transparent 0 36%,rgba(0,0,0,.9) 48%,#000 75%,rgba(0,0,0,.44) 100%);
     -webkit-mask-composite:source-in;
-    mask-image:linear-gradient(90deg,transparent 0 47%,rgba(0,0,0,.14) 53%,rgba(0,0,0,.78) 62%,#000 100%),
-      linear-gradient(180deg,transparent 0 34%,rgba(0,0,0,.9) 47%,#000 76%,rgba(0,0,0,.38) 100%);
+    mask-image:linear-gradient(90deg,transparent 0 52%,rgba(0,0,0,.18) 56%,rgba(0,0,0,.96) 60%,#000 72%,rgba(0,0,0,.34) 78%,transparent 86%),
+      linear-gradient(180deg,transparent 0 36%,rgba(0,0,0,.9) 48%,#000 75%,rgba(0,0,0,.44) 100%);
     mask-composite:intersect;
     transform-origin:center 68%;animation:shipfloat 7.5s ease-in-out infinite}
   .hglow{position:absolute;left:59%;top:37.6%;width:18.2%;aspect-ratio:1/1;border-radius:50%;z-index:3;
@@ -259,7 +259,7 @@
   @keyframes sunpulse{0%,100%{opacity:.84;filter:saturate(.92) contrast(.92) sepia(.05);transform:scale(.998)}50%{opacity:.94;filter:saturate(1.02) contrast(.98) sepia(.05);transform:scale(1.006)}}
   @keyframes sunwater{0%,100%{opacity:.24;transform:scaleY(.68) translateY(0)}50%{opacity:.4;transform:scaleY(.82) translateY(6px)}}
   @keyframes sunveil{0%,100%{transform:translateX(-6px) translateY(0)}50%{transform:translateX(8px) translateY(3px)}}
-  @keyframes shipfloat{0%,100%{transform:translate3d(0,0,0) scale(.89)}50%{transform:translate3d(10px,-7px,0) scale(.89)}}
+  @keyframes shipfloat{0%,100%{transform:translate3d(7.2vw,0,0) scale(.7)}50%{transform:translate3d(7.9vw,-8px,0) scale(.7)}}
   @keyframes wavesheen{from{transform:translateX(-8%)}to{transform:translateX(8%)}}
   @keyframes birddrift{0%,100%{transform:translate(0,0)}50%{transform:translate(24px,-10px)}}
   @keyframes tagin{from{opacity:0;transform:translate(-50%,-42%) scale(.92)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
@@ -352,29 +352,29 @@
   </div>
 </section>
 
-<!-- ============ 拍2 · 缩水（深色块换节奏·去发光） ============ -->
-<section style="background:var(--ink);color:var(--paper);padding:clamp(54px,7vw,104px) clamp(20px,4vw,40px);position:relative;overflow:hidden">
-  <div style="position:absolute;inset:0;opacity:.06;pointer-events:none;background:repeating-linear-gradient(135deg,var(--paper) 0 1px,transparent 1px 22px)"></div>
+<!-- ============ 拍2 · 缩水（浅色长卷·去发光） ============ -->
+<section style="background:var(--paper);color:var(--ink);padding:clamp(54px,7vw,104px) clamp(20px,4vw,40px);position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;opacity:.12;pointer-events:none;background:repeating-linear-gradient(135deg,var(--gold) 0 1px,transparent 1px 24px)"></div>
   <div style="max-width:880px;margin:0 auto;position:relative">
     <p style="font-family:'Noto Serif SC',monospace;font-size:11.5px;letter-spacing:.24em;color:var(--gold-br);font-weight:700;margin:0 0 24px;text-align:center">CH.02 · 热闹是真的，但缩了水</p>
     <p style="font-family:'Noto Serif SC',serif;font-size:clamp(22px,3.4vw,40px);font-weight:700;line-height:1.34;text-align:center;max-width:22ch;margin:0 auto 48px">几十亿播放看起来风光。<br>可逐条看清「这到底是不是它」——</p>
     <div style="max-width:680px;margin:0 auto">
       <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px">
-        <span style="font-family:'Noto Serif SC',monospace;font-size:12px;color:#B9A98A">机器听到的声量</span>
+        <span style="font-family:'Noto Serif SC',monospace;font-size:12px;color:var(--ink-soft)">机器听到的声量</span>
         <span style="font-family:'Noto Serif SC',monospace;font-size:clamp(17px,2.4vw,24px);font-weight:700;color:#8a8268;text-decoration:line-through;text-decoration-color:var(--cinnabar);text-decoration-thickness:2px">53.68 亿</span>
       </div>
-      <div style="height:clamp(38px,5.5vw,58px);border:1.5px solid rgba(244,241,232,.22);background:rgba(244,241,232,.05);position:relative;overflow:hidden">
+      <div style="height:clamp(38px,5.5vw,58px);border:1.5px solid rgba(36,29,21,.32);background:rgba(36,29,21,.05);position:relative;overflow:hidden">
         <div id="shrinkbar" style="position:absolute;left:0;top:0;bottom:0;width:100%;background:repeating-linear-gradient(90deg,var(--gold) 0 2px,var(--gold-br) 2px 12px)"></div>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:16px">
         <div>
           <div style="font-family:'Noto Serif SC',monospace;font-size:12px;letter-spacing:.1em;color:var(--gold-br);margin-bottom:4px">真正被看见</div>
-          <div style="font-family:'Noto Serif SC',monospace;font-size:clamp(40px,8vw,84px);font-weight:700;color:var(--paper);line-height:.92"><span id="shrinknum">53.68</span><span style="font-size:.42em"> 亿</span></div>
+          <div style="font-family:'Noto Serif SC',monospace;font-size:clamp(40px,8vw,84px);font-weight:700;color:var(--ink);line-height:.92"><span id="shrinknum">53.68</span><span style="font-size:.42em"> 亿</span></div>
         </div>
         <div id="shrinkpct" style="opacity:0;transition:opacity .6s;font-family:'Noto Serif SC',monospace;font-weight:700;font-size:clamp(20px,3.4vw,38px);color:var(--cinnabar)">−36%</div>
       </div>
     </div>
-    <p style="font-size:15px;color:#CFC4AC;max-width:48ch;margin:44px auto 0;line-height:1.85;text-align:center">声量里很大一块，是徒有其名的同名物。<br>是时候把读者从「一个大数」，切换到 <b style="color:var(--paper)">44 个不同的下落</b>。</p>
+    <p style="font-size:15px;color:var(--ink-soft);max-width:48ch;margin:44px auto 0;line-height:1.85;text-align:center">声量里很大一块，是徒有其名的同名物。<br>是时候把读者从「一个大数」，切换到 <b style="color:var(--ink)">44 个不同的下落</b>。</p>
   </div>
 </section>
 
@@ -452,7 +452,7 @@
 </section>
 
 <!-- ============ 拍6 · 档案馆（翻面卡） ============ -->
-<section style="background:var(--ink);color:var(--paper);padding:clamp(44px,6vw,90px) 0 clamp(54px,7vw,100px)">
+<section style="background:var(--paper);color:var(--ink);padding:clamp(44px,6vw,90px) 0 clamp(54px,7vw,100px)">
   <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px)">
     <div style="display:flex;align-items:center;gap:18px;margin-bottom:6px">
       <div style="width:54px;height:54px;flex:0 0 auto;border:2px solid var(--cinnabar);display:flex;align-items:center;justify-content:center;position:relative"><span style="font-weight:900;font-size:26px;color:var(--cinnabar)">陆</span></div>
@@ -462,7 +462,7 @@
       </div>
     </div>
     <div id="fateTabs" style="display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 10px"></div>
-    <p style="font-family:'Noto Serif SC',monospace;font-size:11.5px;color:rgba(244,241,232,.55);margin:0 0 18px">块越大＝被看见次数越多　·　点击卡片「拿起来」翻面看详情，鼠标移开自动放回</p>
+    <p style="font-family:'Noto Serif SC',monospace;font-size:11.5px;color:var(--ink-soft);margin:0 0 18px">块越大＝被看见次数越多　·　点击卡片「拿起来」翻面看详情，鼠标移开自动放回</p>
     <div id="archive" style="position:relative;width:100%;margin-top:4px"></div>
   </div>
 </section>
@@ -858,12 +858,12 @@ if(reduce) frame(0);
   var grid=document.getElementById('archive'), tabsEl=document.getElementById('fateTabs'); if(!grid) return;
   var st=document.createElement('style'); st.textContent=
     '.acard{position:absolute;cursor:pointer;transition:all .34s cubic-bezier(.2,.8,.2,1);will-change:width,height,left,top}'+
-    '.acard:hover{z-index:20;box-shadow:0 12px 30px -8px rgba(0,0,0,.6)}'+
-    '.acard.up{z-index:120;box-shadow:0 26px 64px -16px rgba(0,0,0,.75)}'+
+    '.acard:hover{z-index:20;box-shadow:0 12px 30px -8px rgba(36,29,21,.38)}'+
+    '.acard.up{z-index:120;box-shadow:0 26px 64px -16px rgba(36,29,21,.5)}'+
     '.ain{position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}'+
     '.acard.up .ain{transform:rotateY(180deg)}'+
-    '.af{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;border:1px solid rgba(244,241,232,.18)}'+
-    '.ab{transform:rotateY(180deg);background:#0c1119;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:11%}';
+    '.af{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;border:1px solid rgba(36,29,21,.22)}'+
+    '.ab{transform:rotateY(180deg);background:var(--paper2);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:11%}';
   document.head.appendChild(st);
   var COLOR={arrive:'#7FB2C9',mistaken:'#E0664F',echo:'#C9A24B'};
   var VERDICT={
@@ -916,7 +916,7 @@ if(reduce) frame(0);
   var TABS=[{k:'all',l:'全部'},{k:'arrive',l:'真的到了'},{k:'mistaken',l:'被认成了别的'},{k:'frag',l:'一个人的海'},{k:'echo',l:'几乎没有回声'}];
   function match(b,k){ return k==='all'?true:k==='frag'?b.t>=55:b.cat===k; }
   var cur='all';
-  function tabStyle(on){ return 'appearance:none;cursor:pointer;font-family:"Noto Serif SC";font-weight:600;font-size:13px;padding:8px 14px;border:1.5px solid '+(on?'var(--gold-br)':'rgba(244,241,232,.3)')+';background:'+(on?'rgba(214,164,55,.14)':'transparent')+';color:var(--paper);transition:.12s'; }
+  function tabStyle(on){ return 'appearance:none;cursor:pointer;font-family:"Noto Serif SC";font-weight:600;font-size:13px;padding:8px 14px;border:1.5px solid '+(on?'var(--gold-br)':'rgba(36,29,21,.28)')+';background:'+(on?'rgba(214,164,55,.16)':'transparent')+';color:var(--ink);transition:.12s'; }
   function renderTabs(){ tabsEl.innerHTML=''; TABS.forEach(function(t){ var n=DATA.filter(function(b){return match(b,t.k);}).length;
     var b=document.createElement('button'); b.innerHTML=t.l+' <span style="opacity:.55">'+n+'</span>'; b.style.cssText=tabStyle(t.k===cur);
     b.onclick=function(){cur=t.k;layout();}; tabsEl.appendChild(b); }); }
@@ -955,11 +955,11 @@ if(reduce) frame(0);
           '</div>'+
         '</div>'+
         '<div class="af ab" style="border-top:3px solid '+c+'">'+
-          '<div style="font-family:\'Noto Serif SC\';font-weight:700;font-size:15px;color:#fff">'+b.n+'</div>'+
-          '<div style="font-family:\'Noto Serif SC\',monospace;font-size:9.5px;color:rgba(244,241,232,.55);margin-top:2px">'+b.e+'</div>'+
+          '<div style="font-family:\'Noto Serif SC\';font-weight:700;font-size:15px;color:var(--ink)">'+b.n+'</div>'+
+          '<div style="font-family:\'Noto Serif SC\',monospace;font-size:9.5px;color:var(--ink-soft);margin-top:2px">'+b.e+'</div>'+
           '<div style="font-family:\'Noto Serif SC\',monospace;font-size:14px;font-weight:700;color:'+c+';margin-top:9px">'+fmt(b.a)+'</div>'+
-          '<div style="font-family:\'Noto Serif SC\',monospace;font-size:9px;color:rgba(244,241,232,.5);margin-top:3px">'+b.nv+'条·'+b.na+'人·最大'+b.t+'%</div>'+
-          '<div style="font-size:11px;color:rgba(244,241,232,.82);margin-top:9px;line-height:1.55">'+(VERDICT[b.l]||'')+'</div>'+
+          '<div style="font-family:\'Noto Serif SC\',monospace;font-size:9px;color:var(--ink-soft);margin-top:3px">'+b.nv+'条·'+b.na+'人·最大'+b.t+'%</div>'+
+          '<div style="font-size:11px;color:var(--ink);margin-top:9px;line-height:1.55">'+(VERDICT[b.l]||'')+'</div>'+
         '</div>'+
       '</div>';
       var ow=Math.max(r.w-gap*2,8), oh=Math.max(r.h-gap*2,8), ol=r.x+gap, ot=r.y+gap;
