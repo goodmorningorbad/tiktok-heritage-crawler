@@ -177,7 +177,14 @@
   body>section:nth-of-type(4){background:linear-gradient(180deg,var(--paper) 0%,#E7D9B7 100%)!important}
   body>section:nth-of-type(5){background:linear-gradient(180deg,#E7D9B7 0%,var(--paper) 100%)!important}
   body>section:nth-of-type(6){background:linear-gradient(180deg,var(--paper) 0%,#E5D6B4 100%)!important}
-  @media(max-width:640px){ .legend{transform:scale(.86);transform-origin:top left} }
+  @media(max-width:900px){
+    #state-section [style*="grid-template-columns:minmax(240px,.7fr)"]{grid-template-columns:1fr!important}
+    #stateCards{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  }
+  @media(max-width:640px){
+    .legend{transform:scale(.86);transform-origin:top left}
+    #stateCards{grid-template-columns:1fr!important}
+  }
 </style>
 </head>
 <body>
@@ -482,8 +489,47 @@
     </div>
     <div id="fateTabs" style="display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 8px"></div>
     <p style="font-family:'Noto Serif SC',monospace;font-size:12px;color:var(--cinnabar-deep);font-weight:700;margin:0 0 7px">上方分类按钮可点击切换。</p>
-    <p style="font-family:'Noto Serif SC',monospace;font-size:11.5px;color:var(--ink-soft);margin:0 0 18px">块越大＝被看见次数越多　·　鼠标悬停在图片上会自动拿起并翻面，移开后放回原位</p>
+    <p style="font-family:'Noto Serif SC',monospace;font-size:11.5px;color:var(--ink-soft);margin:0 0 18px">块越大＝被看见次数越多　·　鼠标悬停在图片上会自动拿起并翻面，小卡会展开清晰档案，移开后放回原位</p>
     <div id="archive" style="position:relative;width:100%;margin-top:4px"></div>
+  </div>
+</section>
+
+<!-- ============ 拍7 · 存量 × 触达总判读 ============ -->
+<section id="state-section" style="background:var(--paper2);color:var(--ink);padding:clamp(48px,7vw,104px) 0 clamp(58px,8vw,112px);overflow:hidden">
+  <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px)">
+    <div style="display:flex;align-items:center;gap:18px;margin-bottom:8px">
+      <div class="num-seal"><span>柒</span></div>
+      <div>
+        <p class="ch" style="color:var(--stone)">CH.07 · 存量 × 触达 / 最后一眼看全局</p>
+        <h2 style="font-family:'Noto Serif SC';font-weight:700;margin:0;font-size:clamp(22px,3.6vw,40px);line-height:1.12">中国非遗在 TikTok 上，<em style="font-style:normal;color:var(--cinnabar)">不是一片热闹</em>。</h2>
+      </div>
+    </div>
+    <p class="chart-lead" style="margin-left:0;margin-right:0;max-width:76ch">把第六部分的 44 张档案合起来看，只问两个最朴素的问题：平台上<b>有没有内容存量</b>，这些内容<b>有没有真的被看见</b>。答案不是“出海成功/失败”二选一，而是四种不同的现状。</p>
+
+    <div style="border:1.5px solid var(--ink);background:rgba(233,222,194,.72);padding:clamp(18px,2.4vw,28px);margin-top:28px;display:grid;grid-template-columns:minmax(240px,.7fr) minmax(0,1.3fr);gap:clamp(16px,3vw,30px);align-items:end">
+      <div>
+        <div style="font-family:'Ma Shan Zheng';font-size:clamp(42px,6vw,78px);line-height:.95;color:var(--cinnabar)">四种海况</div>
+        <p style="font-size:15px;color:var(--ink-soft);line-height:1.85;margin:18px 0 0">最刺眼的不是谁最高，而是分布很不均：春节、京剧、太极、制茶已经成了繁忙航道；也有长调、木活字、宣纸这类“小船远航”；但另一边，云锦、玛纳斯、剪纸有很大名字声量，真正属于中国非遗的触达却沉下去；更尾部的花儿、侗族大歌、福船，几乎没有浪声。</p>
+      </div>
+      <div>
+        <div id="stateCards" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px"></div>
+        <div id="stateNote" style="border-top:1px solid rgba(36,29,21,.22);padding-top:12px;margin-top:14px;font-size:13px;color:var(--ink-soft);line-height:1.75">把鼠标移到下方海图上，看每件非遗落在哪片海域；也可以掠过四张小卡，只看每种状态有多少件。</div>
+      </div>
+    </div>
+
+    <div class="chart-frame" style="background:rgba(233,222,194,.58);overflow:hidden;margin-top:18px">
+      <canvas id="stateSea"></canvas>
+      <div class="legend" style="left:18px;top:18px">
+        <div class="row"><span class="swatch" style="background:#2C6B86"></span>小船越靠右＝内容越多</div>
+        <div class="row"><span class="swatch" style="background:#BE8B2A"></span>越靠上＝真正被看见越多</div>
+        <div class="row"><span class="swatch" style="background:#9C2A1E"></span>红色涡流＝高存量却低触达</div>
+      </div>
+      <div class="tip" id="stateTip"></div>
+    </div>
+
+    <p style="font-family:'Noto Serif SC',monospace;font-size:12px;color:var(--ink-soft);line-height:1.75;margin:12px 0 0;text-align:center">存量轴来自 hashtag challenge 视频规模；触达轴使用 378 条头部人工核查锚定后的真实播放量。四片海域按 44 项中位线切分，和原始“存量 × 触达”矩阵同口径。</p>
+
+    <p style="font-size:clamp(17px,2vw,24px);font-weight:700;color:var(--ink);line-height:1.65;max-width:860px;margin:34px auto 0;text-align:center">所以结论不是“非遗都火了”，而是：<span style="color:var(--stone)">少数抵岸</span>，<span style="color:var(--gold)">一些靠爆点越过海面</span>，<span style="color:var(--cinnabar)">不少被同名物淹没</span>，还有一大批仍停在近乎无声的水域。</p>
   </div>
 </section>
 
@@ -520,6 +566,7 @@ var DATA=[
  {n:"太极拳",l:"太极",e:"Taijiquan",a:171711676,m:248769168,t:29,na:107,nv:219,cat:"arrive"},
  {n:"中医针灸",l:"针灸",e:"Acupuncture",a:137359049,m:245199475,t:13,na:136,nv:163,cat:"arrive"},
  {n:"中国剪纸",l:"剪纸",e:"Chinese paper-cut",a:28757474,m:205339021,t:39,na:61,nv:110,cat:"mistaken"},
+ {n:"中国水密隔舱福船制造技艺",l:"福船",e:"Watertight-bulkhead junks",a:48907,m:64341,t:53,na:31,nv:34,cat:"echo"},
  {n:"中国珠算",l:"珠算",e:"Zhusuan abacus",a:58931271,m:169744719,t:28,na:44,nv:46,cat:"arrive"},
  {n:"蒙古族长调民歌",l:"长调",e:"Urtiin Duu",a:150415872,m:149500000,t:53,na:7,nv:8,cat:"arrive"},
  {n:"中国传统制茶技艺",l:"制茶",e:"Tea processing",a:139669216,m:143086500,t:19,na:234,nv:416,cat:"arrive"},
@@ -931,10 +978,18 @@ if(reduce) frame(0);
     '.acard::before{content:"";position:absolute;inset:-14px;z-index:0;background:rgba(255,255,255,.001)}'+
     '.acard:hover{z-index:20;box-shadow:0 12px 30px -8px rgba(36,29,21,.38)}'+
     '.acard.up{z-index:120;box-shadow:0 26px 64px -16px rgba(36,29,21,.5)}'+
-    '.ain{position:relative;z-index:1;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}'+
+    '.ain{position:relative;z-index:1;width:100%;height:100%;transition:transform .45s cubic-bezier(.22,.72,.2,1);transform-style:preserve-3d}'+
     '.acard.up .ain{transform:rotateY(180deg)}'+
+    '.acard.detail.up .ain{transform:rotateY(14deg) translateY(-3px)}'+
     '.af{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;border:1px solid rgba(36,29,21,.22)}'+
-    '.ab{transform:rotateY(180deg);background:var(--paper2);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:11%}';
+    '.ab{transform:rotateY(180deg);background:var(--paper2);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:11%}'+
+    '.archive-pop{position:absolute;z-index:260;width:292px;max-width:calc(100vw - 44px);box-sizing:border-box;border:1.5px solid rgba(36,29,21,.86);background:linear-gradient(180deg,rgba(246,239,218,.98),rgba(232,219,187,.98));box-shadow:0 24px 54px -20px rgba(36,29,21,.48),0 0 0 6px rgba(255,250,235,.34);padding:14px 15px 15px;pointer-events:none;opacity:0;transform:translate3d(0,10px,0) scale(.98);transition:opacity .18s ease,transform .22s cubic-bezier(.22,.72,.2,1);filter:none;text-align:left}'+
+    '.archive-pop.show{opacity:1;transform:translate3d(0,0,0) scale(1)}'+
+    '.archive-pop .pop-cn{font-family:"Noto Serif SC";font-size:19px;line-height:1.15;font-weight:800;color:var(--ink)}'+
+    '.archive-pop .pop-en{font-family:"Noto Serif SC",monospace;font-size:10px;line-height:1.35;color:var(--ink-soft);margin-top:4px}'+
+    '.archive-pop .pop-num{font-family:"Noto Serif SC",monospace;font-size:19px;font-weight:800;margin-top:11px}'+
+    '.archive-pop .pop-meta{font-family:"Noto Serif SC",monospace;font-size:10.5px;color:var(--ink-soft);margin-top:4px}'+
+    '.archive-pop .pop-verdict{font-size:13px;line-height:1.65;color:var(--ink);margin-top:10px}';
   document.head.appendChild(st);
   var COLOR={arrive:'#7FB2C9',mistaken:'#E0664F',echo:'#C9A24B'};
   var VERDICT={
@@ -987,6 +1042,9 @@ if(reduce) frame(0);
   var TABS=[{k:'all',l:'全部'},{k:'arrive',l:'真的到了'},{k:'mistaken',l:'被认成了别的'},{k:'frag',l:'一个人的海'},{k:'echo',l:'几乎没有回声'}];
   function match(b,k){ return k==='all'?true:k==='frag'?b.t>=55:b.cat===k; }
   var cur='all';
+  var pop=document.createElement('div');
+  pop.className='archive-pop';
+  grid.appendChild(pop);
   function tabStyle(on){ return 'appearance:none;cursor:pointer;font-family:"Noto Serif SC";font-weight:600;font-size:13px;padding:8px 14px;border:1.5px solid '+(on?'var(--gold-br)':'rgba(36,29,21,.28)')+';background:'+(on?'rgba(214,164,55,.16)':'transparent')+';color:var(--ink);transition:.12s'; }
   function renderTabs(){ tabsEl.innerHTML=''; TABS.forEach(function(t){ var n=DATA.filter(function(b){return match(b,t.k);}).length;
     var b=document.createElement('button'); b.innerHTML=t.l+' <span style="opacity:.55">'+n+'</span>'; b.style.cssText=tabStyle(t.k===cur);
@@ -1002,7 +1060,7 @@ if(reduce) frame(0);
       if(rw<=rh){ var sh=sum/rw,ox=rx; for(k=0;k<row.length;k++){var cw=row[k]/sh;res[ri[k]]={x:ox,y:ry,w:cw,h:sh};ox+=cw;} ry+=sh; rh-=sh; }
       else { var sw=sum/rh,oy=ry; for(k=0;k<row.length;k++){var ch=row[k]/sw;res[ri[k]]={x:rx,y:oy,w:sw,h:ch};oy+=ch;} rx+=sw; rw-=sw; }
     } return res; }
-  function layout(){ renderTabs(); grid.innerHTML='';
+  function layout(){ renderTabs(); grid.innerHTML=''; grid.appendChild(pop); hidePop();
     var items=DATA.filter(function(b){return match(b,cur);}).sort(function(a,b){return b.a-a.a;});
     var W=grid.clientWidth||1000, H=Math.round(Math.min(Math.max(W*0.58,520),820)); grid.style.height=H+'px';
     var raw=items.map(function(b){return Math.pow(b.a,0.42);}); var tot=raw.reduce(function(a,b){return a+b;},0);
@@ -1015,6 +1073,8 @@ if(reduce) frame(0);
       card.style.width=Math.max(r.w-gap*2,8)+'px'; card.style.height=Math.max(r.h-gap*2,8)+'px';
       var cx=r.x+r.w/2, cy=r.y+r.h/2;
       card.style.transformOrigin=(cx<W*0.5?'0%':'100%')+' '+(cy<H*0.5?'0%':'100%');
+      var needsDetail=r.w<170||r.h<188;
+      if(needsDetail) card.className+=' detail';
       var big=r.w>78&&r.h>96, nsz=Math.max(11,Math.min(r.w*0.16,22));
       var bg = ph? 'background:url(\''+'photos/img44/'+ph+'\') center/cover' : 'background:#1a212c';
       card.innerHTML='<div class="ain">'+
@@ -1035,22 +1095,212 @@ if(reduce) frame(0);
         '</div>'+
       '</div>';
       var ow=Math.max(r.w-gap*2,8), oh=Math.max(r.h-gap*2,8), ol=r.x+gap, ot=r.y+gap;
-      var liftScale=Math.min(2.2,Math.max(1.08,Math.min(238/ow,(238*1.34)/oh)));
+      var targetW=needsDetail?176:238, targetH=needsDetail?204:318;
+      var liftScale=Math.min(needsDetail?1.72:2.2,Math.max(1.08,Math.min(targetW/ow,targetH/oh)));
       var liftX=(cx<W*.5?1:-1)*Math.min(18,Math.max(4,ow*.04));
       var liftY=(cy<H*.52?10:-10);
+      function popHtml(){
+        return '<div style="border-top:3px solid '+c+';padding-top:10px">'+
+          '<div class="pop-cn">'+b.n+'</div>'+
+          '<div class="pop-en">'+b.e+'</div>'+
+          '<div class="pop-num" style="color:'+c+'">'+fmt(b.a)+'</div>'+
+          '<div class="pop-meta">'+b.nv+'条 · '+b.na+'人 · 最大'+b.t+'%</div>'+
+          '<div class="pop-verdict">'+(VERDICT[b.l]||'')+'</div>'+
+        '</div>';
+      }
+      function placePop(){
+        pop.innerHTML=popHtml();
+        var pw=292, phh=pop.offsetHeight||190;
+        var left=ol+ow+16, top=ot+Math.min(10,oh*.2);
+        if(left+pw>W-8) left=ol-pw-16;
+        if(left<8) left=Math.max(8,Math.min(W-pw-8,ol+ow*.5-pw*.5));
+        if(top+phh>H-8) top=H-phh-8;
+        if(top<8) top=8;
+        pop.style.left=left+'px';
+        pop.style.top=top+'px';
+        pop.classList.add('show');
+      }
       function lift(){
         card.classList.add('up');
         card.style.transform='translate3d('+liftX+'px,'+liftY+'px,0) scale('+liftScale.toFixed(3)+')';
+        if(needsDetail) placePop();
       }
       card.addEventListener('mouseenter',lift);
       card.addEventListener('focus',lift);
-      card.addEventListener('mouseleave',function(){ card.classList.remove('up'); card.style.transform=''; });
-      card.addEventListener('blur',function(){ card.classList.remove('up'); card.style.transform=''; });
+      card.addEventListener('mouseleave',function(){ card.classList.remove('up'); card.style.transform=''; if(needsDetail) hidePop(); });
+      card.addEventListener('blur',function(){ card.classList.remove('up'); card.style.transform=''; if(needsDetail) hidePop(); });
       grid.appendChild(card);
     });
   }
+  function hidePop(){ pop.classList.remove('show'); }
   var rt2; addEventListener('resize',function(){clearTimeout(rt2);rt2=setTimeout(layout,160);});
   layout();
+})();
+
+// ---- 拍7 存量 × 触达：四片海况 ----
+(function(){
+  var cv=document.getElementById('stateSea'), cards=document.getElementById('stateCards'), tip=document.getElementById('stateTip'), note=document.getElementById('stateNote');
+  if(!cv || !cards) return;
+  var ctx=cv.getContext('2d'), DPR,W,H,items=[],hover=null,raf=null,seen=false;
+  var STOCK={
+    "春节":640926,"书法":1715067,"京剧":7633,"呼麦":902,"宣纸":128,"太极":210873,"针灸":7351,"剪纸":28432,"福船":343,
+    "珠算":304,"长调":21,"制茶":16140,"木活字":171,"龙泉青瓷":657,"端午":8891,"古琴":9346,"云锦":603357,
+    "玛纳斯":103875,"雕版":31993,"麦西热甫":54,"篆刻":2885,"蚕桑":508,"妈祖":13995,"粤剧":289,"木结构":16173,
+    "羌年":7,"节气":2636,"送王船":1302,"黎族织绣":48,"南音":854,"皮影":935,"西安鼓乐":9,"伊玛堪":17,
+    "木卡姆":7108,"昆曲":844,"木拱桥":13,"热贡":37,"农乐舞":41,"格萨尔":227,"藏戏":808,"药浴":256,
+    "木偶戏":315,"侗族大歌":10,"花儿":166
+  };
+  var Q={
+    busy:{title:'繁忙航道',short:'内容多，也真被看见',color:'#2C6B86',note:'春节、太极、制茶、书法，是少数已经形成规模外溢的项目。'},
+    spark:{title:'孤帆破圈',short:'内容不多，但刷得远',color:'#BE8B2A',note:'京剧、宣纸、木活字、长调等，存量不大，却靠爆点驶得很远。'},
+    loop:{title:'近岸自循环',short:'内容很多，真触达偏低',color:'#9C2A1E',note:'云锦、玛纳斯、剪纸一类，名字很响，但大量声量并没有落回中国非遗本体。'},
+    quiet:{title:'静水无声',short:'内容少，也少被看见',color:'#5A4B36',note:'花儿、侗族大歌、福船等尾部项目，还没有形成可见的海外传播水面。'}
+  };
+  function med(arr){ var a=arr.slice().sort(function(x,y){return x-y;}); return (a[21]+a[22])/2; }
+  function lx(v){ return Math.log10(Math.max(v,1)); }
+  function cls(d){ return d.stock>=stockMid && d.a>=reachMid?'busy':d.stock<stockMid && d.a>=reachMid?'spark':d.stock>=stockMid?'loop':'quiet'; }
+  function fmtStock(n){return n>=1000000?(n/1000000).toFixed(1)+'M':n>=1000?Math.round(n/1000)+'K':String(n);}
+  var stockMid=0, reachMid=0, xMin=0,xMax=0,yMin=0,yMax=0, M={l:64,r:30,t:54,b:64};
+  function prep(){
+    items=DATA.map(function(d){return Object.assign({},d,{stock:STOCK[d.l]||1});});
+    stockMid=med(items.map(function(d){return d.stock;}));
+    reachMid=med(items.map(function(d){return d.a;}));
+    xMin=lx(Math.min.apply(null,items.map(function(d){return d.stock;})))-.15;
+    xMax=lx(Math.max.apply(null,items.map(function(d){return d.stock;})))+.15;
+    yMin=lx(Math.min.apply(null,items.map(function(d){return d.a;})))-.25;
+    yMax=lx(Math.max.apply(null,items.map(function(d){return d.a;})))+.12;
+    items.forEach(function(d,i){ d.q=cls(d); d.jx=((i*37)%19-9)*0.8; d.jy=((i*53)%17-8)*0.8; });
+  }
+  function x(v){ return M.l+(lx(v)-xMin)/(xMax-xMin)*(W-M.l-M.r); }
+  function y(v){ return H-M.b-(lx(v)-yMin)/(yMax-yMin)*(H-M.t-M.b); }
+  function drawShipMark(xx,yy,r,c,kind,hot){
+    ctx.save(); ctx.translate(xx,yy);
+    ctx.fillStyle=c; ctx.strokeStyle=hot?'#241D15':'rgba(233,222,194,.86)'; ctx.lineWidth=hot?2:1;
+    if(kind==='loop'){
+      ctx.beginPath(); ctx.arc(0,0,r*1.5,0,6.28); ctx.strokeStyle='rgba(156,42,30,.42)'; ctx.lineWidth=1.3; ctx.stroke();
+      ctx.beginPath(); ctx.arc(0,0,r*.88,0,Math.PI*1.55); ctx.strokeStyle=c; ctx.lineWidth=2.2; ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(r*.7,-r*.55); ctx.lineTo(r*1.25,-r*.8); ctx.lineTo(r*1.02,-r*.18); ctx.closePath(); ctx.fill();
+    }else if(kind==='spark'){
+      ctx.beginPath(); ctx.moveTo(0,-r*1.55); ctx.lineTo(r*1.18,r*.1); ctx.lineTo(0,r*.55); ctx.lineTo(-r*1.18,r*.1); ctx.closePath(); ctx.fill(); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(-r*.75,r*.65); ctx.quadraticCurveTo(0,r*1.08,r*.75,r*.65); ctx.stroke();
+    }else if(kind==='quiet'){
+      ctx.beginPath(); ctx.arc(0,0,r*.76,0,6.28); ctx.fill(); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(-r*1.25,r*.9); ctx.quadraticCurveTo(0,r*1.28,r*1.25,r*.9); ctx.strokeStyle='rgba(90,75,54,.45)'; ctx.stroke();
+    }else{
+      ctx.beginPath(); ctx.moveTo(-r*1.1,r*.45); ctx.quadraticCurveTo(0,r*1.0,r*1.1,r*.45); ctx.quadraticCurveTo(r*.58,r*.72,-r*.58,r*.72); ctx.closePath(); ctx.fill(); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(-r*.08,-r*1.45); ctx.lineTo(r*.9,r*.28); ctx.lineTo(-r*.08,r*.28); ctx.closePath(); ctx.fill(); ctx.stroke();
+    }
+    ctx.restore();
+  }
+  function draw(now){
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle='rgba(226,212,178,.26)'; ctx.fillRect(0,0,W,H);
+    var sea=ctx.createLinearGradient(0,M.t,W,H-M.b);
+    sea.addColorStop(0,'rgba(255,248,226,.36)');
+    sea.addColorStop(.45,'rgba(44,107,134,.075)');
+    sea.addColorStop(1,'rgba(190,139,42,.07)');
+    ctx.fillStyle=sea; ctx.fillRect(0,0,W,H);
+    var xm=x(stockMid), ym=y(reachMid);
+    function band(x0,y0,w,h,c,a){ ctx.fillStyle=c.replace(')',','+a+')').replace('rgb','rgba'); ctx.fillRect(x0,y0,w,h); }
+    band(M.l,M.t,xm-M.l,ym-M.t,'rgb(190,139,42)',.10);
+    band(xm,M.t,W-M.r-xm,ym-M.t,'rgb(44,107,134)',.13);
+    band(M.l,ym,xm-M.l,H-M.b-ym,'rgb(90,75,54)',.10);
+    band(xm,ym,W-M.r-xm,H-M.b-ym,'rgb(190,58,43)',.10);
+    ctx.save();
+    ctx.strokeStyle='rgba(255,246,220,.24)'; ctx.lineWidth=1;
+    for(var wy=M.t+24; wy<H-M.b; wy+=32){
+      ctx.beginPath();
+      for(var wx=M.l; wx<=W-M.r; wx+=18){
+        var yy=wy+Math.sin(wx*.018+now*.0012)*3.5;
+        wx===M.l?ctx.moveTo(wx,yy):ctx.lineTo(wx,yy);
+      }
+      ctx.stroke();
+    }
+    ctx.restore();
+    ctx.strokeStyle='rgba(36,29,21,.42)'; ctx.lineWidth=1.3;
+    ctx.beginPath(); ctx.moveTo(M.l,H-M.b); ctx.lineTo(W-M.r,H-M.b); ctx.moveTo(M.l,M.t); ctx.lineTo(M.l,H-M.b); ctx.stroke();
+    ctx.setLineDash([5,5]); ctx.strokeStyle='rgba(36,29,21,.3)';
+    ctx.beginPath(); ctx.moveTo(xm,M.t); ctx.lineTo(xm,H-M.b); ctx.moveTo(M.l,ym); ctx.lineTo(W-M.r,ym); ctx.stroke(); ctx.setLineDash([]);
+    ctx.font='700 13px "Noto Serif SC",serif'; ctx.textAlign='left'; ctx.fillStyle='#BE8B2A'; ctx.fillText('孤帆破圈',M.l+12,M.t+25);
+    ctx.textAlign='right'; ctx.fillStyle='#2C6B86'; ctx.fillText('繁忙航道',W-M.r-12,M.t+25);
+    ctx.textAlign='left'; ctx.fillStyle='rgba(90,75,54,.82)'; ctx.fillText('静水无声',M.l+12,H-M.b-14);
+    ctx.textAlign='right'; ctx.fillStyle='#9C2A1E'; ctx.fillText('近岸自循环',W-M.r-12,H-M.b-14);
+    ctx.font='11px "Noto Serif SC",serif'; ctx.fillStyle='rgba(90,75,54,.72)';
+    ctx.textAlign='center'; ctx.fillText('内容存量：少 → 多',W/2,H-22);
+    ctx.save(); ctx.translate(22,H/2); ctx.rotate(-Math.PI/2); ctx.fillText('真实触达：低 → 高',0,0); ctx.restore();
+    ctx.font='10px "Noto Serif SC",monospace'; ctx.textAlign='center'; ctx.fillStyle='rgba(90,75,54,.55)';
+    [10,1000,100000,1000000].forEach(function(v){ var xx=x(v); if(xx>M.l&&xx<W-M.r){ ctx.fillText(fmtStock(v),xx,H-M.b+19); }});
+    [['10万',1e5],['100万',1e6],['1000万',1e7],['1亿',1e8],['10亿',1e9]].forEach(function(p){ var yy=y(p[1]); if(yy>M.t&&yy<H-M.b){ ctx.textAlign='right'; ctx.fillText(p[0],M.l-8,yy+3); }});
+    var p=reduce?1:Math.min(1,seen?((now-stateStart)/900):0);
+    items.forEach(function(d,i){
+      var pp=Math.max(0,Math.min(1,p*1.18-i*.007)), e=1-Math.pow(1-pp,3);
+      var xx=x(d.stock)+d.jx, yy=y(d.a)+d.jy+(1-e)*18;
+      d._sx=xx; d._sy=yy;
+      var c=Q[d.q].color, hot=hover===d, muted=hover&&hover.qOnly&&hover.qOnly!==d.q;
+      ctx.globalAlpha=muted ? .16 : (.18+.82*e);
+      var r=(hot?7.2:4.8)+Math.min(Math.sqrt(d.nv)/8,4);
+      var baseX=x(stockMid), baseY=H-M.b;
+      ctx.save();
+      ctx.strokeStyle=c; ctx.globalAlpha=(muted?.08:.16)*e; ctx.lineWidth=1; ctx.setLineDash([1,5]);
+      ctx.beginPath(); ctx.moveTo(baseX,baseY); ctx.quadraticCurveTo((baseX+xx)/2,yy+26,xx,yy); ctx.stroke();
+      ctx.restore();
+      drawShipMark(xx,yy,r,c,d.q,hot);
+      ctx.globalAlpha=1;
+    });
+    var labels=['春节','京剧','太极','云锦','玛纳斯','福船','花儿','木活字','长调','剪纸'];
+    ctx.font='600 11.5px "Noto Serif SC",serif'; ctx.textAlign='left';
+    items.forEach(function(d){ if(labels.indexOf(d.l)<0) return;
+      var xx=d._sx+8, yy=d._sy-7, w=ctx.measureText(d.l).width;
+      ctx.fillStyle='rgba(233,222,194,.84)'; ctx.fillRect(xx-2,yy-12,w+5,16);
+      ctx.fillStyle=Q[d.q].color; ctx.fillText(d.l,xx,yy);
+    });
+    if(!reduce && seen) raf=requestAnimationFrame(draw);
+  }
+  function renderCards(){
+    var counts={busy:0,spark:0,loop:0,quiet:0};
+    items.forEach(function(d){counts[d.q]++;});
+    cards.innerHTML='';
+    ['busy','spark','loop','quiet'].forEach(function(k){
+      var q=Q[k], b=document.createElement('button');
+      b.style.cssText='appearance:none;text-align:left;cursor:pointer;border:1.5px solid '+q.color+';background:rgba(233,222,194,.58);padding:12px 12px 13px;font-family:"Noto Serif SC";color:var(--ink);min-height:116px';
+      b.innerHTML='<div style="font-family:\'Noto Serif SC\',monospace;font-size:28px;font-weight:900;line-height:1;color:'+q.color+'">'+counts[k]+'</div>'+
+        '<div style="font-weight:700;font-size:15px;margin-top:7px">'+q.title+'</div>'+
+        '<div style="font-size:11.5px;color:var(--ink-soft);line-height:1.55;margin-top:4px">'+q.short+'</div>';
+      b.onmouseenter=function(){hover={qOnly:k}; if(note) note.textContent=q.title+'：'+q.note; draw(performance.now());};
+      b.onfocus=b.onmouseenter;
+      b.onmouseleave=function(){hover=null; if(note) note.textContent='把鼠标移到左侧点上，看每件非遗落在哪片海域；也可以掠过四张小卡，只看每种状态有多少件。'; draw(performance.now());};
+      b.onblur=b.onmouseleave;
+      cards.appendChild(b);
+    });
+  }
+  var stateStart=0;
+  function layout(){
+    DPR=Math.min(devicePixelRatio||1,2);
+    W=cv.clientWidth; H=Math.round(Math.min(Math.max(W*.56,520),760));
+    cv.width=W*DPR; cv.height=H*DPR; cv.style.height=H+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    prep(); renderCards(); draw(performance.now());
+  }
+  cv.addEventListener('mousemove',function(e){
+    var r=cv.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top, best=null, bd=1e9;
+    items.forEach(function(d){ var dist=Math.hypot((d._sx||0)-mx,(d._sy||0)-my); if(dist<18&&dist<bd){bd=dist;best=d;} });
+    hover=best;
+    if(best){
+      tip.style.opacity=1; tip.style.left=best._sx+'px'; tip.style.top=best._sy+'px';
+      tip.innerHTML='<div class="tn">'+best.n+'</div><div class="te">'+Q[best.q].title+' · '+Q[best.q].short+'</div>'+
+        '<div class="tr">内容存量 <b>'+fmtStock(best.stock)+'</b> · 真正被看见 <b>'+fmt(best.a)+'</b></div>'+
+        '<div class="frag" style="color:'+Q[best.q].color+'">'+(best.q==='loop'?'名字很响，真身偏低':best.q==='quiet'?'低存量低触达':best.q==='spark'?'小船驶远了':'规模化抵岸')+'</div>';
+    }else{ tip.style.opacity=0; }
+    draw(performance.now());
+  });
+  cv.addEventListener('mouseleave',function(){hover=null; tip.style.opacity=0; draw(performance.now());});
+  var io=new IntersectionObserver(function(es){
+    seen=es[0].isIntersecting;
+    if(seen){ stateStart=performance.now(); if(raf) cancelAnimationFrame(raf); raf=requestAnimationFrame(draw); }
+    else if(raf){ cancelAnimationFrame(raf); raf=null; }
+  },{threshold:.25});
+  var rz; addEventListener('resize',function(){clearTimeout(rz);rz=setTimeout(layout,160);});
+  layout(); io.observe(cv);
 })();
 
 // ---- 拍5 改名玩具 ----
