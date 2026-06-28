@@ -113,16 +113,19 @@
   .foot-note{max-width:1180px;margin:22px auto 0;padding:0 clamp(20px,4vw,40px);
     font-size:12.5px;color:var(--ink-soft);line-height:1.8}
   .foot-note .r{color:var(--cinnabar-deep)} .foot-note .g{color:var(--gold)}
-  .finale{position:relative;min-height:72vh;padding:clamp(70px,9vw,128px) clamp(20px,4vw,40px) clamp(50px,6vw,86px);
-    overflow:hidden;background:linear-gradient(180deg,#E4D4AD 0%,#E9DEC2 42%,#D8C7A0 100%);color:var(--ink)}
-  .finale::before{content:"";position:absolute;inset:0;opacity:.42;mix-blend-mode:multiply;
+  .finale{position:relative;min-height:86vh;padding:clamp(82px,10vw,138px) clamp(20px,4vw,40px) clamp(58px,7vw,96px);
+    overflow:hidden;background:
+      linear-gradient(90deg,rgba(233,222,194,.96) 0%,rgba(233,222,194,.86) 30%,rgba(233,222,194,.46) 54%,rgba(233,222,194,.08) 78%),
+      linear-gradient(180deg,rgba(233,222,194,.2) 0%,rgba(216,199,160,.16) 68%,rgba(216,199,160,.68) 100%),
+      url("../img/ChatGPT Image Jun 27, 2026, 11_08_21 PM.png") center/cover no-repeat;color:var(--ink)}
+  .finale::before{content:"";position:absolute;inset:0;opacity:.34;mix-blend-mode:multiply;
     background:
-      repeating-linear-gradient(16deg,rgba(190,139,42,.22) 0 1px,transparent 1px 34px),
-      repeating-linear-gradient(106deg,rgba(44,107,134,.14) 0 1px,transparent 1px 46px),
-      radial-gradient(circle at 67% 43%,rgba(190,58,43,.2),transparent 22%)}
+      repeating-linear-gradient(16deg,rgba(190,139,42,.18) 0 1px,transparent 1px 34px),
+      repeating-linear-gradient(106deg,rgba(44,107,134,.1) 0 1px,transparent 1px 46px)}
   .finale__sun{position:absolute;left:63%;top:25%;width:clamp(120px,16vw,224px);aspect-ratio:1/1;border-radius:50%;
     background:url("heroimg/sun2.png") center/contain no-repeat;opacity:.58;mix-blend-mode:multiply;
     filter:saturate(.86) contrast(.9);animation:sunpulse 7s ease-in-out infinite}
+  .finale__sun,.finale__sea,.finale__ship{display:none}
   .finale__sea{position:absolute;left:0;right:0;bottom:0;height:46%;
     background:
       linear-gradient(180deg,rgba(233,222,194,0) 0%,rgba(44,107,134,.14) 22%,rgba(39,74,92,.36) 100%),
@@ -134,7 +137,7 @@
     filter:saturate(.96) contrast(1.02) drop-shadow(0 8px 10px rgba(36,29,21,.1));animation:finaleshipfloat 8s ease-in-out infinite;
     -webkit-mask-image:linear-gradient(90deg,transparent 0 28%,rgba(0,0,0,.72) 43%,#000 100%);
     mask-image:linear-gradient(90deg,transparent 0 28%,rgba(0,0,0,.72) 43%,#000 100%)}
-  .finale__inner{position:relative;z-index:2;max-width:1100px;margin:0 auto}
+  .finale__inner{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding-top:clamp(8px,3vw,34px)}
   .finale .sealbox{width:58px;height:58px;border:2px solid var(--cinnabar);display:flex;align-items:center;justify-content:center;
     color:var(--cinnabar);font-family:"Ma Shan Zheng";font-size:34px;background:rgba(233,222,194,.52)}
   .finale h2{font-family:"Ma Shan Zheng";font-weight:400;font-size:clamp(58px,9vw,124px);line-height:.96;margin:28px 0 0;letter-spacing:0;color:#15110d}
@@ -142,6 +145,12 @@
   .finale p{max-width:42ch;font-size:clamp(15px,1.45vw,19px);line-height:1.9;color:var(--ink-soft);margin:26px 0 0}
   .finale .finale__note{font-family:"Noto Serif SC",monospace;font-size:12px;letter-spacing:.08em;color:rgba(36,29,21,.62);margin-top:42px}
   .final-foot{background:linear-gradient(180deg,#D8C7A0,var(--paper));padding:24px clamp(20px,4vw,40px) 56px}
+  .text-reveal{opacity:0;transform:translate3d(0,22px,0);filter:blur(3px);transition:
+    opacity .78s ease,transform .78s cubic-bezier(.2,.75,.18,1),filter .78s ease;transition-delay:var(--reveal-delay,0ms)}
+  .text-reveal.in-view{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}
+  .text-reveal.reveal-seal{transform:translate3d(0,14px,0) scale(.94);transition-duration:.62s}
+  .text-reveal.reveal-title{transform:translate3d(0,30px,0);transition-duration:.92s}
+  .text-reveal.reveal-kicker{transform:translate3d(-12px,0,0);transition-duration:.68s}
   body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.22;
     background:
       repeating-linear-gradient(28deg,rgba(190,139,42,.16) 0 1px,transparent 1px 36px),
@@ -282,7 +291,8 @@
     .hplaque{right:16px;bottom:28px}
   }
   @keyframes scenebreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.018)}}
-  @media(prefers-reduced-motion:reduce){.hlayer.plate,.hlayer.sun-cut,.hlayer.sun-reflect,.hlayer.ship-cut,.hglow,.hsun-veil,.hwave-sheen,.hbirds,.htag,.hnode,.htitle *,.hseal,.htagline,.hplaque{animation:none!important}}
+  @media(prefers-reduced-motion:reduce){.hlayer.plate,.hlayer.sun-cut,.hlayer.sun-reflect,.hlayer.ship-cut,.hglow,.hsun-veil,.hwave-sheen,.hbirds,.htag,.hnode,.htitle *,.hseal,.htagline,.hplaque{animation:none!important}
+    .text-reveal{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}}
 </style>
 <header class="hero" id="hero">
   <div class="hscene" aria-hidden="true">
@@ -469,7 +479,7 @@
 </section>
 
 <!-- ============ 收束 + 页脚 ============ -->
-<section class="finale">
+<section class="finale" id="finale">
   <div class="finale__sun"></div>
   <div class="finale__ship"></div>
   <div class="finale__sea"></div>
@@ -543,6 +553,31 @@ var cv=document.getElementById('sea'), ctx=cv.getContext('2d'),
 var W,H,DPR,PX,PY,FAN,LO=Math.log10(5e4),HI=Math.log10(1.25e9),rMax,rMin;
 var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 var t0=null, raf=null;
+
+// ---- text reveal rhythm ----
+(function(){
+  var selector=[
+    '.hseal','.htagline','.htitle .pre','.htitle h1','.htitle p','.hcue','.hplaque',
+    'section .num-seal','section .ch','section h2','section .chart-lead',
+    'section > div > p','section > div > div > p','section [id$="Tabs"]',
+    '.foot-note','.finale .sealbox','.finale h2','.finale p','.finale__note','.final-foot div'
+  ].join(',');
+  var els=Array.prototype.slice.call(document.querySelectorAll(selector)).filter(function(el){
+    return !el.closest('#archive') && !el.closest('#doorBody') && !el.closest('#nameBody');
+  });
+  els.forEach(function(el,i){
+    el.classList.add('text-reveal');
+    if(el.matches('.num-seal,.sealbox,.hseal')) el.classList.add('reveal-seal');
+    if(el.matches('h1,h2,.finale h2')) el.classList.add('reveal-title');
+    if(el.matches('.ch,.htagline,.hcue,.finale__note')) el.classList.add('reveal-kicker');
+    el.style.setProperty('--reveal-delay',Math.min((i%6)*70,350)+'ms');
+  });
+  if(reduce){ els.forEach(function(el){el.classList.add('in-view');}); return; }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); } });
+  },{threshold:.18,rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(el){ io.observe(el); });
+})();
 
 function fmt(n){return n>=1e8?(n/1e8).toFixed(2)+'亿':n>=1e4?Math.round(n/1e4).toLocaleString('en')+'万':n.toLocaleString('en');}
 function norm(v){v=Math.max(Math.min(v,1.25e9),5e4);return (Math.log10(v)-LO)/(HI-LO);}
