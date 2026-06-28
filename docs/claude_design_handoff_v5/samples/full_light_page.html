@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>古航海图 · 招牌真样</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#E9DEC2; --paper2:#E2D4B2; --paper-deep:#D8C7A0;
+    --ink:#241D15; --ink-soft:#5A4B36;
+    --cinnabar:#BE3A2B; --cinnabar-deep:#9C2A1E;
+    --stone:#2C6B86;        /* 石青 */
+    --indigo:#274A5C;       /* 藏青·海线 */
+    --gold:#BE8B2A; --gold-br:#D6A437;
+    --jade:#2C6B5E;         /* 黛/石绿 */
+    --plum:#5A3A5E;         /* 紫 */
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Noto Serif SC","Songti SC",serif;-webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;line-height:1.8}
+  /* paper grain overlay */
+  .grain{position:fixed;inset:0;pointer-events:none;z-index:80;opacity:.5;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");}
+  .mono{font-family:"Noto Serif SC",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+
+  /* ---- mini hero band (亮国潮) ---- */
+  .hero{position:relative;display:flex;flex-wrap:wrap;align-items:stretch;min-height:46vh;
+    border-bottom:3px solid var(--ink)}
+  .hero__text{flex:1 1 460px;display:flex;flex-direction:column;justify-content:center;
+    padding:clamp(26px,4vw,64px) clamp(24px,4vw,64px);position:relative;background:var(--paper)}
+  .kicker{display:inline-flex;align-items:center;gap:10px;font-size:11.5px;font-weight:600;
+    letter-spacing:.26em;color:var(--cinnabar-deep);margin-bottom:22px}
+  .kicker i{width:26px;height:1.5px;background:var(--cinnabar);display:inline-block}
+  .hero h1{font-family:"Ma Shan Zheng",serif;font-weight:400;margin:.02em 0 0;
+    font-size:clamp(46px,8.5vw,104px);line-height:.96;letter-spacing:.02em;color:var(--ink)}
+  .hero h1 small{font-family:"Ma Shan Zheng";font-size:.42em;color:var(--cinnabar);vertical-align:.18em}
+  .hero h1 .q{color:var(--cinnabar)}
+  .hero .pre{font-size:clamp(17px,2.4vw,26px);font-weight:600;color:var(--stone)}
+  .hero p{max-width:48ch;margin:24px 0 0;font-size:clamp(14px,1.5vw,17px);color:var(--ink-soft);line-height:1.9}
+  .hero p b{color:var(--ink);border-bottom:2px solid var(--cinnabar);padding-bottom:1px}
+  /* color-block collage panel */
+  .hero__blocks{flex:1 1 300px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1.3fr 1fr;
+    min-height:46vh;border-left:3px solid var(--ink)}
+  .blk{position:relative;overflow:hidden;border:1.5px solid var(--ink);margin:-0.75px}
+  .blk--photo{grid-column:1/3}
+  .blk--photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    filter:grayscale(1) contrast(1.15) brightness(.92)}
+  .blk--photo .duo{position:absolute;inset:0;background:var(--indigo);mix-blend-mode:multiply}
+  .blk--photo .seal{position:absolute;top:14px;right:14px;writing-mode:vertical-rl;
+    background:var(--paper);color:var(--ink);border:1.5px solid var(--ink);
+    padding:11px 6px;font-size:12px;font-weight:700;letter-spacing:.3em}
+  .blk--cinnabar{background:var(--cinnabar);display:flex;align-items:center;justify-content:center}
+  .blk--cinnabar .plaque{width:74px;height:74px;border:2px solid var(--paper);display:flex;
+    align-items:center;justify-content:center;position:relative}
+  .blk--cinnabar .plaque span{font-family:"Ma Shan Zheng";font-size:30px;color:var(--paper);line-height:1.02;text-align:center}
+  .blk--jade{background:var(--jade);display:flex;align-items:center;justify-content:center}
+  .blk--jade .hai{font-family:"Ma Shan Zheng";font-size:62px;color:var(--gold-br)}
+
+  /* ---- chart section ---- */
+  .chart-sec{position:relative;padding:clamp(30px,4vw,58px) 0 40px;background:var(--paper)}
+  .chart-head{max-width:1180px;margin:0 auto 6px;padding:0 clamp(20px,4vw,40px);display:flex;align-items:center;gap:18px}
+  .num-seal{width:54px;height:54px;flex:0 0 auto;border:2px solid var(--cinnabar);
+    display:flex;align-items:center;justify-content:center;position:relative;background:rgba(190,58,43,.05)}
+  .num-seal::after{content:"";position:absolute;inset:4px;border:1px solid rgba(190,58,43,.4)}
+  .num-seal span{font-weight:900;font-size:26px;color:var(--cinnabar)}
+  .chart-head .ch{font-size:11.5px;letter-spacing:.24em;color:var(--stone);font-weight:700;margin:0 0 5px}
+  .chart-head h2{font-family:"Noto Serif SC";font-weight:700;margin:0;font-size:clamp(22px,3.6vw,40px);line-height:1.1}
+  .chart-head h2 em{font-style:normal;color:var(--stone)}
+  .chart-lead{max-width:1180px;margin:14px auto 0;padding:0 clamp(20px,4vw,40px);
+    font-size:clamp(14px,1.5vw,17px);color:var(--ink-soft);line-height:1.85;max-width:74ch}
+  .chart-lead b{color:var(--ink)}
+  .chart-lead .r{color:var(--cinnabar-deep);font-weight:600}
+  .chart-lead .g{color:var(--gold);font-weight:600}
+
+  .stage{position:relative;width:100%;max-width:1320px;margin:18px auto 0;padding:0 clamp(12px,2vw,28px)}
+  .chart-frame{position:relative;border:2px solid var(--ink);background:var(--paper2);
+    box-shadow:0 1px 0 var(--paper-deep) inset, 0 18px 40px -28px rgba(36,29,21,.5)}
+  .chart-frame::before{content:"";position:absolute;inset:7px;border:1px solid rgba(36,29,21,.35);pointer-events:none;z-index:4}
+  canvas{display:block;width:100%;height:auto}
+
+  .legend{position:absolute;left:20px;top:20px;z-index:6;display:flex;flex-direction:column;gap:7px;
+    background:rgba(233,222,194,.86);border:1px solid var(--ink);padding:11px 13px;backdrop-filter:blur(1px)}
+  .legend .row{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--ink)}
+  .legend .swatch{width:20px;height:14px;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center}
+  .legend .dotship{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:12px solid var(--ink)}
+  .legend .fog{width:20px;height:12px;border-radius:7px;background:radial-gradient(circle,rgba(190,58,43,.85),rgba(190,58,43,0))}
+  .legend .ring{width:13px;height:13px;border:2px solid var(--gold);border-radius:50%}
+
+  .port-tag{position:absolute;z-index:6;left:50%;bottom:14px;transform:translateX(-50%);
+    display:flex;align-items:center;gap:9px;font-weight:700;font-size:13px;color:var(--ink)}
+  .port-tag .seal{width:22px;height:22px;background:var(--cinnabar);color:var(--paper);
+    display:flex;align-items:center;justify-content:center;font-size:13px;font-family:"Ma Shan Zheng"}
+
+  .replay{position:absolute;right:18px;bottom:16px;z-index:6;appearance:none;cursor:pointer;
+    border:1px solid var(--ink);background:rgba(233,222,194,.9);color:var(--ink);
+    font-family:"Noto Serif SC";font-size:12.5px;padding:8px 15px;border-radius:0;font-weight:600;transition:.15s}
+  .replay:hover{background:var(--ink);color:var(--paper)}
+
+  .tip{position:absolute;z-index:9;pointer-events:none;opacity:0;transform:translate(-50%,-118%);
+    background:var(--paper);border:1.5px solid var(--ink);padding:9px 12px;min-width:150px;
+    box-shadow:5px 5px 0 rgba(36,29,21,.16);transition:opacity .12s}
+  .tip .tn{font-weight:700;font-size:15px}
+  .tip .te{font-size:10.5px;color:var(--ink-soft);letter-spacing:.04em}
+  .tip .tr{font-size:12px;margin-top:6px}
+  .tip .tr b{color:var(--stone)}
+  .tip .frag{color:var(--gold);font-size:11px;font-weight:700;margin-top:3px}
+
+  .foot-note{max-width:1180px;margin:22px auto 0;padding:0 clamp(20px,4vw,40px);
+    font-size:12.5px;color:var(--ink-soft);line-height:1.8}
+  .foot-note .r{color:var(--cinnabar-deep)} .foot-note .g{color:var(--gold)}
+  @media(max-width:640px){ .legend{transform:scale(.86);transform-origin:top left} }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<!-- ============ hero · 分层活化（底图+落日+船队+航线+实时标题） ============ -->
+<style>
+  .hero{position:relative;min-height:min(100svh,900px);aspect-ratio:3/2;border-bottom:0;
+    overflow:hidden;background:#F1E4C8;color:var(--ink);isolation:isolate}
+  .hero::before{content:"";position:absolute;inset:0;z-index:0;
+    background:linear-gradient(90deg,rgba(245,234,211,.98) 0%,rgba(245,234,211,.88) 20%,rgba(245,234,211,.38) 43%,rgba(245,234,211,0) 64%),
+      radial-gradient(circle at 38% 22%,rgba(255,247,224,.7),rgba(255,247,224,0) 34%);
+    pointer-events:none;-webkit-mask-image:linear-gradient(180deg,#000 0 57%,rgba(0,0,0,.68) 78%,rgba(0,0,0,.32) 100%);
+    mask-image:linear-gradient(180deg,#000 0 57%,rgba(0,0,0,.68) 78%,rgba(0,0,0,.32) 100%)}
+  .hero::after{content:"";position:absolute;inset:0;z-index:11;pointer-events:none;opacity:.38;mix-blend-mode:multiply;
+    background:radial-gradient(circle at 20% 18%,rgba(255,255,255,.55),transparent 24%),
+      linear-gradient(180deg,rgba(255,255,255,.25),rgba(85,55,24,.08) 86%,rgba(241,228,200,.48) 100%)}
+  .hscene{position:absolute;inset:0;z-index:-1;overflow:hidden;transform:scale(1.012);transform-origin:center bottom}
+  .hlayer{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;user-select:none;-webkit-user-drag:none}
+  .hlayer.plate{z-index:1;filter:saturate(1.04) contrast(1.03);animation:scenebreathe 12s ease-in-out infinite}
+  .hlayer.sun-cut{z-index:2;inset:auto auto auto auto;left:61.35%;top:39.35%;width:13.9%;height:auto;aspect-ratio:1/1;
+    object-fit:contain;opacity:.9;mix-blend-mode:multiply;filter:saturate(.95) contrast(.94) sepia(.05);
+    -webkit-mask-image:radial-gradient(circle,rgba(0,0,0,1) 0 65%,rgba(0,0,0,.86) 76%,transparent 90%);
+    mask-image:radial-gradient(circle,rgba(0,0,0,1) 0 65%,rgba(0,0,0,.86) 76%,transparent 90%);
+    transform-origin:50% 58%;
+    animation:sunlift 1.8s cubic-bezier(.2,.7,.1,1) both, sunpulse 6s ease-in-out 1.8s infinite}
+  .hlayer.sun-reflect{z-index:3;inset:auto auto auto auto;left:61.35%;top:45.7%;width:13.9%;height:auto;aspect-ratio:1/1;
+    object-fit:contain;opacity:.34;mix-blend-mode:multiply;filter:saturate(.68) contrast(.72) sepia(.16) blur(1.5px);
+    transform:scaleY(.62);transform-origin:50% 0;
+    -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.02) 0,rgba(0,0,0,.62) 26%,rgba(0,0,0,.2) 70%,transparent 100%);
+    mask-image:linear-gradient(180deg,rgba(0,0,0,.02) 0,rgba(0,0,0,.62) 26%,rgba(0,0,0,.2) 70%,transparent 100%);
+    animation:sunwater 6s ease-in-out 1.8s infinite}
+  .hlayer.ship-cut{z-index:4;inset:0;width:100%;height:100%;opacity:.74;object-fit:cover;object-position:center bottom;
+    filter:saturate(.96) contrast(.98) drop-shadow(0 10px 12px rgba(32,20,10,.12));mix-blend-mode:multiply;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0 38%,rgba(0,0,0,.12) 45%,rgba(0,0,0,.68) 54%,#000 100%),
+      linear-gradient(180deg,transparent 0 30%,rgba(0,0,0,.78) 43%,#000 75%,rgba(0,0,0,.18) 100%);
+    -webkit-mask-composite:source-in;
+    mask-image:linear-gradient(90deg,transparent 0 38%,rgba(0,0,0,.12) 45%,rgba(0,0,0,.68) 54%,#000 100%),
+      linear-gradient(180deg,transparent 0 30%,rgba(0,0,0,.78) 43%,#000 75%,rgba(0,0,0,.18) 100%);
+    mask-composite:intersect;
+    transform-origin:center 68%;animation:shipfloat 7.5s ease-in-out infinite}
+  .hglow{position:absolute;left:59%;top:37.6%;width:18.2%;aspect-ratio:1/1;border-radius:50%;z-index:3;
+    background:radial-gradient(circle,rgba(219,88,43,.12),rgba(222,125,57,.05) 42%,rgba(219,88,43,0) 72%);
+    mix-blend-mode:screen;animation:glow 5.4s ease-in-out infinite}
+  .hwave-sheen{position:absolute;left:23%;right:-4%;top:51%;height:28%;z-index:5;opacity:.44;mix-blend-mode:screen;
+    background:repeating-linear-gradient(168deg,rgba(255,248,208,0) 0 20px,rgba(255,236,154,.55) 21px 22px,rgba(255,248,208,0) 23px 44px);
+    clip-path:polygon(0 18%,100% 0,100% 86%,0 100%);animation:wavesheen 8s linear infinite}
+  .hoverlay{position:absolute;inset:0;z-index:6;pointer-events:none}
+  #hroutes [data-r]{filter:drop-shadow(0 1px 0 rgba(255,246,220,.35))}
+  .hbirds{position:absolute;left:28.5%;top:18%;width:13%;height:5%;z-index:7;opacity:.72;animation:birddrift 9s ease-in-out infinite}
+  .hbirds span{position:absolute;width:18px;height:8px;border-top:2px solid rgba(36,29,21,.75);border-radius:50%;transform:rotate(10deg)}
+  .hbirds span::after{content:"";position:absolute;left:8px;top:-2px;width:18px;height:8px;border-top:2px solid rgba(36,29,21,.75);border-radius:50%;transform:rotate(-24deg)}
+  .hbirds span:nth-child(1){left:0;top:22%}.hbirds span:nth-child(2){left:28%;top:48%;transform:scale(.74) rotate(-4deg)}
+  .hbirds span:nth-child(3){left:52%;top:12%;transform:scale(.86) rotate(4deg)}.hbirds span:nth-child(4){left:76%;top:38%;transform:scale(.62) rotate(-10deg)}
+  .hseal{position:absolute;left:2.25%;top:4.2%;z-index:12;width:52px;height:52px;border:2px solid var(--cinnabar);
+    background:var(--cinnabar);color:var(--paper);display:flex;align-items:center;justify-content:center;
+    font-family:'Ma Shan Zheng';font-size:31px;line-height:1;box-shadow:0 0 0 3px rgba(247,241,226,.8) inset;animation:fup .7s .05s both}
+  .htagline{position:absolute;left:6.5%;top:5.1%;z-index:12;font-size:clamp(11px,1vw,16px);font-weight:700;
+    letter-spacing:.18em;color:var(--ink);animation:fup .7s .12s both}
+  .htagline b{font-weight:700;color:var(--cinnabar);margin:0 .28em}
+  .htitle{position:absolute;left:clamp(26px,4.2vw,74px);top:15.5%;width:min(34vw,430px);z-index:12}
+  .htitle .pre{font-size:clamp(18px,2vw,27px);font-weight:700;color:var(--ink);letter-spacing:.05em;animation:fup .8s .22s both}
+  .htitle h1{font-family:'Ma Shan Zheng';font-weight:400;margin:.08em 0 0;font-size:clamp(70px,8.3vw,138px);
+    line-height:.91;letter-spacing:0;color:#14110D;text-shadow:0 2px 0 rgba(255,250,235,.35);animation:fup .8s .34s both}
+  .htitle h1 small{display:block;font-size:.62em;color:var(--cinnabar);line-height:.85}
+  .htitle h1 .q{color:var(--cinnabar)}
+  .htitle p{max-width:23ch;margin:24px 0 0 8px;font-size:clamp(14px,1.3vw,18px);font-weight:600;color:var(--ink);
+    line-height:1.78;animation:fup .8s .5s both}
+  .htitle p b{color:var(--ink);border-bottom:3px solid var(--cinnabar);padding-bottom:1px}
+  .hcue{margin:22px 0 0 8px;font-family:'Noto Serif SC',monospace;font-size:12px;letter-spacing:.16em;color:var(--cinnabar-deep);
+    animation:fup .8s .68s both}
+  .hplaque{position:absolute;right:2.1%;bottom:6.5%;writing-mode:vertical-rl;background:rgba(247,242,230,.94);color:var(--ink);
+    border:1.5px solid var(--ink);padding:14px 8px;font-size:12px;font-weight:800;letter-spacing:.28em;z-index:12;
+    box-shadow:4px 4px 0 rgba(36,29,21,.12);animation:plaquefloat 4.5s ease-in-out 1s infinite}
+  .htag{position:absolute;z-index:10;transform:translate(-50%,-50%);display:flex;align-items:center;gap:7px;
+    background:rgba(246,239,222,.9);border:1.1px solid rgba(36,29,21,.58);padding:9px 8px 8px;
+    font-family:'Noto Serif SC';font-weight:800;font-size:clamp(12px,1vw,15px);line-height:1;writing-mode:vertical-rl;
+    box-shadow:2px 2px 0 rgba(36,29,21,.12);opacity:0;animation:tagin .55s ease forwards, labelfloat 5s ease-in-out infinite}
+  .htag i{width:8px;height:8px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 0 3px rgba(255,255,255,.55)}
+  .htag.hot{color:var(--cinnabar-deep)}
+  .hnode{position:absolute;z-index:9;width:8px;height:8px;border-radius:50%;background:var(--stone);
+    box-shadow:0 0 0 3px rgba(241,225,194,.72);opacity:0;transform:translate(-50%,-50%) scale(.45);animation:nodepop .45s ease forwards}
+  .hnode.red{background:var(--cinnabar)}.hnode.gold{background:var(--gold)}.hnode.dark{background:var(--ink)}
+  @keyframes glow{0%,100%{opacity:.38;transform:scale(.94)}50%{opacity:.92;transform:scale(1.08)}}
+  @keyframes sunlift{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:.9;transform:translateY(0) scale(1)}}
+  @keyframes sunpulse{0%,100%{opacity:.84;filter:saturate(.92) contrast(.92) sepia(.05);transform:scale(.998)}50%{opacity:.94;filter:saturate(1.02) contrast(.98) sepia(.05);transform:scale(1.006)}}
+  @keyframes sunwater{0%,100%{opacity:.24;transform:scaleY(.58) translateY(0)}50%{opacity:.4;transform:scaleY(.66) translateY(3px)}}
+  @keyframes shipfloat{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(3px,-3px,0)}}
+  @keyframes wavesheen{from{transform:translateX(-8%)}to{transform:translateX(8%)}}
+  @keyframes birddrift{0%,100%{transform:translate(0,0)}50%{transform:translate(24px,-10px)}}
+  @keyframes tagin{from{opacity:0;transform:translate(-50%,-42%) scale(.92)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+  @keyframes nodepop{to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+  @keyframes fup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @keyframes labelfloat{0%,100%{margin-top:0}50%{margin-top:-8px}}
+  @keyframes plaquefloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  @media(max-width:860px){
+    .hero{min-height:760px;aspect-ratio:auto}
+    .hscene{width:168%;inset:0 auto 0 -45%;transform:scale(1.02);transform-origin:center bottom}
+    .hlayer{object-position:center bottom}
+    .hero::before{background:linear-gradient(180deg,rgba(245,234,211,.98) 0%,rgba(245,234,211,.9) 34%,rgba(245,234,211,.28) 63%,rgba(245,234,211,0) 100%)}
+    .hseal{left:22px;top:24px}.htagline{left:84px;right:18px;top:31px;line-height:1.8;letter-spacing:.1em}
+    .htitle{left:24px;top:116px;width:min(70vw,360px)}
+    .htitle h1{font-size:clamp(58px,15vw,92px)}
+    .htitle p{font-size:13.5px;max-width:21ch;margin-top:18px}
+    .htag{font-size:11px;padding:7px 6px}
+    .htag:nth-of-type(n+6){display:none}
+    .hplaque{right:16px;bottom:28px}
+  }
+  @keyframes scenebreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.018)}}
+  @media(prefers-reduced-motion:reduce){.hlayer.plate,.hlayer.sun-cut,.hlayer.sun-reflect,.hlayer.ship-cut,.hglow,.hwave-sheen,.hbirds,.htag,.hnode,.htitle *,.hseal,.htagline,.hplaque{animation:none!important}}
+</style>
+<header class="hero" id="hero">
+  <div class="hscene" aria-hidden="true">
+    <img class="hlayer plate" src="heroimg/plate.png" alt="">
+    <img class="hlayer sun-cut" src="heroimg/sun2.png" alt="">
+    <img class="hlayer sun-reflect" src="heroimg/sun2.png" alt="">
+    <div class="hglow"></div>
+    <img class="hlayer ship-cut" src="heroimg/图层 1.png" alt="">
+    <div class="hwave-sheen"></div>
+  </div>
+  <div class="hoverlay">
+    <svg id="hroutes" viewBox="0 0 1536 1024" preserveAspectRatio="none" fill="none" style="position:absolute;inset:0;width:100%;height:100%">
+      <path d="M1058,503 C1000,380 923,300 835,263" data-r data-c="red"></path>
+      <path d="M1058,503 C1042,390 1018,318 985,250" data-r></path>
+      <path d="M1058,503 C1098,384 1134,320 1160,260" data-r></path>
+      <path d="M1058,503 C920,418 820,350 728,306" data-r></path>
+      <path d="M1058,503 C1034,426 988,369 950,324" data-r data-c="red"></path>
+      <path d="M1058,503 C1160,430 1226,384 1280,350" data-r data-c="gold"></path>
+      <path d="M1058,503 C1208,410 1320,340 1432,285" data-r data-c="red"></path>
+    </svg>
+    <div class="hbirds"><span></span><span></span><span></span><span></span></div>
+  </div>
+
+  <div class="hseal">遗</div>
+  <div class="htagline">数据新闻 · <b>44 项</b> UNESCO <b>中国非遗</b> · TikTok <b>海外</b></div>
+
+  <span class="hnode red" style="left:54.36%;top:25.68%;animation-delay:1.2s"></span>
+  <span class="hnode" style="left:64.13%;top:24.41%;animation-delay:1.35s"></span>
+  <span class="hnode" style="left:75.52%;top:25.39%;animation-delay:1.5s"></span>
+  <span class="hnode" style="left:47.4%;top:29.88%;animation-delay:1.65s"></span>
+  <span class="hnode red" style="left:61.85%;top:31.64%;animation-delay:1.8s"></span>
+  <span class="hnode gold" style="left:83.33%;top:34.18%;animation-delay:1.95s"></span>
+  <span class="hnode red" style="left:93.23%;top:27.83%;animation-delay:2.1s"></span>
+
+  <div class="htag" style="left:54.2%;top:21.2%;animation-delay:1.45s"><i style="background:var(--stone)"></i>春节</div>
+  <div class="htag" style="left:64.1%;top:18.5%;animation-delay:1.65s"><i style="background:var(--gold)"></i>龙泉青瓷</div>
+  <div class="htag" style="left:74.8%;top:17.4%;animation-delay:1.85s"><i style="background:var(--stone)"></i>书法</div>
+  <div class="htag" style="left:47.4%;top:32.1%;animation-delay:2.05s"><i style="background:var(--stone)"></i>太极</div>
+  <div class="htag hot" style="left:61.6%;top:24.6%;animation-delay:2.25s"><i style="background:var(--cinnabar)"></i>剪纸</div>
+  <div class="htag" style="left:83.3%;top:34.2%;animation-delay:2.45s"><i style="background:var(--stone)"></i>侗族大歌</div>
+  <div class="htag hot" style="left:93.2%;top:29.9%;animation-delay:2.65s"><i style="background:var(--cinnabar)"></i>玛纳斯</div>
+
+  <div class="htitle">
+    <div class="pre">中国非遗走出去了。</div>
+    <h1><small>但，</small>被看到<br>了吗<span class="q">？</span></h1>
+    <p>44 件国宝送出了海，加起来几十亿次播放。逐件看清楚——<b>每一件的下落，都不一样</b>。</p>
+    <div class="hcue">▼ 卷开第一页</div>
+  </div>
+  <div class="hplaque">SEEN · OR · NOT</div>
+</header>
+
+<!-- ============ 拍1 · 两扇门识别实验 ============ -->
+<section style="background:var(--paper);padding:clamp(44px,6vw,90px) 0;border-bottom:1px solid rgba(36,29,21,.16)">
+  <div style="max-width:1040px;margin:0 auto;padding:0 clamp(20px,4vw,40px)">
+    <div style="display:flex;align-items:center;gap:18px;margin-bottom:6px">
+      <div class="num-seal"><span>壹</span></div>
+      <div>
+        <p class="ch">CH.01 · 识别实验 / 名字落地了吗</p>
+        <h2 style="font-family:'Noto Serif SC';font-weight:700;margin:0;font-size:clamp(22px,3.6vw,40px);line-height:1.1">老外刷到这个词，看到的<em style="font-style:normal;color:var(--cinnabar)">还是它吗？</em></h2>
+      </div>
+    </div>
+    <p class="chart-lead" style="margin-left:0">在 TikTok，没人是「搜」到你的——是被<b>刷到</b>的。走出去真正的考验，不是「想找你的人能不能找到」，而是<b>没在找你的人，刷到你的名字时，看到的是不是你</b>。</p>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin:30px 0 0" id="doorTabs"></div>
+
+    <div id="doorBody" style="margin-top:24px"></div>
+  </div>
+</section>
+
+<!-- ============ 拍2 · 缩水（深色块换节奏·去发光） ============ -->
+<section style="background:var(--ink);color:var(--paper);padding:clamp(54px,7vw,104px) clamp(20px,4vw,40px);position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;opacity:.06;pointer-events:none;background:repeating-linear-gradient(135deg,var(--paper) 0 1px,transparent 1px 22px)"></div>
+  <div style="max-width:880px;margin:0 auto;position:relative">
+    <p style="font-family:'Noto Serif SC',monospace;font-size:11.5px;letter-spacing:.24em;color:var(--gold-br);font-weight:700;margin:0 0 24px;text-align:center">CH.02 · 热闹是真的，但缩了水</p>
+    <p style="font-family:'Noto Serif SC',serif;font-size:clamp(22px,3.4vw,40px);font-weight:700;line-height:1.34;text-align:center;max-width:22ch;margin:0 auto 48px">几十亿播放看起来风光。<br>可逐条看清「这到底是不是它」——</p>
+    <div style="max-width:680px;margin:0 auto">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px">
+        <span style="font-family:'Noto Serif SC',monospace;font-size:12px;color:#B9A98A">机器听到的声量</span>
+        <span style="font-family:'Noto Serif SC',monospace;font-size:clamp(17px,2.4vw,24px);font-weight:700;color:#8a8268;text-decoration:line-through;text-decoration-color:var(--cinnabar);text-decoration-thickness:2px">53.68 亿</span>
+      </div>
+      <div style="height:clamp(38px,5.5vw,58px);border:1.5px solid rgba(244,241,232,.22);background:rgba(244,241,232,.05);position:relative;overflow:hidden">
+        <div id="shrinkbar" style="position:absolute;left:0;top:0;bottom:0;width:100%;background:repeating-linear-gradient(90deg,var(--gold) 0 2px,var(--gold-br) 2px 12px)"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:16px">
+        <div>
+          <div style="font-family:'Noto Serif SC',monospace;font-size:12px;letter-spacing:.1em;color:var(--gold-br);margin-bottom:4px">真正被看见</div>
+          <div style="font-family:'Noto Serif SC',monospace;font-size:clamp(40px,8vw,84px);font-weight:700;color:var(--paper);line-height:.92"><span id="shrinknum">53.68</span><span style="font-size:.42em"> 亿</span></div>
+        </div>
+        <div id="shrinkpct" style="opacity:0;transition:opacity .6s;font-family:'Noto Serif SC',monospace;font-weight:700;font-size:clamp(20px,3.4vw,38px);color:var(--cinnabar)">−36%</div>
+      </div>
+    </div>
+    <p style="font-size:15px;color:#CFC4AC;max-width:48ch;margin:44px auto 0;line-height:1.85;text-align:center">声量里很大一块，是徒有其名的同名物。<br>是时候把读者从「一个大数」，切换到 <b style="color:var(--paper)">44 个不同的下落</b>。</p>
+  </div>
+</section>
+
+<!-- ============ 招牌 · 古航海图 ============ -->
+<section class="chart-sec">
+  <div class="chart-head">
+    <div class="num-seal"><span>叁</span></div>
+    <div>
+      <p class="ch">CH.03 · 招牌 · 从中国出发的 44 次远航</p>
+      <h2>每一只船，是一件非遗驶向<em>算法之海</em>。</h2>
+    </div>
+  </div>
+  <p class="chart-lead">它从岸边（中国）起航，<b>驶出的距离，就是被当作中国非遗看见的量</b>——大多数，没驶出多远。
+    <span class="r">朱砂的洇染</span>是名字喊出去、回来的却不是它；<span class="g">金环</span>，是这片海全靠一个人撑着。</p>
+
+  <div class="stage">
+    <div class="chart-frame">
+      <canvas id="sea"></canvas>
+      <div class="legend">
+        <div class="row"><span class="swatch"><span class="dotship"></span></span>船＝一件非遗，航程＝真正被看见</div>
+        <div class="row"><span class="swatch"><span class="fog"></span></span>朱砂洇＝名字撞上别的意思的声量</div>
+        <div class="row"><span class="swatch"><span class="ring"></span></span>金环＝这片海靠一个人撑着</div>
+      </div>
+      <div class="port-tag"><span class="seal">岸</span>中国 · 起航地</div>
+      <button class="replay" id="replay">↻ 重新起航</button>
+      <div class="tip" id="tip"></div>
+    </div>
+  </div>
+
+  <p class="foot-note">看不见，原因不止一种——<span class="r">被认错</span>、<span class="g">没人接力</span>、真的没出去，混为一谈，就什么都没看懂。
+    <span style="opacity:.7">（悬停看是谁。这是纸亮版招牌真样，数据真实；精修后会接回主文）</span></p>
+</section>
+
+<!-- ============ 拍4 · 一个人的海（星群） ============ -->
+<section style="background:var(--paper2);padding:clamp(40px,5vw,76px) 0 clamp(48px,6vw,90px);border-top:1px solid rgba(36,29,21,.16)">
+  <div style="max-width:1180px;margin:0 auto;padding:0 clamp(20px,4vw,40px)">
+    <div style="display:flex;align-items:center;gap:18px;margin-bottom:6px">
+      <div class="num-seal"><span>肆</span></div>
+      <div>
+        <p class="ch" style="color:var(--gold)">CH.04 · 一个人的海 / 谁在划桨</p>
+        <h2 style="font-family:'Noto Serif SC';font-weight:700;margin:0;font-size:clamp(22px,3.6vw,40px);line-height:1.1">整片「出海」，有时压在<em style="font-style:normal;color:var(--gold)">一个人</em>手上。</h2>
+      </div>
+    </div>
+    <p class="chart-lead" style="margin-left:0;margin-right:0">每一团星群是一件非遗的「船队」，一个点是一个发它的账号。<b style="color:var(--gold)">金色那颗</b>是占比最大的那一个——越大，越脆弱。从满天星，到只剩一颗孤星。</p>
+    <div id="swarms" style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px;margin-top:30px;align-items:end"></div>
+    <p style="font-family:'Noto Serif SC',monospace;font-size:12.5px;color:var(--ink-soft);margin-top:30px;line-height:1.8">// 春节 785 个人各划各的桨；玛纳斯整片海只有 10 条、一个人占 66%；伊玛堪——5 条视频，一个账号占 96%。脆弱不写在播放量里，写在「几个人在撑」里。</p>
+  </div>
+</section>
+
+<!-- ============ 拍5 · 改名玩具 ============ -->
+<section style="background:var(--paper);padding:clamp(44px,6vw,90px) 0;border-top:1px solid rgba(36,29,21,.16)">
+  <div style="max-width:1000px;margin:0 auto;padding:0 clamp(20px,4vw,40px)">
+    <div style="display:flex;align-items:center;gap:18px;margin-bottom:6px">
+      <div class="num-seal"><span>伍</span></div>
+      <div>
+        <p class="ch">CH.05 · 改名实验 / 它能不能被认出是中国的</p>
+        <h2 style="font-family:'Noto Serif SC';font-weight:700;margin:0;font-size:clamp(22px,3.6vw,40px);line-height:1.1">给它<em style="font-style:normal;color:var(--stone)">换个名字</em>，认出率就变了。</h2>
+      </div>
+    </div>
+    <p class="chart-lead" style="margin-left:0">在靠「刷到」传播的平台，名字决定了别人刷到你那一刻，认不认得出<b>这是中国的</b>。选一件、换个名字，看认出率怎么变——</p>
+    <div id="nameTabs" style="display:flex;gap:8px;flex-wrap:wrap;margin:24px 0 0"></div>
+    <div style="margin-top:18px;border:1.5px solid var(--ink);background:var(--paper2);padding:clamp(20px,3vw,34px)">
+      <div id="nameChips" style="display:flex;gap:9px;flex-wrap:wrap;margin-bottom:26px"></div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <div style="font-family:'Noto Serif SC',monospace;font-size:12px;color:var(--ink-soft);letter-spacing:.1em">认出是中国的概率</div>
+        <div id="nameType" style="font-family:'Noto Serif SC',monospace;font-size:11px;color:var(--ink-soft)"></div>
+      </div>
+      <div style="font-family:'Noto Serif SC',monospace;font-weight:700;line-height:.9;margin-top:6px"><span id="namePct" style="font-size:clamp(54px,11vw,108px)">0</span><span style="font-size:clamp(22px,4vw,42px)">%</span></div>
+      <div style="height:14px;border:1px solid var(--ink);background:rgba(36,29,21,.06);overflow:hidden;margin-top:14px"><div id="nameGauge" style="height:100%;width:0;transition:width .6s cubic-bezier(.2,.8,.2,1)"></div></div>
+      <p id="nameVerdict" style="font-size:15px;color:var(--ink);margin:20px 0 0;line-height:1.8;max-width:62ch"></p>
+    </div>
+    <p id="nameNote" style="font-family:'Noto Serif SC',monospace;font-size:12.5px;color:var(--ink-soft);margin-top:20px;line-height:1.8"></p>
+    <p style="font-size:15px;color:var(--ink-soft);max-width:64ch;margin:12px 0 0;line-height:1.85">名字不是包装，是它能不能被认出来的命。<span style="opacity:.8">——但跨国共享的非遗（呼麦 / 木卡姆 / 玛纳斯），名字救不了：遗产本身就跨国。出海而不留名，和留了名却被认错，是同一枚硬币的两面。</span></p>
+  </div>
+</section>
+
+<!-- ============ 拍6 · 档案馆（翻面卡） ============ -->
+<section style="background:var(--ink);color:var(--paper);padding:clamp(44px,6vw,90px) 0 clamp(54px,7vw,100px)">
+  <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px)">
+    <div style="display:flex;align-items:center;gap:18px;margin-bottom:6px">
+      <div style="width:54px;height:54px;flex:0 0 auto;border:2px solid var(--cinnabar);display:flex;align-items:center;justify-content:center;position:relative"><span style="font-weight:900;font-size:26px;color:var(--cinnabar)">陆</span></div>
+      <div>
+        <p style="font-family:'Noto Serif SC',monospace;font-size:11.5px;letter-spacing:.24em;color:var(--gold-br);font-weight:700;margin:0 0 5px">CH.06 · 非遗下落档案馆 · 点击翻面</p>
+        <h2 style="font-family:'Noto Serif SC';font-weight:700;margin:0;font-size:clamp(22px,3.6vw,40px);line-height:1.1">44 件，各自的下落。</h2>
+      </div>
+    </div>
+    <div id="fateTabs" style="display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 10px"></div>
+    <p style="font-family:'Noto Serif SC',monospace;font-size:11.5px;color:rgba(244,241,232,.55);margin:0 0 18px">块越大＝被看见次数越多　·　点击卡片「拿起来」翻面看详情，鼠标移开自动放回</p>
+    <div id="archive" style="position:relative;width:100%;margin-top:4px"></div>
+  </div>
+</section>
+
+<!-- ============ 收束 + 页脚 ============ -->
+<section style="background:var(--paper);padding:clamp(60px,8vw,110px) clamp(20px,4vw,40px) clamp(40px,5vw,70px);text-align:center">
+  <p style="font-family:'Noto Serif SC';font-weight:700;font-size:clamp(24px,3.6vw,46px);line-height:1.42;max-width:22ch;margin:0 auto;color:var(--ink)">44 件都送出了海。<br>有的已经靠岸，<br>有的还在等一个<span style="color:var(--stone)">被认出</span>的瞬间。</p>
+  <p style="font-size:15px;color:var(--ink-soft);max-width:48ch;margin:32px auto 0;line-height:1.85">我们量的是「被看见」，不是「被记住」。<br>看见，只是被记住的前提。</p>
+</section>
+<footer style="background:var(--paper);padding:26px clamp(20px,4vw,40px) 56px;border-top:1px solid rgba(36,29,21,.2)">
+  <div style="max-width:1100px;margin:0 auto;font-family:'Noto Serif SC',monospace;font-size:11.5px;color:var(--ink-soft);line-height:1.9">
+    数据：TikTok 海外真实采集 + 378 条头部视频逐条人工核查（2026-06）。剪纸 / 太极 / 44 项航海数字均为真实数据。<br>
+    «中国非遗走出去了。但，被看到了吗？» · 数据新闻 2026
+  </div>
+</footer>
+
+<script>
+"use strict";
+// ---- 44 项真实数据：a=人工核查真值(航程) m=机器声量(红洇到此) t=最大博主占比% na/nv=账号/视频数 cat=下落 ----
+var DATA=[
+ {n:"春节",l:"春节",e:"Spring Festival",a:1163181075,m:1190216794,t:6,na:785,nv:851,cat:"arrive"},
+ {n:"中国书法",l:"书法",e:"Chinese calligraphy",a:206171778,m:842210064,t:21,na:127,nv:214,cat:"arrive"},
+ {n:"京剧",l:"京剧",e:"Peking opera",a:327440345,m:344408249,t:23,na:125,nv:299,cat:"arrive"},
+ {n:"蒙古族呼麦",l:"呼麦",e:"Khoomei",a:125133953,m:320266425,t:14,na:57,nv:68,cat:"arrive"},
+ {n:"宣纸传统制作技艺",l:"宣纸",e:"Xuan paper",a:103962451,m:273472611,t:47,na:52,nv:73,cat:"arrive"},
+ {n:"太极拳",l:"太极",e:"Taijiquan",a:171711676,m:248769168,t:29,na:107,nv:219,cat:"arrive"},
+ {n:"中医针灸",l:"针灸",e:"Acupuncture",a:137359049,m:245199475,t:13,na:136,nv:163,cat:"arrive"},
+ {n:"中国剪纸",l:"剪纸",e:"Chinese paper-cut",a:28757474,m:205339021,t:39,na:61,nv:110,cat:"mistaken"},
+ {n:"中国珠算",l:"珠算",e:"Zhusuan abacus",a:58931271,m:169744719,t:28,na:44,nv:46,cat:"arrive"},
+ {n:"蒙古族长调民歌",l:"长调",e:"Urtiin Duu",a:150415872,m:149500000,t:53,na:7,nv:8,cat:"arrive"},
+ {n:"中国传统制茶技艺",l:"制茶",e:"Tea processing",a:139669216,m:143086500,t:19,na:234,nv:416,cat:"arrive"},
+ {n:"中国木活字印刷术",l:"木活字",e:"Movable-type printing",a:133459735,m:140944338,t:36,na:35,nv:38,cat:"arrive"},
+ {n:"龙泉青瓷传统烧制技艺",l:"龙泉青瓷",e:"Longquan celadon",a:86640883,m:112095917,t:55,na:77,nv:115,cat:"arrive"},
+ {n:"端午节",l:"端午",e:"Dragon Boat festival",a:106445187,m:111202009,t:49,na:261,nv:304,cat:"arrive"},
+ {n:"古琴艺术",l:"古琴",e:"Guqin",a:87803950,m:106426001,t:25,na:100,nv:224,cat:"arrive"},
+ {n:"南京云锦织造技艺",l:"云锦",e:"Yunjin brocade",a:659994,m:101751989,t:39,na:31,nv:40,cat:"mistaken"},
+ {n:"玛纳斯",l:"玛纳斯",e:"Manas epic",a:2891108,m:101345094,t:66,na:10,nv:10,cat:"mistaken"},
+ {n:"中国雕版印刷技艺",l:"雕版",e:"Block printing",a:62706961,m:93351113,t:47,na:10,nv:10,cat:"arrive"},
+ {n:"麦西热甫",l:"麦西热甫",e:"Meshrep",a:38339651,m:61411002,t:16,na:35,nv:41,cat:"arrive"},
+ {n:"中国篆刻",l:"篆刻",e:"Seal engraving",a:52538394,m:56311812,t:46,na:87,nv:243,cat:"arrive"},
+ {n:"中国蚕桑丝织技艺",l:"蚕桑",e:"Sericulture & silk",a:39407448,m:48894741,t:74,na:60,nv:70,cat:"arrive"},
+ {n:"妈祖信俗",l:"妈祖",e:"Mazu belief",a:25059404,m:46836788,t:28,na:105,nv:136,cat:"arrive"},
+ {n:"粤剧",l:"粤剧",e:"Yueju opera",a:40755989,m:40755989,t:68,na:70,nv:114,cat:"arrive"},
+ {n:"中国传统木结构建筑营造技艺",l:"木结构",e:"Timber architecture",a:23939424,m:38819861,t:19,na:111,nv:158,cat:"arrive"},
+ {n:"羌年",l:"羌年",e:"Qiang New Year",a:29202414,m:38667397,t:56,na:58,nv:72,cat:"arrive"},
+ {n:"二十四节气",l:"节气",e:"24 Solar Terms",a:22291143,m:22500849,t:14,na:138,nv:167,cat:"arrive"},
+ {n:"送王船",l:"送王船",e:"Ong Chun ceremony",a:998332,m:20773209,t:31,na:31,nv:34,cat:"mistaken"},
+ {n:"黎族传统纺染织绣技艺",l:"黎族织绣",e:"Li textile",a:13259814,m:17747302,t:83,na:44,nv:61,cat:"arrive"},
+ {n:"南音",l:"南音",e:"Nanyin",a:10011056,m:14314705,t:38,na:42,nv:79,cat:"arrive"},
+ {n:"中国皮影戏",l:"皮影",e:"Shadow puppetry",a:10234426,m:13264017,t:37,na:95,nv:111,cat:"arrive"},
+ {n:"西安鼓乐",l:"西安鼓乐",e:"Xi'an wind & percussion",a:10174920,m:10852555,t:59,na:31,nv:49,cat:"arrive"},
+ {n:"赫哲族伊玛堪",l:"伊玛堪",e:"Hezhe Yimakan",a:6340584,m:8230401,t:96,na:5,nv:5,cat:"arrive"},
+ {n:"新疆维吾尔木卡姆艺术",l:"木卡姆",e:"Uyghur Muqam",a:2620168,m:6692744,t:96,na:13,nv:24,cat:"mistaken"},
+ {n:"昆曲",l:"昆曲",e:"Kun Qu opera",a:3951726,m:6347962,t:23,na:92,nv:197,cat:"arrive"},
+ {n:"中国木拱桥传统营造技艺",l:"木拱桥",e:"Wooden arch bridges",a:2636700,m:4076393,t:37,na:51,nv:57,cat:"arrive"},
+ {n:"热贡艺术",l:"热贡",e:"Regong arts",a:3515845,m:3997651,t:18,na:106,nv:164,cat:"arrive"},
+ {n:"中国朝鲜族农乐舞",l:"农乐舞",e:"Korean farmers' dance",a:1190363,m:2671328,t:10,na:28,nv:33,cat:"mistaken"},
+ {n:"格萨尔史诗",l:"格萨尔",e:"Gesar epic",a:135326,m:1787008,t:30,na:18,nv:19,cat:"mistaken"},
+ {n:"藏戏",l:"藏戏",e:"Xizang opera",a:954687,m:1731170,t:14,na:49,nv:87,cat:"echo"},
+ {n:"藏医药浴法",l:"药浴",e:"Lum bathing",a:943801,m:1011447,t:35,na:49,nv:95,cat:"echo"},
+ {n:"福建木偶戏",l:"木偶戏",e:"Fujian puppetry",a:580986,m:589865,t:73,na:30,nv:46,cat:"echo"},
+ {n:"侗族大歌",l:"侗族大歌",e:"Dong grand song",a:148748,m:148748,t:38,na:45,nv:58,cat:"echo"},
+ {n:"花儿",l:"花儿",e:"Hua'er",a:55117,m:71167,t:17,na:33,nv:34,cat:"echo"}
+];
+
+var cv=document.getElementById('sea'), ctx=cv.getContext('2d'),
+    tip=document.getElementById('tip'), stage=cv.parentElement;
+var W,H,DPR,PX,PY,FAN,LO=Math.log10(5e4),HI=Math.log10(1.25e9),rMax,rMin;
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var t0=null, raf=null;
+
+function fmt(n){return n>=1e8?(n/1e8).toFixed(2)+'亿':n>=1e4?Math.round(n/1e4).toLocaleString('en')+'万':n.toLocaleString('en');}
+function norm(v){v=Math.max(Math.min(v,1.25e9),5e4);return (Math.log10(v)-LO)/(HI-LO);}
+
+function layout(){
+  DPR=Math.min(devicePixelRatio||1,2);
+  W=cv.clientWidth;
+  H=Math.round(Math.min(Math.max(W*0.60,460),700));
+  cv.width=W*DPR; cv.height=H*DPR; cv.style.height=H+'px';
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+  PX=W*0.5; PY=H*0.92;
+  rMax=PY-H*0.14; rMin=H*0.085;
+  // fan limited so ships stay in frame horizontally
+  var maxFanByW=Math.atan((W*0.46)/(rMax))*180/Math.PI;
+  FAN=Math.min(58,maxFanByW)*Math.PI/180;
+  DATA.forEach(function(b,i){
+    var frac=(i*0.6180339887)%1;            // 黄金角散布，方位与航程解耦
+    b.ang=(-FAN)+frac*(2*FAN);
+    b.na_=norm(b.a); b.nm_=norm(b.m);
+    b.delay=reduce?0:(i*70+Math.random()*420);
+    b.phase=Math.random()*6.28;
+    b.size=9+Math.min(Math.sqrt(b.nv)/1.9,9)+b.na_*5;
+    b.frag=b.t>=55;
+  });
+  buildStars();
+}
+function buildStars(){ /* 海图上的细密点刺（纸纹外的手绘点） */
+  STARS=[]; for(var i=0;i<70;i++) STARS.push({x:Math.random()*W,y:Math.random()*H*0.8,r:Math.random()*0.9+0.2,a:Math.random()*0.18+0.04});
+}
+var STARS=[];
+
+function posOf(b,p){ var r=(rMin+(rMax-rMin)*b.na_)*p;
+  return {x:PX+Math.sin(b.ang)*r, y:PY-Math.cos(b.ang)*r}; }
+function posAt(b,nrm){ var r=rMin+(rMax-rMin)*nrm;
+  return {x:PX+Math.sin(b.ang)*r, y:PY-Math.cos(b.ang)*r}; }
+
+function compassRose(cx,cy,R,faint){
+  ctx.save(); ctx.translate(cx,cy);
+  // rhumb lines to many directions
+  ctx.strokeStyle='rgba(39,74,92,'+(faint?0.12:0.5)+')'; ctx.lineWidth=1;
+  for(var k=0;k<16;k++){var a=k*Math.PI/8; ctx.beginPath(); ctx.moveTo(0,0);
+    ctx.lineTo(Math.cos(a)*R,Math.sin(a)*R); ctx.stroke();}
+  // 8-point star
+  ctx.fillStyle='rgba(39,74,92,'+(faint?0.16:0.62)+')';
+  for(var k=0;k<8;k++){var a=k*Math.PI/4, a2=a+Math.PI/16, a3=a-Math.PI/16, rr=(k%2?R*0.34:R*0.5);
+    ctx.beginPath(); ctx.moveTo(0,0);
+    ctx.lineTo(Math.cos(a3)*rr*0.3,Math.sin(a3)*rr*0.3);
+    ctx.lineTo(Math.cos(a)*rr,Math.sin(a)*rr);
+    ctx.lineTo(Math.cos(a2)*rr*0.3,Math.sin(a2)*rr*0.3);
+    ctx.closePath(); ctx.fill();}
+  ctx.beginPath(); ctx.arc(0,0,R*0.07,0,6.28); ctx.fillStyle='var(--cinnabar)';
+  ctx.fillStyle='#BE3A2B'; ctx.fill();
+  ctx.restore();
+}
+
+function farShore(){
+  // 远岸 = 没在找你的 99%。船很少抵达，所以这片海是空的——空得有意义。
+  var y=H*0.085;
+  ctx.strokeStyle='rgba(90,75,54,0.34)'; ctx.lineWidth=1.4; ctx.beginPath();
+  for(var x=0;x<=W;x+=10){ var yy=y+Math.sin(x*0.018)*5+Math.sin(x*0.06)*2.2; x===0?ctx.moveTo(x,yy):ctx.lineTo(x,yy);} ctx.stroke();
+  // 远山剪影
+  ctx.fillStyle='rgba(44,107,134,0.16)'; ctx.beginPath(); ctx.moveTo(0,y);
+  var peaks=[[W*0.12,26],[W*0.27,16],[W*0.46,30],[W*0.63,18],[W*0.8,24],[W*0.92,14]];
+  ctx.lineTo(0,y); peaks.forEach(function(p){ctx.lineTo(p[0]-26,y);ctx.lineTo(p[0],y-p[1]);ctx.lineTo(p[0]+26,y);});
+  ctx.lineTo(W,y); ctx.lineTo(W,y-1); ctx.lineTo(0,y-1); ctx.closePath(); ctx.fill();
+  ctx.font='600 12.5px "Noto Serif SC",serif'; ctx.textAlign='center';
+  ctx.fillStyle='rgba(90,75,54,0.78)'; ctx.fillText('彼 岸 · 没 在 找 你 的 那 99%',W*0.5,y-22);
+  ctx.font='10.5px "Noto Serif SC",serif'; ctx.fillStyle='rgba(90,75,54,0.5)';
+  ctx.fillText('TERRA  INCOGNITA  —  能驶到这里的，寥寥',W*0.5,y+18);
+}
+function harbor(){
+  // 港湾海岸线 + 几条停泊的船，让起航地热闹
+  ctx.strokeStyle='rgba(36,29,21,0.5)'; ctx.lineWidth=1.6; ctx.beginPath();
+  for(var x=0;x<=W;x+=8){ var dx=(x-PX)/W; var yy=PY+H*0.055+Math.cos(dx*3.1)*10; x===0?ctx.moveTo(x,yy):ctx.lineTo(x,yy);}
+  ctx.lineTo(W,H); ctx.lineTo(0,H); ctx.closePath();
+  ctx.fillStyle='rgba(44,107,134,0.10)'; ctx.fill();
+  ctx.beginPath();
+  for(var x=0;x<=W;x+=8){ var dx=(x-PX)/W; var yy=PY+H*0.055+Math.cos(dx*3.1)*10; x===0?ctx.moveTo(x,yy):ctx.lineTo(x,yy);} ctx.stroke();
+}
+function cartouche(x,y,w,lines){
+  ctx.save(); ctx.translate(x,y);
+  ctx.fillStyle='rgba(233,222,194,0.82)'; ctx.strokeStyle='rgba(36,29,21,0.55)'; ctx.lineWidth=1.2;
+  var h=12+lines.length*16;
+  ctx.beginPath(); ctx.rect(0,0,w,h); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.rect(4,4,w-8,h-8); ctx.lineWidth=0.7; ctx.strokeStyle='rgba(36,29,21,0.3)'; ctx.stroke();
+  ctx.textAlign='left'; ctx.fillStyle='rgba(36,29,21,0.82)';
+  lines.forEach(function(t,i){ ctx.font=(i===0?'700 12px':'11px')+' "Noto Serif SC",serif';
+    ctx.fillText(t,12,20+i*16); });
+  ctx.restore();
+}
+function drawJunk(x,y,s,col,alpha){
+  ctx.save(); ctx.translate(x,y); ctx.globalAlpha=alpha==null?1:alpha;
+  ctx.fillStyle=col; ctx.strokeStyle=col; ctx.lineJoin='round';
+  // hull (crescent)
+  ctx.beginPath();
+  ctx.moveTo(-s*0.9,0); ctx.quadraticCurveTo(0,s*0.55,s*0.9,0);
+  ctx.quadraticCurveTo(s*0.5,s*0.12,-s*0.5,s*0.12); ctx.closePath(); ctx.fill();
+  // battened sail
+  ctx.beginPath();
+  ctx.moveTo(-s*0.05,-s*1.5); ctx.lineTo(s*0.72,-s*0.15); ctx.lineTo(-s*0.05,-s*0.05); ctx.closePath(); ctx.fill();
+  // mast
+  ctx.lineWidth=Math.max(s*0.10,0.8); ctx.beginPath(); ctx.moveTo(-s*0.05,-s*1.55); ctx.lineTo(-s*0.05,s*0.05); ctx.stroke();
+  ctx.restore();
+}
+
+function frame(now){
+  if(t0==null) t0=now;
+  var t=reduce?9e9:(now-t0);
+  ctx.clearRect(0,0,W,H);
+  // paper base wash + edge vignette
+  var bg=ctx.createRadialGradient(W*0.5,H*0.5,H*0.2,W*0.5,H*0.5,H*0.8);
+  bg.addColorStop(0,'#E7DBBC'); bg.addColorStop(1,'#DCCDA8');
+  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+
+  // hand-drawn dot stipple
+  STARS.forEach(function(s){ ctx.globalAlpha=s.a; ctx.fillStyle='#5A4B36';
+    ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,6.28); ctx.fill();}); ctx.globalAlpha=1;
+
+  // distance arcs from port (faint sepia parallels = 航程刻度)
+  ctx.strokeStyle='rgba(90,75,54,0.16)'; ctx.lineWidth=1;
+  [0.25,0.5,0.75,1].forEach(function(f){ var rr=rMin+(rMax-rMin)*f;
+    ctx.beginPath(); ctx.arc(PX,PY,rr,-Math.PI/2-FAN-0.12,-Math.PI/2+FAN+0.12); ctx.stroke(); });
+
+  // 远岸（彼岸）在最上
+  farShore();
+  // big faint compass rose at port + small ornate one upper-right
+  compassRose(PX,PY,rMax*0.97,true);
+  compassRose(W*0.82,H*0.24,Math.min(W,H)*0.085,false);
+  // 古海图题署卡 + 港湾
+  cartouche(W*0.045,H*0.40,W*0.24,['航 海 图 · 非 遗 出 海','44 sails from the shore of China','航程 = 真正被看见的量']);
+  harbor();
+
+  // departure ripples at port
+  if(!reduce){
+    var rp=(t%2600)/2600; var rr=rMin*0.4+rp*60;
+    ctx.strokeStyle='rgba(39,74,92,'+(0.28*(1-rp))+')'; ctx.lineWidth=1.2;
+    ctx.beginPath(); ctx.arc(PX,PY,rr,Math.PI,2*Math.PI); ctx.stroke();
+  }
+
+  var DUR=2400, ease=function(x){return 1-Math.pow(1-x,3);};
+
+  // pass 1: red 洇 (mistaken gap) — multiply for ink-on-paper
+  ctx.save(); ctx.globalCompositeOperation='multiply';
+  DATA.forEach(function(b){
+    var p=reduce?1:ease(Math.min(Math.max((t-b.delay)/DUR,0),1));
+    if(b.nm_-b.na_<0.02 || p<0.35) return;
+    var gp=Math.min((p-0.35)/0.65,1);
+    var pa=posAt(b,b.na_), pm=posAt(b,b.nm_);
+    var loud=Math.min((b.m-b.a)/Math.max(b.a,1),6)/6;
+    for(var k=1;k<=7;k++){ var fr=k/7;
+      var cxk=pa.x+(pm.x-pa.x)*fr*gp, cyk=pa.y+(pm.y-pa.y)*fr*gp;
+      var breathe=reduce?1:(0.8+0.2*Math.sin(now*0.0016+b.phase+k));
+      var rad=(10+34*fr)*breathe*(0.6+0.6*loud);
+      var al=(0.05+0.16*loud)*(1-fr*0.35)*gp;
+      var fg=ctx.createRadialGradient(cxk,cyk,0,cxk,cyk,rad);
+      fg.addColorStop(0,'rgba(176,46,32,'+al+')'); fg.addColorStop(1,'rgba(176,46,32,0)');
+      ctx.fillStyle=fg; ctx.beginPath(); ctx.arc(cxk,cyk,rad,0,6.28); ctx.fill();
+    }
+  });
+  ctx.restore();
+
+  // pass 2: wake + ship
+  DATA.forEach(function(b){
+    var p=reduce?1:ease(Math.min(Math.max((t-b.delay)/DUR,0),1));
+    if(p<=0) return;
+    var pos=posOf(b,p);
+    var bob=(p>=1&&!reduce)?Math.sin(now*0.0013+b.phase)*1.3:0; pos.y+=bob;
+    b._x=pos.x; b._y=pos.y; b._p=p;
+    // wake: slightly bowed ink line port->ship
+    var mx=(PX+pos.x)/2 + Math.sin(b.ang)*0, my=(PY+pos.y)/2;
+    var bow=Math.cos(b.ang)*0 + 8*Math.sin(b.ang);
+    ctx.beginPath(); ctx.moveTo(PX,PY);
+    ctx.quadraticCurveTo(mx-bow*0.0, my, pos.x, pos.y);
+    ctx.strokeStyle='rgba(36,29,21,'+(0.10+0.30*b.na_)+')';
+    ctx.setLineDash([1,4]); ctx.lineWidth=0.6+1.6*b.na_; ctx.stroke(); ctx.setLineDash([]);
+    // gold ring (fragile)
+    if(b.frag){ var pr=reduce?1:(0.85+0.15*Math.sin(now*0.003+b.phase));
+      ctx.strokeStyle='rgba(190,139,42,'+(0.55*pr)+')'; ctx.lineWidth=2;
+      ctx.beginPath(); ctx.arc(pos.x,pos.y-b.size*0.4,b.size*1.5,0,6.28); ctx.stroke(); }
+    // ship
+    var col=b.cat==='mistaken'?'#9C2A1E':'#241D15';
+    drawJunk(pos.x,pos.y,b.size*0.62,col,0.55+0.45*p);
+  });
+
+  // key labels (a few): 春节 书法 太极 玛纳斯 龙泉青瓷 伊玛堪
+  var KEY={"春节":1,"书法":1,"太极":1,"玛纳斯":1,"龙泉青瓷":1,"伊玛堪":1,"剪纸":1};
+  ctx.font='600 13px "Noto Serif SC",serif'; ctx.textAlign='left';
+  DATA.forEach(function(b){ if(!KEY[b.l]||!b._x||b._p<0.98) return;
+    var lx=b._x+b.size*0.9, ly=b._y-b.size*0.9;
+    ctx.fillStyle='rgba(233,222,194,0.85)';
+    var w=ctx.measureText(b.l).width;
+    ctx.fillRect(lx-3,ly-13,w+6,17);
+    ctx.fillStyle=b.cat==='mistaken'?'#9C2A1E':'#241D15'; ctx.fillText(b.l,lx,ly);
+  });
+
+  if(!reduce) raf=requestAnimationFrame(frame);
+}
+
+// hover
+cv.addEventListener('mousemove',function(e){
+  var r=cv.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top, best=null,bd=1e9;
+  DATA.forEach(function(b){ if(!b._x)return; var d=Math.hypot(b._x-mx,b._y-my);
+    if(d<Math.max(b.size*1.8,16)&&d<bd){bd=d;best=b;} });
+  if(best){ tip.style.opacity=1; tip.style.left=best._x+'px'; tip.style.top=best._y+'px';
+    tip.innerHTML='<div class="tn">'+best.n+'</div><div class="te">'+best.e+'</div>'+
+      '<div class="tr">真正被看见 <b>'+fmt(best.a)+'</b> · '+best.nv+'条 · '+best.na+'人在发</div>'+
+      (best.frag?'<div class="frag">◆ 最大博主占 '+best.t+'%，靠一个人撑着</div>':'')+
+      (best.cat==='mistaken'?'<div class="frag" style="color:#9C2A1E">✕ 声量 '+fmt(best.m)+'，多是同名异物</div>':'');
+    cv.style.cursor='pointer';
+  } else { tip.style.opacity=0; cv.style.cursor='crosshair'; }
+});
+cv.addEventListener('mouseleave',function(){tip.style.opacity=0;});
+
+document.getElementById('replay').addEventListener('click',function(){
+  t0=null; if(!reduce){ if(raf)cancelAnimationFrame(raf); raf=requestAnimationFrame(frame);} else frame(0);
+});
+
+var rt; addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){layout(); if(reduce)frame(0);},150);});
+layout();
+function playSea(){
+  t0=null;
+  if(raf) cancelAnimationFrame(raf);
+  if(reduce) frame(0);
+  else raf=requestAnimationFrame(frame);
+}
+function stopSea(){
+  if(raf){ cancelAnimationFrame(raf); raf=null; }
+}
+var seaSeen=false;
+var seaObserver=new IntersectionObserver(function(es){
+  var on=es[0].isIntersecting;
+  if(on){
+    if(!seaSeen || !reduce) playSea();
+    seaSeen=true;
+  }else{
+    stopSea();
+    seaSeen=false;
+  }
+},{threshold:.38});
+seaObserver.observe(stage);
+if(reduce) frame(0);
+
+// ---- 拍1 两扇门识别实验 ----
+(function(){
+  var tabsEl=document.getElementById('doorTabs'), body=document.getElementById('doorBody'); if(!tabsEl) return;
+  var st=document.createElement('style'); st.textContent=
+    '@keyframes slam{from{opacity:0;transform:scale(1.06) translateY(14px)}to{opacity:1;transform:none}}'+
+    '@keyframes shuf{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}'+
+    '.vcard{width:clamp(128px,15vw,168px);aspect-ratio:9/16;border:1.5px solid var(--ink);padding:9px;display:flex;flex-direction:column;position:relative;overflow:hidden}'+
+    '.vcard .play{font-family:"Noto Serif SC",monospace;font-size:11px;font-weight:700;color:#fff;background:rgba(36,29,21,.62);padding:2px 7px;align-self:flex-start}'+
+    '.vcard .desc{font-size:12px;line-height:1.32;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.7);margin-top:auto;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}'+
+    '.vcard .au{font-family:"Noto Serif SC",monospace;font-size:10px;color:rgba(255,255,255,.85);margin-top:4px}'+
+    '.vcard .tag{font-size:10.5px;font-weight:700;margin-top:5px}';
+  document.head.appendChild(st);
+  var PC=[
+    {p:36500000,d:"Life Advice with Jayus #fyp #lifeadvice",a:"onlyjayus",tag:"生活妙招·非剪纸"},
+    {p:13900000,d:"⚠️ WARNING ⚠️ : 1 Papercut will murk ya ahh",a:"wrongcai",tag:"一道纸划伤"},
+    {p:13000000,d:"I think my toe is gonna fall off #pain #papercut",a:"bbgbria1",tag:"受伤的脚趾"},
+    {p:11100000,d:"signed a deal, i got papercuts",a:"mgk",tag:"歌手 MGK 签约受伤"},
+    {p:7100000,d:"One paper cut and it's over !",a:"tiboinshape",tag:"又一道划伤"}];
+  var TC=[
+    {p:9000000,d:"Keeping #wudang #fyp #healthy #taichi #chineseculture",a:"yutarvslkt4",tag:"真·太极·标 #chineseculture"},
+    {p:8900000,d:"This exercise takes a long time to learn. #taichi #wudangkungfu #chineseculture",a:"taichi.zidong",tag:"真·武当太极·认作中国"},
+    {p:2300000,d:"Tai Chi originated in China and has a history of more than 1,700 years…",a:"taichi.qingxuan",tag:"真·太极·自述源自中国"},
+    {p:1500000,d:"An elementary school student practices Tai Chi #ChineseMartialArts",a:"hebeimoment1",tag:"真·太极·认作中国武术"}];
+  var DIGW=["纸划伤","开箱","美甲","ASMR 切纸","恶搞","手工贺卡","折纸","emo 文案","受伤合集","手账","拆快递","DIY"];
+  var TINT={noise:'linear-gradient(160deg,#7c5a4a,#3a2a22)',real:'linear-gradient(160deg,#2C6B86,#163a4a)'};
+  var door='pc', phase='idle';
+  function vcard(c,kind){ var col=kind==='real'?'#bfe6f0':kind==='noise'?'#f0c9bf':'#fff';
+    return '<div class="vcard" style="background:'+(kind==='real'?TINT.real:TINT.noise)+'">'+
+      '<div class="play">▶ '+fmt(c.p)+'</div>'+
+      '<div class="desc">'+c.d+'</div><div class="au">@'+c.a+'</div>'+
+      '<div class="tag" style="color:'+col+'">'+c.tag+'</div></div>'; }
+  function tabStyle(on){ return 'appearance:none;cursor:pointer;font-family:"Noto Serif SC";font-weight:700;font-size:15px;padding:11px 20px;border:1.5px solid var(--ink);background:'+(on?'var(--ink)':'transparent')+';color:'+(on?'var(--paper)':'var(--ink)')+';transition:.12s'; }
+  function renderTabs(){ tabsEl.innerHTML='';
+    [['pc','「剪纸 · papercut」'],['tc','「太极 · tai chi」']].forEach(function(d){ var b=document.createElement('button');
+      b.textContent=d[1]; b.style.cssText=tabStyle(d[0]===door); b.onclick=function(){door=d[0];phase='idle';render();}; tabsEl.appendChild(b); }); }
+  function render(){ renderTabs();
+    if(door==='pc'){
+      var h='<p style="font-size:16px;color:var(--ink);margin:6px 0 4px;max-width:64ch">剪纸，英文名 <b style="color:var(--cinnabar)">papercut</b>。老外在 TikTok 刷 papercut，刷到的是这些——按播放从高到低：</p>'+
+        '<div style="display:flex;flex-wrap:wrap;gap:11px;margin-top:18px">'+PC.map(function(c){return vcard(c,'noise');}).join('')+'</div>';
+      if(phase==='idle'){ h+='<div style="text-align:center;margin-top:22px"><button id="digBtn" style="appearance:none;cursor:pointer;border:1.5px dashed rgba(36,29,21,.4);background:transparent;color:var(--ink-soft);font-family:\'Noto Serif SC\',monospace;font-weight:700;font-size:14px;padding:13px 24px">↓ 继续往下翻，找真正的中国剪纸</button></div>'; }
+      if(phase==='running'){ h+='<div style="text-align:center;margin-top:22px"><div style="font-family:\'Noto Serif SC\',monospace;font-size:clamp(40px,8vw,78px);font-weight:700;color:var(--cinnabar);line-height:1">第 <span id="digN">6</span> 条</div>'+
+        '<div style="display:flex;justify-content:center;gap:7px;margin-top:14px;flex-wrap:wrap">'+DIGW.slice(0,8).map(function(w,i){return '<div style="width:46px;height:74px;background:linear-gradient(160deg,#7c5a4a,#2a1e18);color:#fff;font-size:9px;display:flex;align-items:flex-end;padding:5px;animation:shuf .5s ease-in-out infinite;animation-delay:'+(i*0.06)+'s">'+w+'</div>';}).join('')+'</div>'+
+        '<div style="font-size:12.5px;color:var(--ink-soft);margin-top:12px">全是同名异物——纸划伤、开箱、美甲……没有一条是剪纸</div></div>'; }
+      if(phase==='done'){
+        h+='<div style="margin-top:24px;display:flex;align-items:center;gap:16px;border:2px solid var(--stone);background:rgba(44,107,134,.06);padding:15px;animation:slam .5s cubic-bezier(.2,1.2,.3,1) both">'+
+          '<div class="vcard" style="background:'+TINT.real+';flex:0 0 auto;width:112px"><div class="play">▶ 1,414</div><div class="desc">UFO Creative Paper Cutting Tutorial #papercutting</div><div class="au">@chinesecutting2</div></div>'+
+          '<div><div style="font-family:\'Noto Serif SC\',monospace;font-size:12px;color:var(--stone);letter-spacing:.06em">第 141 位 · 真·中国剪纸</div>'+
+          '<div style="font-family:\'Noto Serif SC\';font-size:clamp(18px,2.6vw,26px);font-weight:700;margin-top:6px;line-height:1.4">在 TikTok，papercut 不是我们的剪纸——<br>是手被纸划了一下。<span style="color:var(--cinnabar)">名字成了别人东西的代号。</span></div></div></div>'+
+          compareLine();
+      }
+      body.innerHTML=h;
+      if(phase==='idle'){ document.getElementById('digBtn').onclick=function(){phase='running';render();startCount();}; }
+    } else {
+      var h2='<p style="font-size:16px;color:var(--ink);margin:6px 0 4px;max-width:64ch">太极，英文名 <b style="color:var(--stone)">tai chi</b>。推开同一扇门——刷到的是这些：</p>'+
+        '<div style="display:flex;flex-wrap:wrap;gap:11px;margin-top:18px">'+TC.map(function(c){return vcard(c,'real');}).join('')+'</div>'+
+        '<div style="margin-top:24px;border-left:4px solid var(--stone);padding:6px 0 6px 18px"><div style="font-family:\'Noto Serif SC\';font-size:clamp(18px,2.6vw,26px);font-weight:700;line-height:1.4">同一个动作，相反的结局——刷到的人真在打太极、真叫它 tai chi、真知道来自中国。<span style="color:var(--stone)">名字落了地，长成了它自己。</span></div></div>'+
+        compareLine();
+      body.innerHTML=h2;
+    }
+  }
+  function compareLine(){ return '<p style="font-family:\'Noto Serif SC\',monospace;font-size:13px;color:var(--ink-soft);margin-top:26px;letter-spacing:.04em">同样把名字送出海，下落却正好相反。44 件非遗，44 个不同的下落。往下，看它们各自去了哪。 ▼</p>'; }
+  function startCount(){ var el=function(){return document.getElementById('digN');}; var t0=performance.now(), dur=1800;
+    if(reduce){ phase='done'; render(); return; }
+    (function step(now){ var t=Math.min((now-t0)/dur,1), e=1-Math.pow(1-t,3); var n=Math.round(6+135*e);
+      var d=el(); if(d) d.textContent=n; if(t<1){ requestAnimationFrame(step);} else { phase='done'; render(); } })(t0);
+  }
+  render();
+})();
+
+// ---- 拍6 档案馆（treemap·面积=被看见次数） ----
+(function(){
+  var grid=document.getElementById('archive'), tabsEl=document.getElementById('fateTabs'); if(!grid) return;
+  var st=document.createElement('style'); st.textContent=
+    '.acard{position:absolute;cursor:pointer;transition:all .34s cubic-bezier(.2,.8,.2,1);will-change:width,height,left,top}'+
+    '.acard:hover{z-index:20;box-shadow:0 12px 30px -8px rgba(0,0,0,.6)}'+
+    '.acard.up{z-index:120;box-shadow:0 26px 64px -16px rgba(0,0,0,.75)}'+
+    '.ain{position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}'+
+    '.acard.up .ain{transform:rotateY(180deg)}'+
+    '.af{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;border:1px solid rgba(244,241,232,.18)}'+
+    '.ab{transform:rotateY(180deg);background:#0c1119;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:11%}';
+  document.head.appendChild(st);
+  var COLOR={arrive:'#7FB2C9',mistaken:'#E0664F',echo:'#C9A24B'};
+  var VERDICT={
+"春节":"出海最远的一件——785 人各发各的，真的被世界刷到了。",
+"书法":"声量大半是英文花体、日本書道；但本体够大，仍被大量看见。",
+"京剧":"脸谱与唱念做打辨识度高，基本都被认作中国京剧。",
+"呼麦":"真能被看见，却常和蒙古国并提——跨国共享的喉音唱法。",
+"宣纸":"“纸寿千年”出了圈，只是近半声量混着别国手工纸。",
+"太极":"真出海了，有人甚至自述“源自中国”——名字落了地。",
+"针灸":"被广泛看见，却常被并入泛“东方医学”，中国标识偏淡。",
+"剪纸":"papercut 在海外＝手被纸划伤；真剪纸被同名物淹没，只剩零头。",
+"珠算":"看得见，但赛道被日式そろばん和各国珠心算挤占。",
+"福船":"几乎没有内容漂出去——冷门的古海船造船技艺。",
+"长调":"7 个账号撑起一亿播放，热闹却脆——一停就黑。",
+"制茶":"234 人在发、题材最广，稳稳被当作中国茶看见。",
+"木活字":"被看见，但只有 35 个账号在发，盘子不大、根基浅。",
+"龙泉青瓷":"加上“龙泉”才认得出；过半声量压在一个人身上。",
+"端午":"龙舟粽子高辨识，261 人共发——结结实实出了海。",
+"古琴":"真被听见，海外甚至比别处更买账这门七弦古乐。",
+"云锦":"声量过亿，真身只有 66 万——绝大多数是同名异物。",
+"玛纳斯":"10 条视频、一人占 66%，又被同名内容稀释，几乎没出海。",
+"雕版":"看得见，但只有 10 个账号在发，全压在极少数人手里。",
+"麦西热甫":"载歌载舞的聚会民俗被看见，中国标识却偏弱。",
+"篆刻":"方寸刻印被看见；动作词 sealcarving 反比中国限定名更响。",
+"蚕桑":"看得见，但七成多声量靠一个人撑——典型一个人的海。",
+"妈祖":"沿海信俗真出了海，常与东南亚妈祖庙一起被刷到。",
+"粤剧":"岭南戏曲被看见，但近七成压在单一账号上，很脆。",
+"木结构":"榫卯营造被看见，多混在泛古建、木工内容里。",
+"羌年":"看得见，但过半声量靠一个人——一停就散。",
+"节气":"138 人在发、辨识度高，作为时间智慧被稳稳看见。",
+"送王船":"声量两千万，真身不到百万——多是“送王船”同名内容。",
+"黎族织绣":"八成多声量压在一个人手上——海外几乎靠他一人。",
+"南音":"“中国音乐活化石”被小众听见，盘子不大但真。",
+"皮影":"灯影戏被看见，常与各国影偶混在一起。",
+"西安鼓乐":"小众古乐被看见，近六成靠一个账号在撑。",
+"伊玛堪":"5 条视频、一人占 96%——整片海几乎是一个人。",
+"木卡姆":"被维吾尔、中亚木卡姆共享，中国身份难被单独认出。",
+"昆曲":"“百戏之祖”真被看见，92 人在发、底子扎实。",
+"木拱桥":"编木为拱的造桥术，小众但被看见，根基尚浅。",
+"热贡":"唐卡堆绣被看见，106 人在发、相对去中心。",
+"农乐舞":"朝鲜族鼓舞，常被认作韩国农乐——身份被认偏。",
+"格萨尔":"真身仅十几万，声量多是同名史诗、游戏角色。",
+"藏戏":"本就没什么内容漂出去——面具藏戏太冷门。",
+"药浴":"几乎没出海——藏医药浴是极小众的疗法。",
+"木偶戏":"内容稀少，七成多还压在一个人手上。",
+"侗族大歌":"几乎没有回声——无伴奏多声部合唱太小众。",
+"花儿":"出海最少的一件——西北山歌几乎没漂出去。"
+  };
+  var PHOTO={"春节":"1春节.jpg","书法":"中国书法.jpg","京剧":"14京剧.jpg","呼麦":"蒙古族呼麦.jpg","宣纸":"宣纸传统制作技艺.jpg","太极":"3太极拳.jpg","针灸":"15中医针灸.jpg","剪纸":"中国剪纸.jpg","珠算":"7.珠算.jpg","福船":"12中国水密隔舱福船制造技艺.jpg","长调":"蒙古族长调民歌.jpg","制茶":"2.传统制茶.jpg","木活字":"13木活字印刷术.jpg","龙泉青瓷":"龙泉青瓷传统烧制技艺.jpg","端午":"端午节.jpg","古琴":"古琴技术.jpg","云锦":"南京云锦织造技艺.jpg","玛纳斯":"玛纳斯.png","雕版":"中国雕版印刷技术.jpg","麦西热甫":"11麦西热甫.jpg","篆刻":"中国篆刻.jpg","蚕桑":"中国蚕桑丝织技艺.jpg","妈祖":"妈祖信仰.jpg","粤剧":"粤剧.webp","木结构":"中国传统木结构建筑营造技术.jpg","羌年":"羌年.webp","节气":"6.二十四节气.jpg","送王船":"4送王船.jpg","黎族织绣":"黎族传统纺染织绣技艺.jpg","南音":"南音.jpg","皮影":"10.中国皮影戏.jpg","西安鼓乐":"西安鼓乐.jpg","伊玛堪":"9.赫哲族伊玛堪.jpg","木卡姆":"新疆维吾尔木卡姆技术.jpg","昆曲":"昆曲.jpg","木拱桥":"中国木拱桥传统营造技艺.png","热贡":"热贡艺术.jpg","农乐舞":"中国朝鲜族农乐舞.jpg","格萨尔":"格萨(斯)尔史诗传统.jpg","藏戏":"藏戏.png","药浴":"5藏医药浴法.jpg","木偶戏":"8.福建木偶戏.jpg","侗族大歌":"侗族大歌.jpg","花儿":"花儿.jpg"};
+  var TABS=[{k:'all',l:'全部'},{k:'arrive',l:'真的到了'},{k:'mistaken',l:'被认成了别的'},{k:'frag',l:'一个人的海'},{k:'echo',l:'几乎没有回声'}];
+  function match(b,k){ return k==='all'?true:k==='frag'?b.t>=55:b.cat===k; }
+  var cur='all';
+  function tabStyle(on){ return 'appearance:none;cursor:pointer;font-family:"Noto Serif SC";font-weight:600;font-size:13px;padding:8px 14px;border:1.5px solid '+(on?'var(--gold-br)':'rgba(244,241,232,.3)')+';background:'+(on?'rgba(214,164,55,.14)':'transparent')+';color:var(--paper);transition:.12s'; }
+  function renderTabs(){ tabsEl.innerHTML=''; TABS.forEach(function(t){ var n=DATA.filter(function(b){return match(b,t.k);}).length;
+    var b=document.createElement('button'); b.innerHTML=t.l+' <span style="opacity:.55">'+n+'</span>'; b.style.cssText=tabStyle(t.k===cur);
+    b.onclick=function(){cur=t.k;layout();}; tabsEl.appendChild(b); }); }
+  // ---- squarified treemap ----
+  function worst(row,side){ var s=0,mx=-1e18,mn=1e18; for(var i=0;i<row.length;i++){var v=row[i];s+=v;if(v>mx)mx=v;if(v<mn)mn=v;}
+    return Math.max(side*side*mx/(s*s), s*s/(side*side*mn)); }
+  function squarify(areas,W,H){ var res=new Array(areas.length); var rx=0,ry=0,rw=W,rh=H,i=0;
+    while(i<areas.length){ var side=Math.min(rw,rh); var row=[],ri=[],best=1e18;
+      while(i<areas.length){ var test=row.concat([areas[i]]); var wr=worst(test,side);
+        if(row.length===0||wr<=best){ row.push(areas[i]); ri.push(i); best=wr; i++; } else break; }
+      var sum=0,k; for(k=0;k<row.length;k++) sum+=row[k];
+      if(rw<=rh){ var sh=sum/rw,ox=rx; for(k=0;k<row.length;k++){var cw=row[k]/sh;res[ri[k]]={x:ox,y:ry,w:cw,h:sh};ox+=cw;} ry+=sh; rh-=sh; }
+      else { var sw=sum/rh,oy=ry; for(k=0;k<row.length;k++){var ch=row[k]/sw;res[ri[k]]={x:rx,y:oy,w:sw,h:ch};oy+=ch;} rx+=sw; rw-=sw; }
+    } return res; }
+  function layout(){ renderTabs(); grid.innerHTML='';
+    var items=DATA.filter(function(b){return match(b,cur);}).sort(function(a,b){return b.a-a.a;});
+    var W=grid.clientWidth||1000, H=Math.round(Math.min(Math.max(W*0.58,520),820)); grid.style.height=H+'px';
+    var raw=items.map(function(b){return Math.pow(b.a,0.42);}); var tot=raw.reduce(function(a,b){return a+b;},0);
+    var areas=raw.map(function(r){return r/tot*W*H;});
+    var rects=squarify(areas,W,H);
+    items.forEach(function(b,i){ var r=rects[i]; if(!r)return; var c=COLOR[b.cat]||'#C9A24B'; var ph=PHOTO[b.l];
+      var card=document.createElement('div'); card.className='acard';
+      var gap=2; card.style.left=(r.x+gap)+'px'; card.style.top=(r.y+gap)+'px';
+      card.style.width=Math.max(r.w-gap*2,8)+'px'; card.style.height=Math.max(r.h-gap*2,8)+'px';
+      var cx=r.x+r.w/2, cy=r.y+r.h/2;
+      card.style.transformOrigin=(cx<W*0.5?'0%':'100%')+' '+(cy<H*0.5?'0%':'100%');
+      var big=r.w>78&&r.h>96, nsz=Math.max(11,Math.min(r.w*0.16,22));
+      var bg = ph? 'background:url(\''+'photos/img44/'+ph+'\') center/cover' : 'background:#1a212c';
+      card.innerHTML='<div class="ain">'+
+        '<div class="af" style="border-top:3px solid '+c+'">'+
+          '<div style="position:absolute;inset:0;'+bg+';filter:grayscale(.18) contrast(1.05) brightness(.74)"></div>'+
+          '<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,15,22,.05),rgba(12,15,22,.9))"></div>'+
+          '<div style="position:absolute;left:7%;right:7%;bottom:7%">'+
+            '<div style="font-family:\'Noto Serif SC\';font-weight:700;font-size:'+nsz+'px;line-height:1.12;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.95)">'+b.l+(b.t>=55?' <span style="color:#E2B748">◆</span>':'')+'</div>'+
+            (big?'<div style="font-family:\'Noto Serif SC\',monospace;font-size:10.5px;color:'+c+';font-weight:700;text-shadow:0 1px 5px rgba(0,0,0,.95);margin-top:2px">'+fmt(b.a)+'</div>':'')+
+          '</div>'+
+        '</div>'+
+        '<div class="af ab" style="border-top:3px solid '+c+'">'+
+          '<div style="font-family:\'Noto Serif SC\';font-weight:700;font-size:15px;color:#fff">'+b.n+'</div>'+
+          '<div style="font-family:\'Noto Serif SC\',monospace;font-size:9.5px;color:rgba(244,241,232,.55);margin-top:2px">'+b.e+'</div>'+
+          '<div style="font-family:\'Noto Serif SC\',monospace;font-size:14px;font-weight:700;color:'+c+';margin-top:9px">'+fmt(b.a)+'</div>'+
+          '<div style="font-family:\'Noto Serif SC\',monospace;font-size:9px;color:rgba(244,241,232,.5);margin-top:3px">'+b.nv+'条·'+b.na+'人·最大'+b.t+'%</div>'+
+          '<div style="font-size:11px;color:rgba(244,241,232,.82);margin-top:9px;line-height:1.55">'+(VERDICT[b.l]||'')+'</div>'+
+        '</div>'+
+      '</div>';
+      var ow=Math.max(r.w-gap*2,8), oh=Math.max(r.h-gap*2,8), ol=r.x+gap, ot=r.y+gap;
+      card.addEventListener('click',function(){
+        var TW=Math.min(238,W-12), TH=Math.round(TW*1.34);
+        var L=Math.min(Math.max(cx-TW/2,4),Math.max(W-TW-4,4)), T=Math.min(Math.max(cy-TH/2,4),Math.max(H-TH-4,4));
+        card.classList.add('up'); card.style.transform='';
+        card.style.left=L+'px'; card.style.top=T+'px'; card.style.width=TW+'px'; card.style.height=TH+'px';
+      });
+      card.addEventListener('mouseenter',function(){ if(!card.classList.contains('up')) card.style.transform='translateY(-3px)'; });
+      card.addEventListener('mouseleave',function(){ card.classList.remove('up'); card.style.transform='';
+        card.style.left=ol+'px'; card.style.top=ot+'px'; card.style.width=ow+'px'; card.style.height=oh+'px'; });
+      grid.appendChild(card);
+    });
+  }
+  var rt2; addEventListener('resize',function(){clearTimeout(rt2);rt2=setTimeout(layout,160);});
+  layout();
+})();
+
+// ---- 拍5 改名玩具 ----
+(function(){
+  var tabsEl=document.getElementById('nameTabs'); if(!tabsEl) return;
+  var chipsEl=document.getElementById('nameChips'), pctEl=document.getElementById('namePct'),
+      typeEl=document.getElementById('nameType'), gauge=document.getElementById('nameGauge'),
+      verEl=document.getElementById('nameVerdict'), noteEl=document.getElementById('nameNote');
+  var NAMING=[
+    {proj:"龙泉青瓷",note:"真正把认出率拉起来的不是翻译技巧，是非遗自带的地域/民族/节庆锚点。",V:[
+      {t:"青瓷",ty:"CJK 通用译名",p:41,v:"青瓷是个大品类，混着各国仿品与日韩青瓷，认出是中国的只有四成。"},
+      {t:"celadon",ty:"纯西化译词",p:52,v:"celadon 是青瓷英文统称，约一半能认出中国身份——另一半流向别处。"},
+      {t:"longquan celadon",ty:"地名复合",p:56,v:"加上「龙泉」拼音，多了点地理坐标，认出率小涨。"},
+      {t:"龙泉",ty:"地名锚·CJK",p:73,v:"地域锚点一出，七成认得出——「龙泉」二字，比任何翻译都管用。"}]},
+    {proj:"中国书法",note:"罗马音救不了，纯译词被挤；带 Chinese 或地域限定，才把它从同名物里捞回来。",V:[
+      {t:"shufa",ty:"拼音专名",p:3,v:"罗马音 shufa 几乎没人用，认出率仅 3%——拼音救不了它。"},
+      {t:"calligraphy",ty:"纯西化译词",p:12,v:"calligraphy 是全球书写艺术统称，被英文花体、沙画淹没，只剩一成是中国的。"},
+      {t:"chinese ink",ty:"Chinese+限定",p:73,v:"直接带上 Chinese，七成认得出——限定词比翻译管用得多。"}]},
+    {proj:"中国剪纸",note:"同名物太强势，唯有 Chinese 限定名能把真剪纸从噪声里捞出来。",V:[
+      {t:"papercut",ty:"纯西化译词",p:0,v:"papercut 在海外是「手被纸划伤」，中国剪纸的份额几乎是 0。"},
+      {t:"papercutting",ty:"纯西化译词",p:4,v:"papercutting 略好，但仍被各国手工挤占，只剩 4%。"},
+      {t:"chinesepapercut",ty:"Chinese+限定",p:63,v:"只有 chinesepapercut 这样的限定名，才把它从同名物里捞出来。"}]},
+    {proj:"中国珠算",note:"珠算的对手是日式そろばん和各国珠心算培训——名字之外，是整条赛道的竞争。",V:[
+      {t:"zhusuan",ty:"拼音专名",p:22,v:"拼音 zhusuan 用的人少，认出率两成出头。"},
+      {t:"abacus",ty:"纯西化译词",p:26,v:"abacus 赛道被日式そろばん、东南亚珠心算机构占据，中国珠算只占约四分之一。"}]},
+    {proj:"中国篆刻",note:"少数例外：动作译词 sealcarving 反而比 Chinese 限定名更被认出。",V:[
+      {t:"chineseseal",ty:"Chinese+限定",p:11,v:"带 Chinese 反而不占优——这一次，动作词的声量更大。"},
+      {t:"sealcarving",ty:"纯西化译词",p:38,v:"sealcarving（刻印这个动作）声量大、认出率也更高，近四成。"}]}
+  ];
+  var pi=0, vi=3;
+  function colr(p){ return p<25?'#C5392B':p<55?'#BE8B2A':'#2C6B86'; }
+  function tabStyle(on){ return 'appearance:none;cursor:pointer;font-family:"Noto Serif SC";font-weight:600;font-size:14px;padding:9px 16px;border:1.5px solid var(--ink);background:'+(on?'var(--ink)':'transparent')+';color:'+(on?'var(--paper)':'var(--ink)')+';transition:.12s'; }
+  function chipStyle(on){ var c=on?colr(NAMING[pi].V[vi].p):'var(--ink-soft)'; return 'appearance:none;cursor:pointer;font-family:"Noto Serif SC",monospace;font-size:13px;padding:7px 13px;border:1.5px solid '+(on?c:'rgba(36,29,21,.3)')+';background:'+(on?'rgba(36,29,21,.05)':'transparent')+';color:'+(on?'var(--ink)':'var(--ink-soft)')+';font-weight:'+(on?'700':'400')+';transition:.12s'; }
+  function renderTabs(){ tabsEl.innerHTML=''; NAMING.forEach(function(n,i){ var b=document.createElement('button');
+    b.textContent=n.proj; b.style.cssText=tabStyle(i===pi); b.onclick=function(){pi=i;vi=n.V.length-1;render();}; tabsEl.appendChild(b); }); }
+  function render(){ renderTabs(); var n=NAMING[pi], cur=n.V[vi];
+    chipsEl.innerHTML=''; n.V.forEach(function(vv,i){ var b=document.createElement('button');
+      b.textContent=vv.t; b.style.cssText=chipStyle(i===vi); b.onclick=function(){vi=i;render();}; chipsEl.appendChild(b); });
+    var c=colr(cur.p);
+    pctEl.textContent=cur.p; pctEl.style.color=c;
+    typeEl.textContent=cur.ty; gauge.style.width=cur.p+'%'; gauge.style.background=c;
+    verEl.textContent=cur.v; noteEl.textContent='// '+n.note;
+  }
+  render();
+})();
+
+// ---- 拍4 一个人的海：星群 ----
+(function(){
+  var box=document.getElementById('swarms'); if(!box) return;
+  var SW=[{n:"春节",na:785,t:6},{n:"制茶",na:234,t:19},{n:"古琴",na:100,t:25},
+    {n:"龙泉青瓷",na:77,t:55},{n:"蚕桑",na:60,t:74},{n:"玛纳斯",na:10,t:66},{n:"伊玛堪",na:5,t:96}];
+  SW.forEach(function(s){
+    var cell=document.createElement('div'); cell.style.textAlign='center';
+    var cv=document.createElement('canvas'); cv.width=300; cv.height=300;
+    cv.style.width='100%'; cv.style.aspectRatio='1/1'; cv.style.display='block';
+    cell.appendChild(cv);
+    var nm=document.createElement('div'); nm.textContent=s.n;
+    nm.style.cssText='font-family:"Noto Serif SC";font-weight:600;font-size:clamp(13px,1.5vw,17px);margin-top:8px;color:var(--ink)';
+    var meta=document.createElement('div'); meta.textContent=s.na+' 人 · 最大占 '+s.t+'%';
+    meta.style.cssText='font-family:"Noto Serif SC",monospace;font-size:10.5px;color:var(--ink-soft);margin-top:2px';
+    cell.appendChild(nm); cell.appendChild(meta); box.appendChild(cell);
+    var ctx=cv.getContext('2d'), cx=150, cy=150, R=120, shown=Math.min(s.na,90);
+    var pts=[]; for(var i=0;i<shown;i++){ var a=Math.random()*6.28, rr=Math.pow(Math.random(),.58)*R;
+      pts.push({x:cx+Math.cos(a)*rr,y:cy+Math.sin(a)*rr,s:Math.random()*1.25+1.05,ph:Math.random()*6.28,sp:0.0018+Math.random()*0.0032});
+    }
+    function star(x,y,r,a,col){
+      ctx.save(); ctx.globalAlpha=a; ctx.strokeStyle=col; ctx.fillStyle=col; ctx.lineWidth=Math.max(.65,r*.34);
+      ctx.beginPath(); ctx.moveTo(x-r*1.9,y); ctx.lineTo(x+r*1.9,y); ctx.moveTo(x,y-r*1.9); ctx.lineTo(x,y+r*1.9); ctx.stroke();
+      ctx.beginPath(); ctx.arc(x,y,r,0,6.28); ctx.fill(); ctx.restore();
+    }
+    function draw(prog,now){ now=now||performance.now(); ctx.clearRect(0,0,300,300);
+      var wash=ctx.createRadialGradient(cx,cy,0,cx,cy,R*1.12);
+      wash.addColorStop(0,'rgba(44,107,134,.055)'); wash.addColorStop(1,'rgba(44,107,134,0)');
+      ctx.fillStyle=wash; ctx.beginPath(); ctx.arc(cx,cy,R*1.12,0,6.28); ctx.fill();
+      pts.forEach(function(p,i){ var pp=Math.min(Math.max(prog*shown-i,0),1); if(pp<=0)return;
+        var tw=.42+.58*Math.pow((Math.sin(now*p.sp+p.ph)+1)/2,1.7);
+        var al=(0.2+0.58*tw)*pp;
+        star(p.x,p.y,p.s*(.78+.28*tw),al,'#2D3A35');
+      });
+      var pulse=.82+.18*Math.sin(now*.0024+s.t);
+      var gr=(8+Math.sqrt(s.t/100)*52*prog)*pulse;
+      var g=ctx.createRadialGradient(cx,cy,0,cx,cy,gr*1.75);
+      g.addColorStop(0,'rgba(214,164,55,'+(0.25*prog)+')'); g.addColorStop(.46,'rgba(214,164,55,'+(0.12*prog)+')'); g.addColorStop(1,'rgba(214,164,55,0)');
+      ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx,cy,gr*1.75,0,6.28); ctx.fill();
+      star(cx,cy,Math.max(4,gr*.18),prog,'#C99A3B');
+      ctx.strokeStyle='rgba(168,124,34,'+(0.55*prog)+')'; ctx.lineWidth=1.2; ctx.beginPath(); ctx.arc(cx,cy,gr*.72,0,6.28); ctx.stroke();
+    }
+    s._draw=draw; s._cv=cv;
+  });
+  var run=false, twRaf=null, progNow=0;
+  function loop(){
+    SW.forEach(function(s){s._draw(progNow,performance.now());});
+    twRaf=requestAnimationFrame(loop);
+  }
+  function go(){ if(run)return; run=true;
+    if(reduce){ progNow=1; SW.forEach(function(s){s._draw(1,0);}); return; }
+    var t0=performance.now(), dur=1400;
+    (function step(now){ var t=Math.min((now-t0)/dur,1), e=1-Math.pow(1-t,3);
+      progNow=e; SW.forEach(function(s){s._draw(e,now);});
+      if(t<1) requestAnimationFrame(step); else if(!twRaf) loop();
+    })(t0);
+  }
+  var io=new IntersectionObserver(function(es){
+    if(es[0].isIntersecting){ go(); }
+    else if(twRaf){ cancelAnimationFrame(twRaf); twRaf=null; run=false; progNow=0; }
+  },{threshold:.2});
+  io.observe(box);
+})();
+
+// ---- 拍2 缩水 count-up ----
+(function(){
+  var num=document.getElementById('shrinknum'), bar=document.getElementById('shrinkbar'), pct=document.getElementById('shrinkpct');
+  if(!num) return;
+  var done=false;
+  function run(){ if(done)return; done=true;
+    if(reduce){ num.textContent='34.33'; bar.style.width='64%'; pct.style.opacity='1'; return; }
+    var dur=1700, t0=performance.now();
+    (function step(now){ var t=Math.min((now-t0)/dur,1), e=1-Math.pow(1-t,3);
+      num.textContent=(53.68-19.35*e).toFixed(2); bar.style.width=(100-36*e)+'%';
+      if(t>=1){ pct.style.opacity='1'; } else requestAnimationFrame(step); })(t0);
+  }
+  var io=new IntersectionObserver(function(es){ if(es[0].isIntersecting) run(); },{threshold:.4});
+  io.observe(num);
+})();
+
+// ---- hero 航线 draw-in ----
+(function(){
+  var rd=document.querySelectorAll('#hroutes [data-r]'); if(!rd.length) return;
+  for(var i=0;i<rd.length;i++){ (function(p,i){
+    var tone=p.getAttribute('data-c');
+    var stroke=tone==='red'?'rgba(190,58,43,.62)':tone==='gold'?'rgba(190,139,42,.6)':'rgba(42,78,83,.45)';
+    p.setAttribute('stroke',stroke); p.setAttribute('stroke-width','0.95');
+    p.setAttribute('stroke-dasharray','1.4 8'); p.setAttribute('stroke-linecap','round');
+    var L=p.getTotalLength();
+    p.style.strokeDasharray='1.4 8';
+    p.style.strokeDashoffset=L;
+    if(reduce){ p.style.opacity='1'; return; }
+    p.style.opacity='0'; p.style.transition='opacity .35s ease '+(1.05+i*0.16).toFixed(2)+'s, stroke-dashoffset 2.8s cubic-bezier(.2,.7,.1,1) '+(1.05+i*0.16).toFixed(2)+'s';
+    requestAnimationFrame(function(){requestAnimationFrame(function(){ p.style.opacity='1'; p.style.strokeDashoffset='0'; });});
+  })(rd[i],i); }
+})();
+
+</script>
+</body>
+</html>
