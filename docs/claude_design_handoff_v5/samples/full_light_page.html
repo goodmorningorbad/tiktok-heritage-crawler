@@ -80,10 +80,16 @@
   .chart-lead .g{color:var(--gold);font-weight:600}
 
   .stage{position:relative;width:100%;max-width:1320px;margin:18px auto 0;padding:0 clamp(12px,2vw,28px)}
-  .chart-frame{position:relative;border:2px solid var(--ink);background:rgba(226,212,178,.5);
+  .chart-frame{position:relative;border:2px solid var(--ink);overflow:hidden;
+    background:linear-gradient(180deg,#D8C69C 0%,#E2D2AA 48%,#D5C093 100%);
     backdrop-filter:blur(.25px);
     box-shadow:0 1px 0 var(--paper-deep) inset, 0 18px 40px -28px rgba(36,29,21,.5)}
   .chart-frame::before{content:"";position:absolute;inset:7px;border:1px solid rgba(36,29,21,.35);pointer-events:none;z-index:4}
+  .chart-frame::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
+    background:
+      linear-gradient(90deg,rgba(90,75,54,.18),rgba(90,75,54,0) 7%,rgba(90,75,54,0) 93%,rgba(90,75,54,.16)),
+      linear-gradient(180deg,rgba(90,75,54,.15),rgba(90,75,54,0) 10%,rgba(90,75,54,0) 86%,rgba(90,75,54,.18));
+    mix-blend-mode:multiply}
   canvas{display:block;width:100%;height:auto}
 
   .legend{position:absolute;left:20px;top:20px;z-index:6;display:flex;flex-direction:column;gap:7px;
@@ -673,7 +679,8 @@ function drawStripImage(img,strip){
   var iw=img.naturalWidth, ih=img.naturalHeight, gap=0.012*ih;
   var stripH=(ih-gap*4)/5;
   var sy=Math.max(0,Math.min(ih-stripH,strip*(stripH+gap)));
-  ctx.drawImage(img,0,sy,iw,stripH,0,0,W,H);
+  var bleedX=iw*0.026, bleedY=stripH*0.035;
+  ctx.drawImage(img,bleedX,sy+bleedY,iw-bleedX*2,stripH-bleedY*2,0,0,W,H);
   return true;
 }
 
@@ -757,14 +764,20 @@ function frame(now){
   ctx.clearRect(0,0,W,H);
   // background plate + paper wash, so the image reads inside the chart instead of only around it
   if(!drawStripImage(seaBg,0)){
-    ctx.fillStyle='#E2D3AD'; ctx.fillRect(0,0,W,H);
+    ctx.fillStyle='#D9C69B'; ctx.fillRect(0,0,W,H);
   }
   var wash=ctx.createLinearGradient(0,0,0,H);
-  wash.addColorStop(0,'rgba(233,222,194,0.34)');
+  wash.addColorStop(0,'rgba(206,186,139,0.28)');
   wash.addColorStop(0.45,'rgba(233,222,194,0.22)');
   wash.addColorStop(0.74,'rgba(233,222,194,0.12)');
-  wash.addColorStop(1,'rgba(220,205,168,0.22)');
+  wash.addColorStop(1,'rgba(194,172,124,0.26)');
   ctx.fillStyle=wash; ctx.fillRect(0,0,W,H);
+  var edge=ctx.createLinearGradient(0,0,W,H);
+  edge.addColorStop(0,'rgba(90,75,54,0.10)');
+  edge.addColorStop(0.18,'rgba(90,75,54,0)');
+  edge.addColorStop(0.82,'rgba(90,75,54,0)');
+  edge.addColorStop(1,'rgba(90,75,54,0.10)');
+  ctx.save(); ctx.globalCompositeOperation='multiply'; ctx.fillStyle=edge; ctx.fillRect(0,0,W,H); ctx.restore();
   var bg=ctx.createRadialGradient(W*0.5,H*0.56,H*0.08,W*0.5,H*0.5,H*0.82);
   bg.addColorStop(0,'rgba(255,248,225,0.18)'); bg.addColorStop(1,'rgba(101,82,49,0.08)');
   ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
