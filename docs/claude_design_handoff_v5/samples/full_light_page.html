@@ -466,17 +466,18 @@
 </section>
 
 <!-- ============ 拍6 · 档案馆（翻面卡） ============ -->
-<section style="background:var(--paper);color:var(--ink);padding:clamp(44px,6vw,90px) 0 clamp(54px,7vw,100px)">
+<section id="archive-section" style="background:var(--paper);color:var(--ink);padding:clamp(44px,6vw,90px) 0 clamp(54px,7vw,100px)">
   <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px)">
     <div style="display:flex;align-items:center;gap:18px;margin-bottom:6px">
       <div style="width:54px;height:54px;flex:0 0 auto;border:2px solid var(--cinnabar);display:flex;align-items:center;justify-content:center;position:relative"><span style="font-weight:900;font-size:26px;color:var(--cinnabar)">陆</span></div>
       <div>
-        <p style="font-family:'Noto Serif SC',monospace;font-size:11.5px;letter-spacing:.24em;color:var(--gold-br);font-weight:700;margin:0 0 5px">CH.06 · 非遗下落档案馆 · 点击翻面</p>
+        <p style="font-family:'Noto Serif SC',monospace;font-size:11.5px;letter-spacing:.24em;color:var(--gold-br);font-weight:700;margin:0 0 5px">CH.06 · 非遗下落档案馆 · 悬停翻面</p>
         <h2 style="font-family:'Noto Serif SC';font-weight:700;margin:0;font-size:clamp(22px,3.6vw,40px);line-height:1.1">44 件，各自的下落。</h2>
       </div>
     </div>
-    <div id="fateTabs" style="display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 10px"></div>
-    <p style="font-family:'Noto Serif SC',monospace;font-size:11.5px;color:var(--ink-soft);margin:0 0 18px">块越大＝被看见次数越多　·　点击卡片「拿起来」翻面看详情，鼠标移开自动放回</p>
+    <div id="fateTabs" style="display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 8px"></div>
+    <p style="font-family:'Noto Serif SC',monospace;font-size:12px;color:var(--cinnabar-deep);font-weight:700;margin:0 0 7px">上方分类按钮可点击切换。</p>
+    <p style="font-family:'Noto Serif SC',monospace;font-size:11.5px;color:var(--ink-soft);margin:0 0 18px">块越大＝被看见次数越多　·　鼠标悬停在图片上会自动拿起并翻面，移开后放回原位</p>
     <div id="archive" style="position:relative;width:100%;margin-top:4px"></div>
   </div>
 </section>
@@ -978,6 +979,7 @@ if(reduce) frame(0);
     var rects=squarify(areas,W,H);
     items.forEach(function(b,i){ var r=rects[i]; if(!r)return; var c=COLOR[b.cat]||'#C9A24B'; var ph=PHOTO[b.l];
       var card=document.createElement('div'); card.className='acard';
+      card.tabIndex=0;
       var gap=2; card.style.left=(r.x+gap)+'px'; card.style.top=(r.y+gap)+'px';
       card.style.width=Math.max(r.w-gap*2,8)+'px'; card.style.height=Math.max(r.h-gap*2,8)+'px';
       var cx=r.x+r.w/2, cy=r.y+r.h/2;
@@ -1002,14 +1004,17 @@ if(reduce) frame(0);
         '</div>'+
       '</div>';
       var ow=Math.max(r.w-gap*2,8), oh=Math.max(r.h-gap*2,8), ol=r.x+gap, ot=r.y+gap;
-      card.addEventListener('click',function(){
+      function lift(){
         var TW=Math.min(238,W-12), TH=Math.round(TW*1.34);
         var L=Math.min(Math.max(cx-TW/2,4),Math.max(W-TW-4,4)), T=Math.min(Math.max(cy-TH/2,4),Math.max(H-TH-4,4));
         card.classList.add('up'); card.style.transform='';
         card.style.left=L+'px'; card.style.top=T+'px'; card.style.width=TW+'px'; card.style.height=TH+'px';
-      });
-      card.addEventListener('mouseenter',function(){ if(!card.classList.contains('up')) card.style.transform='translateY(-3px)'; });
+      }
+      card.addEventListener('mouseenter',lift);
+      card.addEventListener('focus',lift);
       card.addEventListener('mouseleave',function(){ card.classList.remove('up'); card.style.transform='';
+        card.style.left=ol+'px'; card.style.top=ot+'px'; card.style.width=ow+'px'; card.style.height=oh+'px'; });
+      card.addEventListener('blur',function(){ card.classList.remove('up'); card.style.transform='';
         card.style.left=ol+'px'; card.style.top=ot+'px'; card.style.width=ow+'px'; card.style.height=oh+'px'; });
       grid.appendChild(card);
     });
