@@ -131,7 +131,7 @@
     clip-path:polygon(0 12%,12% 18%,24% 11%,38% 21%,50% 15%,64% 23%,78% 12%,100% 19%,100% 100%,0 100%)}
   .finale__ship{position:absolute;right:5%;bottom:20%;width:min(34vw,460px);height:30%;
     background:url("heroimg/图层 1.png") center bottom/contain no-repeat;opacity:.86;mix-blend-mode:multiply;
-    filter:saturate(.96) contrast(1.02) drop-shadow(0 8px 10px rgba(36,29,21,.1));animation:shipfloat 8s ease-in-out infinite;
+    filter:saturate(.96) contrast(1.02) drop-shadow(0 8px 10px rgba(36,29,21,.1));animation:finaleshipfloat 8s ease-in-out infinite;
     -webkit-mask-image:linear-gradient(90deg,transparent 0 28%,rgba(0,0,0,.72) 43%,#000 100%);
     mask-image:linear-gradient(90deg,transparent 0 28%,rgba(0,0,0,.72) 43%,#000 100%)}
   .finale__inner{position:relative;z-index:2;max-width:1100px;margin:0 auto}
@@ -197,13 +197,13 @@
     animation:sunwater 6s ease-in-out 1.8s infinite}
   .hlayer.ship-cut{z-index:4;inset:0;width:100%;height:100%;opacity:.96;object-fit:cover;object-position:center bottom;
     filter:saturate(1.06) contrast(1.08) drop-shadow(0 8px 8px rgba(32,20,10,.1));mix-blend-mode:multiply;
-    -webkit-mask-image:linear-gradient(90deg,transparent 0 52%,rgba(0,0,0,.18) 56%,rgba(0,0,0,.96) 60%,#000 72%,rgba(0,0,0,.34) 78%,transparent 86%),
-      linear-gradient(180deg,transparent 0 36%,rgba(0,0,0,.9) 48%,#000 75%,rgba(0,0,0,.44) 100%);
+    -webkit-mask-image:linear-gradient(90deg,transparent 0 38%,rgba(0,0,0,.18) 42%,rgba(0,0,0,.62) 47%,rgba(0,0,0,.96) 53%,#000 73%,rgba(0,0,0,.38) 80%,transparent 89%),
+      linear-gradient(180deg,transparent 0 34%,rgba(0,0,0,.9) 45%,#000 74%,rgba(0,0,0,.44) 100%);
     -webkit-mask-composite:source-in;
-    mask-image:linear-gradient(90deg,transparent 0 52%,rgba(0,0,0,.18) 56%,rgba(0,0,0,.96) 60%,#000 72%,rgba(0,0,0,.34) 78%,transparent 86%),
-      linear-gradient(180deg,transparent 0 36%,rgba(0,0,0,.9) 48%,#000 75%,rgba(0,0,0,.44) 100%);
+    mask-image:linear-gradient(90deg,transparent 0 38%,rgba(0,0,0,.18) 42%,rgba(0,0,0,.62) 47%,rgba(0,0,0,.96) 53%,#000 73%,rgba(0,0,0,.38) 80%,transparent 89%),
+      linear-gradient(180deg,transparent 0 34%,rgba(0,0,0,.9) 45%,#000 74%,rgba(0,0,0,.44) 100%);
     mask-composite:intersect;
-    transform-origin:center 68%;animation:shipfloat 7.5s ease-in-out infinite}
+    transform-origin:center 64%;animation:heroshipfloat 7.5s ease-in-out infinite}
   .hglow{position:absolute;left:59%;top:37.6%;width:18.2%;aspect-ratio:1/1;border-radius:50%;z-index:3;
     background:radial-gradient(circle,rgba(219,88,43,.12),rgba(222,125,57,.05) 42%,rgba(219,88,43,0) 72%);
     mix-blend-mode:screen;animation:glow 5.4s ease-in-out infinite}
@@ -259,7 +259,8 @@
   @keyframes sunpulse{0%,100%{opacity:.84;filter:saturate(.92) contrast(.92) sepia(.05);transform:scale(.998)}50%{opacity:.94;filter:saturate(1.02) contrast(.98) sepia(.05);transform:scale(1.006)}}
   @keyframes sunwater{0%,100%{opacity:.24;transform:scaleY(.68) translateY(0)}50%{opacity:.4;transform:scaleY(.82) translateY(6px)}}
   @keyframes sunveil{0%,100%{transform:translateX(-6px) translateY(0)}50%{transform:translateX(8px) translateY(3px)}}
-  @keyframes shipfloat{0%,100%{transform:translate3d(7.2vw,0,0) scale(.7)}50%{transform:translate3d(7.9vw,-8px,0) scale(.7)}}
+  @keyframes heroshipfloat{0%,100%{transform:translate3d(7.1vw,-28px,0) scale(.7)}50%{transform:translate3d(7.8vw,-38px,0) scale(.7)}}
+  @keyframes finaleshipfloat{0%,100%{transform:translate3d(0,0,0) scale(.89)}50%{transform:translate3d(10px,-7px,0) scale(.89)}}
   @keyframes wavesheen{from{transform:translateX(-8%)}to{transform:translateX(8%)}}
   @keyframes birddrift{0%,100%{transform:translate(0,0)}50%{transform:translate(24px,-10px)}}
   @keyframes tagin{from{opacity:0;transform:translate(-50%,-42%) scale(.92)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
