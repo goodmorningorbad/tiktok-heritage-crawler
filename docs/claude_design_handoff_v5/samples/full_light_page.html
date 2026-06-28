@@ -375,7 +375,7 @@
   <div style="position:absolute;inset:0;opacity:.12;pointer-events:none;background:repeating-linear-gradient(135deg,var(--gold) 0 1px,transparent 1px 24px)"></div>
   <div style="max-width:880px;margin:0 auto;position:relative">
     <p style="font-family:'Noto Serif SC',monospace;font-size:11.5px;letter-spacing:.24em;color:var(--gold-br);font-weight:700;margin:0 0 24px;text-align:center">CH.02 · 热闹是真的，但缩了水</p>
-    <p style="font-family:'Noto Serif SC',serif;font-size:clamp(22px,3.4vw,40px);font-weight:700;line-height:1.34;text-align:center;max-width:22ch;margin:0 auto 48px">几十亿播放看起来风光。<br>可逐条看清「这到底是不是它」——</p>
+    <p style="font-family:'Noto Serif SC',serif;font-size:clamp(22px,3.4vw,40px);font-weight:700;line-height:1.34;text-align:center;max-width:30ch;margin:0 auto 48px">几十亿播放看起来风光。<br>可逐条看清「这到底是不是它」——</p>
     <div style="max-width:680px;margin:0 auto">
       <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px">
         <span style="font-family:'Noto Serif SC',monospace;font-size:12px;color:var(--ink-soft)">机器听到的声量</span>
@@ -889,7 +889,7 @@ if(reduce) frame(0);
     if(door==='pc'){
       var h='<p style="font-size:16px;color:var(--ink);margin:6px 0 4px;max-width:64ch">剪纸，英文名 <b style="color:var(--cinnabar)">papercut</b>。老外在 TikTok 刷 papercut，刷到的是这些——按播放从高到低：</p>'+
         '<div style="display:flex;flex-wrap:wrap;gap:11px;margin-top:18px">'+PC.map(function(c){return vcard(c,'noise');}).join('')+'</div>';
-      if(phase==='idle'){ h+='<div style="text-align:center;margin-top:22px"><button id="digBtn" style="appearance:none;cursor:pointer;border:1.5px dashed rgba(36,29,21,.4);background:transparent;color:var(--ink-soft);font-family:\'Noto Serif SC\',monospace;font-weight:700;font-size:14px;padding:13px 24px">↓ 继续往下翻，找真正的中国剪纸</button></div>'; }
+      if(phase==='idle'){ h+='<div style="text-align:center;margin-top:22px"><button id="digBtn" style="appearance:none;cursor:pointer;border:1.5px dashed rgba(36,29,21,.4);background:transparent;color:var(--ink-soft);font-family:\'Noto Serif SC\',monospace;font-weight:700;font-size:14px;padding:13px 24px">点击找真正的中国剪纸</button></div>'; }
       if(phase==='running'){ h+='<div style="text-align:center;margin-top:22px"><div style="font-family:\'Noto Serif SC\',monospace;font-size:clamp(40px,8vw,78px);font-weight:700;color:var(--cinnabar);line-height:1">第 <span id="digN">6</span> 条</div>'+
         '<div style="display:flex;justify-content:center;gap:7px;margin-top:14px;flex-wrap:wrap">'+DIGW.slice(0,8).map(function(w,i){return '<div style="width:46px;height:74px;background:linear-gradient(160deg,#7c5a4a,#2a1e18);color:#fff;font-size:9px;display:flex;align-items:flex-end;padding:5px;animation:shuf .5s ease-in-out infinite;animation-delay:'+(i*0.06)+'s">'+w+'</div>';}).join('')+'</div>'+
         '<div style="font-size:12.5px;color:var(--ink-soft);margin-top:12px">全是同名异物——纸划伤、开箱、美甲……没有一条是剪纸</div></div>'; }
