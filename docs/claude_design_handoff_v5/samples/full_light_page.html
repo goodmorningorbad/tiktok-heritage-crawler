@@ -62,7 +62,9 @@
   .blk--jade .hai{font-family:"Ma Shan Zheng";font-size:62px;color:var(--gold-br)}
 
   /* ---- chart section ---- */
-  .chart-sec{position:relative;padding:clamp(30px,4vw,58px) 0 40px;background:var(--paper)}
+  .chart-sec{position:relative;padding:clamp(30px,4vw,58px) 0 40px;background:
+    linear-gradient(180deg,rgba(233,222,194,.94),rgba(233,222,194,.86)),
+    url("../img/backround/ChatGPT Image Jun 28, 2026, 01_04_09 AM.png") center 58%/cover no-repeat}
   .chart-head{max-width:1180px;margin:0 auto 6px;padding:0 clamp(20px,4vw,40px);display:flex;align-items:center;gap:18px}
   .num-seal{width:54px;height:54px;flex:0 0 auto;border:2px solid var(--cinnabar);
     display:flex;align-items:center;justify-content:center;position:relative;background:rgba(190,58,43,.05)}
@@ -349,7 +351,7 @@
 </header>
 
 <!-- ============ 拍1 · 两扇门识别实验 ============ -->
-<section style="background:var(--paper);padding:clamp(44px,6vw,90px) 0;border-bottom:1px solid rgba(36,29,21,.16)">
+<section id="door-section" style="background:var(--paper);padding:clamp(44px,6vw,90px) 0;border-bottom:1px solid rgba(36,29,21,.16)">
   <div style="max-width:1040px;margin:0 auto;padding:0 clamp(20px,4vw,40px)">
     <div style="display:flex;align-items:center;gap:18px;margin-bottom:6px">
       <div class="num-seal"><span>壹</span></div>
@@ -361,6 +363,7 @@
     <p class="chart-lead" style="margin-left:0">在 TikTok，没人是「搜」到你的——是被<b>刷到</b>的。走出去真正的考验，不是「想找你的人能不能找到」，而是<b>没在找你的人，刷到你的名字时，看到的是不是你</b>。</p>
 
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin:30px 0 0" id="doorTabs"></div>
+    <p style="font-family:'Noto Serif SC',monospace;font-size:12px;color:var(--cinnabar-deep);font-weight:700;margin:8px 0 0">上方两个词门按钮可点击切换。</p>
 
     <div id="doorBody" style="margin-top:24px"></div>
   </div>
@@ -393,7 +396,7 @@
 </section>
 
 <!-- ============ 招牌 · 古航海图 ============ -->
-<section class="chart-sec">
+<section class="chart-sec" id="voyage-section">
   <div class="chart-head">
     <div class="num-seal"><span>叁</span></div>
     <div>
@@ -439,7 +442,7 @@
 </section>
 
 <!-- ============ 拍5 · 改名玩具 ============ -->
-<section style="background:var(--paper);padding:clamp(44px,6vw,90px) 0;border-top:1px solid rgba(36,29,21,.16)">
+<section id="name-section" style="background:var(--paper);padding:clamp(44px,6vw,90px) 0;border-top:1px solid rgba(36,29,21,.16)">
   <div style="max-width:1000px;margin:0 auto;padding:0 clamp(20px,4vw,40px)">
     <div style="display:flex;align-items:center;gap:18px;margin-bottom:6px">
       <div class="num-seal"><span>伍</span></div>
@@ -450,6 +453,7 @@
     </div>
     <p class="chart-lead" style="margin-left:0">在靠「刷到」传播的平台，名字决定了别人刷到你那一刻，认不认得出<b>这是中国的</b>。选一件、换个名字，看认出率怎么变——</p>
     <div id="nameTabs" style="display:flex;gap:8px;flex-wrap:wrap;margin:24px 0 0"></div>
+    <p style="font-family:'Noto Serif SC',monospace;font-size:12px;color:var(--cinnabar-deep);font-weight:700;margin:8px 0 0">上方项目按钮可点击切换；下方名称标签也可点击。</p>
     <div style="margin-top:18px;border:1.5px solid var(--ink);background:var(--paper2);padding:clamp(20px,3vw,34px)">
       <div id="nameChips" style="display:flex;gap:9px;flex-wrap:wrap;margin-bottom:26px"></div>
       <div style="display:flex;justify-content:space-between;align-items:baseline">
@@ -897,10 +901,11 @@ if(reduce) frame(0);
 (function(){
   var grid=document.getElementById('archive'), tabsEl=document.getElementById('fateTabs'); if(!grid) return;
   var st=document.createElement('style'); st.textContent=
-    '.acard{position:absolute;cursor:pointer;transition:all .34s cubic-bezier(.2,.8,.2,1);will-change:width,height,left,top}'+
+    '.acard{position:absolute;cursor:pointer;transition:transform .34s cubic-bezier(.2,.8,.2,1),box-shadow .34s ease;will-change:transform}'+
+    '.acard::before{content:"";position:absolute;inset:-14px;z-index:0;background:rgba(255,255,255,.001)}'+
     '.acard:hover{z-index:20;box-shadow:0 12px 30px -8px rgba(36,29,21,.38)}'+
     '.acard.up{z-index:120;box-shadow:0 26px 64px -16px rgba(36,29,21,.5)}'+
-    '.ain{position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}'+
+    '.ain{position:relative;z-index:1;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}'+
     '.acard.up .ain{transform:rotateY(180deg)}'+
     '.af{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;border:1px solid rgba(36,29,21,.22)}'+
     '.ab{transform:rotateY(180deg);background:var(--paper2);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:11%}';
@@ -1004,18 +1009,17 @@ if(reduce) frame(0);
         '</div>'+
       '</div>';
       var ow=Math.max(r.w-gap*2,8), oh=Math.max(r.h-gap*2,8), ol=r.x+gap, ot=r.y+gap;
+      var liftScale=Math.min(2.2,Math.max(1.08,Math.min(238/ow,(238*1.34)/oh)));
+      var liftX=(cx<W*.5?1:-1)*Math.min(18,Math.max(4,ow*.04));
+      var liftY=(cy<H*.52?10:-10);
       function lift(){
-        var TW=Math.min(238,W-12), TH=Math.round(TW*1.34);
-        var L=Math.min(Math.max(cx-TW/2,4),Math.max(W-TW-4,4)), T=Math.min(Math.max(cy-TH/2,4),Math.max(H-TH-4,4));
-        card.classList.add('up'); card.style.transform='';
-        card.style.left=L+'px'; card.style.top=T+'px'; card.style.width=TW+'px'; card.style.height=TH+'px';
+        card.classList.add('up');
+        card.style.transform='translate3d('+liftX+'px,'+liftY+'px,0) scale('+liftScale.toFixed(3)+')';
       }
       card.addEventListener('mouseenter',lift);
       card.addEventListener('focus',lift);
-      card.addEventListener('mouseleave',function(){ card.classList.remove('up'); card.style.transform='';
-        card.style.left=ol+'px'; card.style.top=ot+'px'; card.style.width=ow+'px'; card.style.height=oh+'px'; });
-      card.addEventListener('blur',function(){ card.classList.remove('up'); card.style.transform='';
-        card.style.left=ol+'px'; card.style.top=ot+'px'; card.style.width=ow+'px'; card.style.height=oh+'px'; });
+      card.addEventListener('mouseleave',function(){ card.classList.remove('up'); card.style.transform=''; });
+      card.addEventListener('blur',function(){ card.classList.remove('up'); card.style.transform=''; });
       grid.appendChild(card);
     });
   }
