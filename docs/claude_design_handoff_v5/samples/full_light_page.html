@@ -63,8 +63,8 @@
 
   /* ---- chart section ---- */
   .chart-sec{position:relative;padding:clamp(30px,4vw,58px) 0 40px;background:
-    linear-gradient(180deg,rgba(233,222,194,.94),rgba(233,222,194,.86)),
-    url("../img/backround/ChatGPT Image Jun 28, 2026, 01_04_09 AM.png") center 58%/cover no-repeat}
+    linear-gradient(180deg,rgba(233,222,194,.76) 0%,rgba(233,222,194,.54) 25%,rgba(233,222,194,.32) 58%,rgba(233,222,194,.5) 100%),
+    url("../img/backround/ChatGPT Image Jun 28, 2026, 01_04_09 AM.png") center 66%/cover no-repeat}
   .chart-head{max-width:1180px;margin:0 auto 6px;padding:0 clamp(20px,4vw,40px);display:flex;align-items:center;gap:18px}
   .num-seal{width:54px;height:54px;flex:0 0 auto;border:2px solid var(--cinnabar);
     display:flex;align-items:center;justify-content:center;position:relative;background:rgba(190,58,43,.05)}
@@ -80,7 +80,8 @@
   .chart-lead .g{color:var(--gold);font-weight:600}
 
   .stage{position:relative;width:100%;max-width:1320px;margin:18px auto 0;padding:0 clamp(12px,2vw,28px)}
-  .chart-frame{position:relative;border:2px solid var(--ink);background:var(--paper2);
+  .chart-frame{position:relative;border:2px solid var(--ink);background:rgba(226,212,178,.5);
+    backdrop-filter:blur(.25px);
     box-shadow:0 1px 0 var(--paper-deep) inset, 0 18px 40px -28px rgba(36,29,21,.5)}
   .chart-frame::before{content:"";position:absolute;inset:7px;border:1px solid rgba(36,29,21,.35);pointer-events:none;z-index:4}
   canvas{display:block;width:100%;height:auto}
@@ -561,6 +562,9 @@ var cv=document.getElementById('sea'), ctx=cv.getContext('2d'),
 var W,H,DPR,PX,PY,FAN,LO=Math.log10(5e4),HI=Math.log10(1.25e9),rMax,rMin;
 var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 var t0=null, raf=null;
+var seaBg=new Image();
+seaBg.src='../img/backround/ChatGPT Image Jun 28, 2026, 01_03_36 AM.png';
+seaBg.onload=function(){ if(reduce || seaSeen) frame(performance.now()); };
 
 // ---- text reveal rhythm ----
 (function(){
@@ -616,6 +620,15 @@ function buildStars(){ /* 海图上的细密点刺（纸纹外的手绘点） */
   STARS=[]; for(var i=0;i<70;i++) STARS.push({x:Math.random()*W,y:Math.random()*H*0.8,r:Math.random()*0.9+0.2,a:Math.random()*0.18+0.04});
 }
 var STARS=[];
+
+function drawStripImage(img,strip){
+  if(!img.complete || !img.naturalWidth) return false;
+  var iw=img.naturalWidth, ih=img.naturalHeight, gap=0.012*ih;
+  var stripH=(ih-gap*4)/5;
+  var sy=Math.max(0,Math.min(ih-stripH,strip*(stripH+gap)));
+  ctx.drawImage(img,0,sy,iw,stripH,0,0,W,H);
+  return true;
+}
 
 function posOf(b,p){ var r=(rMin+(rMax-rMin)*b.na_)*p;
   return {x:PX+Math.sin(b.ang)*r, y:PY-Math.cos(b.ang)*r}; }
@@ -695,9 +708,18 @@ function frame(now){
   if(t0==null) t0=now;
   var t=reduce?9e9:(now-t0);
   ctx.clearRect(0,0,W,H);
-  // paper base wash + edge vignette
-  var bg=ctx.createRadialGradient(W*0.5,H*0.5,H*0.2,W*0.5,H*0.5,H*0.8);
-  bg.addColorStop(0,'#E7DBBC'); bg.addColorStop(1,'#DCCDA8');
+  // background plate + paper wash, so the image reads inside the chart instead of only around it
+  if(!drawStripImage(seaBg,0)){
+    ctx.fillStyle='#E2D3AD'; ctx.fillRect(0,0,W,H);
+  }
+  var wash=ctx.createLinearGradient(0,0,0,H);
+  wash.addColorStop(0,'rgba(233,222,194,0.34)');
+  wash.addColorStop(0.45,'rgba(233,222,194,0.22)');
+  wash.addColorStop(0.74,'rgba(233,222,194,0.12)');
+  wash.addColorStop(1,'rgba(220,205,168,0.22)');
+  ctx.fillStyle=wash; ctx.fillRect(0,0,W,H);
+  var bg=ctx.createRadialGradient(W*0.5,H*0.56,H*0.08,W*0.5,H*0.5,H*0.82);
+  bg.addColorStop(0,'rgba(255,248,225,0.18)'); bg.addColorStop(1,'rgba(101,82,49,0.08)');
   ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
 
   // hand-drawn dot stipple
