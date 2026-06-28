@@ -856,28 +856,32 @@ if(reduce) frame(0);
   var st=document.createElement('style'); st.textContent=
     '@keyframes slam{from{opacity:0;transform:scale(1.06) translateY(14px)}to{opacity:1;transform:none}}'+
     '@keyframes shuf{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}'+
-    '.vcard{width:clamp(128px,15vw,168px);aspect-ratio:9/16;border:1.5px solid var(--ink);padding:9px;display:flex;flex-direction:column;position:relative;overflow:hidden}'+
-    '.vcard .play{font-family:"Noto Serif SC",monospace;font-size:11px;font-weight:700;color:#fff;background:rgba(36,29,21,.62);padding:2px 7px;align-self:flex-start}'+
+    '.vcard{width:clamp(128px,15vw,168px);aspect-ratio:9/16;border:1.5px solid var(--ink);padding:9px;display:flex;flex-direction:column;position:relative;overflow:hidden;background-size:cover;background-position:center;background-repeat:no-repeat}'+
+    '.vcard::before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(18,13,9,.08) 0%,rgba(18,13,9,.1) 42%,rgba(18,13,9,.78) 100%);pointer-events:none}'+
+    '.vcard>*{position:relative;z-index:1}'+
+    '.vcard .play{font-family:"Noto Serif SC",monospace;font-size:11px;font-weight:700;color:#fff;background:rgba(36,29,21,.62);padding:2px 7px;align-self:flex-start;backdrop-filter:blur(1px)}'+
     '.vcard .desc{font-size:12px;line-height:1.32;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.7);margin-top:auto;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}'+
     '.vcard .au{font-family:"Noto Serif SC",monospace;font-size:10px;color:rgba(255,255,255,.85);margin-top:4px}'+
     '.vcard .tag{font-size:10.5px;font-weight:700;margin-top:5px}';
   document.head.appendChild(st);
   var PC=[
-    {p:36500000,d:"Life Advice with Jayus #fyp #lifeadvice",a:"onlyjayus",tag:"生活妙招·非剪纸"},
-    {p:13900000,d:"⚠️ WARNING ⚠️ : 1 Papercut will murk ya ahh",a:"wrongcai",tag:"一道纸划伤"},
-    {p:13000000,d:"I think my toe is gonna fall off #pain #papercut",a:"bbgbria1",tag:"受伤的脚趾"},
-    {p:11100000,d:"signed a deal, i got papercuts",a:"mgk",tag:"歌手 MGK 签约受伤"},
-    {p:7100000,d:"One paper cut and it's over !",a:"tiboinshape",tag:"又一道划伤"}];
+    {p:36500000,d:"Life Advice with Jayus #fyp #lifeadvice",a:"onlyjayus",tag:"生活妙招·非剪纸",img:"../img/1/onlyjayus.png"},
+    {p:13900000,d:"⚠️ WARNING ⚠️ : 1 Papercut will murk ya ahh",a:"wrongcai",tag:"一道纸划伤",img:"../img/1/wrongcai.png"},
+    {p:13000000,d:"I think my toe is gonna fall off #pain #papercut",a:"bbgbria1",tag:"受伤的脚趾",img:"../img/1/bbgbria1.png"},
+    {p:11100000,d:"signed a deal, i got papercuts",a:"mgk",tag:"歌手 MGK 签约受伤",img:"../img/1/mgk.png"},
+    {p:7100000,d:"One paper cut and it's over !",a:"tiboinshape",tag:"又一道划伤",img:"../img/1/tiboinshape.png"}];
   var TC=[
-    {p:9000000,d:"Keeping #wudang #fyp #healthy #taichi #chineseculture",a:"yutarvslkt4",tag:"真·太极·标 #chineseculture"},
-    {p:8900000,d:"This exercise takes a long time to learn. #taichi #wudangkungfu #chineseculture",a:"taichi.zidong",tag:"真·武当太极·认作中国"},
-    {p:2300000,d:"Tai Chi originated in China and has a history of more than 1,700 years…",a:"taichi.qingxuan",tag:"真·太极·自述源自中国"},
-    {p:1500000,d:"An elementary school student practices Tai Chi #ChineseMartialArts",a:"hebeimoment1",tag:"真·太极·认作中国武术"}];
+    {p:9000000,d:"Keeping #wudang #fyp #healthy #taichi #chineseculture",a:"yutarvslkt4",tag:"真·太极·标 #chineseculture",img:"../img/1/yutarvslkt4.png"},
+    {p:8900000,d:"This exercise takes a long time to learn. #taichi #wudangkungfu #chineseculture",a:"taichi.zidong",tag:"真·武当太极·认作中国",img:"../img/1/taichi.zidong.png"},
+    {p:2300000,d:"Tai Chi originated in China and has a history of more than 1,700 years…",a:"taichi.qingxuan",tag:"真·太极·自述源自中国",img:"../img/1/taichi.qingxuan.png"},
+    {p:1500000,d:"An elementary school student practices Tai Chi #ChineseMartialArts",a:"hebeimoment1",tag:"真·太极·认作中国武术",img:"../img/1/hebeimoment1.png"}];
+  var REAL_PC={p:1414,d:"UFO Creative Paper Cutting Tutorial #papercutting",a:"chinesecutting2",tag:"真·中国剪纸教程",img:"../img/1/chinesecutting2.png"};
   var DIGW=["纸划伤","开箱","美甲","ASMR 切纸","恶搞","手工贺卡","折纸","emo 文案","受伤合集","手账","拆快递","DIY"];
   var TINT={noise:'linear-gradient(160deg,#7c5a4a,#3a2a22)',real:'linear-gradient(160deg,#2C6B86,#163a4a)'};
   var door='pc', phase='idle';
-  function vcard(c,kind){ var col=kind==='real'?'#bfe6f0':kind==='noise'?'#f0c9bf':'#fff';
-    return '<div class="vcard" style="background:'+(kind==='real'?TINT.real:TINT.noise)+'">'+
+  function vcard(c,kind,extra){ var col=kind==='real'?'#bfe6f0':kind==='noise'?'#f0c9bf':'#fff';
+    var bg=c.img?'background-image:url(\''+c.img+'\')':'background:'+(kind==='real'?TINT.real:TINT.noise);
+    return '<div class="vcard" style="'+bg+(extra?';'+extra:'')+'">'+
       '<div class="play">▶ '+fmt(c.p)+'</div>'+
       '<div class="desc">'+c.d+'</div><div class="au">@'+c.a+'</div>'+
       '<div class="tag" style="color:'+col+'">'+c.tag+'</div></div>'; }
@@ -895,7 +899,7 @@ if(reduce) frame(0);
         '<div style="font-size:12.5px;color:var(--ink-soft);margin-top:12px">全是同名异物——纸划伤、开箱、美甲……没有一条是剪纸</div></div>'; }
       if(phase==='done'){
         h+='<div style="margin-top:24px;display:flex;align-items:center;gap:16px;border:2px solid var(--stone);background:rgba(44,107,134,.06);padding:15px;animation:slam .5s cubic-bezier(.2,1.2,.3,1) both">'+
-          '<div class="vcard" style="background:'+TINT.real+';flex:0 0 auto;width:112px"><div class="play">▶ 1,414</div><div class="desc">UFO Creative Paper Cutting Tutorial #papercutting</div><div class="au">@chinesecutting2</div></div>'+
+          vcard(REAL_PC,'real','flex:0 0 auto;width:112px')+
           '<div><div style="font-family:\'Noto Serif SC\',monospace;font-size:12px;color:var(--stone);letter-spacing:.06em">第 141 位 · 真·中国剪纸</div>'+
           '<div style="font-family:\'Noto Serif SC\';font-size:clamp(18px,2.6vw,26px);font-weight:700;margin-top:6px;line-height:1.4">在 TikTok，papercut 不是我们的剪纸——<br>是手被纸划了一下。<span style="color:var(--cinnabar)">名字成了别人东西的代号。</span></div></div></div>'+
           compareLine();
